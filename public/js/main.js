@@ -15,7 +15,7 @@ if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 function SetMegamenuPosition() {
     if ($(window).width() > 991) {
         setTimeout(function () {
-            var totalHeight = $('nav.navbar').outerHeight()/1.8;
+            var totalHeight = $('nav.navbar').outerHeight()/1.3;
             $('.mega-menu').css({top: totalHeight});
             if ($('.navbar-brand-top').length === 0)
                 $('.dropdown.simple-dropdown > .dropdown-menu').css({top: totalHeight});

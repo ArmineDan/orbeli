@@ -12,8 +12,9 @@
 */
 
 Route::get('/', 'PageController@index');
+Route::get('/քաղաքականություն/{id}', 'PostController@loadAllQaxaqakanutyun');
+Route::get('/տնտեսություն/{id}', 'PostController@loadAllQaxaqakanutyun');
 
-Route::get('c', function () {
-   
-    return view('current_posts');
-});
+
+
+
