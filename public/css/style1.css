@@ -275,13 +275,8 @@ section.visiblee {
     padding: 212px 0 79px;
     overflow: visible;
 }
-
 section.visible1{padding: 161px 0 79px;
 overflow: visible;}
-section.section1{
-	    padding: 129px 0 0;    
-        overflow: visible;
-		}
 section {padding:90px 0; overflow: hidden;}
 section.visible{padding:90px 0; overflow: visible;}
 section.mine0 {
@@ -1207,10 +1202,6 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 .padding-45px-all {padding:45px;}
 .padding-50px-all {padding:50px;}
 .padding-55px-all {padding:55px;}
-.padding-19px-all {
-    padding: 15px;
-}
-
 .padding-60px-all {padding:60px;}
 .padding-65px-all {padding:65px;}
 .padding-70px-all {padding:70px;}
@@ -1907,7 +1898,7 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 .min-height-700px {min-height: 700px}
 
 /* screen height  */
-.extra-small-screen {height: 215px;}
+.extra-small-screen {height:300px;}
 .small-screen {height:400px;}
 .one-second-screen {height:600px;}
 .one-third-screen {height:700px;}
@@ -3778,9 +3769,7 @@ aside .latest-post li figure {width: 75px;}
 
 /* home - blog grid */
 .highlight-bg-text {padding: 5px 16px; display: inline-block; margin-bottom: 15px;}
-#blog .container{
-	width:1190px;
-}
+
 /* ===================================
    Others
 ====================================== */
