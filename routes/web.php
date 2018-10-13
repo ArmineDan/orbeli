@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/քաղաքականություն/{id}', 'PostController@loadAllQaxaqakanutyun');
-Route::get('/տնտեսություն/{id}', 'PostController@loadAllQaxaqakanutyun');
+Route::get('/քաղաքականություն/{id}', 'PostController@loadAllMenu');
+Route::get('/{id}', 'PageController@load_allFromMenu');
 
 
 
