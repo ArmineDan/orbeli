@@ -1,5 +1,5 @@
 @extends('layouts.firstPage')
-@section('content')
+ @section('content')
 <section class="section1">
 		
     <div class="container">

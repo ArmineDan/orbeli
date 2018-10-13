@@ -20,6 +20,7 @@ class CreatePostTable extends Migration
             $table->text('long_text');
             $table->text('name');
             $table->text('img');
+            $table->text('author_img');
             $table->date('date');
             $table->integer('post_typ')->unsigned();
             $table->foreign('post_typ')->references('id')->on('post_type');          
