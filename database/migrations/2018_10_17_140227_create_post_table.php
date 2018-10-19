@@ -20,7 +20,8 @@ class CreatePostTable extends Migration
             $table->text('long_text');
             $table->text('name');
             $table->text('img');
-            $table->text('author_img');
+            $table->integer('authors_id')->unsigned();
+            $table->foreign('authors_id')->references('id')->on('authors'); 
             $table->date('date');
             $table->integer('post_typ')->unsigned();
             $table->foreign('post_typ')->references('id')->on('post_type');          
@@ -29,9 +30,16 @@ class CreatePostTable extends Migration
             $table->integer('tag2')->unsigned();
             $table->foreign('tag2')->references('id')->on('tags');      
             $table->integer('tag3')->unsigned();
-            $table->foreign('tag3')->references('id')->on('tags');               
+            $table->foreign('tag3')->references('id')->on('tags');           
+            $table->string('status');
+            $table->string('meta-k');
+            $table->string('meta-d');
+            $table->integer('view');
+            $table->integer('tag4')->unsigned();
+            $table->foreign('tag4')->references('id')->on('tags');    
+            $table->integer('tag5')->unsigned();
+            $table->foreign('tag5')->references('id')->on('tags');           
             $table->timestamps();
-          
         });
     }
 

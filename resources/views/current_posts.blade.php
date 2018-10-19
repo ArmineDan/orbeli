@@ -66,12 +66,12 @@
                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
                        <div class="blog-post blog-post-style1 xs-text-center">
                            <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                               <a href="blog-post-layout-01.html">
+                               <a href="{{$item->date}}/{{$item->title}}">
                                    <img src="/{{$item->img}}" alt="" data-no-retina="">
                                </a>
                            </div>
                            <div class="post-details">
-                               <a href="{{$item->date}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}}"</a>
+                               <a href="{{$item->date}}/{{$item->title}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}}"</a>
                                <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                                <div class="author">
                                    
@@ -106,41 +106,14 @@
                    </div>
                </div>
                <div class="margin-45px-bottom xs-margin-25px-bottom">
-                   <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>ԿԱՏԵԳՈՐՆԵՐ</span></div>
-                   <ul class="list-style-6 margin-50px-bottom text-small" style="text-transform: capitalize">
-                      @foreach ($all_last_posts['categories'] as $item)
-                          
-                      <li ><a href="{{$item->name}}">{{ $item->name}}</a><span>{{ $item->num}}</span></li>
-                      @endforeach
-
-                   </ul>   
+                    @include('includes.archives')
                </div>
       
                <div class="margin-45px-bottom xs-margin-25px-bottom">
-                   <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Թեմաներ</span></div>
-                   <div class="tag-cloud">
-                       <a href="#">քաղաքականություն</a>
-                       <a href="#">միջազգային</a>
-                       <a href="#">տնտեսություն</a>
-                       <a href="#">լուրեր</a>                                
-                       <a href="#">ոճ</a>
-                       <a href="#">Քաղաք</a>
-
-                   </div>
+                    @include('includes.tags')
                 </div>
         
-               <div class="margin-45px-bottom xs-margin-25px-bottom">
-                   <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>ԲԱԺԱՆՈՐԴԱԳՐՎԵԼ</span></div>
-                   <div class="display-inline-block width-100">
-                       <form>
-                           <div class="position-relative">
-                               <input type="email" class="bg-transparent text-small no-margin border-color-extra-light-gray medium-input pull-left" placeholder="Ձեր էլ.փոստը ...">
-                               <button type="submit" class="bg-transparent text-large btn position-absolute right-0 top-3"><i class="fa fa-envelope no-margin-left"></i></button>
-                           </div>   
-                       </form>
-                   </div>
-               </div>
-             
+              
            </aside>
        </div>
    </div>
