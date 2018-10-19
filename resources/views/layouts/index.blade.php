@@ -48,90 +48,111 @@
         <![endif]-->
     </head>
     <body>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.1&appId=161407021204454&autoLogAppEvents=1';
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
         <!-- start header -->
         <header>
-         
+         @include('../includes.header', $all_last_posts['menu'] )
          </header>
-       
         <!-- end header -->
-        <!-- start slider section --> 
-	      @yield('content');
-	 
-        <!-- start footer --> 
-          <footer class="footer-classic-dark bg-extra-dark-gray padding-five-bottom xs-padding-30px-bottom">
-            <div class="bg-dark-footer padding-50px-tb xs-padding-30px-tb">
-                <div class="container">
-                    <div class="row equalize xs-equalize-auto">
-                        <!-- start slogan -->
-                        <div class="col-md-4 col-sm-5 col-xs-12 text-center alt-font display-table xs-text-center xs-margin-15px-bottom">
-                            <div class="display-table-cell vertical-align-middle">
-                              Վերլուծական-հետազոտական կենտրոն
-                            </div>
-                        </div>
-                        <!-- end slogan -->
-                        <!-- start logo -->
-                        <div class="col-md-4 col-sm-2 col-xs-12 text-center display-table xs-margin-10px-bottom">
-                            <div class="display-table-cell vertical-align-middle">
-                                <a href="index.html"><img class="footer-logo" src="/images/logo-white.png" data-rjs="images/logo-white@2x.png" alt="Orbeli"></a>
-                            </div>
-                        </div>
-                        <!-- end logo -->
-                        <!-- start social media -->
-                        <div class="col-md-4 col-sm-5 col-xs-12 col-xs-12 text-center display-table xs-text-center">
-                            <div class="display-table-cell vertical-align-middle">
-                                <span class="alt-font margin-20px-right">Սոցիալական ցանցերում</span>
-                                <div class="social-icon-style-8 display-inline-block vertical-align-middle">
-                                    <ul class="small-icon no-margin-bottom">
-                                        <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
-                                        <li><a class="twitter text-white" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="google text-white" href="https://plus.google.com" target="_blank"><i class="fa fa-google-plus-g"></i></a></li>
-                                        <li><a class="instagram text-white" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram no-margin-right" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end social media -->
-                    </div>
+        <section class="section1">               
+            <div class="container">
+                <div class="row">
+                 <div class="container">
+                <div class="row">
+                  
+                 <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                   
+                       @yield('main_post')
+
+                      <!-- horizontal posts-->
+                        <div class="col-md-11 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">                          
+                           
+                            @yield('vertical_post')  
+
+                        </div> 
+                        <!-- horizontal posts-->
+                    </main>
+                    <!-- Vertical posts-->
+                    <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
+                     <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
+
+                            @yield('horizontal_post')
+
+                         </div>                     
+                     </aside>
+                     <!--end Vertical posts-->  
+                  </div>
+               </div>
                 </div>
             </div>
-            <div class="footer-widget-area padding-five-top padding-30px-bottom xs-padding-30px-top">
-                <div class="container">
-                    <div class="row">
-                        <!-- start about -->
-                        <div class="col-md-4 col-sm-6 col-xs-12 widget sm-margin-30px-bottom xs-text-center">
-                            <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">ՄԵՐ ՄԱՍԻՆ</div>
-                            <p class="text-small width-95 xs-width-100 no-margin">Lorem Ipsum- ը տպագրության եւ տպագրության ոլորտի պարզապես կեղծ տեքստ է: Lorem Ipsum- ը եղել է ստանդարտ կոճակային տեքստը: Lorem Ipsum- ը 
-							եղել է արդյունաբերական ստանդարտ կոճակային տեքստը: Lorem Ipsum- ը պարզապես կեղծ տեքստ է:</p>
+        </section>
+
+         @yield('parallax')
+
+         <section class="blog">		
+            <div class="container">
+                <div class="row">
+                    <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                       <!-- start post item --> 
+                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
+                         <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Կարծիքներ</span></div>
+                                @yield('comments')                                              
+                        </div>
+                        <!-- end post item -->
+                        <!-- start pagination -->
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center  wow fadeInUp" style="padding: 44px;visibility: visible;">
+                           
+                                    <button type="submit" class="bg-transparent  btn position-absolute right-0 top-1">
+                                    Ավելացնել <i class="fa fa-plus-circle"> </i></button>
+                         
+                           
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
+                                <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Թեմաներ</span></div>
+                                  
+                                @yield('blog')
+                                                        
+                               </div>
+                             
+                        <!-- end pagination -->
+                    </main>
+    
+                    <aside class="col-md-3 col-sm-12 col-xs-12 pull-left">
+                     
+                    
+                       <div class="margin-45px-bottom xs-margin-25px-bottom">
+                            @include('includes.mostVeiwed',$all_last_posts['mostViewed'])
                         </div>
                         
-                        <div class="col-md-4 col-sm-6 col-xs-12 widget sm-margin-30px-bottom xs-text-center">
-                            <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Բաժանորդագրվել</div>
-                            <p class="text-small width-90 xs-width-100">Lorem Ipsum- ը տպագրության եւ տպագրության ոլորտի պարզապես կեղծ տեքստ է: Lorem Ipsum- ը եղել է ստանդարտ կոճակային տեքստը:</p>
-                            <form id="subscribenewsletterform" action="javascript:void(0)" method="post">
-                                <div class="position-relative newsletter width-95">
-                                    <div id="success-subscribe-newsletter" class="no-margin-lr"></div>
-                                    <input type="text" id="email" name="email" class="bg-transparent text-small no-margin border-color-medium-dark-gray" placeholder="Enter your email...">
-                                    <button id="button-subscribe-newsletter" type="submit" class="btn btn-arrow-small position-absolute border-color-medium-dark-gray"><i class="fa fa-caret-right no-margin-left"></i></button>
-                                </div>   
-                            </form>
+                        <div class="margin-45px-bottom xs-margin-25px-bottom">
+                                @include('includes.tags')
                         </div>
-                        <!-- end newsletter -->
-                      
-                    </div>
+
+                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
+                                <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
+                         </div>      
+                         <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
+                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                          </div>
+                     
+                    </aside>
+                  
                 </div>
             </div>
-            <div class="container">
-                <div class="footer-bottom border-top border-color-medium-dark-gray padding-30px-top">
-                    <div class="row">
-                        <!-- start copyright -->
-                        <div class="col-md-6 col-sm-6 col-xs-12 text-left text-small xs-text-center">ՕՐԲԵԼԻ - Վերլուծական-հետազոտական կենտրոն</div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 text-right text-small xs-text-center">&COPY; 2018 Պատրաստված է՝   <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ"> Վեբէքս Թեքնոլոջիս ՍՊԸ</a></div>
-                        <!-- end copyright -->
-                    </div>
-                </div>
-            </div>
-        </footer>
-      <!-- end footer -->
+        </section>
+           
+       
+	
+       
+     @include('../includes.footer')
         <!-- start scroll to top -->
         <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
         <!-- end scroll to top  -->
