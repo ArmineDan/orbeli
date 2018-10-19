@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Category;
 class Post extends Model
 {
     //protected $table='posts';
@@ -21,7 +22,19 @@ class Post extends Model
         ->offset(3)
         ->limit(3)
         ->get();
-   }
+    }
+
+    static function categories(){
+      return $categories = DB::select("SELECT post_type.`name`, count(post_type.`name`) as num FROM `posts` INNER join post_type on `posts`.`post_typ`=post_type.`id` GROUP BY post_type.`name`");
+    }
+
+
+    
+
+    public function getCategory() {
+      return $this->hasOne('App\Category', 'id', 'post_typ');
+    }
+
 
    static function categories(){
     return $categories = DB::select("SELECT categories.`name`, count(categories.`name`) as num FROM `posts` right join categories on `posts`.`post_typ`=categories.`id` GROUP BY categories.`name`");
@@ -71,4 +84,5 @@ class Post extends Model
     
     
     
+
 }

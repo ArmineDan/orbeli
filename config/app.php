@@ -178,6 +178,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * HTML-Form service. 
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -228,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //'Form' => Collective\Html\FormFacade,
         //'Html' =>Collective\Html\HtmlFacade,
+
 
     ],
 
