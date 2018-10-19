@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PageController@index');
-Route::get('/քաղաքականություն/{id}', 'PostController@loadAllMenu');
+Route::get('/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{id}', 'PageController@load_allFromMenu');
 
 
