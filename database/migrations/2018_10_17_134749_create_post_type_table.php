@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTypeTable extends Migration
+class CreatePostTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,8 +16,7 @@ class CreatePostsTypeTable extends Migration
         Schema::create('post_type', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->timestamps(); 
-           
+            $table->timestamps();           
         });
     }
 

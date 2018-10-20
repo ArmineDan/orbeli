@@ -46,7 +46,40 @@
         <!--[if IE]>
             <script src="js/html5shiv.js"></script>
         <![endif]-->
-
+        <style>
+            .menu-controls,
+            .vert-controls {
+                position: absolute;
+                left: 30%;
+                font-size: 25px;
+                bottom: -3px;
+                z-index: 1;
+                width: 120px;
+                display: inline-block;
+                
+            }
+            
+            .menu-controls i {
+                color: sandybrown;
+            }
+            .menu-controls i:hover,
+            .vert-controls i:hover {
+                color: white;
+            }
+            
+            .vert-controls {
+                font-size: 40px;
+                left: 57%;
+                top: 6px;
+            }
+            .vert-controls i {
+                color: #b6ff68;
+            }
+            .hor-controls {
+                left: 60%;
+                top: -15px;
+            }     
+        </style>
     </head>
     <body>
             <div id="fb-root"></div>
@@ -59,9 +92,9 @@
             }(document, 'script', 'facebook-jssdk'));</script>
 
         <!-- start header -->
-        <header>
-            @include('../includes.header', $all_last_posts['menu'] )
-        </header>
+          <header style="margin-bottom:70px">
+              @include('../includes.home_header', $all_last_posts['menu'] )
+          </header>
         <!-- end header -->
         <section class="section1">               
             <div class="container">

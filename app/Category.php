@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Post;
+use App\Author;
 
 class Category extends Model
 {
-   // protected $table = 'post_type';
-
+   protected $fillable = ['name'];
 }

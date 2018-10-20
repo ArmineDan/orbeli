@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Post;
+use App\Tags;
 
 class HomeController extends Controller
 {
@@ -29,8 +30,21 @@ class HomeController extends Controller
         $last_posts_vertical = Post::horintalPost();        
         $last_posts_horizontal = Post::verticalPost();
         $menu = Post::menu();
-        $all_last_posts=array("vert"=>$last_posts_vertical,"horizontal"=>$last_posts_horizontal,"menu"=>$menu);   
-        // return  view('index',compact('all_last_posts'));
+        $LeftComments=  Post::LeftComments(); 
+        $mostViewed = Post::mostViewed(); 
+        $main_post =  Post::main_post();  
+        $popular_tags=Tags::load_popular_tags();
+        $archievs=Post::archievs();
+        $all_last_posts=array(
+            "vert"=>$last_posts_vertical,
+            "horizontal"=>$last_posts_horizontal,
+            "menu"=>$menu,
+            "leftComments"=>$LeftComments,
+            "mostViewed"=> $mostViewed,
+            "main_post" =>$main_post,
+            "popular_tags"=> $popular_tags,
+            "archievs"=>$archievs
+        ); 
         return view('home', compact('all_last_posts'));
     }
 }

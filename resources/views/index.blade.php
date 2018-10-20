@@ -95,100 +95,98 @@
     </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
-        <div class="blog-post blog-post-style1">
-            <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                <a href="blog-post-layout-01.html">
-                    <img src="images/blog-img23.jpg" alt="" data-no-retina="">
-                </a>
-            </div>
-            <div class="post-details">
-                <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
-                <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                <div class="author">
-                         <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
-        
-                  <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
-                </div>
+    <div class="blog-post blog-post-style1">
+        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+            <a href="blog-post-layout-01.html">
+                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
+            </a>
+        </div>
+        <div class="post-details">
+            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
+            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+            <div class="author">
+                        <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
+    
+                <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
-            <div class="blog-post blog-post-style1">
-                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                    <a href="blog-post-layout-01.html">
-                        <img src="images/blog-img23.jpg" alt="" data-no-retina="">
-                    </a>
-                </div>
-                <div class="post-details">
-                    <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
-                    <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                    <div class="author">
-                             <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
-            
-                      <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
-                    </div>
-                </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+    <div class="blog-post blog-post-style1">
+        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+            <a href="blog-post-layout-01.html">
+                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
+            </a>
+        </div>
+        <div class="post-details">
+            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
+            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+            <div class="author">
+                        <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
+    
+                <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
-                <div class="blog-post blog-post-style1">
-                    <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                        <a href="blog-post-layout-01.html">
-                            <img src="images/blog-img23.jpg" alt="" data-no-retina="">
-                        </a>
-                    </div>
-                    <div class="post-details">
-                        <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
-                        <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                        <div class="author">
-                                 <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
-                
-                          <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+    <div class="blog-post blog-post-style1">
+        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+            <a href="blog-post-layout-01.html">
+                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
+            </a>
+        </div>
+        <div class="post-details">
+            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
+            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+            <div class="author">
+                        <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
+    
+                <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
-                    <div class="blog-post blog-post-style1">
-                        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                            <a href="blog-post-layout-01.html">
-                                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
-                            </a>
-                        </div>
-                        <div class="post-details">
-                            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
-                            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                            <div class="author">
-                                     <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
-                    
-                              <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+    <div class="blog-post blog-post-style1">
+        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+            <a href="blog-post-layout-01.html">
+                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
+            </a>
+        </div>
+        <div class="post-details">
+            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
+            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+            <div class="author">
+                        <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
+    
+                <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
-                        <div class="blog-post blog-post-style1">
-                            <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                                <a href="blog-post-layout-01.html">
-                                    <img src="images/blog-img23.jpg" alt="" data-no-retina="">
-                                </a>
-                            </div>
-                            <div class="post-details">
-                                <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
-                                <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                                <div class="author">
-                                         <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
-                        
-                                  <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                   
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+    <div class="blog-post blog-post-style1">
+        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+            <a href="blog-post-layout-01.html">
+                <img src="images/blog-img23.jpg" alt="" data-no-retina="">
+            </a>
+        </div>
+        <div class="post-details">
+            <a href="blog-post-layout-01.html" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
+            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+            <div class="author">
+                        <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
+    
+                <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13 Մայիս 2017</span>
+            </div>
+        </div>
+    </div>
+</div>                   
 @endsection
 
 @section('blog')
