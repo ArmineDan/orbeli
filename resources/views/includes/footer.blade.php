@@ -42,18 +42,7 @@
                     <p class="text-small width-95 xs-width-100 no-margin">Lorem Ipsum- ը տպագրության եւ տպագրության ոլորտի պարզապես կեղծ տեքստ է: Lorem Ipsum- ը եղել է ստանդարտ կոճակային տեքստը: Lorem Ipsum- ը 
                     եղել է արդյունաբերական ստանդարտ կոճակային տեքստը: Lorem Ipsum- ը պարզապես կեղծ տեքստ է:</p>
                 </div>
-                
-                <div class="col-md-4 col-sm-6 col-xs-12 widget sm-margin-30px-bottom xs-text-center">
-                    <div class="widget-title alt-font text-small text-medium-gray text-uppercase margin-15px-bottom font-weight-600">Բաժանորդագրվել</div>
-                    <p class="text-small width-90 xs-width-100">Lorem Ipsum- ը տպագրության եւ տպագրության ոլորտի պարզապես կեղծ տեքստ է: Lorem Ipsum- ը եղել է ստանդարտ կոճակային տեքստը:</p>
-                    <form id="subscribenewsletterform" action="javascript:void(0)" method="post">
-                        <div class="position-relative newsletter width-95">
-                            <div id="success-subscribe-newsletter" class="no-margin-lr"></div>
-                            <input type="text" id="email" name="email" class="bg-transparent text-small no-margin border-color-medium-dark-gray" placeholder="Enter your email...">
-                            <button id="button-subscribe-newsletter" type="submit" class="btn btn-arrow-small position-absolute border-color-medium-dark-gray"><i class="fa fa-caret-right no-margin-left"></i></button>
-                        </div>   
-                    </form>
-                </div>
+              
                 <!-- end newsletter -->
               
             </div>
