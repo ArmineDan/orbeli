@@ -183,6 +183,14 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
 
+        /*
+         *   own packages
+         */
+        Unisharp\Ckeditor\ServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Cviebrock\EloquentTaggable\ServiceProvider::class,
+
     ],
 
     /*
@@ -233,7 +241,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //'Form' => Collective\Html\FormFacade,
         //'Html' =>Collective\Html\HtmlFacade,
-
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

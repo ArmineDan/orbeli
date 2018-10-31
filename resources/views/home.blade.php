@@ -16,8 +16,8 @@
     @foreach ($all_last_posts['horizontal'] as $item)
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow " style="visibility: visible; animation-name: fadeInUp; height: 317px;">
         <span class="vert-controls">
-          <a href=""><i class="fa fa-edit" ></i></a>
-          <a href=""><i class="fa fa-plus" ></i></a>
+        <a href="{{ route('admin.post.edit', $item) }}"><i class="fa fa-edit" ></i></a>
+          <a href="{{ route('admin.post.create') }}"><i class="fa fa-plus" ></i></a>
         </span> 
         <div class="blog-post blog-post-style1">
           <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
@@ -38,7 +38,7 @@
       <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow" style="visibility: visible;animation-name: fadeIn;  height: 302px;">
         <div class="blog-post blog-post-style1">
           <span class="vert-controls">
-            <a href=""><i class="fa fa-edit" ></i></a>
+            <a href="{{ route('admin.post.edit', $item) }}"><i class="fa fa-edit" ></i></a>
             <a href=""><i class="fa fa-plus" ></i></a>
           </span> 
           <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">

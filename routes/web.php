@@ -25,6 +25,12 @@ Route::group( $admin_rules , function() {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'auth', 'prefix'=>'manage'], function () {
+  Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+  Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+  // list all lfm routes here...
+});
+
 Route::get('/', 'PageController@index');
 Route::get('/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{id}', 'PageController@load_allFromMenu');

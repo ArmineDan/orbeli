@@ -71,8 +71,8 @@
                         @foreach ($all_last_posts['menu'] as $item)                      
                         <li style="position: relative;">
                             <span class="menu-controls">
-                                <a href=""><i class="fa fa-edit" ></i></a>
-                                <a href=""><i class="fa fa-plus" ></i></a>
+                                <a href="{{ route('admin.category.edit', $item) }}"><i class="fa fa-edit" ></i></a>
+                                <a href="{{ route('admin.category.create') }}"><i class="fa fa-plus" ></i></a>
                             </span>
                             <a class="dropdown-toggle" data-toggle="dropdown" href={{url($item->name)}}>{{$item->name}}</a>                                              
                              

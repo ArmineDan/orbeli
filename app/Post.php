@@ -5,17 +5,23 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Category;
+use Cviebrock\EloquentTaggable\Taggable;
+
+
 class Post extends Model
 {
     //protected $table='posts';
-   static function horintalPost(){
+    use Taggable;
+    
+
+    static function horintalPost(){
                 return $horintalPost = DB::table('posts')
                 ->where('status','<>','main')
                 ->orderByRaw('date DESC')
                 ->limit(3)
                 ->get();
     }
-    static function verticalPost(){
+    static function verticalPost() {
         return $verticalPost = DB::table('posts')
         ->where('status','<>','main')
         ->orderByRaw('date DESC')
