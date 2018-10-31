@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Category;
+use Cviebrock\EloquentTaggable\Taggable;
+
+
 class Post extends Model
 {
-    //protected $table='posts';
-
+   use Taggable;
+  
     static function verticalPost(){
         return $verticalPost = DB::table('posts')
         ->where('status','<>','main')
@@ -25,13 +28,7 @@ class Post extends Model
     ->limit(3)
     ->get();
     }
-   
-
-   
-
-
-    
-
+  
     public function getCategory() {
       return $this->hasOne('App\Category', 'id', 'post_typ');
     }

@@ -28,7 +28,15 @@ Route::get('/author', 'AuthorController@index')->name('author');
 
 Route::get('/author/{id}', 'AuthorController@about');
 
+Route::group(['middleware' => 'auth', 'prefix'=>'manage'], function () {
+  Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+  Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+  // list all lfm routes here...
+});
+
 Route::get('/', 'PageController@index');
+
 Route::get('/post/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/archieve/{date}', 'PageController@openArchieve');
 Route::get('/{id}', 'PageController@load_allFromMenu');
+

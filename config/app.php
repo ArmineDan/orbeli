@@ -184,6 +184,14 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
 
+        /*
+         *   own packages
+         */
+        Unisharp\Ckeditor\ServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Cviebrock\EloquentTaggable\ServiceProvider::class,
+
     ],
 
     /*
@@ -232,10 +240,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,   
-        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,     
-      
-
-
-    ],
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class, 
+        'Image' => Intervention\Image\Facades\Image::class,
+  ],
 
 ];

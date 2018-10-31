@@ -1,3 +1,4 @@
+
 @include('../includes.links' )
     <body>      
             @include('../includes.facebook_script' )
@@ -6,6 +7,7 @@
         <header>
          @include('../includes.header' )
          </header>
+
         <!-- end header -->
        
         <section class="section1"> 

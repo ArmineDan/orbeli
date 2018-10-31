@@ -88,6 +88,15 @@
     </div>
 
     <!-- Scripts -->
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        var options = {
+          filebrowserImageBrowseUrl: '/manage/laravel-filemanager?type=Images',
+          filebrowserImageUploadUrl: '/manage/laravel-filemanager/upload?type=Images&_token=',
+          filebrowserBrowseUrl: '/manage/laravel-filemanager?type=Files',
+          filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
+        };
+      </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

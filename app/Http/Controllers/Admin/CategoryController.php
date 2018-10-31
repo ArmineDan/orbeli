@@ -67,7 +67,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -79,7 +81,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $keys = ['created_at', 'updated_at'];
+        $category->update($request->except($keys));
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -90,7 +94,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
         $category->delete();
         return redirect()->route('admin.category.index');
     }

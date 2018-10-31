@@ -76,6 +76,7 @@
 
 
 @section('comments')
+
 <div class="infinite-scroll wow fadeIn"> 
  
 @foreach ($all_last_posts['opinions'] as $item)
@@ -101,6 +102,7 @@
 @endforeach 
 
 </div>
+
 @endsection
 
 @section('blog')
