@@ -345,6 +345,14 @@ $(window).resize(function (event) {
 $(document).ready(function () {
     "use strict";
     // Bootsnav menu work with eualize height
+	
+		$("#srch").click(function(){
+			$(this).fadeOut('slow');
+			$("#for_m").fadeIn('slow');
+		
+			
+		})
+		
     $("nav.navbar.bootsnav ul.nav").each(function () {
         $("li.dropdown", this).on("mouseenter", function () {
             if ($(window).width() > 991) {
@@ -380,14 +388,19 @@ $(document).ready(function () {
         }
     });
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 150)
-            $('.scroll-top-arrow').fadeIn('slow');
+		
+        if ($(this).scrollTop() > 150){
+		$('.scroll-top-arrow').fadeIn('slow');
+		$("#srch").fadeIn('slow');		
+		$("#for_m").fadeOut('slow');	
+		}
         else
             $('.scroll-top-arrow').fadeOut('slow');
     });
     //Click event to scroll to top
     $(document).on('click', '.scroll-top-arrow', function () {
         $('html, body').animate({scrollTop: 0}, 800);
+		
         return false;
     });
 
@@ -2322,7 +2335,11 @@ $(document).ready(function () {
     /*==============================================================*/
     //demo button  - END CODE
     /*==============================================================*/
+        
+		
 
+	
+		/*		
 	$('ul.pagination').hide();
 $('.infinite-scroll').jscroll({
             autoTrigger: true,
@@ -2334,10 +2351,7 @@ $('.infinite-scroll').jscroll({
                 $('ul.pagination').remove();
             }
         });
-		
-		//open the comment form 
-		
-		
+    */
 });
 /* ===================================
  END READY
@@ -2367,7 +2381,10 @@ $(window).load(function () {
             });
         }, 500);
     }
+	
 });
+
+
 /* ===================================
  END Page Load
  ====================================== */

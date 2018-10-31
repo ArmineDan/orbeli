@@ -10,31 +10,25 @@ use Cviebrock\EloquentTaggable\Taggable;
 
 class Post extends Model
 {
-    //protected $table='posts';
-    use Taggable;
-    
-
-    static function horintalPost(){
-                return $horintalPost = DB::table('posts')
-                ->where('status','<>','main')
-                ->orderByRaw('date DESC')
-                ->limit(3)
-                ->get();
-    }
-    static function verticalPost() {
+   use Taggable;
+  
+    static function verticalPost(){
         return $verticalPost = DB::table('posts')
         ->where('status','<>','main')
         ->orderByRaw('date DESC')
-        ->offset(3)
-        ->limit(3)
+        ->limit(2)
         ->get();
+      
     }
-
-   
-
-
-    
-
+   static function horintalPost(){
+    return $horintalPost = DB::table('posts')
+    ->where('status','<>','main')
+    ->orderByRaw('date DESC')
+    ->offset(2)
+    ->limit(3)
+    ->get();
+    }
+  
     public function getCategory() {
       return $this->hasOne('App\Category', 'id', 'post_typ');
     }
@@ -68,8 +62,9 @@ class Post extends Model
         
     static function mostViewed(){
         return $mostViewed = DB::table('posts')
+        ->select('posts.*', 'authors.name', 'authors.lastname') 
         ->orderByRaw('view DESC')
-        ->limit(3)
+        ->limit(5)
         ->join('authors', 'authors.id', '=', 'posts.authors_id')
         ->get();
     } 
