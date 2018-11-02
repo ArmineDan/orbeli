@@ -7,7 +7,9 @@ use App\Author;
 use App\Tags;
 use App\Event;
 use Illuminate\Http\Request;
+use App;
 use DB;
+use Session;
 
 class AuthorController extends Controller
 {
@@ -16,8 +18,16 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $menu = Post::menu();
+    public function index($locale)
+    {   
+        $rules = ['en','ru','hy'];                      
+        if(in_array($locale,$rules))
+        {
+                Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale(); 
+        
+        $menu = Post::menu();
         $authors =DB::table('authors')
         ->select('*') 
         ->paginate(8);
@@ -29,10 +39,15 @@ class AuthorController extends Controller
         'menu'=>$menu,
         "mostViewed"=> $mostViewed,
         "popular_tags"=> $popular_tags,
-        "event"=> $calendar
+        "event"=> $calendar,
+        "lang"=> $lang
 
         );
         return  view('authors',compact('all_last_posts'));
+    }
+    else{              
+        return  redirect('/en');
+        }      
     }
     
     public function about($id)

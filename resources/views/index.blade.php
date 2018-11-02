@@ -15,6 +15,42 @@
         
 @endsection
 
+@section('main_video')
+
+
+<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
+    <a href="{{$all_last_posts['main_post'][0]->date}}\{{$all_last_posts['main_post'][0]->title}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
+    <div class="blog-text tite2_new display-inline-block ">
+        <div class="content padding-19px-all xs-padding-20px-all">
+            <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="blog-grid.html" class="text-medium-gray ">{{$all_last_posts['main_post'][0]->name .' '. $all_last_posts['main_post'][0]->lastname}}</a></span></div>
+            <a href="{{$all_last_posts['main_post'][0]->date}}\{{$all_last_posts['main_post'][0]->title}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_post'][0]->title}}</a>
+        </div>
+    </div>
+</div>
+        
+@endsection
+
+@section('main_right')
+
+
+<ul class="latest-post position-relative">
+        @foreach ($all_last_posts['mostViewed'] as $item)                             
+        <li class="aa">
+          <figure>
+         <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+            <img  src="/{{$item->img}}" alt="" data-no-retina=""></a>
+                </figure>
+                <div class="display-table-cell vertical-align-top text-small">
+                    <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
+                        <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
+                        <span class="clearfix text-medium-gray text-small">{{$item->name .' '. $item->lastname}}</span></div>
+            </li>
+        @endforeach                            
+    
+</ul>
+        
+@endsection
+
 @section('horizontal_post')
         @foreach ($all_last_posts['horizontal'] as $item)
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow " style="visibility: visible; animation-name: fadeInUp; height: 317px;">
@@ -33,9 +69,9 @@
         
 @endsection
 
-@section('vertical_post')
+@section('vertical_video')
             @foreach ($all_last_posts['vert'] as $item)
-            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding" style="visibility: visible;animation-name: fadeIn;  height: 302px;">
+            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding" style="visibility: visible;animation-name: fadeIn;  height:302px;">
                 <div class="blog-post blog-post-style1">
                     <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                         <a href="{{url('post/'.$item->date.'/'.$item->title)}}">
@@ -91,7 +127,7 @@
                             <a href="{{url('post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">Ըստ Ջորջ Բալանդիերի, քաղաքական մարդաբանությունը ձգտում է գտնել գիտություն  </a>
                             <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                             <div class="author">
-                                    <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր. 20 վ. </span>
+                                    <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
                                
                                     <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
                                    <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block"><a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13-06-2017</span>

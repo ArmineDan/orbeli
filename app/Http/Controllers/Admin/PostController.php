@@ -37,7 +37,8 @@ class PostController extends Controller
         $authors = DB::select('select * from authors');
         $categories = Category::all();
         // $tags = Tags::groupBy('name')->get();
-        $tags = Tags::query()->distinct()->get();
+        // $tags = Tags::query()->distinct()->get();
+        $tags = Post::allTags();
         return view('admin.posts.create', [
             'post' => [],
             'authors' => $authors,

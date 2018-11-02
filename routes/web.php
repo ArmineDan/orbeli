@@ -24,9 +24,8 @@ Route::group( $admin_rules , function() {
 Route::get('/events', 'EventController@index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/author', 'AuthorController@index')->name('author');
-
-Route::get('/author/{id}', 'AuthorController@about');
+Route::get('/{locale}/author', 'AuthorController@index');
+Route::get('/{locale}/author/{id}', 'AuthorController@about');
 
 Route::group(['middleware' => 'auth', 'prefix'=>'manage'], function () {
   Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
@@ -34,9 +33,17 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage'], function () {
   // list all lfm routes here...
 });
 
+// Route::get('/{locale}', function ($locale) {
+//   App::setLocale($locale);
+//   return App::getLocale();
+//   return Route::view('index', 'viewName');
+//   //
+// });
+
+
+Route::get('/{locale}/{id}', 'PageController@load_allFromMenu');
+Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
+
+Route::get('/{locale}', 'PageController@index');
 Route::get('/', 'PageController@index');
-
-Route::get('/post/{date}/{title}', 'PageController@openCurrentPost');
-Route::get('/archieve/{date}', 'PageController@openArchieve');
-Route::get('/{id}', 'PageController@load_allFromMenu');
-

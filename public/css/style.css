@@ -3672,11 +3672,14 @@ footer .newsletter input { color: #6f6f6f; letter-spacing: normal; }
 .latest-post { list-style: none; padding: 0; margin: 0;}
 .latest-post li {display: table; padding:15px 0;}
 aside .latest-post li {padding:15px 0;}
+aside .latest-post li.aa {padding-bottom:18px}
 .latest-post li:first-child {padding-top: 0}
 .latest-post li:last-child {border-bottom:none}
 .latest-post li figure {height:33px; width: 60px; float: left}
+.latest-post li.aa figure {height:94px; width: 60px; float: left}
 .latest-post li figure, footer .latest-post li div {display: table-cell; vertical-align: top}
 aside .latest-post li figure {width: 60px;}
+aside .latest-post li.aa figure {width: 179px;}
 .latest-post li div {line-height: normal; padding-left: 13px; position: relative; top: -1px;}
 .latest-post li figure:hover img, .latest-post li figure:focus img {transform: none; -webkit-transform: none; -moz-transform: none; -ms-transform: none; -o-transform: none;} 
 
@@ -3727,10 +3730,18 @@ aside .latest-post li figure {width: 60px;}
 
 .titel_new{
 	position: relative;
-    top: -99px;
-    left: 12px;
+    top: -99px;  
+	left:12px;	
     background-color: #ffffffa8;
     padding: 0 12px 0;
+	
+}
+.tite2_new{
+	position: relative;
+    top: -99px;    
+    background-color: #ffffffa8;
+    padding: 0 12px 0;
+	width: 100%;
 }
 /* home - creative branding agency */
 .box-layout{padding:0 60px }

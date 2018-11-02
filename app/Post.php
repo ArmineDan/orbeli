@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Category;
@@ -12,6 +12,14 @@ class Post extends Model
 {
    use Taggable;
   
+   static function getLangId(){
+     $lang= App::getLocale();
+     
+     return  $lng = DB::table('langs')
+    ->where('lng','=',$lang)
+    ->value('id');
+  
+    }
     static function verticalPost(){
         return $verticalPost = DB::table('posts')
         ->where('status','<>','main')
@@ -42,20 +50,28 @@ class Post extends Model
     return $comments =DB::table('posts')
     ->orderByRaw('date DESC')
     ->select('*')               
-    ->join('authors', 'authors.id', '=', 'posts.authors_id')
+    ->join('authors', 'authors.id', '=', 'posts.author_id')
     ->get();
    }
 
 
     static function menu(){
-            return $menu = DB::table('categories')->get();
+            $lang= App::getLocale();
+            $lng = DB::table('langs')
+            ->where('lng','=',$lang)
+            ->value('id');
+          
+
+            return $menu = DB::table('categories')
+            ->where('lang_id','=',$lng)
+            ->get();
         } 
         
     static function main_post(){
             return $main_post = DB::table('posts') 
             ->select('posts.*', 'authors.name', 'authors.lastname') 
             ->where('status','main')
-            ->join('authors', 'posts.authors_id', '=', 'authors.id') 
+            ->join('authors', 'posts.author_id', '=', 'authors.id') 
             ->get();
         } 
    
@@ -65,7 +81,7 @@ class Post extends Model
         ->select('posts.*', 'authors.name', 'authors.lastname') 
         ->orderByRaw('view DESC')
         ->limit(5)
-        ->join('authors', 'authors.id', '=', 'posts.authors_id')
+        ->join('authors', 'authors.id', '=', 'posts.author_id')
         ->get();
     } 
     

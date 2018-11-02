@@ -2,7 +2,7 @@
     <div class="container-fluid nav-header-container">      
         <div class="row">  
        <div class="col-md-1 col-xs-5">
-                <a href="/" title="Orbeli" class="logo"><img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli"><img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
+                <a href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo"><img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli"><img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
             </div>					
             <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
@@ -14,7 +14,7 @@
                 <div class="navbar-collapse collapse " id="navbar-collapse-toggle-1">
                     <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                        @foreach ($all_last_posts['menu'] as $item)                      
-                       <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url($item->name)}}>{{$item->name}}</a>                                              
+                       <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
                        
@@ -43,7 +43,7 @@
                                             <li> <a href="javascript:void(0);"  title="Միջոցառումներ">Հայտարարություններ</a> </li> 
                                             <li> <a href="javascript:void(0);"  title="Միջոցառումներ">Նորություններ</a> </li>
                                             <li><a href="javascript:void(0);" title="Գործընկերներ">Գործընկերներ</a> </li>
-                                            <li><a href="{{route('author')}}" title="Գործընկերներ">Փորձագետներ</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="Գործընկերներ">Փորձագետներ</a> </li>
                                             <li><a href="javascript:void(0);" title="Մեր մասին">Մեր մասին</a> </li>
                                             <li><a href="javascript:void(0);" title="Կապ">Կապ</a> </li>                              
                                          </ul>
@@ -93,16 +93,17 @@
                   </div> 
 
             <div class=" col-md-1 col-xs-2 width-auto  xs-no-padding-right" style="margin-left:auto">
-                <ul class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
-                         <li style="display:none">
-                          <a href="javascript:void(0);"  title="Հայերեն">Arm | </a>                                   
+                <ul class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
+                <li style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
+                          <a href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
                          </li>
                          
-                         <li>
-                         <a href="javascript:void(0);"  title="Ռուսերեն">Rus |</a>                              
+                         <li style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">>
+                         <a href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
                          </li>
                          
-                        <li><a href="javascript:void(0);" title="Անգլերեն">Eng |</a> </li>                                   
+                        <li style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">>
+                            <a href="{{url('/en')}}" title="Անգլերեն">Eng |</a> </li>                                   
                     </ul>
                  
              </div> 

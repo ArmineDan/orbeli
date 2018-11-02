@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('lastname');
-            $table->string('sub_name');
-            $table->string('img');
-            $table->text('biography'); 
             $table->integer('lang_id')->unsigned();
-            $table->foreign('lang_id')->references('id')->on('langs');    
-            
+            $table->foreign('lang_id')->references('id')->on('langs');              
+            $table->timestamps();           
         });
     }
 
@@ -33,6 +29,6 @@ class CreateAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('categories');
     }
 }

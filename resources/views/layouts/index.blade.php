@@ -1,6 +1,7 @@
-
+ 
 @include('../includes.links' )
-    <body>      
+    <body> 
+      
             @include('../includes.facebook_script' )
 
         <!-- start header -->
@@ -18,18 +19,17 @@
                 <div class="row">
                       
                   
-                 <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                 <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                    
                        @yield('main_post')
-                       {{-- @yield('horizontal_post')   --}}
-
+                     
                      
                     </main>
                     <!-- Vertical posts-->  
-                    <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
+                    <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
                      <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
 
-                            @yield('vertical_post')
+                            @yield('main_right')  
 
                          </div>                     
                      </aside>
@@ -54,12 +54,7 @@
                         <!-- end post item -->
                         <!-- start pagination -->
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center  wow fadeInUp" style="padding: 44px;">
-                           
-                                <div class="tag-cloud_d">
-                                        <a href="#">
-                                           Բոլորը</a>    
-                                    </div>
-                                   
+                                           
                            
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
@@ -79,7 +74,7 @@
                         </div>
                         
                         <div class="margin-45px-bottom xs-margin-25px-bottom">
-                                @include('includes.tags')
+                                {{-- @include('includes.tags') --}}
                         </div>
 
                           <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
@@ -107,7 +102,7 @@
                       
                      <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            
-                           @yield('main_post')
+                           @yield('main_video')
                            {{-- @yield('horizontal_post')   --}}
     
                          
@@ -116,7 +111,7 @@
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
                          <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
     
-                                @yield('vertical_post')
+                                @yield('vertical_video')
     
                              </div>                     
                          </aside>

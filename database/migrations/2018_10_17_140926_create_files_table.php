@@ -16,7 +16,7 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->longtext('link')->nullable();
+            $table->text('link')->nullable();
             $table->string('type')->nullable();
             $table->integer('post_id')->unsigned();
             $table->foreign('post_id')->references('id')->on('posts'); 

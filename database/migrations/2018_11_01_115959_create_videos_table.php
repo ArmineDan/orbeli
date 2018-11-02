@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOpinionsTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,27 +13,31 @@ class CreateOpinionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('opinions', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('short_text')->nullable();
-            $table->text('html_code');            
-            $table->date('date');
-            $table->string('img');                   
+            $table->text('html_code');
+            $table->string('img');
+                
+            $table->date('date');                
             $table->string('status')->default("published");
-            $table->string('meta_k');
-            $table->string('meta_d');
+            $table->text('meta_k');
+            $table->text('meta_d');
+            $table->string('duration')->default("00:00");
             $table->integer('view')->default(1);
-           
-            $table->integer('post_typ')->unsigned();
-            $table->foreign('post_typ')->references('id')->on('categories');    
+
+
             
+
+            $table->integer('post_typ')->unsigned();
+            $table->foreign('post_typ')->references('id')->on('categories');      
+          
             $table->integer('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('authors'); 
 
             $table->integer('lang_id')->unsigned();
             $table->foreign('lang_id')->references('id')->on('langs'); 
-   
             $table->timestamps();
         });
     }
@@ -45,6 +49,6 @@ class CreateOpinionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opinions');
+        Schema::dropIfExists('videos');
     }
 }
