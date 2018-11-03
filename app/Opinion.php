@@ -1,24 +1,28 @@
 <?php
 
 namespace App;
-use DB;
+
 use Illuminate\Database\Eloquent\Model;
+use App;
+use DB;
+use Session;
+
 
 class Opinion extends Model
 {
-    static function load_all(){
+    static function load_all(){ 
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
         
-        
-        return $all_opinion = DB::table('opinions')  
-        ->select('opinions.*','authors.name','authors.lastname')       
+        return $all_opinion = DB::table('opinions as o')          
+        ->join('authors as a', 'o.author_id', '=', 'a.id')
+        ->select('o.*','a.name','a.lastname','a.img as aimg','o.img as oimg')       
         ->orderBy('date', 'DESC')
-        ->join('authors', 'opinions.author_id', '=', 'authors.id')
+        ->where('o.lang_id','=', $lng)
         ->limit(6)
         ->get();
-       
-        
-        
-    
-      }
+    }
 
 }
