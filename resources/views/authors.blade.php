@@ -24,7 +24,7 @@
                 </div>
                 <figcaption>
                     <div class="team-member-position margin-20px-top text-center">
-                            <a href="{{url('author/'.$item->id)}}">  <div class="text-small font-weight-500 text-extra-dark-gray text-uppercase">{{$item->name.' '. $item->lastname}}</div></a>
+                            <a href="{{url('author/'.$item->id)}}">  <div class="text-small font-weight-500 text-extra-dark-gray text-uppercase">{{substr($item->name, 0, 2).'. '. $item->lastname}}</div></a>
                         
                     </div>   
                 </figcaption>

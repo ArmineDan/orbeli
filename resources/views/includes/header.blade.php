@@ -86,6 +86,8 @@
                     <i class="fa fa-search no-margin-left" style=" position: absolute; right: 208px;top: -8px;"></i></button>                   
                 </div> 
 
+                    
+
             <div class=" col-md-1 col-xs-2 width-auto  xs-no-padding-right" style="margin-left:auto">
                 <ul class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
                 <li style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
