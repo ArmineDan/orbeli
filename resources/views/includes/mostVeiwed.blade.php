@@ -9,6 +9,7 @@
                                             <a href="{{url('post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                                                 <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
                                                 <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
+
                                     </li>
                                 @endforeach                            
                             

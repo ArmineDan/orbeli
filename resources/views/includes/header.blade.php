@@ -1,3 +1,8 @@
+<div id="open_search_folder_ns">
+    <i class="fa fa-times close_search_btn_ns"></i>
+    <input type="search" class="search_inp_ns" placeholder="Enter your keyword...">
+</div>
+
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: rgba(41, 46, 49, 1.00)" >
     <div class="container-fluid nav-header-container">      
         <div class="row">  
@@ -77,11 +82,11 @@
                             </div>   
                             
                 <div class="col-md-1 col-sm-2 col-xs-2 width-auto  single-search xs-no-padding-right">
-                        <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
-                            <i class="fa fa-search no-margin-left" style=" position: absolute; right: 208px;top: -8px;"></i></button>                   
-                      
+                    <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
+                    <i class="fa fa-search no-margin-left" style=" position: absolute; right: 208px;top: -8px;"></i></button>                   
+                </div> 
+
                     
-                  </div> 
 
             <div class=" col-md-1 col-xs-2 width-auto  xs-no-padding-right" style="margin-left:auto">
                 <ul class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
@@ -103,4 +108,6 @@
         
     </div>
 </nav>
+
+
 

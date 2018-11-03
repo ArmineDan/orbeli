@@ -325,7 +325,7 @@ body .fc {
 }
 
 .fc-row .fc-content-skeleton tbody td, .fc-row .fc-helper-skeleton tbody td {
-    border-top: 0
+    border-top: 0;
 }
 
 .fc-scroller {
@@ -539,7 +539,7 @@ a.fc-more:hover {
 }
 
 .fc-ltr .fc-basic-view .fc-day-number {
-    text-align: right
+    text-align: right;
 }
 
 .fc-rtl .fc-basic-view .fc-day-number {

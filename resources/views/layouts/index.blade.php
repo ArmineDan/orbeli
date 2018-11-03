@@ -22,14 +22,16 @@
                     <!-- Vertical posts-->  
                     <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-left" > 				   
                      <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
-
+                    <!-- Vertical posts-->
+                    <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
+                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                             @yield('main_right')  
-
-                     </div>                     
+            </div>                     
                      </aside>
                      <!--end Vertical posts-->
                   </div>
                  </div>
+
         </section>
 
          @yield('parallax')
