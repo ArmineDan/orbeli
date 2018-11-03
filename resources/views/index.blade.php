@@ -43,7 +43,7 @@
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                         <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
-                        <span class="clearfix text-medium-gray text-small">{{$item->name .' '. $item->lastname}}</span></div>
+                        <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
             </li>
         @endforeach                            
     
@@ -66,7 +66,6 @@
                 </div>
             </div>
         @endforeach         
-        
 @endsection
 
 @section('vertical_video')
@@ -74,8 +73,11 @@
             <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding" style="visibility: visible;animation-name: fadeIn;  height:302px;">
                 <div class="blog-post blog-post-style1">
                     <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                        <a href="{{url('post/'.$item->date.'/'.$item->title)}}">
-                            <img src="{{$item->img}}" alt="" data-no-retina="">
+                        <a class="video-link-davo" href="{{url('post/'.$item->date.'/'.$item->title)}}">
+                            <img src="{{$item->img}}" class="davo-blur" alt="" data-no-retina="">
+                            <div class="play-davo">
+                                <i class="fa fa-play-circle"></i>
+                            </div>   
                         </a>
                     </div>
                     <div class="post-details">
@@ -116,7 +118,7 @@
 <div class="infinite-scroll wow fadeIn"> 
  
 @foreach ($all_last_posts['opinions'] as $item)
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+            <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
                     <div class="blog-post blog-post-style1">
                         <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                             <a href="{{url('post/'.$item->date.'/'.$item->title)}}">
@@ -128,7 +130,6 @@
                             <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                             <div class="author">
                                     <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
-                               
                                     <img src="images/avtar-02.jpg" alt="" class="border-radius-100" data-no-retina="">
                                    <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block"><a href="home-#" class="text-medium-gray">Պ.Պողոսյան</a>&nbsp;&nbsp;|&nbsp;&nbsp;13-06-2017</span>
                             </div>

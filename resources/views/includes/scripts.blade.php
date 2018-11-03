@@ -51,7 +51,11 @@
 <script type="text/javascript" src="/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 <script type="text/javascript" src="/revolution/js/extensions/revolution.extension.parallax.min.js"></script>       
 <script type="text/javascript" src="/js/main_no_scroll.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.js"></script>
+{{-- @if ($locale == 'fr') $locale is a predefined variable holding the user's locale --}}
+    <script src="/js/locale/ru.js"></script>
+{{-- @endif --}}
 
 {!!  $all_last_posts['event']->script() !!}

@@ -15,10 +15,7 @@
               
             <div class="container">
                 <div class="row">
-                     <div class="container">
-                <div class="row">
-                      
-                  
+                    
                  <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                    
                        @yield('main_post')
@@ -31,12 +28,10 @@
 
                             @yield('main_right')  
 
-                         </div>                     
+                     </div>                     
                      </aside>
                      <!--end Vertical posts-->
                   </div>
-               </div>
-                </div>
             </div>
         </section>
 
@@ -53,10 +48,6 @@
                         </div>
                         <!-- end post item -->
                         <!-- start pagination -->
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center  wow fadeInUp" style="padding: 44px;">
-                                           
-                           
-                        </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
                                 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Խորագրեր</span></div>
                                   

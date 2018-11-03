@@ -15,7 +15,7 @@
                    <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    <div class="author">
                        
-                       <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">{{$item->name.' '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}"</span>
+                       <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">{{substr($item->name, 0, 2).'. '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}"</span>
                    </div>
                </div>
            </div>
