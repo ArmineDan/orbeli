@@ -1,5 +1,7 @@
 <?php
 return[
- "send"=>'hayeren uxarkel'
+ "opinion"=>'Կարծիքներ',
+ "videos"=>'Տեսանյութեր',
+ "xoragrer"=>'Խորագրեր'
 
 ];
