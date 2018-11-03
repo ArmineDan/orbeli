@@ -80,15 +80,6 @@
                         <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
                             <i class="fa fa-search no-margin-left" style=" position: absolute; right: 208px;top: -8px;"></i></button>                   
                       
-
-                         
-                                    <form id="for_m" >
-                                            <div class="position-relative">
-                                                <input id="srh_inp" class="bg-transparent text-small no-margin border-color-extra-light-gray medium-input pull-left" placeholder="Enter your keywords...">
-                                                <button type="submit" class="bg-transparent  btn position-absolute right-0 top-1"><i class="fa fa-search no-margin-left"></i></button>
-                                            </div>   
-                                        </form>
-                                    
                     
                   </div> 
 
@@ -98,11 +89,11 @@
                           <a href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
                          </li>
                          
-                         <li style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">>
+                         <li style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
                          <a href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
                          </li>
                          
-                        <li style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">>
+                        <li style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
                             <a href="{{url('/en')}}" title="Անգլերեն">Eng |</a> </li>                                   
                     </ul>
                  

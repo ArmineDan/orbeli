@@ -38,11 +38,14 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage'], function () {
 //   return App::getLocale();
 //   return Route::view('index', 'viewName');
 //   //
-// });
+// }); 
 
-
+Route::get('/{locale}/opinions', 'LoadAll@opinions');
+Route::get('/{locale}/videos', 'LoadAll@videos');
 Route::get('/{locale}/{id}', 'PageController@load_allFromMenu');
 Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
