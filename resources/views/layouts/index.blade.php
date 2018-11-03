@@ -11,8 +11,7 @@
 
         <!-- end header -->
        
-        <section class="section1"> 
-              
+        <section class="section1">               
             <div class="container">
                 <div class="row">  
                  <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
@@ -26,7 +25,7 @@
 
                             @yield('main_right')  
 
-                         </div>                     
+                     </div>                     
                      </aside>
                      <!--end Vertical posts-->
                   </div>
@@ -44,12 +43,11 @@
                         <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><a href="{{url($all_last_posts['lang'].'/opinions')}}" ><span>{{trans('text.opinion')}} <i class="fa fa-arrow-right"></i></span></a></div>
                                 @yield('comments')                                              
                         </div>
-                        <!-- end post item -->
-                      
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center  wow fadeInUp" style="padding: 44px;">
-                                           
+                        <!-- end post item -->                      
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center  wow fadeInUp" style="padding: 44px;">                                        
                            
                         </div>
+
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
                                 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span> {{trans('text.xoragrer')}}</span></div>
                                   
