@@ -36,14 +36,14 @@
 <ul class="latest-post position-relative">
         @foreach ($all_last_posts['mostViewed'] as $item)                             
         <li class="aa">
-          <figure>
+          <figure id="figure_narek">
          <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-            <img  src="/{{$item->img}}" alt="" data-no-retina=""></a>
+            <img src="/{{$item->img}}" alt="" data-no-retina=""></a>
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                         <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
-                        <span class="clearfix text-medium-gray text-small">{{$item->name .' '. $item->lastname}}</span></div>
+                        <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2).'.'. $item->lastname}}</span></div>
             </li>
         @endforeach                            
     
@@ -80,7 +80,6 @@
                     </div>
                     <div class="post-details">
                         <a href="{{url('post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-100 display-block md-width-100">{{$item->title}} </a>
-                    
                     </div>
                 </div>
             </div>
@@ -243,8 +242,6 @@
         </div>
     </li>
     <!-- end post item --> 
-   
- 
 </ul>
     
 @endsection

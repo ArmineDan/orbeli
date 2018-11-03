@@ -15,27 +15,18 @@
               
             <div class="container">
                 <div class="row">
-                     <div class="container">
-                <div class="row">
-                      
                   
                  <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
-                   
-                       @yield('main_post')
-                     
-                     
-                    </main>
-                    <!-- Vertical posts-->  
+                    @yield('main_post')
+                </main>
+
+                    <!-- Vertical posts-->
                     <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
-                     <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
-
+                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                             @yield('main_right')  
-
                          </div>                     
                      </aside>
                      <!--end Vertical posts-->
-                  </div>
-               </div>
                 </div>
             </div>
         </section>
