@@ -42,12 +42,13 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
   // list all lfm routes here...
 });
 
-Route::get('/events', 'EventController@index');
-Route::get('/{locale}/author', 'AuthorController@index');
-Route::get('/{locale}/author/{id}', 'AuthorController@about');
+Route::get('/{locale}/opinions', 'LoadAll@opinions');
+Route::get('/{locale}/videos', 'LoadAll@videos');
+Route::get('/{locale}/{id}', 'PageController@load_allFromMenu');
 
-// Route::get('/{locale}/{id}', 'PageController@load_allFromMenu');
 Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');

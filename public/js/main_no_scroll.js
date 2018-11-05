@@ -345,13 +345,20 @@ $(window).resize(function (event) {
 $(document).ready(function () {
     "use strict";
     // Bootsnav menu work with eualize height
-	
-		$("#srch").click(function(){
-			$(this).fadeOut('slow');
-			$("#for_m").fadeIn('slow');
-		
-			
-		})
+    
+    $("#srch").click(function(){
+        $("#open_search_folder_ns").css("display", "block")
+    })
+
+    $(".close_search_btn_ns").click(function(){
+        $("#open_search_folder_ns").css("display", "none")
+    })
+
+    $(document).keydown(function(e) {
+        if (e.keyCode == 27) {
+            $("#open_search_folder_ns").css("display", "none");
+        }
+    });
 		
     $("nav.navbar.bootsnav ul.nav").each(function () {
         $("li.dropdown", this).on("mouseenter", function () {

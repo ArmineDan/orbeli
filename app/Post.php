@@ -31,21 +31,36 @@ class Post extends Model
     }
 
     static function verticalPost(){
-        return $verticalPost = DB::table('posts')
-        ->where('status','<>','main')
-        ->orderByRaw('date DESC')
+        return $main_right = DB::table('videos')
+        ->select('videos.*', 'authors.name', 'authors.lastname') 
+        ->where('videos.status','<>','main')        
+        ->join('authors', 'authors.id', '=', 'videos.author_id')
+        ->orderByRaw('date DESC')   
         ->limit(2)
+        ->get();  
+    }
+//    static function horintalPost(){
+//     return $horintalPost = DB::table('posts')
+//     ->where('status','<>','main')
+//     ->orderByRaw('date DESC')
+//     ->offset(2)
+//     ->limit(3)
+//     ->get();
+//     }
+  
+    static function main_right(){
+        $main_right = DB::table('posts')
+        ->select('posts.*', 'authors.name', 'authors.lastname') 
+        ->where('posts.status','<>','main')        
+        ->join('authors', 'authors.id', '=', 'posts.author_id')
+        ->orderByRaw('date DESC')   
+        ->limit(4)
         ->get();
+        return $main_right;
+       
+        }
       
-    }
-    static function horintalPost(){
-        return $horintalPost = DB::table('posts')
-        ->where('status','<>','main')
-        ->orderByRaw('date DESC')
-        ->offset(2)
-        ->limit(3)
-        ->get();
-    }
+  
 
     /** post relationsheeps START **/
         //_Categories. получить категорию статьи.
@@ -95,6 +110,13 @@ class Post extends Model
             ->join('authors', 'posts.author_id', '=', 'authors.id') 
             ->get();
         } 
+        static function main_video(){
+            return $main_post = DB::table('videos') 
+            ->select('videos.*', 'authors.name', 'authors.lastname') 
+            ->where('status','=','main')
+            ->join('authors', 'videos.author_id', '=', 'authors.id') 
+            ->get();
+        } 
    
         
     static function mostViewed(){
@@ -117,6 +139,28 @@ class Post extends Model
         // ->get();
     } 
     
+    static function xoragreri_poster($get){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+            ->where('lng','=',$lang)
+            ->value('id');
+
+        $post_types = DB::table('categories')
+        ->select('categories.id')
+        ->where('categories.lang_id','=',$lng)
+        ->get();
+
+        $arr_posts=[];
+        for($i=0; $i<count($post_types); $i++){
+           $post_typ = $post_types[$i]->id;
+            $post = DB::select( "SELECT * FROM `posts` WHERE `posts`.id not in ($get)  and  `posts`.post_typ =  $post_typ  and  `posts`.status != 'main' order by `posts`.date desc limit 1   ");
+          if( count($post)>0){
+               $arr_posts[$i] = $post;
+          }
+        }
+        return $arr_posts;
+
+    }
     
     
     

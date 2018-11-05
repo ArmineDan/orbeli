@@ -7,7 +7,6 @@ use App\Opinion;
 use App\Post;
 use App\Tags;
 use Illuminate\Http\Request;
-use Calendar;
 use App\Event;
 use App;
 use DB;
@@ -18,58 +17,62 @@ use Session;
 
 class PageController extends Controller
 { 
+    static function take_id($arr){
+        $for_query='0';
+        for($i=0; $i<count($arr); $i++){    
+            $for_query.=','.$arr[$i]->id;
+                 }
+            return $for_query;
 
-
-    public function index($locale='en') 
-
+    }
+        public function index($locale='en') 
             {
                 $rules = ['en','ru','hy'];                      
                     if(in_array($locale,$rules))
                     {
                        Session::put('locale',$locale);
                         App::setLocale($locale);
-                    $lang= App::getLocale();
+                        $lang= App::getLocale();
+                        $calendar= Event::event();
+                        $opinions = Opinion::load_all();
+                        $last_posts_vertical = Post::verticalPost();        
+                       // $last_posts_horizontal = Post::horintalPost();
+                        $menu = Post::menu();
+                        $LeftComments=  Post::LeftComments(); 
+                        $mostViewed = Post::mostViewed(); 
+                        $main_post =  Post::main_post();  
+                        $main_right =  Post::main_right();  
+                        $main_video = Post::main_video();
+                        $popular_tags = Tags::load_popular_tags();  
+                        $archievs = Post::archievs();
+                        
+                         // '$get' -ov vercnum enq verevum erevacox posteri id-ry, 
+                        // vorpesszi  ayd postery  xoragrer bajnum chkrknven                           
+                        $get = PageController::take_id($main_right);
+                        $last_posts_xoragrer = Post::xoragreri_poster($get); 
+                        $all_last_posts = array(
+                            "vert"=>$last_posts_vertical,                            
+                            "menu"=>$menu,
+                            "leftComments" => $LeftComments,
+                            "mostViewed"=> $mostViewed,
+                            "main_post" => $main_post,
+                            "main_video" => $main_video,                            
+                            "main_right" => $main_right,
+                            "popular_tags" => $popular_tags,
+                            "archievs" => $archievs,
+                            "opinions" => $opinions,
+                            "event"=> $calendar,
+                            "xoragrer"=>$last_posts_xoragrer,
+                            "lang"=>$lang
+                            
+                        ); 
 
-                $calendar= Event::event();
-                $opinions = Opinion::load_all();
-                $last_posts_vertical = Post::verticalPost();        
-                $last_posts_horizontal = Post::horintalPost();
-                $menu = Post::menu();
-                $LeftComments=  Post::LeftComments(); 
-                $mostViewed = Post::mostViewed(); 
-                $main_post =  Post::main_post();  
-                $popular_tags = Tags::load_popular_tags();           
-            
-                $archievs = Post::archievs();
-                $all_last_posts = array(
-                    "vert"=>$last_posts_vertical,
-                    "horizontal"=>$last_posts_horizontal,
-                    "menu"=>$menu,
-                    "leftComments" => $LeftComments,
-                    "mostViewed"=> $mostViewed,
-                    "main_post" => $main_post,
-                    "popular_tags" => $popular_tags,
-                    "archievs" => $archievs,
-                    "opinions" => $opinions,
-                    "event"=> $calendar,
-                    "lang"=>$lang
-                    
-                );   
-               
-            // return   $all_last_posts['menu'];
-            
-
-                    
-           //return  view('calendartest',compact('all_last_posts'));
-           return  view('index',compact('all_last_posts'));
+           //return   $last_posts_xoragrer;           
+                        return  view('index',compact('all_last_posts'));
                     }                
-                
-                   
-              
-               else{
-
-               
-               return  redirect('/en');
+                         
+               else{               
+               return   redirect('/'.App::getLocale());
                }
                 
               
@@ -92,23 +95,23 @@ class PageController extends Controller
                 $menu = Post::menu();
                 $categories = Post :: categories();
                 $popular_tags=Tags::load_popular_tags();
-                $post_with_given_id = DB::table('posts')
-                ->select('posts.*','authors.name','authors.lastname')                                
-                ->join('categories', 'categories.id', '=', 'posts.post_typ')
-                ->join('authors', 'authors.id', '=', 'posts.author_id')                
-                ->where('categories.name', $id)                
+                $post_with_given_id = DB::table('posts as p')                                           
+                ->join('categories as c', 'c.id', '=', 'p.post_typ')
+                ->join('authors as a', 'a.id', '=', 'p.author_id') 
+                ->select('p.*','a.name','a.lastname','a.img as aimg', 'p.img as oimg' )                  
+                ->where('c.name', $id)                
                 ->orderBy('date','DESC')  
-                ->paginate(6);                
+                ->paginate(6);  
+                              
                 $mostViewed = Post::mostViewed();
                 
                 $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
            
+               
                 return view('current_posts')-> with('all_last_posts',$all_data);
             }
             else{
-
-               
-                return  redirect('/en');
+                  return  redirect('/'.App::getLocale());
                 }
               
             }
@@ -136,7 +139,7 @@ class PageController extends Controller
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
            }
                 else{              
-                    return  redirect('/en');
+                    return  redirect('/'.App::getLocale());
                     }                
                 
             } 
