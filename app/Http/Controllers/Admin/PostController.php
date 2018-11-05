@@ -8,7 +8,13 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 use App\Category;
-use App\Tags;
+// use App\Tags;
+use App;
+use App\Lang;
+use App\Author;
+use App\File;
+use App\Document;
+use App\Event;
 
 
 class PostController extends Controller
@@ -20,10 +26,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $lang_id = Post::getLangId();
         return view('admin.posts.index', [
             // 'posts' => Post::paginate(3)
-            'posts' => Post::with('getCategory')->paginate(3),
+            'posts' => Post::with('getCategory')->where('lang_id', $lang_id)->paginate(3),
+            'locale' => App::getLocale(), 
         ]);
     }
 
@@ -34,16 +41,18 @@ class PostController extends Controller
      */
     public function create()
     {
-        $authors = DB::select('select * from authors');
-        $categories = Category::all();
-        // $tags = Tags::groupBy('name')->get();
-        // $tags = Tags::query()->distinct()->get();
-        $tags = Post::allTags();
+        $lang_id = Post::getLangId();        
+        $authors = Author::where('lang_id', $lang_id)->get();
+        $categories = Category::where('lang_id', $lang_id)->get();
+ 
+        $tags = Post::allTags();        
         return view('admin.posts.create', [
             'post' => [],
             'authors' => $authors,
             'categories' => $categories,
             'tags' => $tags,
+            'locale' => App::getLocale(),
+            'lang_id' => $lang_id,
         ]);
     }
 
@@ -55,32 +64,48 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
         $this->validate( $request, [
             'title'=>'required|string|max:400',
             'short_text'=>'max:800',
-            'long_text'=>'required|string',
+            'html_code'=>'required|string',
+            
+            'img'=>'required|string',
+            'thumb_img' =>'required|string',
             'date'=>'required|date',
-            'post_typ'=>'required|integer',
-            'tags'=> 'required|string',
-        //     'tag1'=>'nullable|string|max:255',
-        //     'tag2'=>'nullable|string|max:255',
-        //     'tag3'=>'nullable|string|max:255',
-        //     'tag4'=>'nullable|string|max:255',
-        //     'tag5'=>'nullable|string|max:255',
-            'status'=>'required|alpha|max:100',
+            'status'=>'required|alpha_dash|max:100',
             'meta-k'=>'nullable|string|max:400',
             'meta-d'=>'nullable|string|max:600',
-            'authors_id' => 'required|integer',
+            // 'view' => 'required|integer',
+            'post_typ'=>'required|integer',
+            'author_id' => 'required|integer',
+            'lang_id'=>'required|integer',
+            'tags'=> 'required|string',
         ]);
 
-        $tagsString = $request->tags;
-        $tagsArray = explode(',',$request->tags);
-        // var_dump($tagsArray);
-        // var_dump($tagsLink);
         $post = Post::create($request->all());
-        $post->tag($tagsArray);
+        if($request->input('tags')) {
+            // $tagsString = $request->tags;
+            $tagsArray = explode(',',$request->tags);
+            $post->tag($tagsArray); // store-to-db
+        }
+        if($request->input('files')) {
+            $fl_string = $request->input('files');
+            $fl_array = explode(',',$fl_string);
+            // $fl_rows =[]; // fot debugging
+            foreach($fl_array as $key => $link) {
+                // $fl_rows[$key] = File::prepareFile($link);
+                $post->getDocuments()->create(Document::prepareDocParams($link));
+            }
+            // return $fl_rows;
+        }
 
+        Post::addTagsToKeys($request->input('tags'), $request->input('meta_k'), $post->id);
+        Event::checkAndSaveIfNotExists($request->input('date'));
+        return redirect()->route('admin.post.index', App::getLocale());
     }
+
 
     /**
      * Display the specified resource.
@@ -99,9 +124,25 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
-    {
-        //
+    public function edit($id, $locale)
+    {        
+        $post = Post::findOrFail($id);
+        $lang_id = $post->lang_id;        
+        $authors = Author::where('lang_id', $lang_id)->get();
+        $categories = Category::where('lang_id', $lang_id)->get();
+        $allTags = Post::allTags(); 
+        $postTags = $post->tagArray;
+        $postTagsList = $post->tagList;
+        $allTagsList = implode(',',$allTags);
+        
+
+        // $tagList = $post->tagList;
+        // return $tagArray;
+        if($post) {
+            return view('admin.posts.edit',compact('post','authors', 'categories', 'locale', 'allTagsList', 'postTagsList'));
+        } else {
+            return view('404error');
+        }        
     }
 
     /**

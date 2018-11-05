@@ -41,6 +41,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
+                
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
@@ -49,15 +50,29 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Navigate
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                                <li><a href="{{ route('admin.category.index') }}">Categories(Menu Items)</a></li>
-                                <li><a href="{{ route('admin.post.index') }}">Posts</a></li>
+                                <li><a href="{{ route('home', $locale) }}">Home</a></li>
+                                <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
+                                <li><a href="{{ route('admin.category.index', $locale) }}">Categories(Menu Items)</a></li>
+                                <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
                             </ul>
                         </li>                 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Languages <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('admin.index', $locale='en') }}">en -1</a></li>
+                                <li><a href="{{ route('admin.index', $locale='ru') }}">ru -2</a></li>
+                                <li><a href="{{ route('admin.index', $locale='hy') }}">hy -3</a></li>
+                            </ul>
+                        </li>
+                      
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
