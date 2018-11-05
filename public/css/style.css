@@ -724,10 +724,11 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 .no-margin-tb {margin-top: 0 !important; margin-bottom: 0 !important}
 .no-margin-top {margin-top:0 !important}
 .no-margin-bottom {margin-bottom:0 !important}
-.no-margin-left {margin-left:0 !important}
+.no-margin-left {margin-left: 0 !important}
 .no-margin-right {margin-right:0 !important}
 .margin-lr-auto {margin-left:auto !important; margin-right:auto !important}
-.margin-auto {margin: 0 auto !important;}
+.margin-auto {margin: 0 auto !important}
+
 
 /* margin top */
 .margin-one-top {margin-top:1%}
@@ -3671,8 +3672,8 @@ footer .newsletter input { color: #6f6f6f; letter-spacing: normal; }
 /* latest post */
 .latest-post { list-style: none; padding: 0; margin: 0;}
 .latest-post li {display: table; padding:15px 0;}
-aside .latest-post li {padding:15px 0;}
-aside .latest-post li.aa {padding-bottom:18px}
+aside .latest-post li {padding: 2px 0;}
+aside .latest-post li.aa {padding-bottom: 33px}
 .latest-post li:first-child {padding-top: 0}
 .latest-post li:last-child {border-bottom:none}
 .latest-post li figure {height:33px; width: 60px; float: left}
@@ -3966,5 +3967,38 @@ aside .latest-post li.aa figure {width: 179px;}
 
 .davo-blur{
     filter: blur(3px);
+}
+
+#ns_search_icon{
+    position: absolute; 
+    right: 208px;
+    top: -8px;
+}
+
+@media(max-width: 540px){
+    nav.navbar.bootsnav .navbar-toggle{
+        left: -35px
+    }
+
+    header .logo .logo-dark.default, header .logo .logo-light.default{
+        width: 100px
+    }
+
+    #ns_search_icon{
+       right: 150px
+    }
+    
+    .text-extra-dark-gray{
+        font-size: 15px
+    }
+
+    #most_view_div_narek{
+        padding-left: 130px
+    }
+
+    aside .latest-post li figure{
+        width: 110px;
+        margin-left: 0%
+    }
 }
 

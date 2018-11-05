@@ -28,8 +28,6 @@
                 
             </div> 
                 
-
-              
                     
                     <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
                             <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-2">
@@ -41,7 +39,7 @@
                             <div class="navbar-collapse collapse " id="navbar-collapse-toggle-2">
                                 <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                                    
-                                    <li class="dropdown simple-dropdown"  >
+                                    <li class="dropdown simple-dropdown">
                                         <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                                          <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                             
@@ -83,7 +81,7 @@
                             
                 <div class="col-md-1 col-sm-2 col-xs-2 width-auto  single-search xs-no-padding-right">
                     <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
-                    <i class="fa fa-search no-margin-left" style=" position: absolute; right: 208px;top: -8px;"></i></button>                   
+                    <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
                 </div> 
 
                     
