@@ -45,6 +45,11 @@ class PageController extends Controller
                         $main_video = Post::main_video();
                         $popular_tags = Tags::load_popular_tags();  
                         $archievs = Post::archievs();
+                        
+                         // '$get' -ov vercnum enq verevum erevacox posteri id-ry, 
+                        // vorpesszi  ayd postery  xoragrer bajnum chkrknven                           
+                        $get = PageController::take_id($main_right);
+                        $last_posts_xoragrer = Post::xoragreri_poster($get); 
                         $all_last_posts = array(
                             "vert"=>$last_posts_vertical,                            
                             "menu"=>$menu,
@@ -57,14 +62,12 @@ class PageController extends Controller
                             "archievs" => $archievs,
                             "opinions" => $opinions,
                             "event"=> $calendar,
+                            "xoragrer"=>$last_posts_xoragrer,
                             "lang"=>$lang
                             
-                        );
-                         // '$get' -ov vercnum enq verevum erevacox posteri id-ry, 
-                        // vorpesszi  ayd postery  xoragrer bajnum chkrknven                           
-                        $get = PageController::take_id($all_last_posts['main_right']);
-                        $last_posts_xoragrer = Post::xoragreri_poster($get);  
-              // return   $last_posts_xoragrer;           
+                        ); 
+
+           //return   $last_posts_xoragrer;           
                         return  view('index',compact('all_last_posts'));
                     }                
                          

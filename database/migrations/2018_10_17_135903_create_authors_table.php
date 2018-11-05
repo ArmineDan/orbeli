@@ -21,7 +21,13 @@ class CreateAuthorsTable extends Migration
             $table->string('img');
             $table->text('biography'); 
             $table->integer('lang_id')->unsigned();
-            $table->foreign('lang_id')->references('id')->on('langs');    
+            $table->foreign('lang_id')->references('id')->on('langs'); 
+            $table->string('faceebook');
+            $table->string('twitter');
+            $table->text('linkedin'); 
+            $table->string('email');
+
+
             
         });
     }

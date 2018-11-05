@@ -11,11 +11,11 @@
                    </a>
                </div>
                <div class="post-details">
-                   <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}}"</a>
+                   <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
                    <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    <div class="author">
                         <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">                             
-                  <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block">Հեղ.՝ <a href="home-#" class="text-medium-gray">{{substr($item->name, 0, 2).'. '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}"</span>
+                  <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block"> <a href="home-#" class="text-medium-gray">{{substr($item->name, 0, 2).'. '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span>
              </div>
                </div>
            </div>
