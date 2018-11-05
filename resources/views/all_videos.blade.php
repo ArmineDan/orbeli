@@ -16,7 +16,7 @@
                    <div class="author">
                         <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
                              
-                       <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block"> <a href="home-#" class="text-medium-gray">{{$item->name.' '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}"</span>
+                       <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block"> <a href="home-#" class="text-medium-gray">{{$item->name.' '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span>
                    </div>
                </div>
            </div>

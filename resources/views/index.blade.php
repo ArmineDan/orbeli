@@ -110,6 +110,7 @@
 @foreach ($all_last_posts['opinions'] as $item)
             <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
                     <div class="blog-post blog-post-style1">
+                       
                         <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                             <a href="{{url('post/'.$item->date.'/'.$item->title)}}">
                                 <img src="/{{$item->oimg}}" alt="" data-no-retina="">
@@ -133,107 +134,31 @@
 @endsection
 
 @section('xoragrer')
+
 <ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
     <li class="grid-sizer"></li>
-    <!-- start post item --> 
-    <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
+
+  @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
+
+  <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
         <div class="blog-post">
             <div class="blog-post-images overflow-hidden">
-                <a href="#">
-                    <img src="images/blog-img62.jpg" alt="" data-no-retina="">
+                <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                   
+                    <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                 </a>
              </div>
             <div class="post-details padding-15px40px-all bg-white sm-padding-20px-all">
                 <div class="blog-hover-color"></div>
-                <a href="#" class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Քաղաքականություն</a>
+                <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Քաղաքականություն</span>
                 
                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <p>Ըստ Ջորջ Բալանդիերի,  հոմո պիլիտիկուսի շրջանակում:
-          Մարդաբանները  չորս պարզ տեսակներ</p>
+                <a  href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                    <p>{{$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
             </div>
         </div>
     </li>
-    <!-- end post item --> 
-    <!-- start post item --> 
-    <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 33.2479%; top: 0px;">
-        <div class="blog-post">
-            <div class="blog-post-images overflow-hidden">
-                <a href="#">
-                    <img src="images/blog-img63.jpg" alt="" data-no-retina="">
-                </a>
-            </div>
-            <div class="post-details padding-15px40px-all  bg-white sm-padding-20px-all">
-                <div class="blog-hover-color"></div>
-                <a href="#" class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Տնտեսություն</a>
-               
-                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <p> 20-րդ դարի կեսերին տեղեկատվության դերի ու ծավալի աճին,
-                        ինչպես նաև տեղեկատվական տեխնոլոգիաների զարգացմանը զուգահեռ՝
-                         ավելացել են նաև տեղեկատվական անվտանգության սպառնալիքները, 20-րդ դարի կեսերին տեղեկատվության դերի ու ծավալի աճին,
-                        
-                           ավելացել են նաև տեղեկատվական անվտանգության սպառնալիքները,   </p>
-            </div>
-        </div>
-    </li>
-    <!-- end post item --> 
-    <!-- start post item --> 
-    <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 66.5812%; top: 0px;">
-        <div class="blog-post">
-            <div class="blog-post-images overflow-hidden">
-                <a href="#">
-                    <img src="images/blog-img64.jpg" alt="" data-no-retina="">
-                </a>
-            </div>
-            <div class="post-details padding-15px40px-all  bg-white sm-padding-20px-all">
-                <div class="blog-hover-color"></div>
-                <a href="#" class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Անվտանգություն</a>
-               
-                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <p>Ըստ Ջորջ Բալանդիերի,  հոմո պիլիտիկուսի շրջանակում:
-                        Մարդաբանները  չորս պարզ տեսակներ</p>
-            </div>
-        </div>
-    </li>
-    <!-- end post item --> 
-    <!-- start post item --> 
-   <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 66.5812%; top: 599px;">
-        <div class="blog-post">
-            <div class="blog-post-images overflow-hidden">
-                <a href="#">
-                    <img src="images/blog-img67.jpg" alt="" data-no-retina="">
-                </a>
-           </div>
-            <div class="post-details padding-15px40px-all  bg-white sm-padding-20px-all">
-                <div class="blog-hover-color"></div>
-                <a href="#" class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Տարածաշրջանային</a>
-                
-                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <p>Ըստ Ջորջ Բալանդիերի,  հոմո պիլիտիկուսի շրջանակում:
-                        Մարդաբանները  չորս պարզ տեսակներ</p>    </div>
-        </div>
-    </li>
-    <!-- end post item --> 
-    <!-- start post item --> 
-   
-    <!-- end post item --> 
-    <!-- start post item --> 
-    <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 0%; top: 623px;">
-        <div class="blog-post">
-            <div class="blog-post-images overflow-hidden">
-                <a href="#">
-                    <img src="images/blog-img70.jpg" alt="" data-no-retina="">
-                </a>
-            </div>
-            <div class="post-details padding-15px40px-all  bg-white sm-padding-20px-all">
-                <div class="blog-hover-color"></div>
-                <a href="#" class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">Միջազգային</a>
-               
-                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <p>Ըստ Ջորջ Բալանդիերի,  հոմո պիլիտիկուսի շրջանակում:
-                        Մարդաբանները  չորս պարզ տեսակներ</p>  </div>
-        </div>
-    </li>
-    <!-- end post item --> 
-</ul>
-    
+      
+  @endfor    
+    </ul>    
 @endsection
