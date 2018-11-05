@@ -22,7 +22,7 @@
             <!-- Left Side Of Navbar -->
             
             <ul class="nav navbar-nav">
-                &nbsp;<li><a href="{{ route('admin.index') }}">Dashboard</a></li>
+                &nbsp;<li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -71,8 +71,8 @@
                         @foreach ($all_last_posts['menu'] as $item)                      
                         <li style="position: relative;">
                             <span class="menu-controls">
-                                <a href="{{ route('admin.category.edit', $item) }}"><i class="fa fa-edit" ></i></a>
-                                <a href="{{ route('admin.category.create') }}"><i class="fa fa-plus" ></i></a>
+                                <a href="{{ route('admin.category.edit', [$locale,$item]) }}"><i class="fa fa-edit" ></i></a>
+                                <a href="{{ route('admin.category.create', $locale) }}"><i class="fa fa-plus" ></i></a>
                             </span>
                             <a class="dropdown-toggle" data-toggle="dropdown" href={{url($item->name)}}>{{$item->name}}</a>                                              
                              

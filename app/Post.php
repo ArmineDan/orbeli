@@ -5,21 +5,31 @@ use App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Category;
+use App\Lang;
+use App\File;
+use App\Document;
 use Cviebrock\EloquentTaggable\Taggable;
 
 
 class Post extends Model
 {
-   use Taggable;
-  
-   static function getLangId(){
-     $lang= App::getLocale();
-     
-     return  $lng = DB::table('langs')
-    ->where('lng','=',$lang)
-    ->value('id');
-  
+    use Taggable;
+    protected $fillable = [
+        'title', 'short_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id',
+    ];
+    static function addTagsToKeys($tags, $meta_k, $post_id) {
+        DB::table('posts')
+            ->where('id', $post_id)
+            ->update(['meta_k' => $tags . ','.$meta_k]);
     }
+  
+    static function getLangId() {
+        $lang= App::getLocale();     
+        return  $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');  
+    }
+
     static function verticalPost(){
         return $main_right = DB::table('videos')
         ->select('videos.*', 'authors.name', 'authors.lastname') 
@@ -27,9 +37,7 @@ class Post extends Model
         ->join('authors', 'authors.id', '=', 'videos.author_id')
         ->orderByRaw('date DESC')   
         ->limit(2)
-        ->get();
-       
-       
+        ->get();  
     }
 //    static function horintalPost(){
 //     return $horintalPost = DB::table('posts')
@@ -52,15 +60,28 @@ class Post extends Model
        
         }
       
-    public function getCategory() {
-      return $this->hasOne('App\Category', 'id', 'post_typ');
+  
+
+    /** post relationsheeps START **/
+        //_Categories. получить категорию статьи.
+        public function getCategory() {
+            return $this->hasOne('App\Category', 'id', 'post_typ');
+        }
+
+        public function getFiles() {
+            return $this->hasMany('App\File', 'post_id', 'id');
+        }
+
+        //_Documents. Получить все документы статьи.
+        public function getDocuments() {
+            return $this->morphMany('App\Document', 'documentable');
+        }
+    /** post relationsheeps END **/
+
+    static function categories(){
+        return $categories = DB::select("SELECT categories.`name`, count(categories.`name`) as num FROM `posts` right join categories on `posts`.`post_typ`=categories.`id` GROUP BY categories.`name`");
     }
-
-
-   static function categories(){
-    return $categories = DB::select("SELECT categories.`name`, count(categories.`name`) as num FROM `posts` right join categories on `posts`.`post_typ`=categories.`id` GROUP BY categories.`name`");
     
-   }
    static function LeftComments(){
     return $comments =DB::table('posts')
     ->orderByRaw('date DESC')

@@ -5,6 +5,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
+use App;
 use App\Post;
 use App\Tags;
 use App\Category;
@@ -28,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $locale = App::getLocale();        
         $last_posts_vertical_1 = Post::with('getCategory')
             ->where('status','<>','main')
             ->orderByRaw('date DESC')
@@ -57,7 +59,8 @@ class HomeController extends Controller
             "mostViewed"=> $mostViewed,
             "main_post" =>$main_post,
             "popular_tags"=> $popular_tags,
-            "archievs"=>$archievs
+            "archievs"=>$archievs,
+            "locale"=>$locale,
         );
         // return $menu;
         return view('home', compact('all_last_posts'));

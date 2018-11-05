@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="{{ route('admin.post.index') }}">
+                <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <p class="text-indent btn btn-primary">Posts:
                             <span class="label label-success">150</span>
@@ -13,7 +13,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('admin.category.index')}}">
+                <a href="{{ route('admin.category.index', $locale)}}">
                     <div class="jumbotron text-center">
                         <p class="text-indent btn btn-primary">Categories:
                             <span class="label label-success">8</span>
@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="list-group">
-                    <a href="{{ route('admin.category.create') }}" class="list-group-item active text-center">
+                    <a href="{{ route('admin.category.create', $locale) }}" class="list-group-item active text-center">
                         <span class="h4">Create Category</span>
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>        
@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-6">
                 <div class="list-group">
-                    <a href="{{ route('admin.post.create') }}" class="list-group-item active text-center">
+                    <a href="{{ route('admin.post.create', $locale) }}" class="list-group-item active text-center">
                         <span class="h4">Create Post</span>
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>        

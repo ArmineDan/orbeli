@@ -1,11 +1,11 @@
 <?php
 
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
 use App;
 use DB;
 use Session;
+use Illuminate\Database\Eloquent\Model;
+
 
 
 class Opinion extends Model
@@ -23,6 +23,12 @@ class Opinion extends Model
         ->where('o.lang_id','=', $lng)
         ->limit(6)
         ->get();
+    }
+
+
+    //_Documents. Получить все документы ко мнению.
+    public function getDocuments() {
+        return $this->morphMany('App\Document', 'documentable');
     }
 
 }

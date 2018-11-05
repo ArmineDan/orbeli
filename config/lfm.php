@@ -59,7 +59,7 @@ return [
 
     // The default display type for items.
     // Supported: "grid", "list"
-    'images_startup_view' => 'grid',
+    'images_startup_view' => 'list',
     'files_startup_view' => 'list',
 
     /*
@@ -84,7 +84,7 @@ return [
     'max_file_size' => 50000,
 
     // If true, the uploading file's mime type will be valid in valid_image_mimetypes/valid_file_mimetypes.
-    'should_validate_mime' => false,
+    'should_validate_mime' => true,
 
     // available since v1.3.0
     'valid_image_mimetypes' => [
@@ -123,7 +123,17 @@ return [
         'image/gif',
         'image/svg+xml',
         'application/pdf',
+        'application/docx',
+        'application/doc',
+        'application/vnd.ms-excel',
         'text/plain',
+        'application/msword',
+        'application/ms-excel',
+        'application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/docx',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/octet-stream',
+        'application/epub+zip',
+        'text/xml'
     ],
 
     /*
