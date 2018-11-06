@@ -197,7 +197,9 @@ class Post extends Model
             ->value('id');
     }
     
+    static function parralax(){
+        $parralax = DB::select("SELECT * FROM parralaxes");
+        return $parralax;
+    }
     
-    
-
 }

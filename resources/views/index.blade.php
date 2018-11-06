@@ -28,10 +28,8 @@
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                         <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
                         <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
-
             </li>
         @endforeach                            
-    
 </ul>
         
 @endsection
@@ -83,7 +81,7 @@
 
 @section('parallax')
 
-<section class="mine00 wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url(&quot;images/parallax-bg39.jpg&quot;); background-position: 0px 0px; visibility: visible; animation-name: fadeIn;">
+<section class="mine00 wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url({{$all_last_posts['parralax'][0]->img}}); background-position: 0px 0px; visibility: visible; animation-name: fadeIn;">
     <div class="opacity-medium bg-extra-dark-gray"></div>
     <div class="container">
         <div class="row">
@@ -91,9 +89,9 @@
                 <div class="display-table-cell vertical-align-middle text-center">
                    
                     
-                    <a href="#">
-                            <h1 class="text-white alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">ՕՐԲԵԼԻ</h1>
-                     <span class="text-white opacity6 alt-font" style="font-size:25px"> վերլուծական-հետազոտական կենտրոն</span></a> 
+                    <a href="{{$all_last_posts['parralax'][0]->link}}">
+                    <h1 class="text-white alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">{{$all_last_posts['parralax'][0]->title}}</h1>
+                    <span class="text-white opacity6 alt-font" style="font-size:25px">{{$all_last_posts['parralax'][0]->text}}</span></a> 
                 </div>
             </div>
         </div>

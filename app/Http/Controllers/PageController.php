@@ -49,11 +49,12 @@ class PageController extends Controller
                         $main_video = Post::main_video();
                         $popular_tags = Tags::load_popular_tags();  
                         $archievs = Post::archievs();
-                        
+                        $parralax = Post::parralax();
                          // '$get' -ov vercnum enq verevum erevacox posteri id-ry, 
                         // vorpesszi  ayd postery  xoragrer bajnum chkrknven                           
                         $get = PageController::take_id($main_right);
                         $last_posts_xoragrer = Post::xoragreri_poster($get); 
+
                         $all_last_posts = array(
                             "vert"=>$last_posts_vertical,                            
                             "menu"=>$menu,
@@ -67,11 +68,11 @@ class PageController extends Controller
                             "opinions" => $opinions,
                             "event"=> $calendar,
                             "xoragrer"=>$last_posts_xoragrer,
-                            "lang"=>$lang
+                            "lang"=>$lang,
+                            "parralax" => $parralax
                             
                         ); 
-
-           //return   $last_posts_xoragrer;           
+           
                         return  view('index',compact('all_last_posts'));
                     }                
                          
@@ -181,8 +182,8 @@ class PageController extends Controller
                 
                 $all_data=array("event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$date,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
            
-                return view('current_posts')-> with('all_last_posts',$all_data);
-        
+                return view('current_posts')-> with('all_last_posts',$all_data);      
+
             }  
             
             
@@ -208,5 +209,6 @@ class PageController extends Controller
                     }         
 
             }        
+
 }
  
