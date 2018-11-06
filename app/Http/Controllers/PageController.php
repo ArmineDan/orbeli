@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Opinion;
+use App\Comment;
 use App\Post;
 use App\Tags;
 use Illuminate\Http\Request;
@@ -12,11 +13,14 @@ use App;
 use DB;
 use Session;
 
-    
+ 
 
 
 class PageController extends Controller
 { 
+
+ 
+
     static function take_id($arr){
         $for_query='0';
         for($i=0; $i<count($arr); $i++){    
@@ -116,26 +120,41 @@ class PageController extends Controller
               
             }
             
-    public function openCurrentPost( $locale,$date,$title) 
+    public function openCurrentPost($locale,$date,$title) 
             {  
                 $rules = ['en','ru','hy'];                      
                 if(in_array($locale,$rules))
                 {
+                        
                         Session::put('locale',$locale);
                         App::setLocale($locale);
                         $lang = App::getLocale();                
                         $calendar= Event::event();
                         $menu = Post::menu();
                     // $archievs=Post::archievs();
-                        $popular_tags=Tags::load_popular_tags();
-                        $post_with_given_dateANDtitle = DB::table('posts')                
-                        ->select('posts.*')              
-                        ->where('date', $date)
-                        ->where('title', $title)
-                        ->get();
+                        $popular_tags=Tags::load_popular_tags();  
+                        $post_with_given_dateANDtitle = Post::open_current_post($date,$title);
                         $mostViewed = Post::mostViewed();
-                        $all_data=array("lang"=> $lang,"event"=> $calendar,"post"=>$post_with_given_dateANDtitle,"menu"=>$menu, "mostViewed"=> $mostViewed,   "popular_tags"=> $popular_tags);              
-           
+                        $id=Post::getid($date,$title);
+                        
+                            $comments = Post::find($id)->comments()->get();
+                            $docs = Post::find($id)->getDocuments()->get();
+                            $tags = Post::find($id)->tagArray;
+                        
+                        
+                        
+                        
+                        $all_data=array("lang"=> $lang,
+                        "event"=> $calendar,
+                        "post"=>$post_with_given_dateANDtitle,
+                        "menu"=>$menu, 
+                        "mostViewed"=> $mostViewed,  
+                        "popular_tags"=> $popular_tags,
+                        "comments"=>$comments,
+                        "docs"=>$docs,
+                        "tags"=>$tags
+                             );  
+                     //return  $popular_tags; 
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
            }
                 else{              
@@ -145,7 +164,10 @@ class PageController extends Controller
             } 
 
         public function openArchieve($date) 
-            {   $calendar= Event::event();
+            { 
+                
+                
+                $calendar= Event::event();
                 $menu = Post::menu();
                 $categories = Post :: categories();
                 $popular_tags=Tags::load_popular_tags();
@@ -161,6 +183,30 @@ class PageController extends Controller
            
                 return view('current_posts')-> with('all_last_posts',$all_data);
         
+            }  
+            
+            
+            public function about_us($locale) 
+            {   
+                
+                $rules = ['en','ru','hy'];                      
+                if(in_array($locale,$rules))
+                {
+                        Session::put('locale',$locale);
+                        App::setLocale($locale);
+                        $lang = App::getLocale();                 
+                        $calendar= Event::event();
+                        $menu = Post::menu();
+                        $categories = Post :: categories();  
+                
+                $all_data=array("lang"=> $lang,"event"=> $calendar,"menu"=>$menu, "categories"=>$categories);              
+           
+                return view('about_us')-> with('all_last_posts',$all_data);
+                }
+                else{              
+                    return  redirect('/'.App::getLocale());
+                    }         
+
             }        
 }
  

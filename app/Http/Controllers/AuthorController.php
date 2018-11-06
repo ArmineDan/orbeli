@@ -50,8 +50,17 @@ class AuthorController extends Controller
         }      
     }
     
-    public function about($id)
-    {   $menu = Post::menu();
+    public function about($locale,$id)
+
+    { 
+        $rules = ['en','ru','hy'];                      
+        if(in_array($locale,$rules))
+        {
+                Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale(); 
+        
+        $menu = Post::menu();
         $calendar= Event::event();
         $about_authors =DB::table('authors')
         ->select('*')
@@ -60,10 +69,18 @@ class AuthorController extends Controller
         $all_last_posts = array(
         'authors' => $about_authors,
         'menu'=>$menu, 
-        "event"=> $calendar     
+        "event"=> $calendar,
+        "lang"=> $lang,
+
         );
        return  view('about_me',compact('all_last_posts'));
-    }
     
-   
+        }
+        else{              
+            return  redirect('/en');
+            }      
+
+            
+        
+        }
 }

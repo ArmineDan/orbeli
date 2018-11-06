@@ -191,6 +191,8 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Cviebrock\EloquentTaggable\ServiceProvider::class,
+      
+
 
     ],
 
