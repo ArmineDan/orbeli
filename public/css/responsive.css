@@ -1538,7 +1538,7 @@
     .center-logo {left: 15px; transform: translateX(0px); -moz-transform: translateX(0px); -ms-transform: translateX(0px); -webkit-transform: translateX(0px); -o-transform: translateX(0px); max-width:100%;}
     .navbar-nav li {position: relative}
     nav.navbar.bootsnav li.dropdown ul.mega-menu-full > li { padding: 0; border: 0; }
-    nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li { padding-left: 0; padding-right: 0; }
+    nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li { padding-left: 90px; padding-right: 0; }
     nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown { margin-bottom: 10px}
     nav.navbar.bootsnav .simple-dropdown .dropdown-menu > li.dropdown > ul:before {display: none;}
     nav.navbar.bootsnav ul.navbar-nav.navbar-left > li:last-child > ul.dropdown-menu { border: 0;}

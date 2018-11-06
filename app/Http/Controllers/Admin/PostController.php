@@ -155,6 +155,7 @@ class PostController extends Controller
         // $tagList = $post->tagList;
         // return $tagArray;
         if($post) {
+
             return view('admin.posts.edit',[
                 'post' => $post,
                 'authors' => $authors,
@@ -164,6 +165,7 @@ class PostController extends Controller
                 'postTagsList' => $postTagsList,
                 'docsObject' => $docsObject,
             ]);
+
         } else {
             return view('404error');
         }        

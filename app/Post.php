@@ -11,14 +11,16 @@ use App\Document;
 use Cviebrock\EloquentTaggable\Taggable;
 
 
+
 class Post extends Model
 {
     use Taggable;
+   
     protected $fillable = [
         'title', 'short_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id',
     ];
 
-    // dont use, best way to add by concat in view! it's hard to manage on change.
+
     static function addTagsToKeys($tags, $meta_k, $post_id) {
         DB::table('posts')
             ->where('id', $post_id)
@@ -82,6 +84,13 @@ class Post extends Model
 
     static function categories(){
         return $categories = DB::select("SELECT categories.`name`, count(categories.`name`) as num FROM `posts` right join categories on `posts`.`post_typ`=categories.`id` GROUP BY categories.`name`");
+    }
+        
+     // Получить все комментарии статьи.
+    
+    public function comments()
+    {
+      return $this->morphMany('App\Comment', 'commentable');
     }
     
    static function LeftComments(){
@@ -163,8 +172,34 @@ class Post extends Model
         return $arr_posts;
 
     }
-    
-    
-    
 
+    static function open_current_post($date,$title){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+            ->where('lng','=',$lang)
+            ->value('id');
+
+            return $open_current_post = DB::table('posts as p')          
+            ->join('authors as a', 'p.author_id', '=', 'a.id')
+            ->select('p.*','a.name','a.lastname','a.img as aimg','p.img as pimg')       
+            ->where('p.lang_id','=', $lng)
+            ->where('p.date','=', $date)
+            ->where('p.title','=', $title)        
+            ->get();
+
+
+    }
+    static  function getid($date,$title)
+    {
+        return $open_current_post = DB::table('posts') 
+            ->where('posts.date','=', $date)
+            ->where('posts.title','=', $title)        
+            ->value('id');
+    }
+    
+    static function parralax(){
+        $parralax = DB::select("SELECT * FROM parralaxes");
+        return $parralax;
+    }
+    
 }

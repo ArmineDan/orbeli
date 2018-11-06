@@ -19,7 +19,7 @@
                 <div class="navbar-collapse collapse " id="navbar-collapse-toggle-1">
                     <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                        @foreach ($all_last_posts['menu'] as $item)                      
-                       <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/'.$item->name)}}>{{$item->name}}</a>                                              
+                       <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
                        
@@ -47,7 +47,7 @@
                                             <li> <a href="javascript:void(0);"  title="Միջոցառումներ">Նորություններ</a> </li>
                                             <li><a href="javascript:void(0);" title="Գործընկերներ">Գործընկերներ</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="Գործընկերներ">Փորձագետներ</a> </li>
-                                            <li><a href="javascript:void(0);" title="Մեր մասին">Մեր մասին</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/about_us')}}" title="Մեր մասին">Մեր մասին</a> </li>
                                             <li><a href="javascript:void(0);" title="Կապ">Կապ</a> </li>                              
                                          </ul>
                                     </li>  

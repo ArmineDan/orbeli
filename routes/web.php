@@ -31,6 +31,8 @@ Route::group( $admin_rules , function() {
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
   Route::resource('/document', 'DocumentController', ['as'=>'admin']);
+  Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
+
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
@@ -43,6 +45,9 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
   // list all lfm routes here...
 });
 
+Route::get('/{locale}/author', 'AuthorController@index');
+Route::get('/{locale}/about_us', 'PageController@about_us');
+Route::get('/{locale}/author/{id}', 'AuthorController@about');
 Route::get('/{locale}/opinions', 'LoadAll@opinions');
 Route::get('/{locale}/videos', 'LoadAll@videos');
 Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');

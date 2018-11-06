@@ -3,7 +3,7 @@
 <div class="infinite-scroll wow fadeIn" > 
        
     @foreach ($all_last_posts['authors'] as $item)               
-    <div class="col-md-3 col-sm-6 col-xs-12 team-block text-left team-style-1 sm-margin-seven-bottom margin-40px-bottom xs-margin-30px-bottom wow fadeInRight" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
+    <div class="col-md-3 col-sm-6 col-xs-12 team-block text-left team-style-1 sm-margin-seven-bottom margin-40px-bottom xs-margin-30px-bottom wow fadeInRight" data-wow-delay="0.2s" style="visibility: hidden; animation-delay: 0.2s; animation-name: fadeInRight;">
             <figure>
                 
                 <div class="team-image xs-width-100">
@@ -11,7 +11,7 @@
                     <div class="overlay-content text-center">
                         <div class="display-table height-100 width-100">
                             <div class="vertical-align-bottom display-table-cell icon-social-small padding-twelve-all">
-                            <a href="{{url('author/'.$item->id)}}"> <span class="text-white text-small display-inline-block no-margin">{{$item->sub_name}}</span></a>
+                            <a href="{{url($all_last_posts['lang'].'/author/'.$item->id)}}"> <span class="text-white text-small display-inline-block no-margin">{{$item->sub_name}}</span></a>
                                 <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                 <a href="http://www.facebook.com" class="text-white" target="_blank"><i class="fa fa-facebook-f"></i></a>
                                 <a href="http://www.twitter.com" class="text-white" target="_blank"><i class="fa fa-twitter"></i></a>
