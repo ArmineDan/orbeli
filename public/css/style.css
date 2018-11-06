@@ -247,6 +247,7 @@ a.text-very-light-gray-hover:hover {color:#ededed}
 .bg-white {background-color:#fff;}
 .bg-black {background-color:#000;}
 .bg-extra-dark-gray {background-color:#1c1c1c;}
+.bg-extra-dark-gray1 {background-color: rgba(35, 35, 35, 0.0784313725490196);}
 .bg-dark-gray {background-color:#757575;}
 .bg-extra-medium-gray {background-color:#939393;}
 .bg-medium-gray {background-color:#dbdbdb;}
