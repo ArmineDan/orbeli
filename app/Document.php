@@ -21,7 +21,8 @@ class Document extends Model
     */
 
     static function prepareDocParams($link) {
-        $fl_one=[];
+    
+        $fl_one=[];      
         // $link = "files/1/posts/pdf-test.pdf";
         $fl_one['link'] = trim($link);
 

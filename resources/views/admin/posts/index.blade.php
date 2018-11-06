@@ -31,10 +31,10 @@
                     <td>{{$post->status}}</td>
                     <td class="text-center">
                       {{--['id'=>$category->id]--}}
-                      <form action="{{ route('admin.post.destroy', [$post,$locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
+                      <form action="{{ route('admin.post.destroy', [$post, $locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <a class="cat-edit btn btn-default" href="{{ route('admin.post.edit',[$post,$locale]) }}">
+                        <a class="cat-edit btn btn-default" href="{{ route('admin.post.edit',[$post, $locale]) }}">
                         {{-- <a class="cat-edit btn btn-default" href="{{ url('admin/'.$locale.'/post/'.$post->id.'/edit', $post) }}"> --}}
                           <i class="glyphicon glyphicon-edit"></i>                        
                         </a>

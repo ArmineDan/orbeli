@@ -25,10 +25,7 @@ class CreateAuthorsTable extends Migration
             $table->string('faceebook');
             $table->string('twitter');
             $table->text('linkedin'); 
-            $table->string('email');
-
-
-            
+            $table->string('email');            
         });
     }
 

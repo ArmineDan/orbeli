@@ -20,7 +20,7 @@ class Post extends Model
         'title', 'short_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id',
     ];
 
-    
+
     static function addTagsToKeys($tags, $meta_k, $post_id) {
         DB::table('posts')
             ->where('id', $post_id)

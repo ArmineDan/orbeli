@@ -16,6 +16,8 @@ use App\File;
 use App\Document;
 use App\Event;
 
+use Illuminate\Database\Eloquent\Model;
+
 
 class PostController extends Controller
 {
@@ -67,22 +69,24 @@ class PostController extends Controller
 
         // return $request->all();
         $this->validate( $request, [
-            'title'=>'required|string|max:400',
-            'short_text'=>'max:800',
+            'title'=>'bail|required|max:400',
+            'short_text'=>'max:1000',
             'html_code'=>'required|string',
             
             'img'=>'required|string',
             'thumb_img' =>'required|string',
             'date'=>'required|date',
             'status'=>'required|alpha_dash|max:100',
-            'meta-k'=>'nullable|string|max:400',
-            'meta-d'=>'nullable|string|max:600',
+            'meta_k'=>'nullable|max:500',
+            'meta_d'=>'nullable|max:1000',
             // 'view' => 'required|integer',
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
             'tags'=> 'required|string',
         ]);
+
+        // return $request->all();
 
         $post = Post::create($request->all());
         if($request->input('tags')) {
@@ -101,7 +105,7 @@ class PostController extends Controller
             // return $fl_rows;
         }
 
-        Post::addTagsToKeys($request->input('tags'), $request->input('meta_k'), $post->id);
+        // Post::addTagsToKeys($request->input('tags'), $request->input('meta_k'), $post->id);
         Event::checkAndSaveIfNotExists($request->input('date'));
         return redirect()->route('admin.post.index', App::getLocale());
     }
@@ -125,21 +129,43 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $locale)
-    {        
+    {
         $post = Post::findOrFail($id);
-        $lang_id = $post->lang_id;        
+        // $has = App\Post::has('getDocuments')->get();
+        // return $has;
+        $lang_id = $post->lang_id;     
         $authors = Author::where('lang_id', $lang_id)->get();
         $categories = Category::where('lang_id', $lang_id)->get();
-        $allTags = Post::allTags(); 
-        $postTags = $post->tagArray;
+        $allTags = Post::allTags();
+        // return gettype($allTags); 
+        $postTags = $post->tagArray;        
         $postTagsList = $post->tagList;
+
+        $tags1 = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=3");
+        // return $tags1;
+              
         $allTagsList = implode(',',$allTags);
+
+        
+
+        $docsObject = $post->getDocuments()->get();
+        // return $docsObject;
         
 
         // $tagList = $post->tagList;
         // return $tagArray;
         if($post) {
-            return view('admin.posts.store',compact('post','authors', 'categories', 'locale', 'allTagsList', 'postTagsList'));
+
+            return view('admin.posts.edit',[
+                'post' => $post,
+                'authors' => $authors,
+                'categories' => $categories,
+                'locale' => $locale,
+                'allTagsList' => $allTagsList,
+                'postTagsList' => $postTagsList,
+                'docsObject' => $docsObject,
+            ]);
+
         } else {
             return view('404error');
         }        
@@ -152,9 +178,43 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $post_id, $locale)
     {
-        //
+
+        $post = Post::findOrFail($post_id);
+        $post->update($request->all());
+        Event::checkAndSaveIfNotExists($request->input('date'));
+
+        if($request->input('tags')) {
+            if(!empty($request->input('tags'))) {
+                $post->retag($request->input('tags'));
+            }            
+        }
+
+        
+        if($request->input('files')) {
+            $fl_array =  $request->input('files');
+            // $fl_rows =[]; // fot debugging
+            foreach($fl_array as $key => $link) {                
+                // $fl_rows[] = Document::prepareDocParams($link);
+                Document::find($key)->update(Document::prepareDocParams($link));
+            }
+            // return $fl_rows;
+        }
+
+        if($request->input('new_files')) {
+            $fl_string = $request->input('new_files');
+            $fl_array = explode(',',$fl_string);
+            // $fl_rows =[]; // fot debugging
+            foreach($fl_array as $key => $link) {
+                // $fl_rows[$key] = File::prepareFile($link);
+                $post->getDocuments()->create(Document::prepareDocParams($link));
+            }
+            // return $fl_rows;
+        }
+
+        return redirect()->route('admin.post.edit', [$post_id, $locale]);
+
     }
 
     /**
@@ -163,8 +223,13 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($post_id, $locale)
     {
-        //
+        
+        $post = Post::findOrFail($post_id);
+        $post->getDocuments()->delete(); // 100
+        $post->detag(); // 100
+        $post-delete();
+        return redirect()->route('admin.post.index', $locale);
     }
 }

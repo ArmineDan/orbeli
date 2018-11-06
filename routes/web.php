@@ -30,7 +30,9 @@ Route::group( $admin_rules , function() {
   Route::get('/', 'DashBoardController@dashboard')->name('admin.index');  
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
+  Route::resource('/document', 'DocumentController', ['as'=>'admin']);
   Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
+
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
