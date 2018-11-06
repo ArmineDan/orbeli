@@ -2202,7 +2202,7 @@ a.likes-count span {position: relative; top: -1px}
 .social-icon-style-11 a.mailru {color: #168de2}
 .social-icon-style-11 a.delicious {color: #205cc0}
 .social-icon-style-11 a.livejournal {color: #00b0ea}
-.social-icon-style-11 a:hover {color: #fff;}
+.social-icon-style-11 a:hover {color: #fff}
 
 footer .small-icon li {margin: 0 8px;}
 
@@ -3804,12 +3804,12 @@ aside .latest-post li.aa figure {width: 179px;}
 .color-code {justify-content: space-around; align-items: center; z-index: 0;}
 .bg-background-fade {background-color: #ff5851}
 .color-1, .color-2, .color-3, .color-4, .color-5 {-webkit-transition: background-color 700ms linear; -moz-transition: background-color 700ms linear; -o-transition: background-color 700ms linear; -ms-transition: background-color 700ms linear; transition: background-color 700ms linear; }
-.color-1 {background-color: #ff5851;}
-.color-2 {background-color: #e86618;}
-.color-3 {background-color: #ef3158;}
-.color-4 {background-color: #6b0990;}
-.color-5 {background-color: #4c0990;}
-.color-6 {background-color: #1b3194;}
+.color-1 {background-color: #ff5851}
+.color-2 {background-color: #e86618}
+.color-3 {background-color: #ef3158}
+.color-4 {background-color: #6b0990}
+.color-5 {background-color: #4c0990}
+.color-6 {background-color: #1b3194}
 
 /* home - classic web agency */
 .after-before-separator:before, .after-before-separator:after {width: 35px; margin: 0 15px; height: 1px; background: rgba(255,255,255,.2); content: ""; display: inline-block; vertical-align: super;}
@@ -3828,7 +3828,7 @@ aside .latest-post li.aa figure {width: 179px;}
 /* home - blog grid */
 .highlight-bg-text {padding: 5px 16px; display: inline-block; margin-bottom: 15px;}
 #blog .container{
-	width:1190px;
+	width:1190px
 }
 /* ===================================
    Others
@@ -3926,7 +3926,7 @@ aside .latest-post li.aa figure {width: 179px;}
     border-color: transparent !important
 }
 
-@media(max-width: 640px){
+@media(max-width: 650px){
     aside .latest-post li.aa figure{
         height: 300px;
         width: 100%;
@@ -3975,7 +3975,7 @@ aside .latest-post li.aa figure {width: 179px;}
     top: -8px;
 }
 
-@media(max-width: 540px){
+@media(max-width: 600px){
     nav.navbar.bootsnav .navbar-toggle{
         left: -35px
     }
@@ -3987,7 +3987,7 @@ aside .latest-post li.aa figure {width: 179px;}
     #ns_search_icon{
        right: 150px
     }
-    
+
     .text-extra-dark-gray{
         font-size: 15px
     }

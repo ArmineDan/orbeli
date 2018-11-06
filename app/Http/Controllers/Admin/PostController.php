@@ -139,7 +139,7 @@ class PostController extends Controller
         // $tagList = $post->tagList;
         // return $tagArray;
         if($post) {
-            return view('admin.posts.edit',compact('post','authors', 'categories', 'locale', 'allTagsList', 'postTagsList'));
+            return view('admin.posts.store',compact('post','authors', 'categories', 'locale', 'allTagsList', 'postTagsList'));
         } else {
             return view('404error');
         }        

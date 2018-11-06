@@ -162,7 +162,9 @@ class Post extends Model
 
     }
     
+    static function parralax(){
+        $parralax = DB::select("SELECT * FROM parralaxes");
+        return $parralax;
+    }
     
-    
-
 }
