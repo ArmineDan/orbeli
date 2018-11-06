@@ -14,7 +14,7 @@
         @endif
 
 
-        <form action="{{ route('admin.post.store', $locale) }}" method="POST" class="form-horizontal">
+        <form action="{{ route('admin.post.update', [$post,$locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
         
@@ -28,7 +28,7 @@
             </textarea>
             <hr>
             <label for="post_html_code">Full Description</label>
-            <textarea name="html_code" id="post_html_code" cols="30" rows="10" class="form-control">       
+            <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control">       
                 {{ $post['html_code'] }}
             </textarea>
             <hr>
@@ -44,10 +44,20 @@
             <label for="post_files">Post files:
                 <code>files/1/posts/file_name.pdf,files/1/posts/file_name.epub</code>
             </label>
-            <input type="text" name="files" id="post_files" class="form-control" value="" required>
+            @forelse($docsObject as $key => $doc)
+                <input type="text" name="files[{{$doc->id}}]" id="" class="form-control" value="{{$doc->link}}">
+            @empty
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Current Post doesn't have files.
+                    <small>separate files by comma</small>
+                </div>
+                <div class="panel-body">
+                    <input type="text" name="new_files" id="" class="form-control" value="" placeholder="Add new files, separated by comma">
+                </div>
+            </div>
+            @endforelse        
             <hr>
-
-
 
             <label for="date">Date</label>
             <input type="date" name="date" class="form-control" value="{{ $post['date'] }}">
@@ -62,20 +72,26 @@
             </select>
             <hr>
 
-            <h4>Meta data</h4>
-            <label for="meta-k">Meta keywords</label>
-            <input type="text" name="meta-k" class="form-control" value="{{ $post->meta_k }}">
-            <label for="meta-d">Meta description</label>
-            <input type="text" name="meta-d" class="form-control" value="{{ $post->meta_d }}">
+            <label for="authors_id">Author</label>
+            <select name="author_id" class="form-control">
+                <option value="">Select Author</option>
+                @forelse ($authors as $author)
+                <option value="{{ $author->id }}"
+                    @if ($post['author_id'] == $author['id'])
+                        selected='selected'
+                    @endif
+                    >
+                    {{ $author->name }} {{ $author->lastname }} 
+                </option>
+                @empty
+                    <option value="">Please Insert One Author, then update the Post.</option>
+                @endforelse
+            </select>
             <hr>
 
-            <label for="">Viewed</label>
-            <input type="text" name="view" value="{{ $post->view }}" class="form-control">
-            <hr>
-
-                <label for="post_typ">Category</label>
-                <select name="post_typ" class="form-control">
-                <option value="">Select Category</option>
+            <label for="post_typ">Category</label>
+            <select name="post_typ" class="form-control">
+                    <option value="">Select Category</option>
                 @forelse ($categories as $category)
                     <option value="{{ $category->id }}"
                         @if ($post['post_typ'] == $category['id'])
@@ -87,40 +103,27 @@
                 @empty
                     <option value="">Category is empty.</option>
                 @endforelse
-                </select>
-                <hr>
-          
-                <label for="authors_id">Author</label>
-                <select name="author_id" class="form-control">
-                  <option value="">Select Author</option>
-                  @forelse ($authors as $author)
-                    <option value="{{ $author->id }}"
-                        @if ($post['author_id'] == $author['id'])
-                            selected='selected'
-                        @endif
-                        >
-                         {{ $author->name }} {{ $author->lastname }} 
-                    </option>
-                  @empty
-                      <option value="">Please Insert One Author, then update the Post.</option>
-                  @endforelse
-                </select>
-                <hr>
-          
+            </select>
+            <hr>
 
-          
-               
-          
-                
-                <label for="" style="display:block">Post tags</label>
-                <p>{{$allTagsList}}</p>
-                <input type="text" name="tags" class="form-control" value="{{ $postTagsList }}">
-                <hr>
-          
-                
-          
 
-                <button type="submit">Save</button>
-              </form>
+            <label for="" style="display:block">Post tags <kbd>without spaces</kbd></label>
+            <p>{{$allTagsList}}</p>
+            <input type="text" name="tags" class="form-control" value="{{ $postTagsList }}">
+            <hr>
+
+            <label for="">Viewed</label>
+            <input type="text" name="view" value="{{ $post->view }}" class="form-control">
+            <hr>
+
+            <h4>Meta data</h4>
+            <label for="meta_k">Meta keywords <kbd>without spaces</kbd></label>
+            <input type="text" name="meta_k" class="form-control" value="{{ $post->meta_k }}">
+            <label for="meta_d">Meta description</label>
+            <input type="text" name="meta_d" class="form-control" value="{{ $post->meta_d }}">
+            <hr>
+
+            <button type="submit">Update</button>
+        </form>
     </div>
 @endsection

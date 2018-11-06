@@ -42,9 +42,24 @@
         <code>files/1/posts/file_name.pdf,files/1/posts/file_name.doc(x)</code>
         <a href="https://ebook.online-convert.com/ru" target="_blank"><mark>ebook-online-convert (epub/azw3/fb2/pdb)</mark></a>
       </label>
-      
       <input type="text" name="files" id="files" class="form-control" placeholder="input files separated by comma">
       <hr>
+
+      <label for="date">Date</label>
+      <input type="date" name="date" class="form-control" placeholder="select date">
+      <hr>
+
+      <label for="status">Status</label>
+      <select name="status" class="form-control" >
+          <option value="" style="display:none">Select Post status</option>
+          <option value="published">Published</option>
+          <option value="not_published">Not published</option>
+          <option value="main">Main Post</option>
+          {{-- <option value="archive">Archive</option>        --}}
+      </select>
+      <hr>
+      
+      
 
       <label for="authors_id">Author</label>
       <select name="author_id" class="form-control">
@@ -57,9 +72,7 @@
       </select>
       <hr>
 
-      <label for="date">Date</label>
-      <input type="date" name="date" class="form-control" placeholder="select date">
-      <hr>
+      
 
       <label for="post_typ">Category</label>
       <select name="post_typ" class="form-control">
@@ -73,23 +86,15 @@
       <hr>
 
       
-      <label for="" style="display:block">Select tags for current post, separated by comma.</label>
+      <label for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></label>
       <p>{{ implode(",",$tags) }}</p>
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
       <hr>
 
-      <label for="status">Status</label>
-      <select name="status" class="form-control" >
-          <option value="" style="display:none">Select Post status</option>
-          <option value="published">Published</option>
-          <option value="not_published">Not published</option>
-          <option value="main">Main Post</option>
-          {{-- <option value="archive">Archive</option>        --}}
-      </select>
-      <hr>
+      
 
       <h4>Meta data</h4>
-      <label for="meta_k">Meta keywords</label>
+      <label for="meta_k">Meta keywords <kbd>without spaces</kbd></label>
       <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
       <label for="meta_d">Meta description</label>
       <input type="text" name="meta_d" class="form-control" placeholder="Insert meta-description">

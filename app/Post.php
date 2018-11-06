@@ -17,6 +17,8 @@ class Post extends Model
     protected $fillable = [
         'title', 'short_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id',
     ];
+
+    // dont use, best way to add by concat in view! it's hard to manage on change.
     static function addTagsToKeys($tags, $meta_k, $post_id) {
         DB::table('posts')
             ->where('id', $post_id)

@@ -30,6 +30,7 @@ Route::group( $admin_rules , function() {
   Route::get('/', 'DashBoardController@dashboard')->name('admin.index');  
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
+  Route::resource('/document', 'DocumentController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
@@ -44,7 +45,7 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
 
 Route::get('/{locale}/opinions', 'LoadAll@opinions');
 Route::get('/{locale}/videos', 'LoadAll@videos');
-Route::get('/{locale}/{id}', 'PageController@load_allFromMenu');
+Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');
 
 Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost');
