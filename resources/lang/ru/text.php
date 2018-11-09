@@ -9,8 +9,14 @@ return[
  "xoragrer_items2"=>"Безопасность",
  "xoragrer_items3"=>"Международный",
  "xoragrer_items4"=>"Региональный",
- "hodvac"=>"Вся статья здесь:",
+ "hodvac"=>"Прикрепленные файлы:",
  "download"=>"Скачать",
- "comment"=>"Комментарий"
+ "comment"=>"Комментарий",
+ "send"=>"Отправить",
+ "same_posts"=>"Похожие",
+ "tags"=>"Теги",
+ "bio"=>"Биография",
+ "author_posts"=>"Статьи &nbsp; автора",
+ "all_posts"=>"Все статьи"
  
 ];

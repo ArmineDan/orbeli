@@ -9,9 +9,16 @@ return[
  "xoragrer_items2"=>"Security",
  "xoragrer_items3"=>"International",
  "xoragrer_items4"=>"Regional",
- "hodvac"=>"The entire article here:",
+ "hodvac"=>"Attached files:",
  "download"=>"Download",
- "comment"=>"Comment"
+ "comment"=>"Comment",
+ "send"=>"Send",
+ "same_posts"=>"Similars",
+ "tags"=>"Tags",
+ "bio"=>"Biography",
+ "author_posts"=>"Author &nbsp; articles",
+ "all_posts"=>"All Posts"
+ 
 
  
 ];

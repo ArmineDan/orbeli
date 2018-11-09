@@ -36,20 +36,24 @@
 
 
 @section('main_video')
-<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
+@isset($all_last_posts['main_video'][0])
+
+    <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
     <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="blog-image">
         <img src="{{$all_last_posts['main_video'][0]->img}}" alt="" data-no-retina="" ></a>
     <div class="blog-text tite2_new display-inline-block ">
         <div class="content padding-19px-all xs-padding-20px-all">
-            <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font">
+            <div class="black text-extra-small margin-5px-bottom text-uppercase alt-font">
                 <span>
-                        <span><a href="blog-grid.html" class="text-medium-gray ">{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
+                        <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
                         &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> 
                 {{$all_last_posts['main_video'][0]->duration }}</span></div>
             <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
         </div>
     </div>
 </div>
+@endisset
+
 @endsection
 
 @section('vertical_video')
@@ -69,7 +73,7 @@
                             </span> 
                             
                       <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
-                        <a href="{{url($all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->duration}}</span>
+                        <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->duration}}</span>
                 </div> 
                 </div>
             </div>
@@ -80,7 +84,7 @@
 
 
 @section('parallax')
-
+@isset($all_last_posts['parralax'][0])
 <section class="mine00 wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url({{$all_last_posts['parralax'][0]->img}}); background-position: 0px 0px; visibility: visible; animation-name: fadeIn;">
     <div class="opacity-medium bg-extra-dark-gray"></div>
     <div class="container">
@@ -97,6 +101,8 @@
         </div>
     </div>
 </section>      
+@endisset
+
   
     
 @endsection
@@ -117,12 +123,15 @@
                         </div>
                         <div class="post-details">
                             <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
-                            <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                            <div class="author">
-                                    <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
-                                  <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
-                                 <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block"><a href="home-#" class="text-medium-gray">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span>
-                            </div>
+                            <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
+                          <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
+                          <div class="author text_left_a">
+                                   <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
+                                 <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
+                                     <a href="home-#" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
+                                    </span>
+                                    <div class="text_right_a">&nbsp;&nbsp;{{$item->date}}</div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -152,8 +161,10 @@
                 <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">{{trans('text.xoragrer_items'.$i)}}</span>
                 
                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+                <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
                 <a  href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                    <p>{{$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
+                    <br/>
+                    <p>{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
             </div>
         </div>
     </li>

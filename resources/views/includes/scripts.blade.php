@@ -58,4 +58,5 @@
     <script src="/js/locale/ru.js"></script>
 {{-- @endif --}}
 
+<script type="text/javascript" src="/js/dev.js"></script>
 {!!  $all_last_posts['event']->script() !!}

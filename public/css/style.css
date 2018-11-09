@@ -78,8 +78,10 @@ ul, ol, dl {list-style-position: outside; margin-bottom: 25px}
 ====================================== */
 
 /* font family */
-.alt-font {font-family: 'Montserrat', sans-serif; font-weight: 500}
+.alt-font {font-family: 'Montserrat', sans-serif; font-weight: 500;}
+.alt-font-title {font-family: 'Montserrat', sans-serif; font-weight: bold;}
 .main-font {font-family: 'Roboto', sans-serif;}
+.black{color: black;}
 
 /* heading */
 h1, h2, h3, h4, h5, h6 {margin:0 0 25px; padding:0; letter-spacing: 0; font-weight: 400;}
@@ -283,6 +285,8 @@ section.visibl {
 }
     
 section.visible1{padding: 161px 0 79px;
+overflow: visible;}
+section.visible_auth{padding: 78px 0 79px;
 overflow: visible;}
 section.section1{
 	    padding:112px 0 0;  
@@ -3674,7 +3678,24 @@ footer .newsletter input { color: #6f6f6f; letter-spacing: normal; }
 .latest-post { list-style: none; padding: 0; margin: 0;}
 .latest-post li {display: table; padding:15px 0;}
 aside .latest-post li {padding: 2px 0;}
-aside .latest-post li.aa {padding-bottom: 33px}
+aside .latest-post li.aa {padding-bottom: 30px}
+.text_left_a{
+	text-align: left;
+    text-align: -webkit-left;
+	display: flex;
+    align-items: center;
+}
+.text_right_a{
+	text-align: right;
+    text-align: -webkit-right;
+	font-size: 11px;
+	position: sticky;
+	left:100%
+}
+.padding-left{
+padding-left:10px;
+}
+
 .latest-post li:first-child {padding-top: 0}
 .latest-post li:last-child {border-bottom:none}
 .latest-post li figure {height:33px; width: 60px; float: left}

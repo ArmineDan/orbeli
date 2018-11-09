@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration
+class CreateAnnouncementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('announcements', function (Blueprint $table) {
+            $table->increments('id');            
             $table->string('title');
             $table->text('short_text')->nullable();
             $table->text('long_text')->nullable();
@@ -26,9 +26,10 @@ class CreatePostTable extends Migration
             $table->text('meta_k');
             $table->text('meta_d');
             $table->integer('view')->default(1);
-            $table->string('p_duratioan');          
+            $table->string('a_duration');          
 
-            $table->integer('post_typ')->index();                           
+            $table->integer('post_typ')->unsigned();
+            $table->foreign('post_typ')->references('id')->on('categories');      
           
             $table->integer('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('authors'); 
@@ -37,6 +38,7 @@ class CreatePostTable extends Migration
             $table->foreign('lang_id')->references('id')->on('langs'); 
 
             $table->timestamps();
+          
         });
     }
 
@@ -47,6 +49,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('announcements');
     }
 }

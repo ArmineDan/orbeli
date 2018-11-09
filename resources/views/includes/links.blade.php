@@ -44,8 +44,10 @@
         <!-- responsive css -->
         <link rel="stylesheet" href="/css/responsive.css" />
         <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
+     
       <!--
         [if IE]>
             <script src="js/html5shiv.js"></script>
         <![endif]-->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParralaxesTable extends Migration
+class CreateAboutUsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateParralaxesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parralaxes', function (Blueprint $table) {
+        Schema::create('about_uses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->mediumText('text');
-            $table->string('link');
-            $table->string('img'); 
-            $table->integer('lang_id')->unsigned();
-            $table->foreign('lang_id')->references('id')->on('langs'); 
-         
+            $table->text('short_text')->nullable();            
+            $table->text('html_code');
+            $table->string('img');           
         });
     }
 
@@ -32,6 +29,6 @@ class CreateParralaxesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parralaxes');
+        Schema::dropIfExists('about_uses');
     }
 }
