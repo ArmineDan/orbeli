@@ -1,24 +1,18 @@
 @include('../includes.links' )
-    <body>
-        
-            @include('../includes.facebook_script' )
-
-           
+    <body>        
+            @include('../includes.facebook_script')           
         <header>
-            @include('includes.header' )
+            @include('includes.header')
         </header>
         <section class="visibl">
         <div class="container">
-           <div class="row">
-               
+           <div class="row">               
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
                             <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{$all_last_posts['id'] }}</span></div>
-                       
                         @yield('posts')
                         </main>
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
-                           
-                            <div class="margin-45px-bottom xs-margin-25px-bottom">
+                         <div class="margin-45px-bottom xs-margin-25px-bottom">
                              @include('includes.mostVeiwed')
                             </div>
                              <div class="margin-45px-bottom xs-margin-25px-bottom">

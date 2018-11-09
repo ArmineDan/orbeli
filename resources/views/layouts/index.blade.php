@@ -23,7 +23,7 @@
                     <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-left" > 				   
                      <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                     <!-- Vertical posts-->
-                    <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
+                    <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-left" > 				   
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                             @yield('main_right')  
             </div>                     
@@ -67,7 +67,7 @@
                         </div>
                         
                         <div class="margin-45px-bottom xs-margin-25px-bottom">
-                                {{-- @include('includes.tags') --}}
+                               @include('includes.tags') 
                         </div>
 
                           <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
@@ -92,7 +92,7 @@
                  <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><a href="{{url($all_last_posts['lang'].'/videos')}}" ><span>{{trans('text.videos')}} <i class="fa fa-arrow-right"></i></span></a></div>   
                           
                       
-                     <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                     <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            
                            @yield('main_video')
                       

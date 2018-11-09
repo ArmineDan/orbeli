@@ -48,16 +48,18 @@ Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
 Route::get('/{locale}/author', 'AuthorController@index');
 Route::get('/{locale}/about_us', 'PageController@about_us');
 Route::get('/{locale}/author/{id}', 'AuthorController@about');
+Route::get('/{locale}/author/posts/{id}', 'AuthorController@author_all_posts');
 Route::get('/{locale}/opinions', 'LoadAll@opinions');
 Route::get('/{locale}/videos', 'LoadAll@videos');
 Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');
 
 Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost');
-Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
 Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
+Route::get('{locale}/contacts', 'PageController@contacts');
+Route::get('/{locale}/tags/posts/{tag_id}', 'LoadAll@post_whith_current_tag');
 Route::get('/', 'PageController@index');
 
-Route::get('{locale}/contacts', 'PageController@contacts');

@@ -12,12 +12,15 @@
                </div>
                <div class="post-details">
                    <a href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}}"</a>
+                   <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;{{$item->duration }}</span>
                    <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
-                   <div class="author">
-                        <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
-                             
-                       <span class="text-medium-gray text-uppercase text-extra-small padding-15px-left display-inline-block"> <a href="home-#" class="text-medium-gray">{{$item->name.' '.$item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span>
-                   </div>
+                    <div class="author text_left_a">
+                                    <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
+                                  <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
+                                      <a href="home-#" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
+                                     </span>
+                                     <div class="text_right_a">&nbsp;&nbsp;{{$item->date}}</div>
+                     </div>
                </div>
            </div>
         </div>

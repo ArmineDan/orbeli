@@ -74,6 +74,49 @@ class LoadAll extends Controller
      
               }
 
+              public function post_whith_current_tag($locale,$tagName)
+
+              { 
+                  $rules = ['en','ru','hy'];                      
+                  if(in_array($locale,$rules))
+                  {
+                          Session::put('locale',$locale);
+                          App::setLocale($locale);
+                          $lang = App::getLocale();
+                         $lng = Post:: getLangId(); 
+                  
+                  $menu = Post::menu();
+                  $calendar= Event::event();       
+                 // $all_posts = Post::have_this_tag($tagName);
+                  $popular_tags=Tags::load_popular_tags();
+                  $mostViewed = Post::mostViewed();
+                  $all_posts = Post::whereHas('tags', function($query) use ($tagName) {
+                        $query->whereName($tagName);
+                  }) 
+                  ->paginate(6); 
+
+                  
+                 
+                  $all_last_posts = array(       
+                  'menu'=>$menu, 
+                  "event"=> $calendar,
+                  "lang"=> $lang,
+                  "post" => $all_posts,
+                  "id"=>trans('text.all_posts'),
+                  "mostViewed"=> $mostViewed,
+                  "popular_tags" => $popular_tags,
+                   );
+          
+          
+           // return $all_posts;    
+                 return  view('posts_have_tag',compact('all_last_posts'));
+              
+                  }
+                  else{              
+                      return  redirect('/en');
+                      } 
+                  }
+
 
 
 }

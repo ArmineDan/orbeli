@@ -26,8 +26,8 @@
                 </div>
                 <figcaption>
                     <div class="team-member-position margin-20px-top text-center">
-                        <a href="{{url('author/'.$item->id)}}">  <div class="text-small font-weight-500 text-extra-dark-gray text-uppercase">{{substr($item->name, 0, 2).'. '. $item->lastname}}</div></a>
-                    </div>   
+                            <a href="{{url($all_last_posts['lang'].'/author/'.$item->id)}}">  <div class="text-small font-weight-500 text-extra-dark-gray text-uppercase">{{substr($item->name, 0, 2).'. '. $item->lastname}}</div></a>
+                      </div>   
                 </figcaption>
             </figure>
         </div>

@@ -7,6 +7,7 @@ use App\Opinion;
 use App\Comment;
 use App\Post;
 use App\Tags;
+use App\Video;
 use Illuminate\Http\Request;
 use App\Event;
 use App;
@@ -39,7 +40,7 @@ class PageController extends Controller
                         $lang= App::getLocale();
                         $calendar= Event::event();
                         $opinions = Opinion::load_all();
-                        $last_posts_vertical = Post::verticalPost();        
+                        $last_posts_vertical = Post::verticalVideo();        
                        // $last_posts_horizontal = Post::horintalPost();
                         $menu = Post::menu();
                         $LeftComments=  Post::LeftComments(); 
@@ -48,7 +49,6 @@ class PageController extends Controller
                         $main_right =  Post::main_right();  
                         $main_video = Post::main_video();
                         $popular_tags = Tags::load_popular_tags();  
-                        $archievs = Post::archievs();
                         $parralax = Post::parralax();
                          // '$get' -ov vercnum enq verevum erevacox posteri id-ry, 
                         // vorpesszi  ayd postery  xoragrer bajnum chkrknven                           
@@ -63,8 +63,7 @@ class PageController extends Controller
                             "main_post" => $main_post,
                             "main_video" => $main_video,                            
                             "main_right" => $main_right,
-                            "popular_tags" => $popular_tags,
-                            "archievs" => $archievs,
+                            "popular_tags" => $popular_tags,                           
                             "opinions" => $opinions,
                             "event"=> $calendar,
                             "xoragrer"=>$last_posts_xoragrer,
@@ -73,6 +72,7 @@ class PageController extends Controller
                             
                         ); 
            
+                       // return  $all_last_posts;
                         return  view('index',compact('all_last_posts'));
                     }                
                          
@@ -121,42 +121,80 @@ class PageController extends Controller
               
             }
             
-    public function openCurrentPost($locale,$date,$title) 
+            public function openCurrentPost_video($locale,$date,$title) 
             {  
                 $rules = ['en','ru','hy'];                      
                 if(in_array($locale,$rules))
-                {
-                        
+                     {
                         Session::put('locale',$locale);
                         App::setLocale($locale);
                         $lang = App::getLocale();                
                         $calendar= Event::event();
                         $menu = Post::menu();
-                    // $archievs=Post::archievs();
-                        $popular_tags=Tags::load_popular_tags();  
-                        $post_with_given_dateANDtitle = Post::open_current_post($date,$title);
+                        //$archievs=Post::archievs();
+                        $popular_tags=Tags::load_popular_video_tags();  
+                        $post_with_given_dateANDtitle = Video::open_current_video_post($date,$title);
                         $mostViewed = Post::mostViewed();
-                        $id=Post::getid($date,$title);
-                        
-                            $comments = Post::find($id)->comments()->get();
-                            $docs = Post::find($id)->getDocuments()->get();
-                            $tags = Post::find($id)->tagArray;
-                        
-                        
-                        
-                        
+                        $id=Video::get_video_id($date,$title);
+                       $comments = Video::find($id)->comments()->get();
+                       $docs = Video::find($id)->getDocuments()->get();
+                       $tags = Video::find($id)->tagArray;
+                       $the_same_video_posts = Tags::the_same_video_posts($id); 
+
                         $all_data=array("lang"=> $lang,
                         "event"=> $calendar,
                         "post"=>$post_with_given_dateANDtitle,
                         "menu"=>$menu, 
                         "mostViewed"=> $mostViewed,  
                         "popular_tags"=> $popular_tags,
-                        "comments"=>$comments,
-                        "docs"=>$docs,
-                        "tags"=>$tags,
-                        "id"=>$id
+                        "comments"=> $comments,
+                        "docs"=> $docs,
+                        "tags"=> $tags,
+                       "same_posts"=>$the_same_video_posts
                              );  
-                     //return  $popular_tags; 
+            // return $the_same_video_posts;
+                        return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
+           }
+                else{              
+                    return  redirect('/'.App::getLocale());
+                    }                
+                
+            } 
+
+
+    public function openCurrentPost($locale,$date,$title) 
+            {  
+                $rules = ['en','ru','hy'];                      
+                if(in_array($locale,$rules))
+                {
+                       Session::put('locale',$locale);
+                        App::setLocale($locale);
+                        $lang = App::getLocale();                
+                        $calendar= Event::event();
+                        $menu = Post::menu();
+                        //$archievs=Post::archievs();
+                        $popular_tags=Tags::load_popular_tags();  
+                        $post_with_given_dateANDtitle = Post::open_current_post($date,$title);
+                        $mostViewed = Post::mostViewed();
+                        $id=Post::getid($date,$title);
+                        $comments = Post::find($id)->comments()->get();
+                        $docs = Post::find($id)->getDocuments()->get();
+                        $tags = Post::find($id)->tagArray;
+                        $the_same_posts = Tags::the_same_posts($id); 
+                        $all_data=array("lang"=> $lang,
+                        "event"=> $calendar,
+                        "post"=>$post_with_given_dateANDtitle,
+                        "menu"=>$menu, 
+                        "mostViewed"=> $mostViewed,  
+                        "popular_tags"=> $popular_tags,
+                        "comments"=> $comments,
+                        "docs"=> $docs,
+                        "tags"=> $tags,
+                        "same_posts"=>$the_same_posts,
+                         "id"=>$id
+
+                             );  
+               // return $the_same_posts;
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
            }
                 else{              
@@ -167,8 +205,6 @@ class PageController extends Controller
 
         public function openArchieve($date) 
             { 
-                
-                
                 $calendar= Event::event();
                 $menu = Post::menu();
                 $categories = Post :: categories();
@@ -179,8 +215,7 @@ class PageController extends Controller
                 ->join('authors', 'authors.id', '=', 'posts.authors_id')
                 ->where('posts.date', $date)
                 ->paginate(6);
-                $mostViewed = Post::mostViewed();
-                
+                $mostViewed = Post::mostViewed();               
                 $all_data=array("event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$date,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
                 
                 return view('current_posts')-> with('all_last_posts',$all_data);      
@@ -189,8 +224,7 @@ class PageController extends Controller
             
             
             public function about_us($locale) 
-            {   
-                
+            {                   
                 $rules = ['en','ru','hy'];                      
                 if(in_array($locale,$rules))
                 {
@@ -199,11 +233,10 @@ class PageController extends Controller
                         $lang = App::getLocale();                 
                         $calendar= Event::event();
                         $menu = Post::menu();
-                        $categories = Post :: categories();  
+                        $categories = Post::categories(); 
                 
                 $all_data=array("lang"=> $lang,"event"=> $calendar,"menu"=>$menu, "categories"=>$categories);              
-           
-                return view('about_us')-> with('all_last_posts',$all_data);
+                   return view('about_us')-> with('all_last_posts',$all_data);
                 }
                 else{              
                     return  redirect('/'.App::getLocale());
