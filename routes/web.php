@@ -59,5 +59,7 @@ Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_vid
 Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
+Route::get('{locale}/contacts', 'PageController@contacts');
 Route::get('/{locale}/tags/posts/{tag_id}', 'LoadAll@post_whith_current_tag');
 Route::get('/', 'PageController@index');
+

@@ -3,7 +3,7 @@
 <div class="infinite-scroll wow fadeIn" > 
        
     @foreach ($all_last_posts['authors'] as $item)               
-    <div class="col-md-3 col-sm-6 col-xs-12 team-block text-left team-style-1 sm-margin-seven-bottom margin-40px-bottom xs-margin-30px-bottom wow fadeInRight" data-wow-delay="0.2s" style="visibility: hidden; animation-delay: 0.2s; animation-name: fadeInRight;">
+    <div class="col-md-3 col-sm-4 col-xs-6 team-block text-left team-style-1 sm-margin-seven-bottom margin-40px-bottom xs-margin-30px-bottom wow fadeInRight" data-wow-delay="0.2s" style="visibility: hidden; animation-delay: 0.2s; animation-name: fadeInRight;">
             <figure>
                 
                 <div class="team-image xs-width-100">
@@ -15,8 +15,10 @@
                                 <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                 <a href="http://www.facebook.com" class="text-white" target="_blank"><i class="fa fa-facebook-f"></i></a>
                                 <a href="http://www.twitter.com" class="text-white" target="_blank"><i class="fa fa-twitter"></i></a>
-                              <a href="http://www.linkedin.com" class="text-white" target="_blank"><i class="fa fa-linkedin"></i></a>
-                              <a href="mailto:info@orbeli.am" class="text-white" target="_blank" title="info@orbeli.am"><i class="fa fa-envelope"></i></a>
+                                <a href="http://www.linkedin.com" class="text-white" target="_blank"><i class="fa fa-linkedin"></i></a>
+                              <!--a href="mailto:info@orbeli.am" class="text-white" target="_blank" title="info@orbeli.am"><i class="fa fa-envelope"></i></a!-->
+                              <i class="fa fa-envelope" id="autors_narek_mail_icon"></i>
+                              <a href="#" id="set_email_narek"></a>
                             </div>
                         </div>
                     </div>
@@ -25,8 +27,7 @@
                 <figcaption>
                     <div class="team-member-position margin-20px-top text-center">
                             <a href="{{url($all_last_posts['lang'].'/author/'.$item->id)}}">  <div class="text-small font-weight-500 text-extra-dark-gray text-uppercase">{{substr($item->name, 0, 2).'. '. $item->lastname}}</div></a>
-                        
-                    </div>   
+                      </div>   
                 </figcaption>
             </figure>
         </div>

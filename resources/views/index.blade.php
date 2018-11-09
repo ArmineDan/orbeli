@@ -16,7 +16,6 @@
 @endsection
 @section('main_right')
 
-
 <ul class="latest-post position-relative">
         @foreach ($all_last_posts['main_right'] as $item)                             
         <li class="aa">
@@ -26,8 +25,8 @@
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
-                        <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
-                        <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
+                    <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
+                    <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
             </li>
         @endforeach                            
 </ul>
@@ -81,8 +80,6 @@
         
 @endsection
 
-
-
 @section('parallax')
 @isset($all_last_posts['parralax'][0])
 <section class="mine00 wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url({{$all_last_posts['parralax'][0]->img}}); background-position: 0px 0px; visibility: visible; animation-name: fadeIn;">
@@ -90,9 +87,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 extra-small-screen display-table page-title-large">
-                <div class="display-table-cell vertical-align-middle text-center">
-                   
-                    
+                <div class="display-table-cell vertical-align-middle text-center">    
                     <a href="{{$all_last_posts['parralax'][0]->link}}">
                     <h1 class="text-white alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">{{$all_last_posts['parralax'][0]->title}}</h1>
                     <span class="text-white opacity6 alt-font" style="font-size:25px">{{$all_last_posts['parralax'][0]->text}}</span></a> 
@@ -106,7 +101,6 @@
   
     
 @endsection
-
 
 @section('comments')
 
@@ -152,7 +146,6 @@
         <div class="blog-post">
             <div class="blog-post-images overflow-hidden">
                 <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                   
                     <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                 </a>
              </div>

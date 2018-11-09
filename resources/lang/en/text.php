@@ -18,7 +18,5 @@ return[
  "bio"=>"Biography",
  "author_posts"=>"Author &nbsp; articles",
  "all_posts"=>"All Posts"
- 
 
- 
 ];

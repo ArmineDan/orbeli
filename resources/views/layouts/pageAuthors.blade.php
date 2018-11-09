@@ -10,8 +10,8 @@
 
                 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Փորձագետներ</span></div>
                    
-                      <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
-                         @yield('authors')
+                        <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
+                            @yield('authors')
                         </main>
                        
                         
@@ -79,7 +79,8 @@
 
 <script src="/js/jquery.jscroll.min.js"></script>      
 <script type="text/javascript" src="/js/main.js"></script>
-
+<script src="/js/autors_ns.js"></script>
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 

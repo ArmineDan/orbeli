@@ -85,6 +85,8 @@ class AuthorController extends Controller
         }
         else{              
             return  redirect('/en');
+
+
             } 
         }
      public function author_all_posts($locale,$id)
@@ -124,5 +126,6 @@ class AuthorController extends Controller
             return  redirect('/en');
             } 
         }
+
 
 }
