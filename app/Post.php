@@ -34,10 +34,16 @@ class Post extends Model
         ->value('id');  
     }
 
-    static function verticalPost(){
-        return $main_right = DB::table('videos')
+    static function verticalVideo(){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
+        
+        return $verticalVideo = DB::table('videos')
         ->select('videos.*', 'authors.name', 'authors.lastname') 
-        ->where('videos.status','<>','main')        
+        ->where('videos.status','<>','main') 
+        ->where('videos.lang_id','=', $lng) 
         ->join('authors', 'authors.id', '=', 'videos.author_id')
         ->orderByRaw('date DESC')   
         ->limit(2)
@@ -53,9 +59,15 @@ class Post extends Model
 //     }
   
     static function main_right(){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
+        
         $main_right = DB::table('posts')
         ->select('posts.*', 'authors.name', 'authors.lastname') 
-        ->where('posts.status','<>','main')        
+        ->where('posts.status','<>','main')
+        ->where('posts.lang_id','=', $lng)         
         ->join('authors', 'authors.id', '=', 'posts.author_id')
         ->orderByRaw('date DESC')   
         ->limit(4)
@@ -115,40 +127,49 @@ class Post extends Model
         } 
         
     static function main_post(){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
+
             return $main_post = DB::table('posts') 
             ->select('posts.*', 'authors.name', 'authors.lastname') 
-            ->where('status','main')
             ->join('authors', 'posts.author_id', '=', 'authors.id') 
+            ->where('status','main')
+            ->where('posts.lang_id','=', $lng) 
             ->get();
         } 
         static function main_video(){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
+      
             return $main_post = DB::table('videos') 
             ->select('videos.*', 'authors.name', 'authors.lastname') 
-            ->where('status','=','main')
             ->join('authors', 'videos.author_id', '=', 'authors.id') 
+            ->where('status','=','main')
+            ->where('videos.lang_id','=', $lng)            
             ->get();
         } 
    
         
     static function mostViewed(){
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');
+      
         return $mostViewed = DB::table('posts')
         ->select('posts.*', 'authors.name', 'authors.lastname') 
         ->orderByRaw('view DESC')
         ->limit(5)
         ->join('authors', 'authors.id', '=', 'posts.author_id')
+        ->where('posts.lang_id','=', $lng)
         ->get();
     } 
     
-    static function archievs(){
-        return $archievs = DB::select( "SELECT 'date'  FROM `posts` GROUP BY 'date'  ");
-        
-        // return $archievs = DB::table('posts')
-        // ->select('date') 
-        // ->orderBy('date')
-        // ->groupBy('date') 
-        // ->where('status', 'archive')       
-        // ->get();
-    } 
+    
     
     static function xoragreri_poster($get){
         $lang= App::getLocale();
@@ -181,7 +202,7 @@ class Post extends Model
 
             return $open_current_post = DB::table('posts as p')          
             ->join('authors as a', 'p.author_id', '=', 'a.id')
-            ->select('p.*','a.name','a.lastname','a.img as aimg','p.img as pimg')       
+            ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
             ->where('p.lang_id','=', $lng)
             ->where('p.date','=', $date)
             ->where('p.title','=', $title)        
@@ -196,10 +217,19 @@ class Post extends Model
             ->where('posts.title','=', $title)        
             ->value('id');
     }
+   
     
     static function parralax(){
-        $parralax = DB::select("SELECT * FROM parralaxes");
+        $lang= App::getLocale();
+        $lng = DB::table('langs')
+            ->where('lng','=',$lang)
+            ->value('id');
+
+        $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id= $lng ");
         return $parralax;
     }
+    
+   
+    
     
 }
