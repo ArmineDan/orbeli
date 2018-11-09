@@ -20,6 +20,7 @@ class CreateDocumentsTable extends Migration
             $table->string('type')->nullable();
             $table->integer('documentable_id')->unsigned();
             $table->string('documentable_type');
+            $table->boolean('inused')->default(1);
             $table->timestamps();
         });
     }

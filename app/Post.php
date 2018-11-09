@@ -92,6 +92,10 @@ class Post extends Model
         public function getDocuments() {
             return $this->morphMany('App\Document', 'documentable');
         }
+
+        public function getComments() {
+            return $this->morphMany('App\Comment', 'commentable');
+        }
     /** post relationsheeps END **/
 
     static function categories(){

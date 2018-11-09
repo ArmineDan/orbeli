@@ -21,26 +21,36 @@
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-weight:600; font-size:13px">
               @forelse ($posts as $post)           
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post['getCategory']->name}}</td>
                     <td>{{$post->date ??'no-date'}}</td>
+                    @if ($post->status == 'main')
+                      <td class="alert alert-success">{{$post->status}}</td>
+                    @elseif($post->status == 'not_published')
+                    <td class="alert alert-danger">{{$post->status}}</td>
+                    @else
                     <td>{{$post->status}}</td>
-                    <td class="text-center">
+                    @endif                  
+                    <td class="text-center" style="min-width:15%">
                       {{--['id'=>$category->id]--}}
                       <form action="{{ route('admin.post.destroy', [$post, $locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <a class="cat-edit btn btn-default" href="{{ route('admin.post.edit',[$post, $locale]) }}">
-                        {{-- <a class="cat-edit btn btn-default" href="{{ url('admin/'.$locale.'/post/'.$post->id.'/edit', $post) }}"> --}}
-                          <i class="glyphicon glyphicon-edit"></i>                        
-                        </a>
-                        <button type="submit" class="btn btn-danger">
-                          <i class="glyphicon glyphicon-trash"></i>
-                        </button>
+                        <div class="btn-group">
+                          <a class="btn btn-default" href="{{ route('admin.post.edit',[$post, $locale]) }}">
+                            <i class="glyphicon glyphicon-edit"></i>                        
+                          </a>
+                          <a class="btn btn-info" href="{{route('admin.post.show', [$post, $locale])}}">                          
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                          </a>
+                          <button type="submit" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>
+                          </button>
+                        </div>
                       </form>
                     </td>
                 </tr>

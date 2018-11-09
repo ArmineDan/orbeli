@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
 
-    protected $fillable = ['name','link','type','documentable_id','documentable_type'];
+    protected $fillable = ['name','link','type','documentable_id','documentable_type','inused'];
 
     /* Получить все модели, обладающие documentable. */   
     public function documentable() {
@@ -50,4 +50,24 @@ class Document extends Model
         // name	"file_name.fb2"
         // type	"fb2"
     }
+
+    static function getTypeFromLink($link) {
+        $item = self::prepareDocParams($link);
+        return $item['type'];
+    }
+
+    // from on create Post
+    // if($request->input('files')) {
+        //     // files are already empty          
+        //     $fl_string = $request->input('files');
+        //     $fl_array = explode(',',$fl_string);
+        //     // $fl_rows =[]; // fot debugging
+        //     foreach($fl_array as $key => $link) {
+        //         // $fl_rows[$key] = File::prepareFile($link);
+        //         $post->getDocuments()->create(Document::prepareDocParams($link));
+        //     }
+        //     // return $fl_rows;
+        // }
+
+
 }

@@ -982,8 +982,8 @@ __webpack_require__(11);
 window.Vue = __webpack_require__(35);
 
 $(document).ready(function () {
-  CKEDITOR.replace('post_short_text', options);
-  CKEDITOR.replace('post_long_text', options);
+  CKEDITOR.replace('post_short_text', { height: 150 });
+  CKEDITOR.replace('post_long_text', { height: 150 });
 });
 
 /**
