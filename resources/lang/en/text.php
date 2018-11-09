@@ -12,6 +12,4 @@ return[
  "hodvac"=>"The entire article here:",
  "download"=>"Download",
  "comment"=>"Comment"
-
- 
 ];

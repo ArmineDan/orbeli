@@ -78,9 +78,13 @@ class AuthorController extends Controller
         }
         else{              
             return  redirect('/en');
-            }      
-
-            
+        }      
         
-        }
+    }   
+
+    public function get_email($id){
+        $msg = "This is a simple message";
+        return response()->json(array('msg' => $msg), 200);
+    }
+
 }

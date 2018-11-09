@@ -6,8 +6,8 @@
 
         <!-- start header -->
         <header>
-         @include('../includes.header' )
-         </header>
+            @include('../includes.header')
+        </header>
 
         <!-- end header -->
        

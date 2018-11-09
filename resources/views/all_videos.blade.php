@@ -23,7 +23,6 @@
         </div>
  @endforeach
  
-
 {{$all_last_posts['post'] ->links()}}
 
 </div>

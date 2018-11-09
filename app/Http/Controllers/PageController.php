@@ -153,7 +153,8 @@ class PageController extends Controller
                         "popular_tags"=> $popular_tags,
                         "comments"=>$comments,
                         "docs"=>$docs,
-                        "tags"=>$tags
+                        "tags"=>$tags,
+                        "id"=>$id
                              );  
                      //return  $popular_tags; 
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
@@ -181,7 +182,7 @@ class PageController extends Controller
                 $mostViewed = Post::mostViewed();
                 
                 $all_data=array("event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$date,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
-           
+                
                 return view('current_posts')-> with('all_last_posts',$all_data);      
 
             }  
@@ -206,9 +207,31 @@ class PageController extends Controller
                 }
                 else{              
                     return  redirect('/'.App::getLocale());
-                    }         
+                }         
 
-            }        
+            }   
+            
+            public function contacts($locale='hy'){
+                $rules = ['en','ru','hy'];                      
+                if(in_array($locale,$rules))
+                    {
+                       Session::put('locale',$locale);
+                        App::setLocale($locale);
+                        $lang= App::getLocale();
+                        $calendar= Event::event();
+                        $menu = Post::menu();
+                                                                
+                    $all_last_posts = array(
+                        "menu"=>$menu,
+                        "event"=> $calendar,
+                        "lang"=>$lang,                    
+                    ); 
+                return view('contacts')->with('all_last_posts',$all_last_posts);
+            }else{              
+                return  redirect('/'.App::getLocale());
+            }    
+
+            }
 
 }
  

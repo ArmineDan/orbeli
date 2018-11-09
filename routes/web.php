@@ -59,3 +59,5 @@ Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
 Route::get('/', 'PageController@index');
+
+Route::get('{locale}/contacts', 'PageController@contacts');

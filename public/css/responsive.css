@@ -2803,29 +2803,29 @@
     .sm-width-80px {width:80px;}
     .sm-width-85px {width:85px;}
     .sm-width-90px {width:90px;}
-    .sm-width-95px {width:95px;}
-    .sm-width-100px {width:100px;}
-    .sm-width-120px {width:120px;}
-    .sm-width-130px {width:130px;}
-    .sm-width-150px {width:150px;}
-    .sm-width-180px {width:180px;}
-    .sm-width-200px {width:200px;}
-    .sm-width-250px {width:250px;}
-    .sm-width-300px {width:300px;}
-    .sm-width-350px {width:350px;}
-    .sm-width-400px {width:400px;}
-    .sm-width-450px {width:450px;}
-    .sm-width-500px {width:500px;}
-    .sm-width-550px {width:550px;}
-    .sm-width-600px {width:600px;}
-    .sm-width-650px {width:650px;}
-    .sm-width-700px {width:700px;}
-    .sm-width-750px {width:750px;}
-    .sm-width-800px {width:800px;}
-    .sm-width-850px {width:850px;}
-    .sm-width-900px {width:900px;}
-    .sm-width-950px {width:950px;}
-    .sm-width-1000px {width:1000px;}
+    .sm-width-95px {width:95px}
+    .sm-width-100px {width:100px}
+    .sm-width-120px {width:120px}
+    .sm-width-130px {width:130px}
+    .sm-width-150px {width:150px}
+    .sm-width-180px {width:180px}
+    .sm-width-200px {width:200px}
+    .sm-width-250px {width:250px}
+    .sm-width-300px {width:300px}
+    .sm-width-350px {width:350px}
+    .sm-width-400px {width:400px}
+    .sm-width-450px {width:450px}
+    .sm-width-500px {width:500px}
+    .sm-width-550px {width:550px}
+    .sm-width-600px {width:600px}
+    .sm-width-650px {width:650px}
+    .sm-width-700px {width:700px}
+    .sm-width-750px {width:750px}
+    .sm-width-800px {width:800px}
+    .sm-width-850px {width:850px}
+    .sm-width-900px {width:900px}
+    .sm-width-950px {width:950px}
+    .sm-width-1000px {width:1000px}
 
     /* height */
     .sm-height-50 {height: 50%}
@@ -3073,7 +3073,7 @@
     h2 {font-size:30px; line-height:36px}
     h3 {font-size:28px; line-height:34px}
     h4 {font-size:24px; line-height:30px}
-    h5 {font-size:20px; line-height:28px}
+    h5 {font-size:30px; line-height:28px; padding: 50px}
     h6 {font-size:18px; line-height:23px}
 
     /* opacity */
@@ -4516,36 +4516,36 @@
     .full-width-pull-menu .dropdown .dropdown-toggle:after {right:10px; top:15px}
 
     /* btn */
-    .btn-dual .btn { margin:10px auto !important; display: table; min-width: 160px; }
+    .btn-dual .btn { margin:10px auto !important; display: table; min-width: 160px}
 
     /* search form style */ 
     .search-form {width: 100%}
 
     /*hamburger menu*/
-    .animation-box {padding: 90px 0 30px;}
-    .animation-box .menu-middle { overflow-y: auto; display: inherit;}
-    .hamburger-menu-links {margin-bottom: 15px;}
+    .animation-box {padding: 90px 0 30px}
+    .animation-box .menu-middle { overflow-y: auto; display: inherit}
+    .hamburger-menu-links {margin-bottom: 15px}
     .hamburger-menu-links li {width:100%; margin-bottom: 15px}
     .hamburger-menu-links {font-size: 30px}
-    .hamburger-menu .hamburger-menu-wrepper .btn-hamburger {right: 15px;}
-    .hamburger-menu-wrepper { padding: 20px 15px; }
-    .menu-middle { width: 100%; }
-    .hamburger-menu-links { font-size: 20px; line-height: 24px; }
+    .hamburger-menu .hamburger-menu-wrepper .btn-hamburger {right: 15px}
+    .hamburger-menu-wrepper { padding: 20px 15px}
+    .menu-middle { width: 100%}
+    .hamburger-menu-links { font-size: 20px; line-height: 24px}
 
     /* footer */ 
-    .social-style-2 ul li { margin:2px 5px;}
-    .latest-post li div {float: left; width: 70%;}
-    .latest-post li {width: 100%;}
-    .footer-widget-area .list-unstyled { margin-bottom: 0;}
+    .social-style-2 ul li { margin:2px 5px}
+    .latest-post li div {float: left; width: 70%}
+    .latest-post li {width: 100%}
+    .footer-widget-area .list-unstyled { margin-bottom: 0}
     .instagram-follow-api li {padding: 0 5px 10px}
 
-    .list-style-7 li {padding-bottom: 8px; margin-bottom: 5px;}
+    .list-style-7 li {padding-bottom: 8px; margin-bottom: 5px}
 
     /* feature-box-11 */
-    .feature-box-11 .progress-line:after {visibility: hidden;}
+    .feature-box-11 .progress-line:after {visibility: hidden}
 
     /* sidebar nav style 2 */
-    .left-nav-sidebar .container { width: 100%; }
+    .left-nav-sidebar .container { width: 100% }
 
     /* homepage 14 */
     .content-right-slider .swiper-button-next, .swiper-button-next.slider-long-arrow-white, .swiper-container-rtl .swiper-button-prev.slider-long-arrow-white {right: 5px;}
@@ -4559,55 +4559,55 @@
     .after-before-separator::before, .after-before-separator::after {margin: 0 10px; width: 25px;}
 
     /* social media icon style 3*/
-    .social-style-3 ul li { margin: 0 8px; }
+    .social-style-3 ul li { margin: 0 8px }
 
     /* tab */
     .nav-tabs { text-align: center;}
-    .portfolio-filter-tab-1 li { margin: 5px 0; width: 100%; }
+    .portfolio-filter-tab-1 li { margin: 5px 0; width: 100% }
     .portfolio-filter-tab-2 li {width: 100%; margin-bottom: 5px}
 
     /* tab style 2 */
     .tab-style2 .nav-tabs > li.active > a { top: 0}
 
     /*tab style 1*/
-    .tab-style1 .nav-tabs li {width: 100%; margin-bottom: 30px;}
+    .tab-style1 .nav-tabs li {width: 100%; margin-bottom: 30px}
 
     /* team style 2 */
-    .team-style-2 figure:hover figcaption .overlay-content { top: 20px; }
+    .team-style-2 figure:hover figcaption .overlay-content { top: 20px }
 
     /*tab style 2*/
     .tab-style2 .tab-content {padding: 30px 0 0}
-    .tab-style2 .nav-tabs li {display: block; margin-right: 0;}
+    .tab-style2 .nav-tabs li {display: block; margin-right: 0}
 
     /*tab style 3*/
     .tab-style3 .tab-content {padding: 30px 0 0}
     .tab-style3 .nav-tabs li {display: block; text-align: left; margin:0; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.1)}
 
     /* skillbar bar style 3  */
-    .skillbar-bar-style3 .skillbar { width: 100%;}
+    .skillbar-bar-style3 .skillbar { width: 100%}
 
-    .team-image img {width: 100%;}
-    .banner-style2 figure:hover figcaption { right: 10%;}
-    .banner-style2 figcaption {width: 80%;}
+    .team-image img {width: 100%}
+    .banner-style2 figure:hover figcaption { right: 10%}
+    .banner-style2 figcaption {width: 80%}
     .text-decoration-line-through-black::before, .text-decoration-line-through-deep-pink:before {display: none}
-    .counter-box-5 .counter-box .number {font-size: 30px; line-height: 30px;}
+    .counter-box-5 .counter-box .number {font-size: 30px; line-height: 30px}
     .counter-box-5 .counter-box {width: 20%}
-    .counter-box-5 .counter-box span {letter-spacing: 1px; font-size: 11px;}
+    .counter-box-5 .counter-box span {letter-spacing: 1px; font-size: 11px}
 
-    .navigation-area { right: 0;}
+    .navigation-area { right: 0}
     .swiper-button-prev.swiper-prev-style4, .swiper-button-next.swiper-next-style4 { transform: scale(0.8); -moz-transform: scale(0.8); -ms-transform: scale(0.8); -webkit-transform: scale(0.8); -o-transform: scale(0.8); top: 5px; right: -4px;}
-    .swiper-button-next.swiper-next-style4 { top: 14px;}
-    .blog-nav-link {padding: 10px 0; font-size: 12px;}
-    .blog-nav-link-next { padding-right: 30px;}
-    .blog-nav-link-prev {padding-left: 30px;}
-    .blog-listing-comment {width: 100%; text-align: center;}
+    .swiper-button-next.swiper-next-style4 { top: 14px}
+    .blog-nav-link {padding: 10px 0; font-size: 12px}
+    .blog-nav-link-next { padding-right: 30px}
+    .blog-nav-link-prev {padding-left: 30px}
+    .blog-listing-comment {width: 100%; text-align: center}
     .blog-listing-comment li {display: inline-block; float: none}
-    .blog-text .name {width: 100%; text-align: center;}
+    .blog-text .name {width: 100%; text-align: center}
     .text-outside-line:after {display: none}
     .text-outside-line:before {display: none}
-    .input-border-bottom {margin-bottom: 10px;}
-    .sidebar-part3 { top: 6px;}
-    .blog-text .name:nth-child(2) { padding-top: 0; padding-bottom: 0; }
+    .input-border-bottom {margin-bottom: 10px}
+    .sidebar-part3 { top: 6px}
+    .blog-text .name:nth-child(2) { padding-top: 0; padding-bottom: 0}
 
     /* top logo */
     .navbar.navbar-brand-top.bootsnav .navbar-toggle { top: 4px;}
@@ -4717,3 +4717,13 @@
 @media screen and (max-height: 320px){
     nav.navbar.bootsnav.no-full .navbar-collapse{max-height: 240px;}
 }
+
+@media(max-width: 767px){
+    .xs-margin-30px-bottom {margin-bottom: 100px !important}
+}
+
+@media(max-width: 600px){
+    .xs-margin-30px-bottom {margin-bottom: 50px !important}
+}
+
+/* @media(980) */
