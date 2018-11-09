@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Category;
 // use App\Tags;
@@ -15,8 +15,9 @@ use App\Author;
 use App\File;
 use App\Document;
 use App\Event;
+use Validator;
 
-use Illuminate\Database\Eloquent\Model;
+
 
 
 class PostController extends Controller
@@ -43,18 +44,45 @@ class PostController extends Controller
      */
     public function create()
     {
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'posts')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // return $last_id;
+
+        // $last_id = 777;
+        $images = Storage::files('public/post/'.$last_id); // this are images //
+        // return $files;
+        $imageurls = [];
+        for ($i=0; $i < count($images) ; $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
+        
+        // return $imageurls;
+        
         $lang_id = Post::getLangId();        
         $authors = Author::where('lang_id', $lang_id)->get();
         $categories = Category::where('lang_id', $lang_id)->get();
- 
-        $tags = Post::allTags();        
+        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
+        $allTags = [];
+        for ($i=0; $i < count($allTagsColumn); $i++) { 
+            $allTags[$i] = $allTagsColumn[$i]->name;
+        }
+        // return ($allTags);
+
+        // $tags = Post::allTags();
+        // return $tags;       
         return view('admin.posts.create', [
             'post' => [],
             'authors' => $authors,
             'categories' => $categories,
-            'tags' => $tags,
+            'tags' => $allTags,
             'locale' => App::getLocale(),
             'lang_id' => $lang_id,
+            'imageurls' => $imageurls,
+            'last_id' => $last_id,           
         ]);
     }
 
@@ -68,13 +96,13 @@ class PostController extends Controller
     {
 
         // return $request->all();
-        $this->validate( $request, [
+        $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
-            'short_text'=>'max:1000',
+            'short_text'=>'required|string',
             'html_code'=>'required|string',
             
             'img'=>'required|string',
-            'thumb_img' =>'required|string',
+            'thumb_img' =>'nullable|string',
             'date'=>'required|date',
             'status'=>'required|alpha_dash|max:100',
             'meta_k'=>'nullable|max:500',
@@ -85,42 +113,75 @@ class PostController extends Controller
             'lang_id'=>'required|integer',
             'tags'=> 'required|string',
         ]);
+      
 
         // return $request->all();
 
         $post = Post::create($request->all());
+        $post_id = $post->id;
         if($request->input('tags')) {
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
             $post->tag($tagsArray); // store-to-db
         }
-        if($request->input('files')) {
-            $fl_string = $request->input('files');
-            $fl_array = explode(',',$fl_string);
-            // $fl_rows =[]; // fot debugging
-            foreach($fl_array as $key => $link) {
-                // $fl_rows[$key] = File::prepareFile($link);
-                $post->getDocuments()->create(Document::prepareDocParams($link));
-            }
-            // return $fl_rows;
-        }
-
-        // Post::addTagsToKeys($request->input('tags'), $request->input('meta_k'), $post->id);
+        
         Event::checkAndSaveIfNotExists($request->input('date'));
-        return redirect()->route('admin.post.index', App::getLocale());
+            // $post_id = $request->input('post_id') - 1;
+            // $post = Post::findOrFail($post_id);
+        
+        DB::table('taggable_taggables')
+            ->where('taggable_type', 'App\\Post')
+            ->where('taggable_id', $post_id)
+            ->update(['lang_id' => $request->input('lang_id') ]);
+        return redirect()->route('admin.post.show', [$post_id, App::getLocale()]);
     }
 
 
     /**
      * Display the specified resource.
-     *
+     *Post $post
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
-    {
-        //
+    public function show($post_id, $locale)
+    { 
+        $lang_id_column = DB::select('select id from langs where lng = ?', [$locale]);
+        $lang_id = $lang_id_column[0]->id;
+        $post = Post::with('getCategory')->where('lang_id', $lang_id)->where('id', $post_id)->get();
+
+        $comments = Post::find($post_id)->getComments()->get();
+        
+        // return gettype($comments) ;
+
+        $files = Storage::files('public/post/'.$post_id);
+        // $type = Document::getTypeFromLink($files[2]);
+        // return $type;
+        $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
+        $fileurls = [];
+        for ($i=0; $i < count($files) ; $i++) {
+            $fileurls[$i]['url'] = Storage::url($files[$i]);
+            $fileurls[$i]['size'] = $size = Storage::size($files[$i]);
+            if(!in_array(Document::getTypeFromLink($files[$i]), $validImageExp)) {
+                if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Post')->exists()) {
+                    // return 'into if';
+                    Post::findOrFail($post_id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                }
+            }
+            
+        }
+        
+        $docsObject = Post::findOrFail($post_id)->getDocuments()->get();
+        // return $files;
+        // return $post[0];
+        return view('admin.posts.show', [
+            'post' => $post[0],
+            'locale' => $locale,
+            'fileurls' => $fileurls,
+            'docsObject' => $docsObject,
+            'comments' => $comments,
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

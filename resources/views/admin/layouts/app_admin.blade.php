@@ -103,8 +103,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script type="text/javascript">
         var options = {
           filebrowserImageBrowseUrl: '/manage/laravel-filemanager?type=Images',
           filebrowserImageUploadUrl: '/manage/laravel-filemanager/upload?type=Images&_token=',
@@ -112,6 +112,23 @@
           filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
         };
       </script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        function getStatusChangeValue(event) {
+            // alert(event.target.checked);
+            let id  = event.target.getAttribute('name');
+            let inp = document.getElementById(`${id}`);
+            if(event.target.checked) {
+                inp.setAttribute('value', 1);
+                console.log(inp);
+                // alert(event.target.getAttribute('value'));
+            }else{
+
+                inp.setAttribute('value', 0);
+                console.log(inp);
+                // alert(event.target.getAttribute('value'));
+            }
+        }
+      </script>
 </body>
 </html>

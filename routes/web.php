@@ -30,20 +30,23 @@ Route::group( $admin_rules , function() {
   Route::get('/', 'DashBoardController@dashboard')->name('admin.index');  
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
+  Route::resource('/commect', 'CommentController', ['as'=>'admin']);
   Route::resource('/document', 'DocumentController', ['as'=>'admin']);
+  Route::post('/document/uploadimage', 'DocumentController@uploadimage')->name('admin.document.uploadimage');
+  Route::post('/document/uploadfile', 'DocumentController@uploadfile')->name('admin.document.uploadfile');
+  Route::post('/document/savedocstatus', 'DocumentController@savedocstatus')->name('admin.document.savedocstatus');
   Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
-
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
 Auth::routes();
 Route::get('/home/{locale}', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
-  Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
-  Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
-  // list all lfm routes here...
-});
+// Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
+//   Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+//   Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+//   // list all lfm routes here...
+// });
 
 Route::get('/{locale}/author', 'AuthorController@index');
 Route::get('/{locale}/about_us', 'PageController@about_us');

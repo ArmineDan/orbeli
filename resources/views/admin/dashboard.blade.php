@@ -6,44 +6,110 @@
             <div class="col-md-3">
                 <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <p class="text-indent btn btn-primary">Posts:
+                        <span class="text-indent btn btn-default">Posts:
                             <span class="label label-success">150</span>
-                        </p>                    
-                    </div>
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.post.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>           
+                    </div>                    
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('admin.category.index', $locale)}}">
+                <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <p class="text-indent btn btn-primary">Categories:
-                            <span class="label label-success">8</span>
-                        </p>                    
+                        <span class="text-indent btn btn-primary">Video-Posts:
+                         <span class="label label-success">150</span>
+                        </span>                    
                     </div>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ 'link.to.all.visitors' }}">
+                <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <p class="text-indent btn btn-primary">Visitors: 
-                            <span class="label label-success">3000</span>
-                        </p>                    
+                        <span class="text-indent btn btn-primary">News:
+                            <span class="label label-success">150</span>
+                        </span>                    
                     </div>
                 </a>
             </div>
             <div class="col-md-3">
+                <a href="{{ route('admin.post.index', $locale) }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Announcement:
+                            <span class="label label-success">150</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>            
+        </div>
+        <hr>
+
+        <div class="row">
+        <div class="col-md-4">
+                <a href="{{ 'link.to.all.opinions' }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Opinions: 
+                            <span class="label label-success">1</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
                 <a href="{{'link.to.all.authors'}}">
                     <div class="jumbotron text-center">
-                        <p class="text-indent btn btn-primary">Authors: 
+                        <span class="text-indent btn btn-primary">Authors: 
                             <span class="label label-success">25</span>
-                        </p>                    
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ route('admin.category.index', $locale)}}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Categories:
+                            <span class="label label-success">8</span>
+                        </span>                    
                     </div>
                 </a>
             </div>
         </div>
-
         <hr>
 
         <div class="row">
+            <div class="col-md-4">
+                <a href="{{ 'link.to.all.partners' }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Partners: 
+                            <span class="label label-success">1</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ 'link.to.all.aboutus' }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">About Us: 
+                            <span class="label label-success">1</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ 'link.to.all.parralax' }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Parallax: 
+                            <span class="label label-success">1</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+        </div>
+        <hr>
+
+        {{-- <div class="row">
             <div class="col-md-6">
                 <div class="list-group">
                     <a href="{{ route('admin.category.create', $locale) }}" class="list-group-item active text-center">
@@ -72,6 +138,6 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
