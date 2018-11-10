@@ -30,11 +30,13 @@ Route::group( $admin_rules , function() {
   Route::get('/', 'DashBoardController@dashboard')->name('admin.index');  
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
-  Route::resource('/commect', 'CommentController', ['as'=>'admin']);
+  Route::resource('/comment', 'CommentController', ['as'=>'admin']);
   Route::resource('/document', 'DocumentController', ['as'=>'admin']);
   Route::post('/document/uploadimage', 'DocumentController@uploadimage')->name('admin.document.uploadimage');
   Route::post('/document/uploadfile', 'DocumentController@uploadfile')->name('admin.document.uploadfile');
   Route::post('/document/savedocstatus', 'DocumentController@savedocstatus')->name('admin.document.savedocstatus');
+  Route::post('/comment/savecommentstatus', 'CommentController@savecommentstatus')->name('admin.comment.savecommentstatus');
+  
   Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });

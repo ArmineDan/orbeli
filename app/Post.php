@@ -17,7 +17,7 @@ class Post extends Model
     use Taggable;
    
     protected $fillable = [
-        'title', 'short_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id',
+        'title', 'short_text', 'long_text', 'html_code', 'img', 'thumb_img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'post_typ', 'author_id', 'lang_id', 'p_duratioan',
     ];
 
 
