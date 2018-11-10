@@ -3,7 +3,7 @@
 $servername = "localhost";
 $user = "root";
 $password = "";
-$db_name = "orbeli_ns_db";
+$db_name = "orbeli_db";
 
 $con = mysqli_connect($servername,$user,$password,$db_name);
 
