@@ -20,7 +20,7 @@ class CreatePostTable extends Migration
             $table->text('long_text')->nullable();
             $table->text('html_code');
             $table->string('img');
-            $table->string('thumb_img');            
+            $table->string('thumb_img')->nullable();            
             $table->date('date');                
             $table->string('status')->default("published");
             $table->text('meta_k');

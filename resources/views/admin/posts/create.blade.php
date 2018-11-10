@@ -110,6 +110,10 @@
       </select>
       <hr>
 
+      <h5 for="date">Date</h5>
+      <input type="date" name="date" class="form-control" placeholder="select date">
+      <hr>
+
       <h5 for="post_short_text">Short Description</h5>
       <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
       </textarea>
@@ -119,11 +123,11 @@
       </textarea>
       <hr>
 
-      <h5 for="img">Post main image 900x600: upload and past url here <code>photos/1/posts/image_name.jpg</code></h5>
+      <h5 for="img">Post main image 900x600: upload and past url here <code>/storage/post/14/clouds-picture.jpg</code></h5>
       <input type="text" name="img" id="img" class="form-control" placeholder="post image url" >
       <hr>
 
-      <h5 for="thumb_img">Cropped Image url 450x600: <code>photos/1/posts<mark>/thumbs/</mark>image_name.jpg</code></h5>
+      <h5 for="thumb_img">Cropped Image url 450x600: <code>/storage/post/14/cropped-clouds-picture.jpg</code></h5>
       <input type="text" name="thumb_img" id="thumb_img" class="form-control" placeholder="automaticaly cropped image url" >
       <hr>
 
@@ -134,10 +138,10 @@
       <input type="text" name="files" id="files" class="form-control" placeholder="input files separated by comma">
       <hr> --}}
 
-      <h5 for="date">Date</h5>
-      <input type="date" name="date" class="form-control" placeholder="select date">
+      
+      <h5 for="duration">Duration <code>minute</code></h5>
+      <input type="text" name="p_duratioan" class="form-control" value="5">
       <hr>
-
       
       
       <h5 for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></h5>
