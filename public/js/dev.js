@@ -1,8 +1,7 @@
+    var y = 0;
+    var x = 0;
 
-    let y = 0;
-    let x = 0;
-
-    $("#ns_click_plus_comment_btn").click(function(){
+    $("#ns_click_plus_com_btn").click(function(){
         y+=5;
         x++;      
         let count_comm = $(this).parent().attr('class')%5;
@@ -27,10 +26,14 @@
             }
         }
         else {
+			console.log("aaaaaaaaaaaa")
                 
           let count = $(this).parent().attr('class')/5;
           let flot=Math.floor(count)+1;
-          console.log(flot);
+          console.log(flot ,"flot");
+		  console.log(x,"xxx");
+		  console.log(y,"yyy");
+		  
             if(x <= flot){
                 $.post(
                     "/php/comment.php", 

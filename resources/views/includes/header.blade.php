@@ -48,7 +48,7 @@
                                             <li><a href="javascript:void(0);" title="Գործընկերներ">Գործընկերներ</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="Գործընկերներ">Փորձագետներ</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/about_us')}}" title="Մեր մասին">Մեր մասին</a> </li>
-                                            <li><a href="javascript:void(0);" title="Կապ">Կապ</a> </li>                              
+                                            <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="Կապ">Կապ</a> </li>                              
                                          </ul>
                                     </li>  
                                   </ul>

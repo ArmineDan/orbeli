@@ -3,10 +3,19 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Calendar;
+use Session;
+use App;
+
 class Event extends Model
 {
     protected $fillable = ['title','start_date','end_date'];
-    static function event() {
+    static function event($locale) {
+        $rules = ['en','ru','hy'];                      
+        if(in_array($locale,$rules))
+        {
+               Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale();  
         $events = [];
         $data = Event::all();
  
@@ -22,12 +31,16 @@ class Event extends Model
                     // Add color and link on event
                     [
                         'color' => '#f05050',
-                        'url' => url('/archieve/'.$value->start_date),
+                        'url' => url($lang.'/archieves/'.$value->start_date),
                     ]
                 );
             }            
         }
-        return   $calendar = Calendar::addEvents($events);    
+        return   $calendar = Calendar::addEvents($events);   
+       } 
+       else{              
+        return  redirect('/'.App::getLocale());
+        }       
     }
     
     static function checkAndSaveIfNotExists($date) {

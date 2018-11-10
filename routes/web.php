@@ -59,7 +59,7 @@ Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');
 Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost');
 Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
-Route::get('/{locale}/archieve/{date}', 'PageController@openArchieve');
+Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
 Route::get('{locale}/contacts', 'PageController@contacts');
