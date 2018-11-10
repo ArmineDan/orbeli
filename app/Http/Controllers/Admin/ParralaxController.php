@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App;
+use Illuminate\Support\Facades\Storage;
+use App\Post;
 
 class ParralaxController extends Controller
 {
@@ -34,8 +36,28 @@ class ParralaxController extends Controller
      */
     public function create()
     {
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'parralaxes')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // return $last_id;
+        $lang_id = Post::getLangId();
+        // return $lang_id;
+        $folder_name = 'parralax';
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        // return $images;
+        $imageurls = [];
+        for ($i=0; $i < count($images) ; $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
         return view("admin/parralax/create",[
-            'locale' => \App::getLocale()
+            'locale' => \App::getLocale(),
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
+            'lang_id' =>$lang_id,
         ]);
     }
 
@@ -45,22 +67,39 @@ class ParralaxController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $locale)
     {
+        // return $locale;
         $this->validate($request,[
             'title' => 'required',
             'text' => 'required',
             'link' => 'required',
-            'img' => 'required'
+            'img' => 'required',
+            'lang_id' => 'required',
         ]);
-        $post = new parralax;
-        $post->title = $request->input('title');
-        $post->text = $request->input('text');
-        $post->link = $request->input('link');
-        $post->img = $request->input('img');
-        $post->save();
+        $parralax = new parralax;
+        
+        // $parralax->title = $request->input('title');
+        // $parralax->text = $request->input('text');
+        // $parralax->link = $request->input('link');
+        // $parralax->img = $request->input('img');
+        // $parralax->lang_id = $locale;
+        // $parralax->save();
 
-        return redirect('/posts')->with('success','Post created');
+        $paraParams = [
+            'title' => $request->input('title'),
+            'text' => $request->input('text'),
+            'img' => $request->input('img'),
+            'link' => $request->input('link'),
+            'lang_id' => $request->input('lang_id'),
+        ];
+
+        // $parralax->create($paraParams);
+        DB::table('parralaxes')->insert( $paraParams );
+
+        // echo 'ok';
+
+        return redirect()->route('admin.parralax.index', App::getLocale());;
     }
 
     /**
@@ -82,10 +121,13 @@ class ParralaxController extends Controller
      */
     public function edit($id, $locale)
     {
-
+        // return $id;
+        // return $locale;
         $parralax = Parralax::find($id);
+        // return $parralax;
         App::setLocale($locale);
         
+       
         return view('admin.parralax.edit',[
             'parralax' => $parralax,
             'locale'=>$locale,
@@ -99,7 +141,7 @@ class ParralaxController extends Controller
      * @param  \App\parralax  $parralax
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, parralax $parralax)
+    public function update(Request $request, parralax $parralax, $locale)
     {
         $this->validate($request,[
             'title' => 'required',
