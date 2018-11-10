@@ -98,7 +98,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{ 'link.to.all.parralax' }}">
+                <a href="{{ route('admin.parralax.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-primary">Parallax: 
                             <span class="label label-success">1</span>

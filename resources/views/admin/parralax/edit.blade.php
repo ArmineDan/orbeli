@@ -16,7 +16,7 @@
 
     <h2> Edit parralax Number {{$parralax['id']}} </h2>
 
-    <form action="{{ route('admin.parralax.update', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.parralax.update', [$locale, $parralax]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
 
@@ -34,7 +34,7 @@
             <input name="link" class="form-control" value="{{ $parralax['link'] }}">
             <hr>
 
-            <label for="post_short_text">Main image url 900x600: <code>photos/1/posts/image_name.jpg</code></label>
+            <label for="post_short_text">Parallax image url 900x600: <code>photos/1/posts/image_name.jpg</code></label>
             <input name="img" class="form-control" value="{{ $parralax['img'] }}">
             <hr>
 

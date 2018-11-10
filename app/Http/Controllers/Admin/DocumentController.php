@@ -12,7 +12,8 @@ class DocumentController extends Controller
 {
 
     public function uploadimage(Request $request, $locale) {
-        
+        $folder_name = $request->input('folder_name');
+        // return $folder_name;
         $images = $_FILES['images'];        
         $post_id = $request->input('post_id');
         $total = count($_FILES['images']['name']);
@@ -24,7 +25,7 @@ class DocumentController extends Controller
                 if(in_array($_FILES['images']['type'][$i], $validImage)  ) {
                     $imgDebug['success'][$i]['url'] =  $_FILES['images']['tmp_name'][$i];
                     $imgDebug['success'][$i]['name'] = $_FILES['images']['name'][$i];
-                    $path = Storage::disk('public')->putFileAs('post/'.$post_id, new File($_FILES['images']['tmp_name'][$i]), $_FILES['images']['name'][$i]);
+                    $path = Storage::disk('public')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['images']['tmp_name'][$i]), $_FILES['images']['name'][$i]);
                     $imgDebug['success'][$i]['path'] = Storage::url($path);
                     $imgDebug['success'][$i]['size'] = $_FILES['images']['size'][$i];;           
                 }
