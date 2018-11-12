@@ -41,6 +41,7 @@ class DocumentController extends Controller
 
 
     public function uploadfile(Request $request, $locale) {
+        $folder_name = $request->input('folder_name');        
         $files = $_FILES['files'];
 
         $post_id = $request->input('post_id');
@@ -55,7 +56,7 @@ class DocumentController extends Controller
                     
                     $flDebug['success'][$i]['url'] =  $_FILES['files']['tmp_name'][$i];
                     $flDebug['success'][$i]['name'] = $_FILES['files']['name'][$i];
-                    $path = Storage::disk('public')->putFileAs('post/'.$post_id, new File($_FILES['files']['tmp_name'][$i]), $_FILES['files']['name'][$i]);
+                    $path = Storage::disk('public')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['files']['tmp_name'][$i]), $_FILES['files']['name'][$i]);
                     $flDebug['success'][$i]['path'] = Storage::url($path);
                     $flDebug['success'][$i]['size'] = $_FILES['files']['size'][$i];;           
                 }

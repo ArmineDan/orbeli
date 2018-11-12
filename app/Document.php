@@ -8,6 +8,7 @@ class Document extends Model
 {
 
     protected $fillable = ['name','link','type','documentable_id','documentable_type','inused'];
+    public $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
 
     /* Получить все модели, обладающие documentable. */   
     public function documentable() {

@@ -12,7 +12,7 @@
                       <th>Title</th>
                       <th>Category</th>
                       <th>Status</th>
-                      <th>Main Image</th>                      
+                      <th>Main Image</th>
                   </tr>
               </thead>
               <tbody style="font-weight:600; font-size:13px">
@@ -45,7 +45,8 @@
           {{ csrf_field() }}
           <div class="col-md-3">  
               <input type="file" name="files[]" id="files" multiple="multiple" class="btn btn-default">
-              <input type="text" hidden name="post_id" value="{{$post->id}}">
+              <input type="text" name="post_id" value="{{$post->id}}" hidden>
+              <input type="text" name="folder_name" value="post" hidden>
           </div>
           <div class="col-md-6">
               <button type="submit" class="btn btn-info" style="margin-top:5px; width:130px">Upload files</button>

@@ -9,7 +9,7 @@ use App\Lang;
 use App\File;
 use App\Document;
 use Cviebrock\EloquentTaggable\Taggable;
-
+use App\Comment;
 
 
 class Post extends Model
@@ -93,9 +93,25 @@ class Post extends Model
             return $this->morphMany('App\Document', 'documentable');
         }
 
+        //_Comments. Получить все комменты статьи.
         public function getComments() {
             return $this->morphMany('App\Comment', 'commentable');
         }
+
+        static function getAllTagsByLangId($lang_id) {
+            $allTagsArray = [];
+            $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 
+                        JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id
+                        WHERE lang_id=$lang_id");
+            for ($i=0; $i < count($allTagsColumn); $i++) { 
+                $allTagsArray[$i] = $allTagsColumn[$i]->name;
+            }
+            return $allTagsArray;
+        }
+        // taggabe native fucntions
+        // $allTags = Post::allTags();
+        // $tagArray = $post->tagArray;
+        // $tagList = $post->tagList;
     /** post relationsheeps END **/
 
     static function categories(){

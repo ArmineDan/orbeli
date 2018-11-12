@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="container">
-<h2>Post List <small><code> lang:{{$locale}}</code><small></h2>
-    
+<h2>Post List <small><code> lang:{{$locale}}</code><small></h2>    
     
     <div class="table-responsive">
         <a href="{{ route('admin.post.create', $locale) }}" class="btn btn-primary pull-right">
@@ -45,7 +44,8 @@
                             <i class="glyphicon glyphicon-edit"></i>                        
                           </a>
                           <a class="btn btn-info" href="{{route('admin.post.show', [$post, $locale])}}">                          
-                            <i class="glyphicon glyphicon-eye-open"></i>
+                              <i class="glyphicon glyphicon-comment"></i>
+                              <i class="glyphicon glyphicon-paperclip"></i>
                           </a>
                           <button type="submit" class="btn btn-danger">
                             <i class="glyphicon glyphicon-trash"></i>

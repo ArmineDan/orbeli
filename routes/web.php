@@ -42,7 +42,8 @@ Route::group( $admin_rules , function() {
 });
 
 Auth::routes();
-Route::get('/home/{locale}', 'HomeController@index')->name('home');
+
+// Route::get('/home/{locale}', 'HomeController@index')->name('home');
 
 // Route::group(['middleware' => 'auth', 'prefix'=>'manage/'], function () {
 //   Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
