@@ -47,7 +47,7 @@
           </span> 
           <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
             <a href="{{$item->date}}\{{$item->title}}">
-                <img src="{{$item->img}}" alt="" data-no-retina="">
+              <img src="{{$item->img}}" alt="" data-no-retina="">
             </a>
           </div>
           <div class="post-details">

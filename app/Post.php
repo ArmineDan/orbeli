@@ -10,8 +10,6 @@ use App\File;
 use App\Document;
 use Cviebrock\EloquentTaggable\Taggable;
 
-
-
 class Post extends Model
 {
     use Taggable;
@@ -222,7 +220,6 @@ class Post extends Model
             ->value('id');
     }
    
-    
     static function parralax(){
         $lang= App::getLocale();
         $lng = DB::table('langs')
@@ -232,8 +229,5 @@ class Post extends Model
         $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id= $lng ");
         return $parralax;
     }
-    
-   
-    
     
 }

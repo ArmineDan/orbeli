@@ -15,7 +15,6 @@
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
-                   
                    <div class="author text_left_a">
                                    <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
                                  <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">

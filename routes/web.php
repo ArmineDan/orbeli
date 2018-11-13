@@ -38,6 +38,9 @@ Route::group( $admin_rules , function() {
   Route::post('/comment/savecommentstatus', 'CommentController@savecommentstatus')->name('admin.comment.savecommentstatus');
   
   Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
+  Route::resource('/contact', 'ContactsController', ['as'=>'admin']);
+  Route::resource('/authors', 'AuthorController', ['as'=>'admin']);
+  Route::resource('/partners', 'PartnerController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 

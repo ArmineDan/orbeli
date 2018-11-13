@@ -34,7 +34,7 @@
             <input name="link" class="form-control" value="{{ $parralax['link'] }}">
             <hr>
 
-            <label for="post_short_text">Parallax image url 900x600: <code>photos/1/posts/image_name.jpg</code></label>
+            <label for="post_short_text">Parallax image url 1200x600: <code>photos/1/posts/image_name.jpg</code></label>
             <input name="img" class="form-control" value="{{ $parralax['img'] }}">
             <hr>
 

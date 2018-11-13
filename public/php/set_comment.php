@@ -8,7 +8,7 @@ $mail = mysqli_real_escape_string($con, $_POST['mail']);
 $opinion = mysqli_real_escape_string($con, $_POST['opinion']);
 $id = mysqli_real_escape_string($con, $_POST['id']);
 
-$sql = "INSERT INTO comments(c_name,c_email,body,approved,commentable_id,commentable_type) VALUES ('$name','$mail','$opinion',0,$id,'App\Post')";
+$sql = "INSERT INTO comments(c_name,c_email,body,approved,lang_id,commentable_id,commentable_type) VALUES ('$name','$mail','$opinion',0,1,$id,'App\Post')";
 
 if(mysqli_query($con, $sql)){
     echo "OK";

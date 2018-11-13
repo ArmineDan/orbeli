@@ -19,6 +19,10 @@ return[
  "bio"=>"Биография",
  "author_posts"=>"Статьи &nbsp; автора",
  "all_posts"=>"Все статьи",
+ "contact_title"=>"Свяжитесь с нами",
+ "first_icon_text"=>"Посетите наш офис",
+ "second_icon_text"=>"Tелефон",
+ "third_icon_text"=>"Адрес электронной почты",
  "minute"=>"с.", 
  "announcements" =>"Объявления",
  "news"=>"Новости",
@@ -32,7 +36,4 @@ return[
  "text_area"=>'Ваше мнение',
  "posts"=>"Статьи"
  
-
-
-
 ];
