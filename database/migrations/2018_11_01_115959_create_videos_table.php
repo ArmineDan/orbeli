@@ -30,7 +30,7 @@ class CreateVideosTable extends Migration
 
             
 
-            $table->integer('post_typ')->unsigned();
+            $table->integer('post_typ')->unsigned()->default(1);
             $table->foreign('post_typ')->references('id')->on('categories');      
           
             $table->integer('author_id')->unsigned();

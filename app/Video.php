@@ -10,6 +10,9 @@ class Video extends Model
 
 {
     use Taggable;
+    protected $fillable = [
+        'title', 'short_text', 'html_code', 'img', 'date', 'status', 'meta_k', 'meta_d', 'duration', 'view', 'post_typ', 'author_id', 'lang_id',
+    ];
 
     public function comments()
     {
@@ -18,6 +21,10 @@ class Video extends Model
     public function getDocuments() {
         return $this->morphMany('App\Document', 'documentable');
     }
+    public function getComments() {
+        return $this->comments();
+    }
+
     static  function get_video_id($date,$title)
     {
         return $get_video_id = DB::table('videos') 

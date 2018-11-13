@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h2>Edit Post <small>№ {{ $post['id'] }} <code>lang:{{$locale}}</code></small> </h2>
-        @if(count($errors) > 0) 
+        <h2>Edit Post <small>№ {{ $post->id }} <code>lang:{{$locale}}</code></small> </h2>
+
+        {{-- @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -30,14 +31,15 @@
                 @endforeach
             </ul>         
         </div>
-        @endisset
+        @endisset --}}
+        @include('admin.common.imgMessages')
 
         <div class="row">
         <form action="{{ route('admin.document.uploadimage', $locale) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="col-md-3">    
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="post_id" value="{{$last_id}}">
+                <input type="text" hidden name="post_id" value="{{$post->id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">

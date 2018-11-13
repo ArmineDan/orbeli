@@ -84,10 +84,6 @@ class Post extends Model
             return $this->hasOne('App\Category', 'id', 'post_typ');
         }
 
-        public function getFiles() {
-            return $this->hasMany('App\File', 'post_id', 'id');
-        }
-
         //_Documents. Получить все документы статьи.
         public function getDocuments() {
             return $this->morphMany('App\Document', 'documentable');

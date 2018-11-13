@@ -8,11 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Category;
-// use App\Tags;
 use App;
 use App\Lang;
 use App\Author;
-use App\File;
 use App\Document;
 use App\Event;
 use App\Comment;
@@ -32,11 +30,10 @@ class PostController extends Controller
 
     public function index()
     {
-
-        $lang_id = Post::getLangId();
+        $lang_id = Lang::getLangId();
         return view('admin.posts.index', [
             // 'posts' => Post::paginate(3)
-            'posts' => Post::with('getCategory')->where('lang_id', $lang_id)->paginate(15),
+            'posts' => Post::with('getCategory')->where('lang_id', $lang_id)->paginate(10),
             'locale' => App::getLocale(),            
         ]);
     }
@@ -59,7 +56,7 @@ class PostController extends Controller
         // $last_id = 777;
         $folder_name = $this->folder_name;
         $images = Storage::files('public/'.$folder_name.'/'.$last_id); // this are images //
-        // return $files;
+        // return $images;
         $imageurls = [];
         for ($i=0; $i < count($images) ; $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -156,14 +153,15 @@ class PostController extends Controller
         if(!Post::find($post_id)) {
             return 'no post redirect to Error 404';
         }
-        $lang_id_column = DB::select('select id from langs where lng = ?', [$locale]);
-        $lang_id = $lang_id_column[0]->id;
-        $post = Post::with('getCategory')->where('lang_id', $lang_id)->where('id', $post_id)->get();
-        
+        // $lang_id_column = DB::select('select id from langs where lng = ?', [$locale]);
+        // $lang_id = $lang_id_column[0]->id;
+        // ->where('lang_id', $lang_id)
+        $post = Post::with('getCategory')->where('id', $post_id)->get();
+        $lang_id =$post[0]->lang_id;
+
         $comments = Post::find($post_id)->getComments()->get();
         
-
-        $files = Storage::files('public/post/'.$post_id);
+        $files = Storage::files('public/'.$this->folder_name.'/'.$post_id);
         $fileurls = [];
         for ($i=0; $i < count($files) ; $i++) {
             $fileurls[$i]['url'] = Storage::url($files[$i]);
@@ -175,7 +173,7 @@ class PostController extends Controller
                 }
             }
             
-        }
+        }        
 
         $docsObject = Post::findOrFail($post_id)->getDocuments()->get(); // don't change this position //
         return view('admin.posts.show', [
@@ -184,6 +182,7 @@ class PostController extends Controller
             'fileurls' => $fileurls,
             'docsObject' => $docsObject,
             'comments' => $comments,
+            'folder_name' => $this->folder_name,
         ]);
     }
 
@@ -228,7 +227,6 @@ class PostController extends Controller
                 'postTagsList' => $postTagsList,
                 'docsObject' => $docsObject,
                 'folder_name' => $this->folder_name,
-                'last_id' => $post->id,
                 'imageurls' => $imageurls,
             ]);
 

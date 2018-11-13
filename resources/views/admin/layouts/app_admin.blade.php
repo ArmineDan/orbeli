@@ -52,8 +52,9 @@
                             <ul class="dropdown-menu">                                
                                 <li><a href="{{ url('/', $locale) }}">Index</a></li>
                                 <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
-                                <li><a href="{{ route('admin.category.index', $locale) }}">Categories(Menu Items)</a></li>
+                                <li><a href="{{ route('admin.category.index', $locale) }}">Categories</a></li>
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
+                                <li><a href="{{ route('admin.video.index', $locale)}}">Video</a></li>
                             </ul>
                         </li>                 
                     </ul>
