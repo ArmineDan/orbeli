@@ -9,9 +9,12 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
         <meta name="author" content="">
         <!-- description -->
-        <meta name="description" content="">
+       
+        <meta name="description" content="{{isset($all_last_posts['post'][0])?$all_last_posts['post'][0]->meta_d:'description'}}">
         <!-- keywords -->
-        <meta name="keywords" content="">
+        <meta name="keywords" content="{{isset($all_last_posts['post'][0]) ? $all_last_posts['post'][0]->meta_k:'keywords'}}">            
+      
+        
         <!-- favicon -->
         <link rel="shortcut icon" href="images/favicon.png">
         <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">

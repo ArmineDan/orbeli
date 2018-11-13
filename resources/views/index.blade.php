@@ -136,32 +136,30 @@
 @endsection
 
 @section('xoragrer')
+        <ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
+            <li class="grid-sizer"></li>
 
-<ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
-    <li class="grid-sizer"></li>
+                @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
 
-  @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
-
-  <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: visible; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
-        <div class="blog-post">
-            <div class="blog-post-images overflow-hidden">
-                <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                    <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
-                </a>
-             </div>
-            <div class="post-details padding-15px40px-all bg-white sm-padding-20px-all">
-                <div class="blog-hover-color"></div>
-                <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">{{trans('text.xoragrer_items'.$i)}}</span>
-                
-                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
-                <a  href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                    <br/>
-                    <p>{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
-            </div>
-        </div>
-    </li>
-      
-  @endfor    
-    </ul>    
+                <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
+                        <div class="blog-post">
+                            <div class="blog-post-images overflow-hidden">
+                                <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                                    <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
+                                </a>
+                            </div>
+                            <div class="post-details padding-15px40px-all bg-white sm-padding-20px-all">
+                                <div class="blog-hover-color"></div>
+                                <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">{{trans('text.xoragrer_items'.$i)}}</span>
+                                
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+                                <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
+                                <a  href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                                    <br/>
+                                    <p>{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
+                            </div>
+                        </div>
+                </li>            
+                @endfor   
+        </ul>    
 @endsection

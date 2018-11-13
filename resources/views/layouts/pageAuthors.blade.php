@@ -7,11 +7,9 @@
         <section class="visibl">
         <div class="container">
            <div class="row">
-
-                <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>Փորձագետներ</span></div>
-                   
-                        <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
-                            @yield('authors')
+                       <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
+                          <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{$all_last_posts['text']}}</span></div>
+                             @yield('authors')
                         </main>
                        
                         

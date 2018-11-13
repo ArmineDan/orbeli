@@ -43,12 +43,12 @@
                                         <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                                          <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                             
-                                            <li> <a href="javascript:void(0);"  title="Միջոցառումներ">Հայտարարություններ</a> </li> 
-                                            <li> <a href="javascript:void(0);"  title="Միջոցառումներ">Նորություններ</a> </li>
-                                            <li><a href="javascript:void(0);" title="Գործընկերներ">Գործընկերներ</a> </li>
-                                            <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="Գործընկերներ">Փորձագետներ</a> </li>
-                                            <li><a href="{{url($all_last_posts['lang'].'/about_us')}}" title="Մեր մասին">Մեր մասին</a> </li>
-                                            <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="Կապ">Կապ</a> </li>                              
+                                            <li> <a href="{{url($all_last_posts['lang'].'/announcements')}}"  title="{{trans('text.announcements')}}">{{trans('text.announcements')}}</a> </li> 
+                                            <li> <a href="{{url($all_last_posts['lang'].'/news')}}"  title="{{trans('text.news')}}">{{trans('text.news')}}</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/partners')}}" title="{{trans('text.partners')}}">{{trans('text.partners')}}</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="{{trans('text.auth')}}">{{trans('text.auth')}}</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/about_us')}}" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
+                                            <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="{{trans('text.contacts')}}">{{trans('text.contacts')}}</a> </li>                              
                                          </ul>
                                     </li>  
                                   </ul>
@@ -59,7 +59,7 @@
                        
                                 <ul id="accordion1" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                                    
-                                    <li class="dropdown simple-dropdown" >
+                                    <li class="calendar dropdown simple-dropdown" >
                                         <a href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
                                          <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;">
                                             <li> 
