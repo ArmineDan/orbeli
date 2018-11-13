@@ -67,4 +67,5 @@ Route::get('/{locale}', 'PageController@index');
 Route::get('{locale}/contacts', 'PageController@contacts');
 Route::get('/{locale}/tags/posts/{tag_id}', 'LoadAll@post_whith_current_tag');
 Route::get('/', 'PageController@index');
+Route::get('{locale}/search/{s?}', 'SearchesController@getIndex')->where('s', '[\w\d]+');
 

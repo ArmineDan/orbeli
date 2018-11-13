@@ -1,7 +1,10 @@
 <div id="open_search_folder_ns">
     <i class="fa fa-times close_search_btn_ns"></i>
-    <input type="search" class="search_inp_ns" placeholder="Enter your keyword...">
-</div>
+    <form action="en/search" method="GET">
+        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="Enter your keyword...1">
+    <button type="submit">Search</button>
+    </form>
+    </div>
 
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: rgba(41, 46, 49, 1.00)" >
     <div class="container-fluid nav-header-container">      
