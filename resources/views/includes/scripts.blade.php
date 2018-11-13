@@ -62,7 +62,7 @@
 $(".calendar").mouseover(function(){
     count++;
     if (count==1){
-      alert("fffffffff");
+     // alert("fffffffff");
       $(".fc-left .fc-today-button").trigger('click');
       }   
 })
