@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h3>Edit Post № <mark>{{ $post['id'] }}</mark></h3>
-        @if(count($errors) > 0) 
+        <h2>Edit Post <small>№ {{ $post->id }} <code>lang:{{$locale}}</code></small> </h2>
+
+        {{-- @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -13,54 +14,90 @@
             </div>
         @endif
 
+        @isset(session()->get( 'imgDebug' )['errors'])
+        <div class="alert alert-danger">
+            <ul>
+            @foreach (session()->get( 'imgDebug' )['errors'] as $error)
+            <li>{{ $error['message'] }}</li>
+            @endforeach
+            </ul>
+        </div>
+        @endisset
+        @isset(session()->get( 'imgDebug' )['success'])
+        <div class="alert alert-success">
+            <ul class="list-group-item">
+                @foreach (session()->get( 'imgDebug' )['success'] as $success)
+                <li>{{ $success['path'] }}</li>
+                @endforeach
+            </ul>         
+        </div>
+        @endisset --}}
+        @include('admin.common.imgMessages')
+
+        <div class="row">
+        <form action="{{ route('admin.document.uploadimage', $locale) }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="col-md-3">    
+                <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
+                <input type="text" hidden name="post_id" value="{{$post->id}}">
+                <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" style="margin-top:5px; width:130px">Upload Images</button>
+            </div>     
+        </form>
+        </div>
+        <hr>
+
+        @isset($imageurls)
+        <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
+        <thead>
+            <th>url</th>
+            <th>image</th>
+            <th>size: kb</th>
+        </thead>
+        <tbody>     
+        @foreach ($imageurls as $image)
+        <tr>
+            <td><span>{{$image['url']}}</span></td>
+            <td><img src="{{$image['url']}}" alt="" width="120px"></td>
+            <td><span>{{$image['size']}}</span></td>      
+        </tr>
+        @endforeach
+        </tbody>
+        </table>        
+        @endisset
+
 
         <form action="{{ route('admin.post.update', [$post,$locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
+            <input type="text" hidden name="lang_id" id="" value="{{$post['lang_id']}}">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><label for="post_typ">Category</label></div>
+                <div class="panel-body">
+                    <select name="post_typ" class="form-control" onchange="checkCategory(event)">
+                            <option value="">Select Category</option>
+                        @forelse ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                @if ($post['post_typ'] == $category['id'])
+                                    selected="selected"
+                                @endif
+                                >                        
+                                {{ $category->name }}
+                            </option>
+                        @empty
+                            <option value="">Category is empty.</option>
+                        @endforelse
+                    </select>
+                </div>
+            </div>
+            <hr>        
         
             <label for="title">Title</label>
             <input type="text" name="title" class="form-control" value="{{ $post['title'] }}">
-            <hr>
-          
-            <label for="post_short_text">Short Description</label>
-            <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
-                {{ $post['short_text'] }}
-            </textarea>
-            <hr>
-            <label for="post_html_code">Full Description</label>
-            <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control">       
-                {{ $post['html_code'] }}
-            </textarea>
-            <hr>
-          
-            <label for="img">Main image url 900x600: <code>photos/1/posts/image_name.jpg</code></label>
-            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" required>
-            <hr>
-          
-            <label for="thumb_img">Croped thumb url 450x600: <code>photos/1/posts<mark>/thumbs/</mark>imahe_name.jpg</code></label>
-            <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" required>
-            <hr>
-
-            <label for="post_files">Post files:
-                <code>files/1/posts/file_name.pdf,files/1/posts/file_name.epub</code>
-            </label>
-            @forelse($docsObject as $key => $doc)
-                <input type="text" name="files[{{$doc->id}}]" id="" class="form-control" value="{{$doc->link}}">
-            @empty
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Current Post doesn't have files.
-                    <small>separate files by comma</small>
-                </div>
-                <div class="panel-body">
-                    <input type="text" name="new_files" id="" class="form-control" value="" placeholder="Add new files, separated by comma">
-                </div>
-            </div>
-            @endforelse        
-            <hr>
-
-            <label for="date">Date</label>
-            <input type="date" name="date" class="form-control" value="{{ $post['date'] }}">
             <hr>
 
             <label for="status">Status</label>
@@ -89,23 +126,48 @@
             </select>
             <hr>
 
-            <label for="post_typ">Category</label>
-            <select name="post_typ" class="form-control">
-                    <option value="">Select Category</option>
-                @forelse ($categories as $category)
-                    <option value="{{ $category->id }}"
-                        @if ($post['post_typ'] == $category['id'])
-                            selected="selected"
-                        @endif
-                        >                        
-                        {{ $category->name }}
-                    </option>
-                @empty
-                    <option value="">Category is empty.</option>
-                @endforelse
-            </select>
+            <label for="date">Date</label>
+            <input type="date" name="date" class="form-control" value="{{ $post['date'] }}">
+            <hr>
+          
+            <label for="post_short_text">Short Description</label>
+            <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $post['short_text'] }}
+            </textarea>
             <hr>
 
+            <label for="post_long_text">Long Description</label><br>
+            <span class="text text-info">only for "Economy"-category</span>
+            <div id="long_text_wrap" style="display:none">
+                <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
+                        {{ $post['long_text'] }}
+                </textarea>
+            </div>
+            <hr>
+
+            <label for="post_full_text">Full Content</label>
+            <textarea name="html_code" id="post_full_text" cols="30" rows="10" class="form-control">       
+                {{ $post['html_code'] }}
+            </textarea>
+            <hr>
+          
+            <label for="img">Main image 900x600: <code>/storage/post/14/clouds-picture.jpg</code></label>
+            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" required>
+            <hr>
+          
+            <label for="thumb_img">Croped image 450x600: <code>/storage/post/14/cropped-clouds-picture.jpg</code></label><br>
+            <span class="text text-info">only for "Economy"-category</span>
+            <div id="thumb_img_wrap" style="display:none">
+                <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" required>
+            </div>
+            <hr>
+
+            <label for="duration">Duration <code>minute</code>
+                <span class="btn btn-danger" onclick="CountDuration()">count</span>
+                <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
+            </label>
+              <input type="text" name="p_duratioan" id="duration" class="form-control" value="{{$post['p_duratioan']}}">
+              <hr>
 
             <label for="" style="display:block">Post tags <kbd>without spaces</kbd></label>
             <p>{{$allTagsList}}</p>
@@ -123,7 +185,35 @@
             <input type="text" name="meta_d" class="form-control" value="{{ $post->meta_d }}">
             <hr>
 
-            <button type="submit">Update</button>
+            <label for="post_files">Post files</label>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    To manage Files and Comments, please, push here
+                    <a href="{{route('admin.post.show',[$post, $locale])}}" class="btn btn-info" target="_blank">
+                        Manage Files and Comments
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <i class="glyphicon glyphicon-paperclip"></i>
+                    </a>                    
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @forelse($docsObject as $key => $doc)
+                        <li class="list-group-item">
+                            {{$doc->link}}
+                        </li>
+                        @empty
+                        <li class="list-group-item">
+                            <mark>Current Post doesn't have attached files.</mark>
+                        </li>                                                    
+                        @endforelse
+                    </ul>
+                </div>
+            </div>
+            <hr>
+
+            <div class="well">
+                <button type="submit" class="btn btn-info" style="width:15%">Update</button>
+            </div>
         </form>
     </div>
 @endsection

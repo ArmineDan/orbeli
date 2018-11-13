@@ -18,11 +18,16 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('admin.post.index', $locale) }}">
+                <a href="{{ route('admin.video.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Video-Posts:
-                         <span class="label label-success">150</span>
-                        </span>                    
+                        <span class="text-indent btn btn-default">Video-Posts:
+                            <span class="label label-success">150</span>
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.video.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -69,9 +74,14 @@
             <div class="col-md-4">
                 <a href="{{ route('admin.category.index', $locale)}}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Categories:
+                        <span class="text-indent btn btn-default">Categories:
                             <span class="label label-success">8</span>
-                        </span>                    
+                        </span>
+                        <div>
+                            <a href="{{ route('admin.category.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>

@@ -24,6 +24,7 @@ class CreateOpinionsTable extends Migration
             $table->string('meta_k');
             $table->string('meta_d');
             $table->integer('view')->default(1);
+            $table->string('o_duration');
            
             $table->integer('post_typ')->unsigned();
             $table->foreign('post_typ')->references('id')->on('categories');    

@@ -6,12 +6,14 @@
  */
 
 require('./bootstrap');
+import readingTime from 'reading-time';
 
 window.Vue = require('vue');
 
 $(document).ready(function(){
     CKEDITOR.replace( 'post_short_text', { height: 150 });
-    CKEDITOR.replace( 'post_long_text', { height: 150 });    
+    CKEDITOR.replace( 'post_long_text', { height: 150 });
+    CKEDITOR.replace( 'post_full_text', { height: 150 }); 
 });
 
 

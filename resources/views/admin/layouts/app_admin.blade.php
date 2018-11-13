@@ -38,7 +38,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Orbeli') }}
                     </a>
                 </div>
                 
@@ -49,11 +49,12 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Navigate
                             <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('home', $locale) }}">Home</a></li>
+                            <ul class="dropdown-menu">                                
+                                <li><a href="{{ url('/', $locale) }}">Index</a></li>
                                 <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
-                                <li><a href="{{ route('admin.category.index', $locale) }}">Categories(Menu Items)</a></li>
+                                <li><a href="{{ route('admin.category.index', $locale) }}">Categories</a></li>
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
+                                <li><a href="{{ route('admin.video.index', $locale)}}">Video</a></li>
                             </ul>
                         </li>                 
                     </ul>
@@ -128,6 +129,46 @@
                 console.log(inp);
                 // alert(event.target.getAttribute('value'));
             }
+        }
+
+        var long_text_wrap = document.getElementById('long_text_wrap');
+        var thumb_img_wrap = document.getElementById('thumb_img_wrap');
+        
+        
+        function checkCategory(event) {
+        var catIndexes = [2,7,12];
+        var value = Number(event.target.value);
+        var is_economy = catIndexes.indexOf(value);
+        console.log(is_economy);
+
+            if(is_economy > 0) {
+                long_text_wrap.style.display = 'block';
+                thumb_img_wrap.style.display = 'block';
+                console.log(long_text_wrap)
+                console.log(thumb_img_wrap)
+            }else {
+                long_text_wrap.style.display = 'none';
+                thumb_img_wrap.style.display = 'none';
+                console.log(long_text_wrap)
+                console.log(thumb_img_wrap)
+            }
+        
+        }
+
+        // var text = 'hello world';
+        // var stats = window.reading_time(text);
+        // console.log(stats);
+
+        function CountDuration() {
+            var fullDesc = CKEDITOR.instances['post_full_text'].getData();            
+            // console.log(fullDesc);
+            let stats = window.reading_time(fullDesc);
+            // console.log(stats);
+
+            let duration = document.getElementById('duration');
+            duration.value = stats.minutes;
+            document.getElementById('time_text').textContent = stats.text;
+            document.getElementById('time_words').textContent = ' /words: ' + stats.words;
         }
       </script>
 </body>

@@ -6,7 +6,9 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
-
+use App;
+use Illuminate\Support\Facades\DB;
+use App\Lang;
 class CategoryController extends Controller
 {
     /**
@@ -17,7 +19,11 @@ class CategoryController extends Controller
     public function index()
     {
         // shows list of category-data
-        return view('admin.categories.index')->with('categories', Category::paginate(3));
+        // return 'hello';
+        return view('admin.categories.index')->with([
+            'categories'=> Category::paginate(5),
+            'locale' => App::getLocale(),
+            ]);
     }
 
     /**
@@ -25,10 +31,23 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $locale)
     {
-        // open form for 
-        return view('admin.categories.create');
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                        FROM    information_schema.TABLES
+                        WHERE   (TABLE_NAME = 'categories')
+                        AND table_schema=DATABASE()");
+
+        // return $last_id_array;
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        $lang_id = Lang::getLangId();
+        // return $lang_id;
+        // return $last_id;
+        return view('admin.categories.create',[
+            'locale' => $locale,
+            'last_id' => $last_id,
+            'lang_id' => $lang_id,
+        ]);
     }
 
     /**
@@ -37,15 +56,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $locale)
     {
+        // return $request->all();
         $this->validate($request, [
             'name' => 'required|max:255',
         ]);
         $category = new Category();
         $category->name = $request->name;
+        $category->lang_id = $request->lang_id;
         $category->save();
-        return redirect()->route('admin.category.index');        
+        return redirect()->route('admin.category.index', $locale);        
     }
 
     /**
@@ -65,10 +86,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($cat_id, $locale)
     {
+        $category = Category::findOrFail($cat_id);
         return view('admin.categories.edit', [
             'category' => $category,
+            'locale' => $locale,
         ]);
     }
 
@@ -79,11 +102,14 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $cat_id, $locale)
     {
-        $keys = ['created_at', 'updated_at'];
+        // return $request->all();
+        $keys = ['created_at', 'updated_at', 'id'];
+        $category = Category::findOrFail($request->id);
+        // return $category;
         $category->update($request->except($keys));
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index', $locale);
     }
 
     /**
@@ -92,9 +118,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($cat_id, $locale)
     {
+        $category = Category::findOrFail($cat_id);
+        // return $category;
         $category->delete();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index', $locale);
     }
 }
