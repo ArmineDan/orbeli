@@ -32,15 +32,16 @@ class AuthorController extends Controller
         ->select('*') 
         ->paginate(8);
         $mostViewed = Post::mostViewed();
-        $popular_tags = Tags::load_popular_tags(); 
-        $calendar= Event::event($locale);
+        $popular_tags = Tags::load_all_popular_tags(); 
+        $calendar= Event::event($lang);
         $all_last_posts = array(
         'authors' => $authors,
         'menu'=>$menu,
         "mostViewed"=> $mostViewed,
         "popular_tags"=> $popular_tags,
         "event"=> $calendar,
-        "lang"=> $lang
+        "lang"=> $lang,
+         "text"=> trans('text.auth')
 
         );
         return  view('authors',compact('all_last_posts'));
@@ -62,7 +63,7 @@ class AuthorController extends Controller
                $lng = Post:: getLangId(); 
         
         $menu = Post::menu();
-        $calendar= Event::event();
+        $calendar= Event::event($lang);
         $about_authors = DB::table('authors')
         ->select('*')
         ->where ('id','=', $id)
@@ -98,10 +99,9 @@ class AuthorController extends Controller
                 Session::put('locale',$locale);
                 App::setLocale($locale);
                 $lang = App::getLocale();
-               $lng = Post:: getLangId(); 
-        
+               $lng = Post:: getLangId();         
         $menu = Post::menu();
-        $calendar= Event::event();       
+        $calendar= Event::event($lang);       
         $all_posts = Author::all_posts($id);
         $popular_tags=Tags::load_popular_tags();
         $mostViewed = Post::mostViewed();

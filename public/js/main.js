@@ -344,6 +344,21 @@ $(window).resize(function (event) {
  ====================================== */
 $(document).ready(function () {
     "use strict";
+	
+	$("#srch").click(function(){
+        $("#open_search_folder_ns").css("display", "block")
+    })
+
+    $(".close_search_btn_ns").click(function(){
+        $("#open_search_folder_ns").css("display", "none")
+    })
+
+    $(document).keydown(function(e) {
+        if (e.keyCode == 27) {
+            $("#open_search_folder_ns").css("display", "none");
+        }
+    });
+		
     // Bootsnav menu work with eualize height
     $("nav.navbar.bootsnav ul.nav").each(function () {
         $("li.dropdown", this).on("mouseenter", function () {

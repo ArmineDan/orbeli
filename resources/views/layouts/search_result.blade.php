@@ -8,25 +8,13 @@
         <div class="container">
            <div class="row">     
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
-                      
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])> 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px">
                                @yield('posts')
-                                
-                                  
                             </div>
-                          
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])> 0 ?'none':''?>">
-                               @yield('videos')
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['announcements'])> 0 ?'none':''?>">
-                                @yield('announce')
-                            </div>
-                            
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['news'])> 0 ?'none':''?>">
-                                @yield('news')
-                            </div>      
-                    </main>
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px">
+                                    @yield('videos')
+                                 </div>
+                      </main>
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
                          <div class="margin-45px-bottom xs-margin-25px-bottom">
                              @include('includes.mostVeiwed')
@@ -40,16 +28,8 @@
                               </div>
                               <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
                                     <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/"   data-height="400px" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" ><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
-                             </div> 
+                             </div>
              
-                       <!--      <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                 <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
-                          </div>      
-                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                 <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
-                           </div>
-                          
-                        -->
                         </aside>
                 </div>
             </div>

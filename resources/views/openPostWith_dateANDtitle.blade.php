@@ -1,15 +1,9 @@
-<div id="see_all_images_ns">
-
-    <center>
-        <img src="">
-    </center> 
-
-</div>
+<div id="see_all_images_ns"> <center><img src=""></center> </div>
 @include('../includes.links')
     <body>
             @include('../includes.facebook_script' )
         <header>
-            @include('includes.header', $all_last_posts['menu'] )
+            @include('includes.header')
             </header>
           
             <section class="visible1">
@@ -131,19 +125,19 @@
            
                                    <div class="col-md-12 col-sm-12 col-xs-12 margin-lr-auto text-center margin-80px-tb sm-margin-50px-tb xs-margin-30px-tb">
                                        <div class="position-relative overflow-hidden width-100">
-                                           <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">Թողնել կարծիք</span>
+                                           <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">{{trans('text.leave_comment')}}</span>
                                        </div>
                                    </div>
                                  
                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                       <input type="text" placeholder="Անուն *" class="medium-input" id="name_comment_inp_ns">
+                                       <input type="text" placeholder="{{trans('text.name')}} *" class="medium-input" id="name_comment_inp_ns">
                                    </div>
                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                       <input type="email" placeholder="Էլ.-հասցե *" class="medium-input" id="mail_comment_inp_ns">
+                                       <input type="email" placeholder="{{trans('text.email')}} *" class="medium-input" id="mail_comment_inp_ns">
                                    </div>
                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                       <textarea placeholder="Ձեր կարծիքը..." rows="8" class="medium-textarea" id="opinion_comment_inp_ns" maxlength="500"></textarea>
-                                   </div>
+                                      <textarea placeholder="{{trans('text.textarea')}}..." rows="8" class="medium-textarea" id="opinion_comment_inp_ns" maxlength="500"></textarea>
+                                     </div>
 
                                    <input type="hidden" id="hidden_id_comments_narek" value="{{$all_last_posts['id']}}">
                                   
@@ -167,14 +161,13 @@
                    
              
                         @isset($all_last_posts['same_posts'])
-                        <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="col-md-12 col-sm-12 col-xs-12 no-padding" style="display:{{count($all_last_posts['same_posts'])>0?'block':'none'}}">
                                 <div class="col-md-12 col-sm-12 col-xs-12 margin-lr-auto text-center margin-80px-tb sm-margin-50px-tb xs-margin-30px-tb">
                                     <div class="position-relative overflow-hidden width-100">
                                         <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">{{trans('text.same_posts')}}</span>
 
                                     </div>
-                                </div>
- 
+                                </div> 
                                 @for ($i = 0; $i < count($all_last_posts['same_posts']); $i++)
                                 @isset($all_last_posts['same_posts'][$i])
                                 <div class="col-md-3 col-sm-6 col-xs-12 last-paragraph-no-margin sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn" style="visibility: hidden; animation-name: none;">
@@ -212,6 +205,7 @@
 <!-- start scroll to top -->
 <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
 @include('../includes.scripts')
+<script type="text/javascript" src="/js/dev.js"></script>
 <script>
     $("#html_div img").click(function(){
         $("#see_all_images_ns").css("display","block");
@@ -253,5 +247,6 @@
         }
     })    
 </script>
+{!!  $all_last_posts['event']->script() !!}
 </body>
 </html>

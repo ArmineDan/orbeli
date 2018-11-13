@@ -22,6 +22,19 @@ return[
  "contact_title"=>"Հատադարձ կապ",
  "first_icon_text"=>"Այցելեք մեր գրասենյակ",
  "second_icon_text"=>"Հեռախոս",
- "third_icon_text"=>"Էլ-հասցե"
+ "third_icon_text"=>"Էլ-հասցե",
+ "minute"=>"ր.", 
+ "announcements" =>"Հայտարարություններ",
+ "news"=>"Նորություններ",
+ "partners"=>"Գործընկերներ",
+ "auth"=>"Փորձագետներ",
+ "about_us"=>"Մեր մասին",
+ "contacts"=>"Կապ",
+ "leave_comment"=>"Թողնել կարծիք",
+ "name"=>'Անուն',
+ "email"=>'Էլ.-հասցե',
+ "text_area"=>'Ձեր կարծիքը',
+ "posts"=>"Հոդվածներ"
+
  
 ];

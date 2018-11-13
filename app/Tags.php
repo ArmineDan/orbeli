@@ -3,106 +3,187 @@
 namespace App;
 use App;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentTaggable\Taggable;
 use DB;
 
 class Tags extends Model
 {
-    static function load_popular_tags(){ 
+  use Taggable;
+
+  static function load_all_popular_tags(){ 
+    $lang= App::getLocale();
+      $lng = DB::table('langs')
+      ->where('lng','=',$lang)
+      ->value('id');
+             return $load_all_popular_tags = DB::select("SELECT  `taggable_taggables`.tag_id, `taggable_tags`.`name` FROM `taggable_taggables`  INNER JOIN  `taggable_tags` ON `taggable_taggables`.`tag_id` =`taggable_tags`.`tag_id`  WHERE  `taggable_taggables`.`lang_id` = $lng GROUP BY `taggable_taggables`.`tag_id`,`taggable_tags`.`name`   ORDER BY COUNT(`taggable_taggables`.`tag_id`) desc LIMIT 15  ");
+ 
+   }    
+   
+  static function load_all_tags(){ 
+    $lang= App::getLocale();
+      $lng = DB::table('langs')
+      ->where('lng','=',$lang)
+      ->value('id');
+             return $load_all_popular_tags = DB::select("SELECT  `taggable_taggables`.tag_id, `taggable_tags`.`name` FROM `taggable_taggables`  INNER JOIN  `taggable_tags` ON `taggable_taggables`.`tag_id` =`taggable_tags`.`tag_id`  WHERE  `taggable_taggables`.`lang_id` = $lng GROUP BY `taggable_taggables`.`tag_id`,`taggable_tags`.`name`");
+ 
+   }    
+   
+
+    static function load_popular_tags($type){ 
       $lang= App::getLocale();
         $lng = DB::table('langs')
         ->where('lng','=',$lang)
         ->value('id');
-            
-   return $load_popular_tags = DB::select("SELECT  `taggable_taggables`.tag_id, `taggable_tags`.`name` FROM `taggable_taggables`  INNER JOIN  `taggable_tags` ON `taggable_taggables`.`tag_id` =`taggable_tags`.`tag_id`  WHERE  `taggable_taggables`.`lang_id` = $lng  AND  `taggable_taggables`.`taggable_type` LIKE '%Post' GROUP BY `taggable_taggables`.`tag_id`,`taggable_tags`.`name`   ORDER BY COUNT(`taggable_taggables`.`tag_id`)     desc LIMIT 15  ");
+         return $load_popular_tags = DB::select("SELECT  `taggable_taggables`.tag_id, `taggable_tags`.`name` FROM `taggable_taggables`  INNER JOIN  `taggable_tags` ON `taggable_taggables`.`tag_id` =`taggable_tags`.`tag_id`  WHERE  `taggable_taggables`.`lang_id` = $lng  AND  `taggable_taggables`.`taggable_type` LIKE '%$type' GROUP BY `taggable_taggables`.`tag_id`,`taggable_tags`.`name`   ORDER BY COUNT(`taggable_taggables`.`tag_id`)     desc LIMIT 15  ");
    
-     }    
+     }  
      
-    static function load_popular_video_tags(){ 
-      $lang= App::getLocale();
-        $lng = DB::table('langs')
-        ->where('lng','=',$lang)
-        ->value('id');
-            
-   return $load_popular_video_tags = DB::select("SELECT  `taggable_taggables`.tag_id, `taggable_tags`.`name` FROM `taggable_taggables`  INNER JOIN  `taggable_tags` ON `taggable_taggables`.`tag_id` =`taggable_tags`.`tag_id`  WHERE  `taggable_taggables`.`lang_id` = $lng  AND  `taggable_taggables`.`taggable_type` LIKE '%Video' GROUP BY `taggable_taggables`.`tag_id`,`taggable_tags`.`name`   ORDER BY COUNT(`taggable_taggables`.`tag_id`)     desc LIMIT 15  ");
-   
-     }    
-     
-     static function the_same_posts($post_id){ 
+     static function get_intersect_status($post_id,$type,$load_popular_tag){
+             if ($type == 'Post')     
+             {
+              $tags = Post::find($post_id)->tagArray;       
+              $post_idies=[];
+              for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
+                    $id=$load_popular_tag[$i]->id;
+                    $current_tags = Post::find($id)->tagArray;
+                    $hatym = array_intersect($tags,$current_tags);
+                    if(count($hatym)>=3){              
+                      array_push($post_idies,$id);
+                    }           
+                }    
+                $posts=array("posts"=>$post_idies, "tags"=>$tags);
+              return $posts;
+               }  
+              elseif ($type == 'Video')
+                {
+                  $tags = Video::find($post_id)->tagArray;       
+                  $post_idies=[];
+                  for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
+                        $id=$load_popular_tag[$i]->id;
+                        $current_tags = Video::find($id)->tagArray;
+                        $hatym = array_intersect($tags,$current_tags);
+                        if(count($hatym)>=3){              
+                          array_push($post_idies,$id);
+                        }           
+                    }    
+                    $posts=array("posts"=>$post_idies, "tags"=>$tags);
+                  return $posts;
+                   }  
+             
+              elseif ($type == 'Announcement'){
+                  $tags = Announcement::find($post_id)->tagArray;       
+                  $post_idies=[];
+                  for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
+                        $id=$load_popular_tag[$i]->id;
+                        $current_tags = Announcement::find($id)->tagArray;
+                        $hatym = array_intersect($tags,$current_tags);
+                        if(count($hatym)>=3){              
+                          array_push($post_idies,$id);
+                        }           
+                    }    
+                    $posts=array("posts"=>$post_idies, "tags"=>$tags);
+                  return $posts;
+                   }  
+               elseif ($type == 'Opinion'){
+                $tags = Opinion::find($post_id)->tagArray;       
+                $post_idies=[];
+                for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
+                      $id=$load_popular_tag[$i]->id;
+                      $current_tags = Opinion::find($id)->tagArray;
+                      $hatym = array_intersect($tags,$current_tags);
+                      if(count($hatym)>=3){              
+                        array_push($post_idies,$id);
+                      }           
+                  }    
+                  $posts=array("posts"=>$post_idies, "tags"=>$tags);
+                return $posts;
+                 }  
+               elseif ($type == 'News'){
+                $tags = News::find($post_id)->tagArray;       
+                $post_idies=[];
+                for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
+                      $id=$load_popular_tag[$i]->id;
+                      $current_tags = News::find($id)->tagArray;
+                      $hatym = array_intersect($tags,$current_tags);
+                      if(count($hatym)>=3){              
+                        array_push($post_idies,$id);
+                      }           
+                  }    
+                  $posts=array("posts"=>$post_idies, "tags"=>$tags);
+                return $posts;
+                 }  
+     }
 
-       $load_popular_tag = DB::select("SELECT `taggable_taggables`.tag_id FROM `taggable_taggables` WHERE `taggable_id` = $post_id");
-       $pull_tags='';
-       for ($i=0; $i < count($load_popular_tag) ; $i++) {     
-     // $tags = DB::select("SELECT `taggable_taggables`.taggable_id FROM `taggable_taggables` WHERE `taggable_id` = $id and  `taggable_id` != $post_id");
-     $pull[$i]=$load_popular_tag[$i]->tag_id;
-     $pull_tags.=$load_popular_tag[$i]->tag_id.',';
-   
-    }
-    $pull_tag = substr($pull_tags, 0, -1); //having COUNT(`taggable_taggables`.tag_id) = 2 
-    $tags = DB::select("SELECT `posts`.`id` from `posts` inner join `taggable_taggables` on `posts`.`id` = `taggable_taggables`.`taggable_id`  where `taggable_taggables`.`tag_id` in  ($pull_tag)  AND  `taggable_taggables`.`taggable_id` != $post_id  AND  `taggable_taggables`.`taggable_type` LIKE '%Post'  group by `posts`.`id` ");
-  
-    if($tags!= null){
-          for ($i=0; $i < count($tags) ; $i++) {
+     static function the_same_posts($post_id,$type,$db)
+          {  
+             $post=[];                   
+             $load_popular_tag = DB::select("SELECT id FROM $db WHERE id !='$post_id' ");
+             $posts = Tags:: get_intersect_status($post_id,$type,$load_popular_tag);  
 
 
-           $row = DB::table('posts')
-          ->select('posts.*', 'authors.name', 'authors.lastname') 
-          ->where('posts.status','<>','main') 
-          ->where('posts.id','=',$tags[$i]->id)       
-          ->join('authors', 'authors.id', '=', 'posts.author_id')
-          ->get();  
-           
-          if(count($row)>0){
-            $posts[$i]=$row;
-          }
-          
-                  }
-      }
-    
-       return $posts;
-
-        }     
-   
-     static function the_same_video_posts($video_id){ 
-
-      $load_popular_tag = DB::select("SELECT `taggable_taggables`.tag_id FROM `taggable_taggables` WHERE `taggable_id` = $video_id");
-      $pull_tags='';
-
-       for ($i=0; $i < count($load_popular_tag) ; $i++) {     
-        // $tags = DB::select("SELECT `taggable_taggables`.taggable_id FROM `taggable_taggables` WHERE `taggable_id` = $id and  `taggable_id` != $post_id");
-        $pull[$i]=$load_popular_tag[$i]->tag_id;
-        $pull_tags.=$load_popular_tag[$i]->tag_id.',';
-      
-       }
-
-       $pull_tag = substr($pull_tags, 0, -1); 
-
-       if(strlen($pull_tag)>0)
-       {
-
-            $tags = DB::select("SELECT `videos`.`id` from `videos` inner join `taggable_taggables` on `videos`.`id` = `taggable_taggables`.`taggable_id`  where `taggable_taggables`.`tag_id` in  ($pull_tag)  and   `taggable_taggables`.`taggable_id` != $video_id  AND  `taggable_taggables`.`taggable_type` LIKE '%Video' group by `videos`.`id` ");
+              if(count($posts['posts'])>0)
+              { 
+                $not_in = implode(",", $posts['posts']);
               
-            if($tags!= null)
-            {
-                  for ($i=0; $i < count($tags) ; $i++) {   
-                              $row = DB::table('videos')
-                              ->select('videos.*', 'authors.name', 'authors.lastname') 
-                              ->where('videos.status','<>','main') 
-                              ->where('videos.id','=',$tags[$i]->id)       
-                              ->join('authors', 'authors.id', '=', 'videos.author_id')
-                              ->get();  
-                                
-                              if(count($row)>0){
-                                $videos[$i]=$row;
-                              }
-                              
-                          }
-                     
-              }
-              return $videos;
-         
-   
-           }     
+                
+                
+                 for ($i=0; $i < count($posts['posts']) ; $i++) { }
 
-       }//having COUNT(`taggable_taggables`.tag_id) = 2 
-       
-}
+                  for ($i=0; $i < count($posts['posts']) ; $i++) {                          
+                        $row = DB::table($db)
+                        ->select($db.'.*', 'authors.name', 'authors.lastname')                       
+                        ->where($db.'.id','=',$posts['posts'][$i])       
+                        ->join('authors', 'authors.id', '=', $db.'.author_id')
+                        ->get();  
+
+                        if(count($row)>0){
+                            array_push($post,$row);                    
+                        }  
+                        if (count($post) == 4){
+                          break;
+                        }
+                      }
+
+                      if(4-count($posts['posts'])>0){
+                                  $pull_tags='';
+                                  for ($i=0; $i < 4-count($posts['posts']); $i++){ 
+                                    
+                                    $r=$posts['tags'][$i];                                    
+                                    $row = DB::select("SELECT `taggable_tags`.tag_id from `taggable_tags` WHERE `taggable_tags`.`name`= '$r' ");
+                                    
+                                    if(count($row)>0){
+                                          $pull_tags.=$row[0]->tag_id.',';    
+                                        }                                         
+                                      } 
+                                                
+                                    $pull_tag = substr($pull_tags, 0, -1); //having COUNT(`taggable_taggables`.tag_id) = 2                              
+                                    $roww =DB::select("SELECT $db.`id` from $db inner join `taggable_taggables` on $db.`id` = `taggable_taggables`.`taggable_id`  where  `taggable_taggables`.`taggable_id` not in ($not_in)  AND  `taggable_taggables`.`taggable_type` LIKE '%$type' AND  `taggable_taggables`.`tag_id` in ($pull_tag) group by $db.`id` ");
+                                    
+                                    for ($i=0; $i < count($roww); $i++) { 
+                                      $postss = DB::table($db)
+                                      ->select($db.'.*', 'authors.name', 'authors.lastname')                       
+                                      ->where($db.'.id','=',$roww[$i]->id)       
+                                      ->join('authors', 'authors.id', '=', $db.'.author_id')
+                                      ->get();  
+
+                                    
+                                      if(count($postss)>0){
+                                        array_push($post,$postss);    
+                                                    
+                                        } 
+                                        if (count($post) > (4-count($posts['posts']))){
+                                          break;
+                                        } 
+                                      
+                                            }
+                                }
+               }
+
+
+              return  $post;     
+          }
+
+         
+  
+  
+  }

@@ -1524,7 +1524,7 @@ p {
 
 .mark, mark {
     padding: .2em;
-    background-color: #fcf8e3
+    background-color: rgba(255, 33, 79, 0.52941176)
 }
 
 .text-left {

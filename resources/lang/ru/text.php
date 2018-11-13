@@ -12,6 +12,7 @@ return[
  "hodvac"=>"Прикрепленные файлы:",
  "download"=>"Скачать",
  "comment"=>"Комментарий",
+ "author"=>"Автор",
  "send"=>"Отправить",
  "same_posts"=>"Похожие",
  "tags"=>"Теги",
@@ -21,6 +22,18 @@ return[
  "contact_title"=>"Свяжитесь с нами",
  "first_icon_text"=>"Посетите наш офис",
  "second_icon_text"=>"Tелефон",
- "third_icon_text"=>"Адрес электронной почты"
-
+ "third_icon_text"=>"Адрес электронной почты",
+ "minute"=>"с.", 
+ "announcements" =>"Объявления",
+ "news"=>"Новости",
+ "partners"=>"Партнеры",
+ "auth"=>"Авторы",
+ "about_us"=>"О нас",
+ "contacts"=>"Контакты",
+ "leave_comment"=>"Оставить отзыв",
+ "name"=>'Имя',
+ "email"=>'Эл.-почта',
+ "text_area"=>'Ваше мнение',
+ "posts"=>"Статьи"
+ 
 ];
