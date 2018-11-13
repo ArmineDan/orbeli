@@ -55,9 +55,17 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.js"></script>
 {{-- @if ($locale == 'fr') $locale is a predefined variable holding the user's locale --}}
-<script src="/js/locale/ru.js"></script>
+{{-- <script src="/js/locale/ru.js"></script> --}}
 {{-- @endif --}}
-<script type="text/javascript" src="/js/dev.js"></script>
+<script>
+    var count=0;
+$(".calendar").mouseover(function(){
+    count++;
+    if (count==1){
+     // alert("fffffffff");
+      $(".fc-left .fc-today-button").trigger('click');
+      }   
+})
+    </script>
 
-<script type="text/javascript" src="/js/dev.js"></script>
 {!!  $all_last_posts['event']->script() !!}

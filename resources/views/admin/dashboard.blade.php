@@ -63,7 +63,7 @@
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="{{'link.to.all.authors'}}">
+                <a href="{{route('admin.authors.index', $locale)}}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-primary">Authors: 
                             <span class="label label-success">25</span>
@@ -89,7 +89,7 @@
         <hr>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ 'link.to.all.partners' }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-primary">Partners: 
@@ -98,7 +98,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ 'link.to.all.aboutus' }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-primary">About Us: 
@@ -107,10 +107,20 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a href="{{ route('admin.parralax.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-primary">Parallax: 
+                            <span class="label label-success">1</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ route('admin.contact.index', $locale) }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-primary">Contact us: 
                             <span class="label label-success">1</span>
                         </span>                    
                     </div>

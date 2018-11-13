@@ -2,9 +2,7 @@
 
 @section('all_post_of_author')
 <div class="col-md-12 col-sm-12 col-xs-12 margin-lr-auto text-center margin-80px-tb sm-margin-50px-tb xs-margin-30px-tb">
-        <div class="position-relative overflow-hidden width-100" 
-        style="display:{{count($all_last_posts['a_posts'])>0?'':'none'}}">
-        
+        <div class="position-relative overflow-hidden width-100" style="display:{{count($all_last_posts['a_posts'])>0?'':'none'}}">
             <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">
                     <a href="{{url($all_last_posts['lang'].'/author/posts/'.$all_last_posts['authors'][0]->id)}}" >  {{trans('text.author_posts')}} <i class="fa fa-arrow-right"></i></span>
         </div>

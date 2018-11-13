@@ -12,11 +12,29 @@ return[
  "hodvac"=>"Attached files:",
  "download"=>"Download",
  "comment"=>"Comment",
+ "author"=>"Author",
  "send"=>"Send",
  "same_posts"=>"Similars",
  "tags"=>"Tags",
  "bio"=>"Biography",
  "author_posts"=>"Author &nbsp; articles",
- "all_posts"=>"All Posts"
+ "all_posts"=>"All Posts",
+ "contact_title"=>"Contact Us",
+ "first_icon_text"=>"VISIT OUR OFFICE",
+ "second_icon_text"=>"PHONE",
+ "third_icon_text"=>"E-MAIL US",
+ "minute"=>"m.", 
+ "announcements" =>"Announcements",
+ "news"=>"News",
+ "partners"=>"Partners",
+ "auth"=>"Authors",
+ "about_us"=>"About Us",
+ "contacts"=>"Contacts",
+ "leave_comment"=>"Leave a review",
+ "name"=>'Name',
+ "email"=>'E-mail',
+ "text_area"=>'Your review',
+ "posts"=>"Posts"
+
 
 ];

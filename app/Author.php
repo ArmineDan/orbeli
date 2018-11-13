@@ -10,6 +10,7 @@ class Author extends Model
 {
 
     protected $table="authors";
+    public $timestamps = false; 
 
     static function authors_posts($id){
         $lang= App::getLocale();

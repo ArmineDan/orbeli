@@ -9,20 +9,21 @@
            <div class="row">     
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
                       
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height:350px">
-                                 @yield('posts')
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])> 0 ?'none':''?>">
+                               @yield('posts')
+                                
                                   
                             </div>
                           
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])> 0 ?'none':''?>">
                                @yield('videos')
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['announcements'])> 0 ?'none':''?>">
                                 @yield('announce')
                             </div>
                             
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['news'])> 0 ?'none':''?>">
                                 @yield('news')
                             </div>      
                     </main>

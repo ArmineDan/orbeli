@@ -21,6 +21,7 @@ class CreateParralaxesTable extends Migration
             $table->string('img'); 
             $table->integer('lang_id')->unsigned();
             $table->foreign('lang_id')->references('id')->on('langs'); 
+            $table->timestamps();
          
         });
     }

@@ -4025,3 +4025,14 @@ aside .latest-post li.aa figure {width: 179px;}
 }
  
 #see_all_images_ns img{margin-top: 100px} 
+
+#contact_ns_iframe{
+    margin-left: 14px;
+}
+
+@media(max-width: 934px){
+    #contact_ns_iframe{
+        margin-left: -14px;
+        width: 1000px;
+    }
+}
