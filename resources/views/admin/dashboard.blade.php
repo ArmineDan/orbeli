@@ -7,7 +7,7 @@
                 <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Posts:
-                            <span class="label label-success">150</span>
+                            <span class="label label-success">{{$posts->count()}}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.post.create', $locale) }}" class="label label-info">
@@ -21,7 +21,7 @@
                 <a href="{{ route('admin.video.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Video-Posts:
-                            <span class="label label-success">150</span>
+                            <span class="label label-success">{{$videos->count()}}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.video.create', $locale) }}" class="label label-info">
@@ -75,7 +75,7 @@
                 <a href="{{ route('admin.category.index', $locale)}}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Categories:
-                            <span class="label label-success">8</span>
+                            <span class="label label-success">{{$categories->count()}}</span>
                         </span>
                         <div>
                             <a href="{{ route('admin.category.create', $locale) }}" class="label label-info">

@@ -41,7 +41,7 @@
     @endisset
 
 
-    <form action="{{ route('admin.post.update', [$video,$locale]) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.video.update', [$video,$locale]) }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
         {{ method_field('put') }}
         <input type="text" hidden name="lang_id" id="" value="{{$video->lang_id}}">
