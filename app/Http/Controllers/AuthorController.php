@@ -33,7 +33,7 @@ class AuthorController extends Controller
         ->paginate(8);
         $mostViewed = Post::mostViewed();
         $popular_tags = Tags::load_popular_tags(); 
-        $calendar= Event::event();
+        $calendar= Event::event($locale);
         $all_last_posts = array(
         'authors' => $authors,
         'menu'=>$menu,

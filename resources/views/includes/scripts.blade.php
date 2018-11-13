@@ -59,5 +59,4 @@
 {{-- @endif --}}
 <script type="text/javascript" src="/js/dev.js"></script>
 
-<script type="text/javascript" src="/js/dev.js"></script>
 {!!  $all_last_posts['event']->script() !!}

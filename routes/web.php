@@ -38,6 +38,9 @@ Route::group( $admin_rules , function() {
   Route::post('/comment/savecommentstatus', 'CommentController@savecommentstatus')->name('admin.comment.savecommentstatus');
   
   Route::resource('/parralax', 'ParralaxController', ['as'=>'admin']);
+  Route::resource('/contact', 'ContactsController', ['as'=>'admin']);
+  Route::resource('/authors', 'AuthorController', ['as'=>'admin']);
+  Route::resource('/partners', 'PartnerController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
@@ -64,7 +67,7 @@ Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_vid
 Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
 
 Route::get('/{locale}', 'PageController@index');
-Route::get('{locale}/contacts', 'PageController@contacts');
+Route::get('/{locale}/contacts', 'PageController@contacts');
 Route::get('/{locale}/tags/posts/{tag_id}', 'LoadAll@post_whith_current_tag');
 Route::get('/', 'PageController@index');
 

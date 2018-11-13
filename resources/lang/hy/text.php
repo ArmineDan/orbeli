@@ -18,8 +18,10 @@ return[
  "tags"=>"Թեգեր",
  "bio"=>"Կենսագրություն",
  "author_posts"=>"Հեղինակի &nbsp; հոդվածները",
- "all_posts"=>"Բոլոր Հոդվածները"
- 
-
+ "all_posts"=>"Բոլոր Հոդվածները",
+ "contact_title"=>"Հատադարձ կապ",
+ "first_icon_text"=>"Այցելեք մեր գրասենյակ",
+ "second_icon_text"=>"Հեռախոս",
+ "third_icon_text"=>"Էլ-հասցե"
  
 ];

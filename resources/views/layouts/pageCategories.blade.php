@@ -16,7 +16,7 @@
                              @include('includes.mostVeiwed')
                             </div>
                              <div class="margin-45px-bottom xs-margin-25px-bottom">
-                                     @include('includes.tags')
+                                    @include('includes.tags')
                              </div>
                                  
                              <div class="text-center margin-45px-bottom xs-margin-25px-bottom">

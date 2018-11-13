@@ -142,7 +142,7 @@
                                        <input type="email" placeholder="Էլ.-հասցե *" class="medium-input" id="mail_comment_inp_ns">
                                    </div>
                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                       <textarea placeholder="Ձեր կարծիքը..." rows="8" class="medium-textarea" id="opinion_comment_inp_ns"></textarea>
+                                       <textarea placeholder="Ձեր կարծիքը..." rows="8" class="medium-textarea" id="opinion_comment_inp_ns" maxlength="500"></textarea>
                                    </div>
 
                                    <input type="hidden" id="hidden_id_comments_narek" value="{{$all_last_posts['id']}}">
@@ -151,8 +151,7 @@
                                    <div class="g-recaptcha col-md-12 col-sm-12 col-xs-12 text-center" data-sitekey="6LebWHkUAAAAAMW2otYGKxyP0Q-p4_jJpvm4Q3QV"></div>
                                
                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                                       <button  id="send_comment" class="btn btn-dark-gray btn-small margin-15px-top" type="submit">{{trans('text.send')}}</button>
-
+                                        <button id="send_comment" class="btn btn-dark-gray btn-small margin-15px-top" type="submit">{{trans('text.send')}}</button>
                                    </div>
                               
 
@@ -222,23 +221,36 @@
     $("#see_all_images_ns").click(function(){
         $("#see_all_images_ns").css("display","none");
     })
+   
+    $("#send_comment").click(function(){
 
-    $("#go_db_btn_comment").click(function(){
-        $.post(
-            "/php/set_comment.php",
-            {
-                name: $("#name_comment_inp_ns").val(),
-                mail: $("#mail_comment_inp_ns").val(),
-                opinion: $("#opinion_comment_inp_ns").val(),
-                id: $("#hidden_id_comments_narek").val()
-            },
-            function(result){
-                $("#comment_answer_ns").val(result);
-            }
-        )
-        $("#name_comment_inp_ns").val(""),
-        $("#mail_comment_inp_ns").val(""),
-        $("#opinion_comment_inp_ns").val("")
+        if($("#name_comment_inp_ns").val() == ''){
+            $("#name_comment_inp_ns").css("border","1px inset red");
+        }else if($("#mail_comment_inp_ns").val() == ''){
+            $("#mail_comment_inp_ns").css("border","1px inset red");
+        }else if($("#opinion_comment_inp_ns").val() == ''){
+            $("#opinion_comment_inp_ns").css("border","1px inset red");
+        }else{
+            $.post(
+                "/php/set_comment.php",
+                {
+                    name: $("#name_comment_inp_ns").val(),
+                    mail: $("#mail_comment_inp_ns").val(),
+                    opinion: $("#opinion_comment_inp_ns").val(),
+                    id: $("#hidden_id_comments_narek").val()
+                },
+                function(result){
+                    $("#comment_answer_ns").val(result);
+                }
+            )
+            $("#name_comment_inp_ns").val(""),
+            $("#mail_comment_inp_ns").val(""),
+            $("#opinion_comment_inp_ns").val("")
+
+            $("#name_comment_inp_ns").css("border","1px solid #d1d1d1"),
+            $("#mail_comment_inp_ns").css("border","1px solid #d1d1d1"),
+            $("#opinion_comment_inp_ns").css("border","1px solid #d1d1d1")
+        }
     })    
 </script>
 </body>

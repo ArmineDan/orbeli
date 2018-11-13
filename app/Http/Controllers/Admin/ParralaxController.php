@@ -20,12 +20,12 @@ class ParralaxController extends Controller
     public function index()
     {
         //$ns_post = \App\Post::all();
-        // return App::getLocale();
+        //return App::getLocale();
         $parralax = DB::select("SELECT * FROM parralaxes");
         //return $ns_post;
         return view('admin.parralax.index',[
             'locale' => App::getLocale(),
-            'parralax'=> $parralax,
+            'parralax' => $parralax,
         ]);
     }
 
@@ -99,7 +99,7 @@ class ParralaxController extends Controller
 
         // echo 'ok';
 
-        return redirect()->route('admin.parralax.index', App::getLocale());;
+        return redirect()->route('admin.parralax.index', App::getLocale());
     }
 
     /**
@@ -127,7 +127,6 @@ class ParralaxController extends Controller
         // return $parralax;
         App::setLocale($locale);
         
-       
         return view('admin.parralax.edit',[
             'parralax' => $parralax,
             'locale'=>$locale,
@@ -141,7 +140,7 @@ class ParralaxController extends Controller
      * @param  \App\parralax  $parralax
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, parralax $parralax, $locale)
+    public function update(Request $request, $locale, $id)
     {
         $this->validate($request,[
             'title' => 'required',
@@ -150,14 +149,14 @@ class ParralaxController extends Controller
             'img' => 'required'
         ]);
         
-        $post = Parralax::find($id);
-            $post->title = $request->input('title');
-            $post->text = $request->input('text');
-            $post->link = $request->input('link');
-            $post->img = $request->input('img');
-        $post->save();
+        $parralax = Parralax::find($id);
+            $parralax->title = $request->input('title');
+            $parralax->text = $request->input('text');
+            $parralax->link = $request->input('link');
+            $parralax->img = $request->input('img');
+        $parralax->save();
 
-        return redirect('/posts')->with('success','Post created');
+        return redirect()->route('admin.parralax.index', $locale)->with('success','Post Created');
     }
 
     /**
@@ -166,8 +165,10 @@ class ParralaxController extends Controller
      * @param  \App\parralax  $parralax
      * @return \Illuminate\Http\Response
      */
-    public function destroy(parralax $parralax)
+    public function destroy($id, $locale)
     {
-        //
+        $parralax = Parralax::find($id);
+        $parralax->delete();
+        return redirect()->route('admin.parralax.index', $locale);
     }
 }
