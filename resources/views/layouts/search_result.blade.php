@@ -11,9 +11,9 @@
                             <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px">
                                @yield('posts')
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px">
+                            {{-- <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px">
                                     @yield('videos')
-                                 </div>
+                                 </div> --}}
                       </main>
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
                          <div class="margin-45px-bottom xs-margin-25px-bottom">
@@ -97,7 +97,20 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-
+<script>
+        var searchInput = '{{$all_last_posts["s"]}}';           
+           function displayMatches() {
+            var regex = new RegExp(searchInput, 'gi')
+            $(".search_link, .show_text").each(function(){
+                var a1=$(this).text();
+           var response = a1.replace(regex, function(str) {
+                  return "<span style='background-color: yellow;'>" + str + "</span>"
+             })
+             $(this).html(response)
+                    })
+                    }
+                    setTimeout(displayMatches, 300); 
+      </script>
 {!!  $all_last_posts['event']->script() !!}
 
 </body>
