@@ -28,7 +28,7 @@ class CreateNewsTable extends Migration
             $table->integer('view')->default(1);
             $table->string('n_duration');          
 
-            $table->integer('post_typ')->unsigned();
+            $table->integer('post_typ')->unsigned()->default(1);
             $table->foreign('post_typ')->references('id')->on('categories');      
           
             $table->integer('author_id')->unsigned();

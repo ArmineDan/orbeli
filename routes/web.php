@@ -75,7 +75,7 @@ Route::get('/{locale}/news/{date}/{title}', 'PageController@openCurrentPost_news
 
 Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
 Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
-Route::get('/{locale}/search', 'PageController@search');
+//Route::get('/{locale}/search', 'PageController@search');
 Route::get('/{locale}/all/tags/', 'PageController@allTags');
 
 

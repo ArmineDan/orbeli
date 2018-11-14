@@ -1,6 +1,6 @@
 <div id="open_search_folder_ns">
     <i class="fa fa-times close_search_btn_ns"></i>
-    <form action="en/search" method="GET">
+    <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
         <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="Enter your keyword...1">
     <button type="submit">Search</button>
     </form>
@@ -50,7 +50,7 @@
                                             <li> <a href="{{url($all_last_posts['lang'].'/news')}}"  title="{{trans('text.news')}}">{{trans('text.news')}}</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/partners')}}" title="{{trans('text.partners')}}">{{trans('text.partners')}}</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="{{trans('text.auth')}}">{{trans('text.auth')}}</a> </li>
-                                            <li><a href="{{url($all_last_posts['lang'].'/about_us')}}" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
+                                            <li><a href="#" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
                                             <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="{{trans('text.contacts')}}">{{trans('text.contacts')}}</a> </li>                              
                                          </ul>
                                     </li>  

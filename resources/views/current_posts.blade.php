@@ -1,6 +1,6 @@
 @extends('layouts.pageCategories')
 @section('posts')
-<div class="infinite-scroll wow fadeIn" > 
+<div class="infinite-scroll wow fadeIn"> 
        
     @foreach ($all_last_posts['post'] as $item)               
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 317px;">
