@@ -179,8 +179,8 @@ class VideoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $locale)
-    {
-        $video = Video::findOrFail($id);
+    {        
+        $video = Video::findOrFail($id);        
         $lang_id = $video->lang_id;
         $authors = Author::where('lang_id', $lang_id)->get();
         $docsObject = $video->getDocuments()->get();
@@ -219,9 +219,41 @@ class VideoController extends Controller
      * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update(Request $request, $video_id, $locale)
     {
-        //
+        // return 'update video ' . $video_id . ' | ' . $locale;
+        $validator = $this->validate( $request, [
+            'title'=>'bail|required|max:400',
+            'short_text'=>'required|string',
+            // 'long_text' => 'nullable|string',
+            'html_code'=>'required|string',
+            
+            'img'=>'required|string',
+            // 'thumb_img' =>'nullable|string',
+            'date'=>'required|date',
+            'status'=>'required|alpha_dash|max:100',
+            'meta_k'=>'nullable|max:500',
+            'meta_d'=>'nullable|max:1000',
+            // 'view' => 'required|integer',
+            'post_typ'=>'required|integer',
+            'author_id' => 'required|integer',
+            'lang_id'=>'required|integer',
+            'tags'=> 'required|string',
+        ]);
+
+        // return $request->all();
+        $video = Video::findOrFail($video_id);
+        $video->update($request->all());
+        Event::checkAndSaveIfNotExists($request->input('date'));
+
+        if($request->input('tags')) {
+            if(!empty($request->input('tags'))) {
+                $video->retag($request->input('tags'));
+            }            
+        }
+
+        return redirect()->route('admin.video.edit', [$video_id, $locale]);
+
     }
 
     /**
@@ -230,8 +262,17 @@ class VideoController extends Controller
      * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video)
+    public function destroy($video_id, $locale)
     {
-        //
+        $video = Video::findOrFail($video_id);
+
+        $video->getDocuments()->delete(); // 100
+        $video->getComments()->delete(); // 100
+        $video->detag(); // 100
+        $video->delete(); // 100
+        $date = $video->date;        
+        Event::checkAndDeleteEventDate($date); // 100
+        return redirect()->route('admin.video.index', $locale);
+        
     }
 }

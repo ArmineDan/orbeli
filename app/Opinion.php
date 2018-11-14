@@ -36,6 +36,9 @@ class Opinion extends Model
     public function getDocuments() {
         return $this->morphMany('App\Document', 'documentable');
     }
+    public function getComments() {
+        return $this->comments();
+    }
     static  function get_opinion_id($date,$title)
     {
         return $get_video_id = DB::table('opinions') 
@@ -57,8 +60,6 @@ class Opinion extends Model
             ->where('p.date','=', $date)
             ->where('p.title','=', $title)        
             ->get();
-
-
     }
 
     

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Category;
 use App\Lang;
-use App\File;
 use App\Document;
 use Cviebrock\EloquentTaggable\Taggable;
 use App\Comment;
