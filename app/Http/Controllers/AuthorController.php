@@ -90,7 +90,8 @@ class AuthorController extends Controller
 
             } 
         }
-     public function author_all_posts($locale,$id)
+        
+     public function author_all_posts($locale,$auth_id)
 
     { 
         $rules = ['en','ru','hy'];                      
@@ -101,25 +102,39 @@ class AuthorController extends Controller
                 $lang = App::getLocale();
                $lng = Post:: getLangId();         
         $menu = Post::menu();
-        $calendar= Event::event($lang);       
-        $all_posts = Author::all_posts($id);
-        $popular_tags=Tags::load_popular_tags();
+        $calendar= Event::event($lang);     
+        $categories = Post :: categories();  
+        $all_posts = Author::all_authors_posts($auth_id,'posts');
+        $all_videos = Author::all_authors_posts($auth_id,'videos');
+        $all_announs = Author::all_authors_posts($auth_id,'announcements');
+        $all_news = Author::all_authors_posts($auth_id,'news');
+        $all_opinions = Author::all_authors_posts($auth_id,'opinions'); 
+        $popular_tags=Tags::load_all_popular_tags();
         $mostViewed = Post::mostViewed();
         
        
-        $all_last_posts = array(       
+        $all_data = array(       
         'menu'=>$menu, 
         "event"=> $calendar,
         "lang"=> $lang,
         "post" => $all_posts,
-        "id"=>trans('text.all_posts'),
+        "videos"=>$all_videos,
+        "announcements"=>$all_announs,
+        "news"=> $all_news,
         "mostViewed"=> $mostViewed,
         "popular_tags" => $popular_tags,
+        "opinions"=>$all_opinions,
+        "categories"=>$categories,
          );
 
+          
+       
+     //  return $all_data;
+           return view('archieves')-> with('all_last_posts',$all_data);
 
-     //return $all_last_posts;    
-       return  view('current_posts',compact('all_last_posts'));
+     
+        // return $all_last_posts;    
+       //return  view('current_posts',compact('all_last_posts'));
     
         }
         else{              

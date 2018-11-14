@@ -12,7 +12,6 @@
                             <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])> 0 ?'none':''?>">
                                @yield('posts')
                                 
-                                  
                             </div>
                           
                             <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])> 0 ?'none':''?>">

@@ -1,6 +1,6 @@
 @extends('layouts.show_archieves')
 @section('posts')
-<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['post'])==0?'none':'block'}}"><span> Posts</span></div>
+<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['post'])==0?'none':'block'}}"><span> {{trans('text.posts')}}</span></div>
                              
  <div class="infinite-scroll wow fadeIn" > 
        
@@ -40,7 +40,7 @@
 @endsection
 
 @section('videos')
-<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['videos'])==0?'none':'block'}}"><span> Videos</span></div>
+<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['videos'])==0?'none':'block'}}"><span> {{trans('text.videos')}}</span></div>
 
  <div class="infinite-scroll wow fadeIn" > 
          @foreach ($all_last_posts['videos'] as $item)               
@@ -78,7 +78,7 @@
 
 @section('announce')
 
-<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['announcements'])==0?'none':'block'}}"><span> Announcements</span></div>
+<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['announcements'])==0?'none':'block'}}"><span>  {{trans('text.announcements')}}</span></div>
 <div class="infinite-scroll wow fadeIn" > 
          @foreach ($all_last_posts['announcements'] as $item)               
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 317px;">
@@ -115,7 +115,7 @@
 
 @section('news')
 
-<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['news'])==0?'none':'block'}}"><span> News</span></div>
+<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['news'])==0?'none':'block'}}"><span>  {{trans('text.news')}}</span></div>
 
  <div class="infinite-scroll wow fadeIn" > 
          @foreach ($all_last_posts['news'] as $item)               

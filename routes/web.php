@@ -62,7 +62,7 @@ Route::get('/{locale}/news', 'LoadAll@news');
 Route::get('/{locale}/partners', 'LoadAll@partners');
 
 Route::get('/{locale}/author/{id}', 'AuthorController@about');
-Route::get('/{locale}/author/posts/{id}', 'AuthorController@author_all_posts');
+Route::get('/{locale}/author/posts/{auth_id}', 'AuthorController@author_all_posts');
 Route::get('/{locale}/opinions', 'LoadAll@opinions');
 Route::get('/{locale}/videos', 'LoadAll@videos');
 Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');
@@ -75,7 +75,6 @@ Route::get('/{locale}/news/{date}/{title}', 'PageController@openCurrentPost_news
 
 Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
 Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
-//Route::get('/{locale}/search', 'PageController@search');
 Route::get('/{locale}/all/tags/', 'PageController@allTags');
 
 
