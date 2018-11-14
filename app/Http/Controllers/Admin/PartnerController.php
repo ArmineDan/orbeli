@@ -1,10 +1,13 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use DB;
+use App;    
+use App\Lang;
 
 class PartnerController extends Controller
 {
@@ -13,9 +16,16 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $folder_name = "partner";
+
     public function index()
     {
-        //
+        $lang_id = Lang::getLangId();
+        $partner = DB::select("SELECT * FROM partners");
+        return view('admin.partners.index',[
+            'locale' => App::getLocale(),
+            'partner' => $partner,
+        ]);
     }
 
     /**
@@ -25,7 +35,29 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'partners')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // return $last_id;
+        $lang_id = Lang::getLangId();
+        // return $lang_id;
+        $folder_name = 'partner';
+        $images = Storage::files('public/'.$folder_name);
+        // return $images;
+        $imageurls = [];
+        for ($i=0; $i < count($images); $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
+        return view("admin.partners.create",[
+            'locale' => \App::getLocale(),
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
+            'lang_id' =>$lang_id,
+        ]);
     }
 
     /**
@@ -34,9 +66,39 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $locale)
     {
-        //
+        //return $locale;
+        $this->validate($request,[
+            'name' => 'required',
+            'url' => 'required',
+            'text' => 'required',
+            'logo' => 'required',
+            'lang_id' => 'required',
+        ]);
+        $partner = new Partner;
+        
+        // $parralax->title = $request->input('title');
+        // $parralax->text = $request->input('text');
+        // $parralax->link = $request->input('link');
+        // $parralax->img = $request->input('img');
+        // $parralax->lang_id = $locale;
+        // $parralax->save();
+
+        $paraParams = [
+            'p_name' => $request->input('name'),
+            'url' => $request->input('url'),
+            'text' => $request->input('text'),
+            'logo' => $request->input('logo'),
+            'lang_id' => $request->input('lang_id'),
+        ];
+
+        // $parralax->create($paraParams);
+        DB::table('partners')->insert( $paraParams );
+
+        // echo 'ok';
+
+        return redirect()->route('admin.partners.index', App::getLocale());
     }
 
     /**
@@ -56,9 +118,35 @@ class PartnerController extends Controller
      * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Partner $partner)
+    public function edit($id, $locale)
     {
-        //
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'partners')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // return $last_id;
+        $lang_id = Lang::getLangId();
+        // return $lang_id;
+        $folder_name = 'partner';
+        $images = Storage::files('public/'.$folder_name);
+        // return $images;
+        $imageurls = [];
+        for ($i=0; $i < count($images); $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
+    
+        $partner = Partner::find($id);
+        App::setLocale($locale);
+        
+        return view('admin.partners.edit',[
+            'partner' => $partner,
+            'locale'=>$locale,
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
+        ]);
     }
 
     /**
@@ -68,9 +156,23 @@ class PartnerController extends Controller
      * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Partner $partner)
+    public function update(Request $request, $locale, $id)
     {
-        //
+        $this->validate($request,[
+            'p_name' => 'required',
+            'url' => 'required',
+            'text' => 'required',
+            'logo' => 'required',
+        ]);
+        
+        $partner = Partner::find($id);
+            $partner->p_name = $request->input('p_name');
+            $partner->url = $request->input('url');
+            $partner->text = $request->input('text');
+            $partner->logo = $request->input('logo');
+        $partner->save();
+
+        return redirect()->route('admin.partner.index', $locale)->with('success','Post Created');
     }
 
     /**
@@ -79,8 +181,10 @@ class PartnerController extends Controller
      * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partner $partner)
+    public function destroy($id, $locale)
     {
-        //
+        $partner = Partner::find($id);
+        $partner->delete();
+        return redirect()->route('admin.partners.index', $locale);
     }
 }

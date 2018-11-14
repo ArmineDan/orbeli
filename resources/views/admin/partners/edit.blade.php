@@ -3,8 +3,18 @@
 @section('content')
 
 <div class="container">
+    @if(count($errors) > 0) 
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <h2> Create Authors <code>{{$locale}}</code> </h2>
+
+    <h2> Edit parralax Number {{$partner['id']}} </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -58,51 +68,32 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.authors.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.partners.update', [$partner, $locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
+            {{ method_field('put') }}
 
-        <label for="title">Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Create name">
-        <hr>
+            <label for="title">Partner Name</label>
+                <input name="p_name" class="form-control" value="{{ $partner['p_name'] }}">
+            <hr>
 
-        <label for="title">Last Name</label>
-        <input type="text" name="lastname" class="form-control" placeholder="Create LastName">
-        <hr>
+            <label for="url">Partner URL</label>
+                <input name="url" class="form-control" value="{{ $partner['url'] }}">
+            <hr>
 
-        <label for="title">Sub Name</label>
-        <input type="text" name="sub_name" class="form-control" placeholder="Create sub_name">
-        <hr>
+            <label for="post_short_text">Partner Text</label>
+            <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $partner['text'] }}
+            </textarea>
+            <hr>
 
-        <label for="title">Img <code> 500x500 </code> </label>
-        <input type="text" name="img" class="form-control" placeholder="Create img">
-        <hr>
+            <label for="title">Partner logo</label>
+                <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
+            <hr>
+            
+            <button class="btn btn-success">Save</button>
 
-        <label for="post_short_text">Biography</label>
-        <textarea name="biography" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Biography">       
-        </textarea>
-        <hr>
-
-        <label for="title">Facebook</label>
-        <input type="text" name="faceebook" class="form-control" placeholder="Facebook">
-        <hr>
-
-        <label for="title">Twitter</label>
-        <input type="text" name="twitter" class="form-control" placeholder="Twitter">
-        <hr>
-
-        <label for="title">Linkedin</label>
-        <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
-        <hr>
-
-        <label for="title">Email</label>
-        <input type="email" name="email" class="form-control" placeholder="Email">
-        <hr>
-
-        <input type="hidden" value="1" name="lang_id">
-        <br>
-
-        <button type="submit" class="btn btn-success"> Save </button>
     </form>
+
 </div>
 
 @endsection

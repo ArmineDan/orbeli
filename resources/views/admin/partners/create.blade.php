@@ -58,47 +58,26 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.authors.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.partners.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-        <label for="title">Name</label>
+        <label for="title">Partners Name</label>
         <input type="text" name="name" class="form-control" placeholder="Create name">
         <hr>
 
-        <label for="title">Last Name</label>
-        <input type="text" name="lastname" class="form-control" placeholder="Create LastName">
+        <label for="title">Partners URL</label>
+        <input type="text" name="url" class="form-control" placeholder="Create url">
         <hr>
 
-        <label for="title">Sub Name</label>
-        <input type="text" name="sub_name" class="form-control" placeholder="Create sub_name">
+        <label for="title">Partners Text</label>
+        <input type="text" name="text" class="form-control" placeholder="Create text">
         <hr>
 
-        <label for="title">Img <code> 500x500 </code> </label>
-        <input type="text" name="img" class="form-control" placeholder="Create img">
+        <label for="title">Logo <code> 500x500 </code> </label>
+        <input type="text" name="logo" class="form-control" placeholder="Create logo">
         <hr>
 
-        <label for="post_short_text">Biography</label>
-        <textarea name="biography" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Biography">       
-        </textarea>
-        <hr>
-
-        <label for="title">Facebook</label>
-        <input type="text" name="faceebook" class="form-control" placeholder="Facebook">
-        <hr>
-
-        <label for="title">Twitter</label>
-        <input type="text" name="twitter" class="form-control" placeholder="Twitter">
-        <hr>
-
-        <label for="title">Linkedin</label>
-        <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
-        <hr>
-
-        <label for="title">Email</label>
-        <input type="email" name="email" class="form-control" placeholder="Email">
-        <hr>
-
-        <input type="hidden" value="1" name="lang_id">
+        <input type="hidden" value="{{$lang_id}}" name="lang_id">
         <br>
 
         <button type="submit" class="btn btn-success"> Save </button>
