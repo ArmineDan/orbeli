@@ -78,13 +78,6 @@ class ParralaxController extends Controller
             'lang_id' => 'required',
         ]);
         $parralax = new parralax;
-        
-        // $parralax->title = $request->input('title');
-        // $parralax->text = $request->input('text');
-        // $parralax->link = $request->input('link');
-        // $parralax->img = $request->input('img');
-        // $parralax->lang_id = $locale;
-        // $parralax->save();
 
         $paraParams = [
             'title' => $request->input('title'),

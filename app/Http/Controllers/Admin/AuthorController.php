@@ -17,6 +17,9 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     protected $folder_name = 'author';
+
     public function index()
     {
         $lang_id = Lang::getLangId();
@@ -43,7 +46,8 @@ class AuthorController extends Controller
         //return $last_id_array;
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
         // return $last_id;
-        $images = Storage::files('public/authors/'.$last_id);
+        $folder_name = $this->folder_name;
+        $images = Storage::files('public/'.$folder_name);
         //return $images;
         $imageurls = [];
 
@@ -56,6 +60,7 @@ class AuthorController extends Controller
             'locale' => \App::getLocale(),
             'last_id' =>$last_id,
             'imageurls' => $imageurls,
+            'folder_name' => $folder_name,
         ]);
     }
 

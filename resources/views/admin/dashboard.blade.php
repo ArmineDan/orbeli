@@ -65,7 +65,7 @@
             <div class="col-md-4">
                 <a href="{{route('admin.authors.index', $locale)}}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Authors: 
+                        <span class="text-indent btn btn-default">Authors: 
                             <span class="label label-success">25</span>
                         </span>                    
                     </div>
@@ -110,7 +110,7 @@
             <div class="col-md-3">
                 <a href="{{ route('admin.parralax.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Parallax: 
+                        <span class="text-indent btn btn-default">Parallax: 
                             <span class="label label-success">1</span>
                         </span>                    
                     </div>
