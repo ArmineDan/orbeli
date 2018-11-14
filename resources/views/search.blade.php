@@ -1,6 +1,6 @@
 @extends('layouts.search_result')
 @section('posts')
-<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" ><span>Searching result for &nbsp;&nbsp;&nbsp;" {{ $all_last_posts['s']}} "</span></div>
+<div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" ><span>{{trans('text.search_result')}} &nbsp;&nbsp;&nbsp;" {{ $all_last_posts['s']}} "</span></div>
                             
  {{-- <div class="infinite-scroll wow fadeIn">        --}}
  @foreach ($all_last_posts['post'] as $post)                 
@@ -42,6 +42,8 @@
                                     echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
                                 @endphp
                             @endif
+                          
+
                              {{--If post content is > 200 in characters display 200 only or else display the whole content--}}
                             {{-- strlen( $long_desc ) > 30 ? substr($long_desc, $skizb, 800) . ' ...'. strlen( $long_desc ) : $long_desc --}}
                        

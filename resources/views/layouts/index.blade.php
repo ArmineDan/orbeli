@@ -77,15 +77,15 @@
                 </div>
             </div>
         </section>
-        <section class="section1"  style="background-color: #d3d3d34a; animation-name: fadeIn;"> 
+    <section class="section1"  style="background-color: #d3d3d34a; animation-name: fadeIn;"> 
           <div class="container">
             <div class="row">
-                 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><a href="{{url($all_last_posts['lang'].'/videos')}}" ><span>{{trans('text.videos')}} <i class="fa fa-arrow-right"></i></span></a></div>   
+                 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"><a href="{{url($all_last_posts['lang'].'/videos')}}" ><span>{{trans('text.videos')}} <i class="fa fa-arrow-right"></i></span></a></div>   
                      <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                             @yield('main_video')
                              </main>
                         <!-- Vertical videos-->  
-                        <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right" > 				   
+                        <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"> 				   
                          <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                             @yield('vertical_video')    
                              </div>                     

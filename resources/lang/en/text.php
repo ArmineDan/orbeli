@@ -34,7 +34,9 @@ return[
  "name"=>'Name',
  "email"=>'E-mail',
  "text_area"=>'Your review',
- "posts"=>"Posts"
+ "posts"=>"Posts",
+ "search"=>"Enter your keyword",
+ "search_result"=>"Search results"
 
 
 ];

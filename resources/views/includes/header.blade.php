@@ -1,8 +1,8 @@
 <div id="open_search_folder_ns">
     <i class="fa fa-times close_search_btn_ns"></i>
     <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
-        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="Enter your keyword...1">
-    <button type="submit">Search</button>
+        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
+    {{-- <button type="submit">Search</button> --}}
     </form>
     </div>
 
