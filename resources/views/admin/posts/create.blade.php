@@ -59,7 +59,7 @@
       <tbody>     
       @for ($i = 0; $i < count($imageurls); $i++)
       <tr>
-        <td><span>{{$imageurls[$i]['url']}}</span></td>
+        <td><span>{{ $imageurls[$i]['url'] }}</span></td>
         <td><img src="{{$imageurls[$i]['url']}}" alt="" width="120px"></td>
         <td><span>{{$imageurls[$i]['size']}}</span></td>      
       </tr>

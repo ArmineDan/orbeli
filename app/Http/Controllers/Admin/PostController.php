@@ -25,7 +25,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected $folder_name = 'post';
+    protected $folder_name = 'posts';
     protected $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
 
     public function index()
