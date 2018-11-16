@@ -54,11 +54,16 @@
 
         <div class="row">
         <div class="col-md-4">
-                <a href="{{ 'link.to.all.opinions' }}">
+                <a href="{{ route('admin.opinion.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Opinions: 
-                            <span class="label label-success">1</span>
-                        </span>                    
+                        <span class="text-indent btn btn-default">Opinions: 
+                            <span class="label label-success">{{$opinion->count()}}</span>
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.opinion.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>

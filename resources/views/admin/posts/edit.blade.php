@@ -140,7 +140,7 @@
             <span class="text text-info">only for "Economy"-category</span>
             <div id="long_text_wrap" style="display:none">
                 <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
-                        {{ $post['long_text'] }}
+                    {{ $post['long_text'] }}
                 </textarea>
             </div>
             <hr>
@@ -152,13 +152,13 @@
             <hr>
           
             <label for="img">Main image 900x600: <code>/storage/post/14/clouds-picture.jpg</code></label>
-            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" required>
+            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" >
             <hr>
           
             <label for="thumb_img">Croped image 450x600: <code>/storage/post/14/cropped-clouds-picture.jpg</code></label><br>
             <span class="text text-info">only for "Economy"-category</span>
             <div id="thumb_img_wrap" style="display:none">
-                <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" required>
+                <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" >
             </div>
             <hr>
 

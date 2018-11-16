@@ -994,9 +994,14 @@ __webpack_require__(12);
 window.Vue = __webpack_require__(37);
 
 $(document).ready(function () {
-  CKEDITOR.replace('post_short_text', { height: 150 });
-  CKEDITOR.replace('post_long_text', { height: 150 });
-  CKEDITOR.replace('post_full_text', { height: 150 });
+    CKEDITOR.replace('post_short_text', { height: 150 });
+    CKEDITOR.replace('post_long_text', { height: 150 });
+    CKEDITOR.replace('post_full_text');
+
+    function CountDurationLong() {
+        var longDesc = CKEDITOR.instances['post_long_text'].getData();
+        console.log(fullDesc);
+    }
 });
 
 /**
@@ -1008,7 +1013,7 @@ $(document).ready(function () {
 Vue.component('example', __webpack_require__(40));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 /***/ }),

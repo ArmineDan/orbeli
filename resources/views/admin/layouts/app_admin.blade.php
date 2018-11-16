@@ -54,7 +54,8 @@
                                 <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
                                 <li><a href="{{ route('admin.category.index', $locale) }}">Categories</a></li>
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
-                                <li><a href="{{ route('admin.video.index', $locale)}}">Video</a></li>
+                                <li><a href="{{ route('admin.video.index', $locale)}}">Videos</a></li>
+                                <li><a href="{{ route('admin.opinion.index', $locale)}}">Opinions</a></li>
                             </ul>
                         </li>                 
                     </ul>
@@ -102,17 +103,16 @@
 
         @yield('content')
     </div>
-
-    <!-- Scripts -->
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    {{-- <!-- Scripts --> --}}   
+    {{-- <script type="text/javascript">
         var options = {
-          filebrowserImageBrowseUrl: '/manage/laravel-filemanager?type=Images',
-          filebrowserImageUploadUrl: '/manage/laravel-filemanager/upload?type=Images&_token=',
-          filebrowserBrowseUrl: '/manage/laravel-filemanager?type=Files',
-          filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
+            filebrowserImageBrowseUrl: '/manage/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/manage/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/manage/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
         };
-      </script>
+    </script> --}}
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         function getStatusChangeValue(event) {
@@ -170,6 +170,8 @@
             document.getElementById('time_text').textContent = stats.text;
             document.getElementById('time_words').textContent = ' /words: ' + stats.words;
         }
+        
+        
       </script>
 </body>
 </html>

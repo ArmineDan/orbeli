@@ -24,7 +24,7 @@
                       <div class="margin-45px-bottom xs-margin-25px-bottom">
                            
                             <div style="text-align:center">
-                                    <img src="/{{$all_last_posts['authors'][0]->img}}" alt="" class="border-radius-100 " data-no-retina="">
+                                    <img src="{{$all_last_posts['authors'][0]->img}}" alt="" class="border-radius-100 " data-no-retina="">
                                     <br/>
                                     <span  class="text-extra-dark-gray font-weight-500 margin-5px-bottom display-block text-medium"  style="margin-top: 12px;" >{{$all_last_posts['authors'][0]->name.' '.$all_last_posts['authors'][0]->lastname}}</span>
                                 <span>{{$all_last_posts['authors'][0]->sub_name}}</span>
