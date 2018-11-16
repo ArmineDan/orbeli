@@ -21,7 +21,7 @@
         <li class="aa">
           <figure id="figure_narek">
          <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-            <img src="/{{$item->img}}" alt="" data-no-retina=""></a>
+            <img src="{{$item->img}}" alt="" data-no-retina=""></a>
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
@@ -90,7 +90,7 @@
                 <div class="display-table-cell vertical-align-middle text-center">    
                     <a href="{{$all_last_posts['parralax'][0]->link}}">
                     <h1 class="text-white alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">{{$all_last_posts['parralax'][0]->title}}</h1>
-                    <span class="text-white opacity6 alt-font" style="font-size:25px">{{$all_last_posts['parralax'][0]->text}}</span></a> 
+                    <span class="text-white opacity6 alt-font" style="font-size:25px">{!!$all_last_posts['parralax'][0]->text!!}</span></a> 
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                        
                         <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                             <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}">
-                                <img src="/{{$item->oimg}}" alt="" data-no-retina="">
+                                <img src="{{$item->oimg}}" alt="" data-no-retina="">
                             </a>
                         </div>
                         <div class="post-details">
@@ -120,7 +120,7 @@
                             <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
                           <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                           <div class="author text_left_a">
-                                   <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
+                                   <img src="{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
                                  <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
                                      <a href="home-#" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
                                     </span>
@@ -132,7 +132,7 @@
 @endforeach 
 
 </div>
-
+ 
 @endsection
 
 @section('xoragrer')
@@ -144,7 +144,7 @@
                 <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
                         <div class="blog-post">
                             <div class="blog-post-images overflow-hidden">
-                                <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
                                     <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                                 </a>
                             </div>
@@ -153,10 +153,12 @@
                                 <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">{{trans('text.xoragrer_items'.$i)}}</span>
                                 
                                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                                <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
-                                <a  href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
+                               <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
+                                </a>
+                               <a  href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
                                     <br/>
-                                    <p>{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text}}</p></a>
+                                    <p>{!! $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text!!}</p></a>
                             </div>
                         </div>
                 </li>            

@@ -16,7 +16,7 @@
                                 <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>{{trans('text.author')}}</span></div>
                                    <div style="text-align:center; ">
                                    <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
-                                    <img src="/{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                    <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
                                     <div style="margin-top:24px;">
                                       <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
                                       <div class="display-table height-100 width-100" style="color:black">
@@ -54,9 +54,17 @@
                        </aside>
                           
                      <main class="col-md-7 col-sm-12 col-xs-12 left-sidebar1 pull-right sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
-                           <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin">
+                           <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
+                            <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+						   
+						   <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin">
                                 <?php echo html_entity_decode($all_last_posts['post'][0]->html_code, ENT_QUOTES | ENT_XML1, 'UTF-8'); ?>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+                                <div class="author">                              
+                            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i> {{$all_last_posts['post'][0]->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span>
                             </div>
+                            </div>
+                           
                             @isset($all_last_posts['docs'])
                             <p style="color:crimson"> {{count($all_last_posts['docs'])>0?trans('text.hodvac'):''}}</p>
                             <div class="col-md-12 col-sm-12 col-xs-12 no-padding">                           
@@ -75,7 +83,7 @@
                             @endisset 
                             
                            <div class="col-md-12 col-sm-12 col-xs-12 margin-15px-bottom" >
-                               <div class="divider-full bg-medium-light-gray"></div>
+                       
                            </div>  
                             <div class="col-md-6 col-sm-12 col-xs-12 sm-text-center">
                                @isset($all_last_posts['tags'])
@@ -113,11 +121,11 @@
                                  style="display:{{count($all_last_posts['comments'])-5<0 ? 'none':''}}" ><i class="fa fa-plus" style="font-size: 25px;padding-top: 30px;cursor: pointer" id="ns_click_plus_com_btn"></i></center>
                                   </div>
                            @endisset                     
-                          
+                           
                      
                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                             <button class="btn btn-dark-gray btn-small margin-15px-top" id="com_btn" >{{trans('text.comment')}}</button>
-                              <div class="row"  id="com_form"  style="display:none">  
+                              <div class="row wow fadeInUp "  id="com_form"  style="display:none">  
                                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">                  
                                    <div class="col-md-12 col-sm-12 col-xs-12 margin-eight-top" >
                                        <div class="divider-full bg-medium-light-gray"></div>
@@ -140,9 +148,13 @@
                                      </div>
 
                                    <input type="hidden" id="hidden_id_comments_narek" value="{{$all_last_posts['id']}}">
+                                   <input type="hidden" id="pt_type" value="{{$all_last_posts['folder']}}">
+                                   <input type="hidden" id="pt_lang" value="{{$all_last_posts['lang']}}">
+                                  <div id="comment_answer_ns"></div>
                                   
-                                  
-                                   <div class="g-recaptcha col-md-12 col-sm-12 col-xs-12 text-center" data-sitekey="6LebWHkUAAAAAMW2otYGKxyP0Q-p4_jJpvm4Q3QV"></div>
+                                  <div class="col-md-12 col-sm-12 col-xs-12 text-center">                              
+                                    <div class="g-recaptcha" data-sitekey="6LeVzHoUAAAAALgdFaBocO43AD2zgTBB2w8akWOQ"></div>
+                                       </div>
                                
                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                         <button id="send_comment" class="btn btn-dark-gray btn-small margin-15px-top" type="submit">{{trans('text.send')}}</button>
@@ -174,7 +186,7 @@
                                      <div class="blog-post blog-post-style1 xs-text-center">
                                          <div class="blog-post-images overflow-hidden margin-25px-bottom sm-margin-20px-bottom">
                                              <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}">
-                                                 <img src="/{{$all_last_posts['same_posts'][$i][0]->img}}" alt="" data-no-retina="">
+                                                 <img src="{{$all_last_posts['same_posts'][$i][0]->img}}" alt="" data-no-retina="">
                                              </a>
                                          </div>
                                          <div class="post-details">
@@ -189,14 +201,14 @@
                                 @endfor 
                          </div>          
                         @endisset
-                                     
+                                      
                         </div>
-                        </div>
+                        </div> 
                    </div>
                </div>
            </section>
            <!-- end blog content section -->  
-    
+     
            <section class="no-padding_top">
                 <div class="container"></div>
             </section>
@@ -217,24 +229,44 @@
     })
    
     $("#send_comment").click(function(){
-
-        if($("#name_comment_inp_ns").val() == ''){
+              
+		if($("#name_comment_inp_ns").val() == ''){
             $("#name_comment_inp_ns").css("border","1px inset red");
         }else if($("#mail_comment_inp_ns").val() == ''){
             $("#mail_comment_inp_ns").css("border","1px inset red");
         }else if($("#opinion_comment_inp_ns").val() == ''){
-            $("#opinion_comment_inp_ns").css("border","1px inset red");
+		$("#opinion_comment_inp_ns").css("border","1px inset red");}
+		else if($('#g-recaptcha-response').val()==''){			 
+             $("#comment_answer_ns").html("{{trans('text.robot')}}");	
         }else{
-            $.post(
+            $.post( 
                 "/php/set_comment.php",
                 {
                     name: $("#name_comment_inp_ns").val(),
                     mail: $("#mail_comment_inp_ns").val(),
                     opinion: $("#opinion_comment_inp_ns").val(),
-                    id: $("#hidden_id_comments_narek").val()
+                    id: $("#hidden_id_comments_narek").val(),
+                    type: $("#pt_type").val(),
+                    lang: $("#pt_lang").val(),
+					capthca:$('#g-recaptcha-response').val()
                 },
                 function(result){
-                    $("#comment_answer_ns").val(result);
+					if(result=='OK'){
+						 $("#comment_answer_ns").html("{{trans('text.send_comment_ok')}}");		
+							setTimeout(()=>{
+								
+							$("#com_form").slideUp( "slow", function() {
+								$("#com_btn").show();
+								console.log("aaaa");
+							  });															
+							},1000) 
+					}   
+					else{
+						
+						 $("#comment_answer_ns").html("{{trans('text.send_comment_error')}}");				
+					
+					}
+                   
                 }
             )
             $("#name_comment_inp_ns").val(""),
@@ -245,6 +277,42 @@
             $("#mail_comment_inp_ns").css("border","1px solid #d1d1d1"),
             $("#opinion_comment_inp_ns").css("border","1px solid #d1d1d1")
         }
+			  
+         
+		 /*	$.ajax({
+				url: 'https://www.google.com/recaptcha/api/siteverify',
+				headers: {
+					'Authorization':'Basic xxxxxxxxxxxxx',
+					'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+					'Content-Type':'application/json'
+				},
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					 secret : '6LeVzHoUAAAAAOAb0eH2RPHg-pxeEhy1bXyTsnif',
+                    response : $('#g-recaptcha-response').val(),
+					remoteip: '198.199.124.113'
+                      
+				}
+				success: function(data){
+				  console.log('succes: '+data);
+				}
+			  });
+
+ 
+		 $.post(
+                "https://www.google.com/recaptcha/api/siteverify",
+                { header:{'content-type' :'application/json, charset=utf-8}
+                    secret : '6LeVzHoUAAAAAOAb0eH2RPHg-pxeEhy1bXyTsnif',
+                    response : $('#g-recaptcha-response').val(),
+					remoteip: '198.199.124.113'
+                      
+                },
+                function(result){
+                    $("#comment_answer_ns").html(result);
+                }
+				)*/
+       
     })    
 </script>
 {!!  $all_last_posts['event']->script() !!}

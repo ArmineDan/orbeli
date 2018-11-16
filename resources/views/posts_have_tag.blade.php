@@ -9,7 +9,7 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
@@ -48,7 +48,7 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
@@ -85,7 +85,7 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
@@ -123,7 +123,7 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
