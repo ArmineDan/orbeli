@@ -266,8 +266,10 @@ class PostController extends Controller
         // return $request->all();
 
         $post = Post::findOrFail($post_id);
+        $old_date = $post->date;
         $post->update($request->all());
         Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndDeleteEventDate($old_date);
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {

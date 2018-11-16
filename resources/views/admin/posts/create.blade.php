@@ -154,7 +154,7 @@
         <span class="btn btn-danger" onclick="CountDuration()">count</span>
         <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
       </h5>
-      <input type="text" name="p_duratioan" id="duration" class="form-control" value="5">
+      <input type="text" name="p_duratioan" id="duration" class="form-control" value="1">
       <hr>
       
       

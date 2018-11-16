@@ -9,6 +9,7 @@ use App\Post;
 use App;
 use App\Lang;
 use App\Video;
+use App\Opinion;
 
 class DashBoardController extends Controller
 {
@@ -20,12 +21,14 @@ class DashBoardController extends Controller
         $categories = Category::where('lang_id', '=', $lang_id)->get();
         $posts = Post::where('lang_id', '=', $lang_id)->get();
         $videos = Video::where('lang_id', '=',$lang_id)->get();
+        $opinion = Opinion::where('lang_id', '=', $lang_id)->get();
 
         return view('admin.dashboard', [
             'locale' => $locale,
             'categories'=>$categories,
             'posts' => $posts,
             'videos' => $videos,
+            'opinion' => $opinion,
 
         ]);
     }
