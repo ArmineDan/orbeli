@@ -7,7 +7,7 @@
             <figure>
                 
                 <div class="team-image xs-width-100">
-                 <img src="/{{$item->img}}" alt="" data-no-retina="">
+                 <img src="{{$item->img}}" alt="" data-no-retina="">
                     <div class="overlay-content text-center">
                         <div class="display-table height-100 width-100">
                             <div class="vertical-align-bottom display-table-cell icon-social-small padding-twelve-all">

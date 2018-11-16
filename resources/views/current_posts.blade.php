@@ -7,7 +7,7 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->oimg}}" alt="" data-no-retina="">
+                       <img src="{{$item->oimg}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
@@ -16,7 +16,7 @@
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
                    <div class="author text_left_a">
-                                   <img src="/{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
+                                   <img src="{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
                                  <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
                                      <a  href="{{url( $all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
                                     </span>
