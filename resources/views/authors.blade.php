@@ -19,8 +19,8 @@
                               <!--a href="mailto:info@orbeli.am" class="text-white" target="_blank" title="info@orbeli.am"><i class="fa fa-envelope"></i></a!-->
                               <i class="fa fa-envelope autors_narek_mail_icon">
                                 <p style="display: none">{{$item->id}}</p>
-                                <em></em>
-                              </i><br>
+                                <em>  </em>  
+                              </i>
                             </div>
                         </div>
                     </div>

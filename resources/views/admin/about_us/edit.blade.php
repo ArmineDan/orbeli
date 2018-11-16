@@ -14,7 +14,7 @@
     @endif
 
 
-    <h2> Edit parralax Number {{$partner['id']}} </h2>
+    <h2> Edit About Us Number {{$about_us['id']}} </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -68,28 +68,30 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.partners.update', [$partner, $locale]) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.about_us.update', [$locale, $about_us]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
 
-            <label for="name">Partner Name</label>
-                <input name="name" class="form-control" value="{{ $partner['p_name'] }}">
+            <label for="title">Title</label>
+            <input name="title" class="form-control" value="{{ $about_us['title'] }}">
             <hr>
 
-            <label for="url">Partner URL</label>
-                <input name="url" class="form-control" value="{{ $partner['url'] }}">
-            <hr>
-
-            <label for="post_short_text">Partner Text</label>
+            <label for="post_short_text">Short Text</label>
             <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control">       
-                {{ $partner['text'] }}
+                {{ $about_us['short_text'] }}
             </textarea>
             <hr>
 
-            <label for="logo">Partner logo</label>
-                <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
+            <label for="post_short_text">HTML Code</label>
+            <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $about_us['html_code'] }}
+            </textarea>
             <hr>
-            
+
+            <label for="link">Img</label>
+            <input name="img" class="form-control" value="{{ $about_us['img'] }}">
+            <br>
+
             <button class="btn btn-success">Save</button>
 
     </form>

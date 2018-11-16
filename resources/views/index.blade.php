@@ -90,7 +90,9 @@
                 <div class="display-table-cell vertical-align-middle text-center">    
                     <a href="{{$all_last_posts['parralax'][0]->link}}">
                     <h1 class="text-white alt-font font-weight-600 letter-spacing-minus-1 margin-10px-bottom">{{$all_last_posts['parralax'][0]->title}}</h1>
-                    <span class="text-white opacity6 alt-font" style="font-size:25px">{{$all_last_posts['parralax'][0]->text}}</span></a> 
+                    <span class="text-white opacity6 alt-font" style="font-size:25px">
+                        {{ strip_tags($all_last_posts['parralax'][0]->text) }}
+                    </span></a> 
                 </div>
             </div>
         </div>

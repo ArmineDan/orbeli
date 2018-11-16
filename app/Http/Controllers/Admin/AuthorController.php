@@ -37,18 +37,13 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        // return view("admin.authors.create",[
-        //     'locale' => \App::getLocale(),
-        // ]);
+
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
                                 FROM    information_schema.TABLES
                                 WHERE   (TABLE_NAME = 'authors')");
-        //return $last_id_array;
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        // return $last_id;
         $folder_name = $this->folder_name;
-        $images = Storage::files('public/'.$folder_name);
-        //return $images;
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
 
         for ($i=0; $i < count($images) ; $i++) {
@@ -128,14 +123,32 @@ class AuthorController extends Controller
      * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$locale)
+    public function edit($id, $locale)
     {
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'authors')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        
+        $lang_id = Lang::getLangId();
+        $folder_name = 'authors';
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        $imageurls = [];
+        for ($i=0; $i < count($images); $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
+    
         $author = Author::find($id);
         App::setLocale($locale);
         
         return view('admin.authors.edit',[
             'author' => $author,
             'locale'=>$locale,
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
         ]);
     }
 

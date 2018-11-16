@@ -5,7 +5,7 @@ $(".autors_narek_mail_icon").click(function(){
             id: $(this).children().html() 
         },
         function (result){
-            $(this).children().find("em").html(result)
+            $(this).find("em").html(result)
         }
     )
 })

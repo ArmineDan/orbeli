@@ -42,6 +42,9 @@ Route::group( $admin_rules , function() {
   Route::resource('/contact', 'ContactsController', ['as'=>'admin']);
   Route::resource('/authors', 'AuthorController', ['as'=>'admin']);
   Route::resource('/partners', 'PartnerController', ['as'=>'admin']);
+  Route::resource('/about_us', 'About_usController', ['as'=>'admin']);
+  Route::resource('/news', 'NewsController', ['as'=>'admin']);
+  Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 

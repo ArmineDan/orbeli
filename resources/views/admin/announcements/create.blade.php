@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Authors <code>{{$locale}}</code> </h2>
+    <h2> Create Announcement <code>{{$locale}}</code> </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -58,27 +58,58 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.partners.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.announcements.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-        <label for="title">Partners Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Create name">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control" placeholder="Create title">
         <hr>
 
-        <label for="title">Partners URL</label>
-        <input type="text" name="url" class="form-control" placeholder="Create url">
+        <label for="title">Short Text</label>
+        <input type="text" name="short_text" class="form-control" placeholder="Create short text">
         <hr>
 
-        <label for="title">Partners Text</label>
-        <input type="text" name="text" class="form-control" placeholder="Create text">
+        <label for="title">Long Text</label>
+        <input type="text" name="long_text" class="form-control" placeholder="Create long text">
         <hr>
 
-        <label for="title">Logo <code> 500x500 </code> </label>
-        <input type="text" name="logo" class="form-control" placeholder="Create logo">
+        <label for="post_short_text">HTML code</label>
+        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Create code">       
+        </textarea>
         <hr>
+
+        <label for="title">IMG <code> 500x500 </code> </label>
+        <input type="text" name="img" class="form-control" placeholder="Create img">
+        <hr>
+
+        <label for="title">Thumb IMG <code> 500x500 </code> </label>
+        <input type="text" name="thumb_img" class="form-control" placeholder="Create thumb img">
+        <hr>
+
+        <label for="meta_k">Meta data 
+          <br>
+          Meta keywords <kbd> without spaces </kbd>
+        </label>
+        <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keyword separated by commas">
+        <hr>
+
+        <label for="meta_d">Meta description</label>
+        <input type="text" name="meta_d" class="form-control" placeholder=" Insert meta-description">
+        <hr>
+
+        <input type="hidden" value="{{ date('Y-m-d H:i:s') }}" name="date">
+
+        <input type="hidden" name="status" value="published">
+
+        <input type="hidden" name="view" value="0">
+
+        <input type="hidden" name="a_duration" value="30">
+
+        <input type="hidden" name="post_typ" value="1">
+
+        <input type="hidden" name="author_id" value="1">
 
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
-        <input type="text" name="partner" value="{{$last_id}}" hidden>
         <br>
 
         <button type="submit" class="btn btn-success"> Save </button>

@@ -4,8 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Parralax <code>{{$last_id}}</code> <kbd>{{$locale}}</kbd> </h2>
-
+    <h2> Create About Us <code>{{$locale}}</code> </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -59,30 +58,25 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.parralax.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.about_us.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
         <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" placeholder="Create name">
+        <input type="text" name="title" class="form-control" placeholder="Create Title">
         <hr>
 
-        <label for="post_short_text">Parallax Text</label>
-        <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input text">       
-        </textarea>
+        <label for="short_text">Short Text</label>
+        <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Create Text"></textarea>
         <hr>
 
-        <label for="title">Link</label>
-        <input type="text" name="link" class="form-control" placeholder="Create link">
+        <label for="html_code">HTML code</label>
+        <input type="text" name="html_code" class="form-control" placeholder="Create Code">
         <hr>
 
-        <label for="title">Post main image 900x600: upload and past url here 
-            <code>/storage/parralax/6/parallax-1.jpg</code>
-        </label>
-        <input type="text" name="img" class="form-control" placeholder="Create img">
-        <br>
+        <label for="html_code">Img</label>
+        <input type="text" name="img" class="form-control" placeholder="Create Img">
+        <hr>
 
-        
-        <input type="text" name="lang_id" id="" value="{{$lang_id}}" hidden>
         <button type="submit" class="btn btn-success"> Save </button>
     </form>
 </div>

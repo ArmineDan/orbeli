@@ -37,6 +37,4 @@ return[
  "posts"=>"Posts",
  "search"=>"Enter your keyword",
  "search_result"=>"Search results"
-
-
 ];

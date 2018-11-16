@@ -3,18 +3,8 @@
 @section('content')
 
 <div class="container">
-    @if(count($errors) > 0) 
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
-
-    <h2> Edit parralax Number {{$partner['id']}} </h2>
+    <h2> Create News <code>{{$locale}}</code> </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -40,7 +30,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="post_id" value="{{$last_id}}">
+                <input type="text" hidden name="author_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
@@ -68,32 +58,44 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.partners.update', [$partner, $locale]) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.news.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
-            {{ method_field('put') }}
 
-            <label for="name">Partner Name</label>
-                <input name="name" class="form-control" value="{{ $partner['p_name'] }}">
-            <hr>
+        <label for="title">News Title</label>
+        <input type="text" name="title" class="form-control" placeholder="Create title">
+        <hr>
 
-            <label for="url">Partner URL</label>
-                <input name="url" class="form-control" value="{{ $partner['url'] }}">
-            <hr>
+        <label for="html_code">HTML code</label>
+        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Html code">       
+        </textarea>
+        <hr>
 
-            <label for="post_short_text">Partner Text</label>
-            <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control">       
-                {{ $partner['text'] }}
-            </textarea>
-            <hr>
+        <label for="short_text">Short Text</label>
+        <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
+        </textarea>
+        <hr>
 
-            <label for="logo">Partner logo</label>
-                <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
-            <hr>
-            
-            <button class="btn btn-success">Save</button>
+        <label for="img">Img <code> 500x500 </code> </label>
+        <input type="text" name="img" class="form-control" placeholder="Create img">
+        <hr>
 
+        <label for="img">Thumb Img <code> 500x500 </code> </label>
+        <input type="text" name="thumb_img" class="form-control" placeholder="Create thumb img">
+        <br>
+
+        <input type="hidden" value="{{$lang_id}}" name="lang_id">
+
+        <input type="hidden" value="{{date('Y-m-d H:i:s')}}" name="date">
+        <input type="hidden" value="published" name="status">
+        <input type="hidden" value="absdabsd" name="meta_k">
+        <input type="hidden" value="absdabsd" name="meta_d">
+        <input type="hidden" value="0" name="view">
+        <input type="hidden" value="30" name="n_duration">
+        <input type="hidden" value="11" name="post_typ">
+        <input type="hidden" value="11" name="author_id">
+
+        <button type="submit" class="btn btn-success"> Save </button>
     </form>
-
 </div>
 
 @endsection
