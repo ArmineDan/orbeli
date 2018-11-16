@@ -59,7 +59,7 @@
       <tbody>     
       @for ($i = 0; $i < count($imageurls); $i++)
       <tr>
-        <td><span>{{$imageurls[$i]['url']}}</span></td>
+        <td><span>{{ $imageurls[$i]['url'] }}</span></td>
         <td><img src="{{$imageurls[$i]['url']}}" alt="" width="120px"></td>
         <td><span>{{$imageurls[$i]['size']}}</span></td>      
       </tr>
@@ -154,7 +154,7 @@
         <span class="btn btn-danger" onclick="CountDuration()">count</span>
         <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
       </h5>
-      <input type="text" name="p_duratioan" id="duration" class="form-control" value="5">
+      <input type="text" name="p_duratioan" id="duration" class="form-control" value="1">
       <hr>
       
       

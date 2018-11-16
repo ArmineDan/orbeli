@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Video;
+use App\Opinion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 
 use App;
 use App\Lang;
 use App\Post;
 use App\Author;
-use App\Document;
 use App\Event;
+use App\Document;
 use App\Comment;
 use Validator;
 
-class VideoController extends Controller
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+
+
+class OpinionController extends Controller
 {
 
-    protected $folder_name = 'videos';
+    protected $folder_name = 'opinions';
     protected $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
     protected $post_typ = 1;
+    
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +35,9 @@ class VideoController extends Controller
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $videos = Video::where('lang_id', '=', $lang_id)->paginate(10);
-        return view('admin.videos.index', [
-            'videos' => $videos,
+        $opinions = Opinion::where('lang_id', '=', $lang_id)->paginate(10);
+        return view('admin.opinions.index', [
+            'opinions' => $opinions,
             'locale' => App::getLocale(),
         ]);
     }
@@ -47,7 +51,7 @@ class VideoController extends Controller
     {
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
         FROM    information_schema.TABLES
-        WHERE   (TABLE_NAME = 'videos')
+        WHERE   (TABLE_NAME = 'opinions')
         AND table_schema=DATABASE()");        
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
 
@@ -69,8 +73,8 @@ class VideoController extends Controller
             $allTags[$i] = $allTagsColumn[$i]->name;
         }
 
-        return view('admin.videos.create', [
-            'video' => [],
+        return view('admin.opinions.create', [
+            'opinion' => [],
             'authors' => $authors,            
             'tags' => $allTags,
             'locale' => App::getLocale(),
@@ -80,7 +84,6 @@ class VideoController extends Controller
             'folder_name' => $folder_name,
             'post_typ' => $this->post_typ,
         ]);
-
     }
 
     /**
@@ -94,32 +97,28 @@ class VideoController extends Controller
         $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
             'short_text'=>'required|string',
-            // 'long_text' => 'nullable|string',
-            'html_code'=>'required|string',
-            
+            'html_code'=>'required|string',            
             'img'=>'required|string',
-            // 'thumb_img' =>'nullable|string',
             'date'=>'required|date',
             'status'=>'required|alpha_dash|max:100',
             'meta_k'=>'nullable|max:500',
             'meta_d'=>'nullable|max:1000',
-            'duration'=>'required|string',
-            // 'view' => 'required|integer',
+            'o_duration' => 'required|string',
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
             'tags'=> 'required|string',
         ]);
 
-        $video = Video::create($request->all());
-        $video_id = $video->id;
-        // return $video_id;
+        $opinion = Opinion::create($request->all());
+        $opinion_id = $opinion->id;
+        // return $opinion_id;
 
-        // add tags to this Video-post
+        // add tags to this Opinion
         if($request->input('tags')) {
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
-            $video->tag($tagsArray); // store-to-db
+            $opinion->tag($tagsArray); // store-to-db
         }
 
         // add date into Event if not exists
@@ -127,42 +126,43 @@ class VideoController extends Controller
 
         // update lang_id into taggable_taggables
         DB::table('taggable_taggables')
-        ->where('taggable_type', 'App\\Video')
-        ->where('taggable_id', $video_id)
+        ->where('taggable_type', 'App\\Opinion')
+        ->where('taggable_id', $opinion_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
 
-        return redirect()->route('admin.video.show', [$video_id, App::getLocale()]);
-
+        return redirect()->route('admin.opinion.show', [$opinion_id, App::getLocale()]);
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function show($video_id, $locale)
+    public function show($opinion_id, $locale)
     {
-        $video = Video::findOrFail($video_id);
-        $lang_id = $video->lang_id;
+        $opinion = Opinion::findOrFail($opinion_id);
+        $lang_id = $opinion->lang_id;
         // return $lang_id;
 
-        $comments = Video::find($video->id)->getComments()->get();
-        $files = Storage::files('public/'.$this->folder_name.'/'.$video->id);
+        $comments = Opinion::find($opinion->id)->getComments()->get();
+        $files = Storage::files('public/'.$this->folder_name.'/'.$opinion->id);
         $fileurls = [];
         for ($i=0; $i < count($files) ; $i++) {
             $fileurls[$i]['url'] = Storage::url($files[$i]);
             $fileurls[$i]['size'] = $size = Storage::size($files[$i]);
             if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
-                if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Video')->exists()) {
+                if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Opinion')->exists()) {
                     // return 'into if';
-                    Video::findOrFail($video->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                    Opinion::findOrFail($opinion->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
                 }
             }            
         }
-        $docsObject = Video::findOrFail($video->id)->getDocuments()->get(); // don't change this position //
-        return view('admin.videos.show', [
-            'video' => $video,
+
+        $docsObject = Opinion::findOrFail($opinion->id)->getDocuments()->get(); // don't change this position //
+        return view('admin.opinions.show', [
+            'opinion' => $opinion,
             'locale' => $locale,
             'fileurls' => $fileurls,
             'docsObject' => $docsObject,
@@ -170,72 +170,67 @@ class VideoController extends Controller
             'folder_name' => $this->folder_name,
         ]);
 
-        // return 'hello show video - ' . $video_id . ' - lng - ' . $locale;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $locale)
-    {        
-        $video = Video::findOrFail($id);        
-        $lang_id = $video->lang_id;
+    {
+        $opinion = Opinion::findOrFail($id);
+        $lang_id = $opinion->lang_id;
         $authors = Author::where('lang_id', $lang_id)->get();
-        $docsObject = $video->getDocuments()->get();
+        $docsObject = $opinion->getDocuments()->get();
 
         $allTagsArray = Post::getAllTagsByLangId($lang_id);
         $allTagsList = implode(',',$allTagsArray);
-        $videoTagsList = $video->tagList;
+        $opinionTagsList = $opinion->tagList;
 
-        $images = Storage::files('public/'.$this->folder_name.'/'.$video->id);
+        $images = Storage::files('public/'.$this->folder_name.'/'.$opinion->id);
         $imageurls = [];
-        for ($i=0; $i < count($images) ; $i++) { 
+        for ($i=0; $i < count($images) ; $i++) {
             if(in_array(Document::getTypeFromLink($images[$i]), $this->validImageExp)) {
                 $imageurls[$i]['url'] = Storage::url($images[$i]);
                 $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
             }            
         }
 
-        return view('admin.videos.edit',[
-            'video' => $video,
+        return view('admin.opinions.edit',[
+            'opinion' => $opinion,
             'authors' => $authors,
             'locale' => $locale,
             'allTagsList' => $allTagsList,
-            'videoTagsList' => $videoTagsList,
+            'opinionTagsList' => $opinionTagsList,
             'docsObject' => $docsObject,
             'folder_name' => $this->folder_name,
             'imageurls' => $imageurls,
             'post_typ' => $this->post_typ,
         ]);
-        // return 'hello edit video - ' . $id . ' - lng - ' . $locale;
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Video  $video
+     * @param  \App\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $video_id, $locale)
+    public function update(Request $request, $opinion_id, $locale)
     {
-        // return 'update video ' . $video_id . ' | ' . $locale;
         $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
             'short_text'=>'required|string',
-            // 'long_text' => 'nullable|string',
-            'html_code'=>'required|string',
-            
+            'html_code'=>'required|string',            
             'img'=>'required|string',
-            // 'thumb_img' =>'nullable|string',
             'date'=>'required|date',
             'status'=>'required|alpha_dash|max:100',
             'meta_k'=>'nullable|max:500',
             'meta_d'=>'nullable|max:1000',
-            // 'view' => 'required|integer',
+            'o_duration' => 'required|string',
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
@@ -243,40 +238,39 @@ class VideoController extends Controller
         ]);
 
         // return $request->all();
-        $video = Video::findOrFail($video_id);
-        $old_date = $video->date;
+        $opinion = Opinion::findOrFail($opinion_id);
+        $old_date = $opinion->date;
 
-        $video->update($request->all());
+        $opinion->update($request->all());
         Event::checkAndSaveIfNotExists($request->input('date'));
         Event::checkAndDeleteEventDate($old_date);
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
-                $video->retag($request->input('tags'));
+                $opinion->retag($request->input('tags'));
             }            
         }
 
-        return redirect()->route('admin.video.edit', [$video_id, $locale]);
+        return redirect()->route('admin.opinion.edit', [$opinion->id, $locale]);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Video  $video
+     * @param  \App\Opinion  $opinion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($video_id, $locale)
+    public function destroy($opinion_id, $locale)
     {
-        $video = Video::findOrFail($video_id);
+        $opinion = Opinion::findOrFail($opinion_id);
+        $date = $opinion->date;        
 
-        $video->getDocuments()->delete(); // 100
-        $video->getComments()->delete(); // 100
-        $video->detag(); // 100
-        $video->delete(); // 100
-        $date = $video->date;        
+        $opinion->getDocuments()->delete(); // 100
+        $opinion->getComments()->delete(); // 100
+        $opinion->detag(); // 100
+        $opinion->delete(); // 100
         Event::checkAndDeleteEventDate($date); // 100
-        return redirect()->route('admin.video.index', $locale);
-        
+        return redirect()->route('admin.opinion.index', $locale);
     }
 }

@@ -25,7 +25,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected $folder_name = 'post';
+    protected $folder_name = 'posts';
     protected $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
 
     public function index()
@@ -266,8 +266,10 @@ class PostController extends Controller
         // return $request->all();
 
         $post = Post::findOrFail($post_id);
+        $old_date = $post->date;
         $post->update($request->all());
         Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndDeleteEventDate($old_date);
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {

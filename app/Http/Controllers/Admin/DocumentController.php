@@ -26,6 +26,7 @@ class DocumentController extends Controller
                     $imgDebug['success'][$i]['url'] =  $_FILES['images']['tmp_name'][$i];
                     $imgDebug['success'][$i]['name'] = $_FILES['images']['name'][$i];
                     $path = Storage::disk('public')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['images']['tmp_name'][$i]), $_FILES['images']['name'][$i]);
+                    $path2 = Storage::disk('upload')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['images']['tmp_name'][$i]), $_FILES['images']['name'][$i]);
                     $imgDebug['success'][$i]['path'] = Storage::url($path);
                     $imgDebug['success'][$i]['size'] = $_FILES['images']['size'][$i];;           
                 }
@@ -57,6 +58,7 @@ class DocumentController extends Controller
                     $flDebug['success'][$i]['url'] =  $_FILES['files']['tmp_name'][$i];
                     $flDebug['success'][$i]['name'] = $_FILES['files']['name'][$i];
                     $path = Storage::disk('public')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['files']['tmp_name'][$i]), $_FILES['files']['name'][$i]);
+                    $path2 = Storage::disk('upload')->putFileAs($folder_name.'/'.$post_id, new File($_FILES['files']['tmp_name'][$i]), $_FILES['files']['name'][$i]);
                     $flDebug['success'][$i]['path'] = Storage::url($path);
                     $flDebug['success'][$i]['size'] = $_FILES['files']['size'][$i];;           
                 }
