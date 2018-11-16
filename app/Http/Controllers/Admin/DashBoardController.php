@@ -22,7 +22,6 @@ class DashBoardController extends Controller
         $posts = Post::where('lang_id', '=', $lang_id)->get();
         $videos = Video::where('lang_id', '=',$lang_id)->get();
         $opinion = Opinion::where('lang_id', '=', $lang_id)->get();
-
         return view('admin.dashboard', [
             'locale' => $locale,
             'categories'=>$categories,

@@ -95,18 +95,18 @@
 
         <div class="row">
             <div class="col-md-3">
-                <a href="{{ 'link.to.all.partners' }}">
+                <a href="{{ route('admin.partners.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Partners: 
+                        <span class="text-indent btn btn-default">Partners: 
                             <span class="label label-success">1</span>
                         </span>                    
                     </div>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ 'link.to.all.aboutus' }}">
+                <a href="{{ route('admin.about_us.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">About Us: 
+                        <span class="text-indent btn btn-default">About Us: 
                             <span class="label label-success">1</span>
                         </span>                    
                     </div>
@@ -125,7 +125,7 @@
             <div class="col-md-3">
                 <a href="{{ route('admin.contact.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Contact us: 
+                        <span class="text-indent btn btn-default">Contact us: 
                             <span class="label label-success">1</span>
                         </span>                    
                     </div>

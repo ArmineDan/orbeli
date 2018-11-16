@@ -30,7 +30,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="author_id" value="{{$last_id}}">
+                <input type="text" hidden name="post_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">

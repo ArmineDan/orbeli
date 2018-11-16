@@ -14,7 +14,7 @@
     @endif
 
 
-    <h2> Edit parralax Number {{$partner['id']}} </h2>
+    <h2> Edit News Number {{$news['id']}} </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -40,7 +40,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="post_id" value="{{$last_id}}">
+                <input type="text" hidden name="author_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
@@ -68,28 +68,34 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.partners.update', [$partner, $locale]) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.partners.update', [$news, $locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
 
-            <label for="name">Partner Name</label>
-                <input name="name" class="form-control" value="{{ $partner['p_name'] }}">
+            <label for="title">News Title</label>
+                <input name="title" class="form-control" value="{{ $news['title'] }}">
             <hr>
 
-            <label for="url">Partner URL</label>
-                <input name="url" class="form-control" value="{{ $partner['url'] }}">
-            <hr>
-
-            <label for="post_short_text">Partner Text</label>
-            <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control">       
-                {{ $partner['text'] }}
+            <label for="short_text">News Short Text</label>
+            <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $news['short_text'] }}
             </textarea>
             <hr>
 
-            <label for="logo">Partner logo</label>
-                <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
+            <label for="html_code">News HTML Code</label>
+            <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $news['html_code'] }}
+            </textarea>
             <hr>
-            
+
+            <label for="img">News Img</label>
+                <input name="img" class="form-control" value="{{ $news['img'] }}">
+            <hr>
+
+            <label for="thumb_img">News Thumb Img</label>
+                <input name="thumb_img" class="form-control" value="{{ $news['thumb_img'] }}">
+            <hr>
+
             <button class="btn btn-success">Save</button>
 
     </form>

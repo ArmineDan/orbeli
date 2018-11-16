@@ -37,13 +37,6 @@
                           <td> {{$item->twitter}} </td>
                           <td> {{$item->linkedin}} </td>
                           <td> {{$item->email}} </td>
-
-                          <td>
-                            <a href="{{route('admin.authors.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
-                              <i class="glyphicon glyphicon-edit"></i> 
-                            </a>
-                          </td>
-                
                           </tr>
                       </tbody>
             @endforeach

@@ -44,7 +44,7 @@ class PartnerController extends Controller
         $lang_id = Lang::getLangId();
         // return $lang_id;
         $folder_name = 'partner';
-        $images = Storage::files('public/'.$folder_name);
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         // return $images;
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
@@ -77,13 +77,6 @@ class PartnerController extends Controller
             'lang_id' => 'required',
         ]);
         $partner = new Partner;
-        
-        // $parralax->title = $request->input('title');
-        // $parralax->text = $request->input('text');
-        // $parralax->link = $request->input('link');
-        // $parralax->img = $request->input('img');
-        // $parralax->lang_id = $locale;
-        // $parralax->save();
 
         $paraParams = [
             'p_name' => $request->input('name'),
@@ -93,10 +86,7 @@ class PartnerController extends Controller
             'lang_id' => $request->input('lang_id'),
         ];
 
-        // $parralax->create($paraParams);
         DB::table('partners')->insert( $paraParams );
-
-        // echo 'ok';
 
         return redirect()->route('admin.partners.index', App::getLocale());
     }
@@ -125,12 +115,9 @@ class PartnerController extends Controller
                                 WHERE   (TABLE_NAME = 'partners')");
 
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        // return $last_id;
         $lang_id = Lang::getLangId();
-        // return $lang_id;
         $folder_name = 'partner';
-        $images = Storage::files('public/'.$folder_name);
-        // return $images;
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -156,23 +143,23 @@ class PartnerController extends Controller
      * @param  \App\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $locale, $id)
+    public function update(Request $request, $id, $locale)
     {
         $this->validate($request,[
-            'p_name' => 'required',
+            'name' => 'required',
             'url' => 'required',
             'text' => 'required',
             'logo' => 'required',
         ]);
         
         $partner = Partner::find($id);
-            $partner->p_name = $request->input('p_name');
+            $partner->p_name = $request->input('name');
             $partner->url = $request->input('url');
             $partner->text = $request->input('text');
             $partner->logo = $request->input('logo');
         $partner->save();
 
-        return redirect()->route('admin.partner.index', $locale)->with('success','Post Created');
+        return redirect()->route('admin.partners.index', $locale)->with('success','Post Created');
     }
 
     /**
