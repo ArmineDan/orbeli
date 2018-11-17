@@ -32,11 +32,16 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('admin.post.index', $locale) }}">
+                <a href="{{ route('admin.news.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">News:
+                        <span class="text-indent btn btn-default">News:
                             <span class="label label-success">150</span>
-                        </span>                    
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.news.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>

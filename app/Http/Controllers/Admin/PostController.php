@@ -134,10 +134,12 @@ class PostController extends Controller
             // $post_id = $request->input('post_id') - 1;
             // $post = Post::findOrFail($post_id);
         
+        // update lang_id into taggable_taggables
         DB::table('taggable_taggables')
-            ->where('taggable_type', 'App\\Post')
-            ->where('taggable_id', $post_id)
-            ->update(['lang_id' => $request->input('lang_id') ]);
+        ->where('taggable_type', 'App\\Post')
+        ->where('taggable_id', $post_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
+
         return redirect()->route('admin.post.show', [$post_id, App::getLocale()]);
     }
 
@@ -276,6 +278,12 @@ class PostController extends Controller
                 $post->retag($request->input('tags'));
             }            
         }
+
+        // update lang_id into taggable_taggables
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Post')
+        ->where('taggable_id', $post_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
 
         // check and replace other posts with status = "main"
         if($post->status == 'main') {

@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
-
 class OpinionController extends Controller
 {
 
@@ -50,9 +49,9 @@ class OpinionController extends Controller
     public function create()
     {
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-        FROM    information_schema.TABLES
-        WHERE   (TABLE_NAME = 'opinions')
-        AND table_schema=DATABASE()");        
+            FROM    information_schema.TABLES
+            WHERE   (TABLE_NAME = 'opinions')
+            AND table_schema=DATABASE()");
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
 
         $folder_name = $this->folder_name;
@@ -65,7 +64,7 @@ class OpinionController extends Controller
         }
         
         $lang_id = Lang::getLangId();
-        $authors = Author::where('lang_id', $lang_id)->get();        
+        $authors = Author::where('lang_id', $lang_id)->get();
 
         $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
         $allTags = [];
@@ -250,6 +249,11 @@ class OpinionController extends Controller
                 $opinion->retag($request->input('tags'));
             }            
         }
+        // update lang_id into taggable_taggables
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Opinion')
+        ->where('taggable_id', $opinion_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
 
         return redirect()->route('admin.opinion.edit', [$opinion->id, $locale]);
 

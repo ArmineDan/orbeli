@@ -149,20 +149,5 @@
             <button type="submit" class="btn btn-info" style="width:15%">Update</button>
         </div>
     </form>
-
-    <script>
-        function CountDurationLong() {
-            var longDesc = CKEDITOR.instances['post_long_text'].getData();            
-            // console.log(longDesc);
-            var stats = window.reading_time(longDesc);
-            // console.log(stats);
-    
-            var duration = document.getElementById('duration');
-            duration.value = stats.minutes;
-            document.getElementById('time_text').textContent = stats.text;
-            document.getElementById('time_words').textContent = ' /words: ' + stats.words;
-        }
-      </script>
-
 </div>    
 @endsection

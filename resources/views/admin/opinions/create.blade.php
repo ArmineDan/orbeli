@@ -2,7 +2,9 @@
 
 
 @section('content')
+
 <div class="container">
+    {{-- js-here --}}
     <h3>Create Opinion <small> № {{$last_id}}<code> lang:{{$locale}}</code><small></h3>
 
     
@@ -72,7 +74,7 @@
       <hr>
 
       <h5 for="date">Date</h5>
-      <input type="date" name="date" class="form-control" placeholder="select date">
+        <input type="date" name="date" class="form-control" placeholder="select date">
       <hr>
 
       <h5 for="post_short_text">Short Description <code>without any media.</code></h5>
@@ -111,19 +113,5 @@
       <hr>
       <button type="submit" class="btn btn-success" style="width:130px">Next</button>
     </form><hr>
-<div>
-  
-  <script>
-    function CountDurationLong() {
-        var longDesc = CKEDITOR.instances['post_long_text'].getData();            
-        // console.log(longDesc);
-        var stats = window.reading_time(longDesc);
-        // console.log(stats);
-
-        var duration = document.getElementById('duration');
-        duration.value = stats.minutes;
-        document.getElementById('time_text').textContent = stats.text;
-        document.getElementById('time_words').textContent = ' /words: ' + stats.words;
-    }
-  </script>
+  </div>
 @endsection

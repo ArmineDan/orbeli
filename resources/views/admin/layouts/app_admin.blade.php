@@ -12,13 +12,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}" />
     <style>
         .cat-edit {
             font-size: 20px;
             display: inline-block;
             margin-right: 5px;        
+        }
+        #app label {
+            font-size: 14px;
         }
     </style>
 </head>
@@ -112,9 +115,10 @@
             filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
         };
     </script> --}}
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
+    
         function getStatusChangeValue(event) {
             // alert(event.target.checked);
             let id  = event.target.getAttribute('name');
@@ -166,12 +170,25 @@
             // console.log(stats);
 
             let duration = document.getElementById('duration');
-            duration.value = stats.minutes;
+            duration.value = Math.ceil(stats.minutes);
+            document.getElementById('time_text').textContent = stats.text;
+            document.getElementById('time_words').textContent = ' /words: ' + stats.words;
+        }
+
+        function CountDurationLong() {
+            var longDesc = CKEDITOR.instances['post_long_text'].getData();            
+            // console.log(longDesc);
+            var stats = window.reading_time(longDesc);
+            // console.log(stats);
+
+            var duration = document.getElementById('duration');
+            duration.value = Math.ceil(stats.minutes);
             document.getElementById('time_text').textContent = stats.text;
             document.getElementById('time_words').textContent = ' /words: ' + stats.words;
         }
         
-        
+        console.log('<<<<<<<<<---------------------hey how are you');
       </script>
+      
 </body>
 </html>

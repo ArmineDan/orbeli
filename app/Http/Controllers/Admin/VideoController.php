@@ -256,6 +256,12 @@ class VideoController extends Controller
             }            
         }
 
+        // update lang_id into taggable_taggables
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Video')
+        ->where('taggable_id', $video_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
+
         return redirect()->route('admin.video.edit', [$video_id, $locale]);
 
     }
