@@ -31,7 +31,7 @@ class VideoController extends Controller
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $videos = Video::where('lang_id', '=', $lang_id)->paginate(10);
+        $videos = Video::where('lang_id', '=', $lang_id)->orderBy('id', 'desc')->paginate(10);
         return view('admin.videos.index', [
             'videos' => $videos,
             'locale' => App::getLocale(),
@@ -63,11 +63,12 @@ class VideoController extends Controller
         $lang_id = Lang::getLangId();
         $authors = Author::where('lang_id', $lang_id)->get();        
 
-        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
-        $allTags = [];
-        for ($i=0; $i < count($allTagsColumn); $i++) { 
-            $allTags[$i] = $allTagsColumn[$i]->name;
-        }
+        // $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE t2.lang_id=$lang_id");
+        // $allTags = [];
+        // for ($i=0; $i < count($allTagsColumn); $i++) { 
+        //     $allTags[$i] = $allTagsColumn[$i]->name;
+        // }        
+        $allTags = Post::getTagsByLangId($lang_id);
 
         return view('admin.videos.create', [
             'video' => [],
@@ -113,13 +114,19 @@ class VideoController extends Controller
 
         $video = Video::create($request->all());
         $video_id = $video->id;
-        // return $video_id;
 
-        // add tags to this Video-post
+        // add tags to this Video
         if($request->input('tags')) {
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
             $video->tag($tagsArray); // store-to-db
+
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
         }
 
         // add date into Event if not exists
@@ -186,7 +193,7 @@ class VideoController extends Controller
         $authors = Author::where('lang_id', $lang_id)->get();
         $docsObject = $video->getDocuments()->get();
 
-        $allTagsArray = Post::getAllTagsByLangId($lang_id);
+        $allTagsArray = Post::getTagsByLangId($lang_id);
         $allTagsList = implode(',',$allTagsArray);
         $videoTagsList = $video->tagList;
 
@@ -221,7 +228,7 @@ class VideoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $video_id, $locale)
-    {
+    {        
         // return 'update video ' . $video_id . ' | ' . $locale;
         $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
@@ -253,7 +260,15 @@ class VideoController extends Controller
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
                 $video->retag($request->input('tags'));
-            }            
+
+                // update lang_id into taggable_tags
+                $tagsArray = explode(',',$request->tags);
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
+            }
         }
 
         // update lang_id into taggable_taggables

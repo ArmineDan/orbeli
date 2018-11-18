@@ -51,12 +51,12 @@
       <input type="text" name="post_typ" value="{{$post_typ}}" hidden>
 
       <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name">
+      <input type="text" name="title" class="form-control" placeholder="Opinion name">
       <hr>
 
       <h5 for="status">Status</h5>
       <select name="status" class="form-control" >
-          <option value="" style="display:none">Select Post status</option>
+          <option value="" style="display:none">Select Opinion status</option>
           <option value="published">Published</option>
           <option value="not_published">Not published</option>
       </select>
@@ -68,7 +68,7 @@
         @forelse ($authors as $author)
             <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
-            <option value="">Please Insert One Author, then update the Post.</option>
+            <option value="">Please Insert One Author, then update the Opinion.</option>
         @endforelse
       </select>
       <hr>
@@ -100,7 +100,7 @@
       <input type="text" name="o_duration" id="duration" class="form-control" value="1">
       <hr>
 
-      <h5 for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></h5>
+      <h5 for="" style="display:block">Select tags for current Opinion, separated by comma.<kbd>without spaces</kbd></h5>
       <p>{{ implode(",",$tags) }}</p>
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
       <hr>

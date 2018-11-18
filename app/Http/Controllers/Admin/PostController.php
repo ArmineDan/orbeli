@@ -33,7 +33,7 @@ class PostController extends Controller
         $lang_id = Lang::getLangId();
         return view('admin.posts.index', [
             // 'posts' => Post::paginate(3)
-            'posts' => Post::with('getCategory')->where('lang_id', $lang_id)->paginate(10),
+            'posts' => Post::with('getCategory')->where('lang_id', $lang_id)->orderBy('id', 'desc')->paginate(10),
             'locale' => App::getLocale(),            
         ]);
     }
@@ -45,7 +45,6 @@ class PostController extends Controller
      */
     public function create()
     {
-
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
                                 FROM    information_schema.TABLES
                                 WHERE   (TABLE_NAME = 'posts')");
@@ -68,15 +67,9 @@ class PostController extends Controller
         $lang_id = Post::getLangId();        
         $authors = Author::where('lang_id', $lang_id)->get();
         $categories = Category::where('lang_id', $lang_id)->get();
-        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
-        $allTags = [];
-        for ($i=0; $i < count($allTagsColumn); $i++) { 
-            $allTags[$i] = $allTagsColumn[$i]->name;
-        }
-        // return ($allTags);
 
-        // $tags = Post::allTags();
-        // return $tags;       
+        $allTags = Post::getTagsByLangId($lang_id);
+     
         return view('admin.posts.create', [
             'post' => [],
             'authors' => $authors,
@@ -128,6 +121,13 @@ class PostController extends Controller
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
             $post->tag($tagsArray); // store-to-db
+
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
         }
         
         Event::checkAndSaveIfNotExists($request->input('date'));
@@ -205,7 +205,7 @@ class PostController extends Controller
         $categories = Category::where('lang_id', $lang_id)->get();
         $docsObject = $post->getDocuments()->get();
 
-        $allTagsArray = Post::getAllTagsByLangId($lang_id);
+        $allTagsArray = Post::getTagsByLangId($lang_id);
         $allTagsList = implode(',',$allTagsArray);
         $postTagsList = $post->tagList;      
 
@@ -276,6 +276,14 @@ class PostController extends Controller
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
                 $post->retag($request->input('tags'));
+
+                // update lang_id into taggable_tags
+                $tagsArray = explode(',',$request->tags);
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
             }            
         }
 

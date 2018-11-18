@@ -54,7 +54,7 @@
 
         <label for="status">Status</label>
         <select name="status" class="form-control" >
-            <option value="" style="display:none">Select Post status</option>
+            <option value="" style="display:none">Select Opinion status</option>
             <option value="published" @if($opinion->status =='published') selected @endif >Published</option>
             <option value="not_published" @if($opinion->status == 'not_published') selected @endif>Not published</option>       
         </select>
@@ -72,7 +72,7 @@
                 {{ $author->name }} {{ $author->lastname }} 
             </option>
             @empty
-                <option value="">Please Insert One Author, then update the Post.</option>
+                <option value="">Please Insert One Author, then update the Opinion.</option>
             @endforelse
         </select>
         <hr>
@@ -137,7 +137,7 @@
                     </li>
                     @empty
                     <li class="list-group-item">
-                        <mark>Current Post doesn't have attached files.</mark>
+                        <mark>Current Opinion doesn't have attached files.</mark>
                     </li>                                                    
                     @endforelse
                 </ul>

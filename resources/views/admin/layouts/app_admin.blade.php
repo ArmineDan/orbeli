@@ -59,6 +59,7 @@
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
                                 <li><a href="{{ route('admin.video.index', $locale)}}">Videos</a></li>
                                 <li><a href="{{ route('admin.opinion.index', $locale)}}">Opinions</a></li>
+                                <li><a href="{{ route('admin.news.index', $locale)}}">News</a></li>
                             </ul>
                         </li>                 
                     </ul>

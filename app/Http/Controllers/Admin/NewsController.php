@@ -33,7 +33,7 @@ class NewsController extends Controller
     public function index()
     {
         $lang_id = Lang::getLangId();        
-        $news = News::where('lang_id', '=', $lang_id)->paginate(10);
+        $news = News::where('lang_id', '=', $lang_id)->orderBy('id', 'desc')->paginate(10);
         return view('admin.news.index',[
             'news' => $news,
             'locale' => App::getLocale(),
@@ -64,19 +64,7 @@ class NewsController extends Controller
         $lang_id = Lang::getLangId();
         $authors = Author::where('lang_id', $lang_id)->get();
 
-        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
-        $allTags = [];
-        for ($i=0; $i < count($allTagsColumn); $i++) { 
-            $allTags[$i] = $allTagsColumn[$i]->name;
-        }
-
-        // return view("admin.news.create",[
-        //     'locale' => \App::getLocale(),
-        //     'last_id' =>$last_id,
-        //     'imageurls' => $imageurls,
-        //     'folder_name' => $folder_name,
-        //     'lang_id' =>$lang_id,
-        // ]);
+        $allTags = Post::getTagsByLangId($lang_id);
 
         return view('admin.news.create', [
             'news' => [],
@@ -142,6 +130,13 @@ class NewsController extends Controller
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
             $news->tag($tagsArray); // store-to-db
+
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
         }
 
         // add date into Event if not exists
@@ -205,7 +200,7 @@ class NewsController extends Controller
         $authors = Author::where('lang_id', $lang_id)->get();
         $docsObject = $news->getDocuments()->get();
 
-        $allTagsArray = Post::getAllTagsByLangId($lang_id);
+        $allTagsArray = Post::getTagsByLangId($lang_id);
         $allTagsList = implode(',',$allTagsArray);
         $newsTagsList = $news->tagList;
 
@@ -268,6 +263,14 @@ class NewsController extends Controller
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
                 $news->retag($request->input('tags'));
+
+                // update lang_id into taggable_tags
+                $tagsArray = explode(',',$request->tags);
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
             }
         }
 

@@ -34,7 +34,7 @@ class OpinionController extends Controller
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $opinions = Opinion::where('lang_id', '=', $lang_id)->paginate(10);
+        $opinions = Opinion::where('lang_id', '=', $lang_id)->orderBy('id', 'desc')->paginate(10);
         return view('admin.opinions.index', [
             'opinions' => $opinions,
             'locale' => App::getLocale(),
@@ -66,11 +66,7 @@ class OpinionController extends Controller
         $lang_id = Lang::getLangId();
         $authors = Author::where('lang_id', $lang_id)->get();
 
-        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
-        $allTags = [];
-        for ($i=0; $i < count($allTagsColumn); $i++) { 
-            $allTags[$i] = $allTagsColumn[$i]->name;
-        }
+        $allTags = Post::getTagsByLangId($lang_id);
 
         return view('admin.opinions.create', [
             'opinion' => [],
@@ -118,6 +114,13 @@ class OpinionController extends Controller
             // $tagsString = $request->tags;
             $tagsArray = explode(',',$request->tags);
             $opinion->tag($tagsArray); // store-to-db
+
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
         }
 
         // add date into Event if not exists
@@ -184,7 +187,7 @@ class OpinionController extends Controller
         $authors = Author::where('lang_id', $lang_id)->get();
         $docsObject = $opinion->getDocuments()->get();
 
-        $allTagsArray = Post::getAllTagsByLangId($lang_id);
+        $allTagsArray = Post::getTagsByLangId($lang_id);
         $allTagsList = implode(',',$allTagsArray);
         $opinionTagsList = $opinion->tagList;
 
@@ -247,6 +250,14 @@ class OpinionController extends Controller
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
                 $opinion->retag($request->input('tags'));
+
+                // update lang_id into taggable_tags
+                $tagsArray = explode(',',$request->tags);
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
             }            
         }
         // update lang_id into taggable_taggables

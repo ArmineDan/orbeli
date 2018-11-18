@@ -54,7 +54,7 @@
 
         <label for="status">Status</label>
         <select name="status" class="form-control" >
-            <option value="" style="display:none">Select Post status</option>
+            <option value="" style="display:none">Select Video status</option>
             <option value="published" @if($video->status =='published') selected @endif >Published</option>
             <option value="not_published" @if($video->status == 'not_published') selected @endif>Not published</option>       
         </select>
@@ -72,7 +72,7 @@
                 {{ $author->name }} {{ $author->lastname }} 
             </option>
             @empty
-                <option value="">Please Insert One Author, then update the Post.</option>
+                <option value="">Please Insert One Author, then update the Video.</option>
             @endforelse
         </select>
         <hr>
@@ -118,7 +118,7 @@
         <input type="text" name="meta_d" class="form-control" value="{{ $video->meta_d }}">
         <hr>
 
-        <label for="post_files">Post files</label>
+        <label for="post_files">Video files</label>
         <div class="panel panel-default">
             <div class="panel-heading">
                 To manage Files and Comments, please, push here
@@ -136,7 +136,7 @@
                     </li>
                     @empty
                     <li class="list-group-item">
-                        <mark>Current Post doesn't have attached files.</mark>
+                        <mark>Current Video doesn't have attached files.</mark>
                     </li>                                                    
                     @endforelse
                 </ul>
@@ -148,8 +148,5 @@
             <button type="submit" class="btn btn-info" style="width:15%">Update</button>
         </div>
     </form>
-
-
-
 </div>    
 @endsection
