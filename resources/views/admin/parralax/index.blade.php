@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Parralax List <small><code> lang:{{$locale}}</code><small></h2>
         <div class="table-resposive">
-        <table class="table table-bordered table-striped table-hover table-responive" style="font-size: 15px;">
+        <table class="table table-bordered table-striped table-hover" style="font-size: 15px;">
             <thead class="thead-dark">
                 <tr>
                   <th>Row</th>
@@ -19,11 +19,12 @@
           @foreach ($parralax as $item)
                       <tbody>
                         <tr>
-                          <td> {{$item->id}} </td>
-                          <td> {{$item->title}} </td>
-                          <td> {{$item->text}} </td>
-                          <td> {{$item->link}} </td>
-                          <td> <img src="{{$item->img}}" alt="" width="120px"> </td>
+                          <th> {{$item->id}} </th>
+                          <th>{{$item->title}}</th>
+                          <td>{{$item->text}}</td>
+                          <td>{{$item->link}}</td>
+                          <td><img src="{{$item->img}}" width="120"></td>
+
                           <td>
                             <a href="{{route('admin.parralax.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
                               <i class="glyphicon glyphicon-edit"></i> 

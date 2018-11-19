@@ -74,7 +74,6 @@
       <input type="text" name="lang_id" value="{{$lang_id}}" hidden>
       <input type="text" name="post_id" value="{{$last_id}}" hidden>
  
-
       <div class="panel panel-info">
           <div class="panel-heading"><h5 for="post_typ">Select Category</h5></div>
           <div class="panel-body">
@@ -134,7 +133,7 @@
 
       <h5 for="post_full_text">Full Content</h5>
       <textarea name="html_code" id="post_full_text" cols="30" rows="10" class="form-control" placeholder="Input content">       
-        Content comes here ...
+        Content com1es here ...
       </textarea>
       <hr>
 

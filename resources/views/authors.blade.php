@@ -18,8 +18,9 @@
                                 <a href="http://www.linkedin.com" class="text-white" target="_blank"><i class="fa fa-linkedin"></i></a>
                               <!--a href="mailto:info@orbeli.am" class="text-white" target="_blank" title="info@orbeli.am"><i class="fa fa-envelope"></i></a!-->
                               <i class="fa fa-envelope autors_narek_mail_icon">
-                                <p style="display: none">{{$item->id}}</p>
-                                <em>  </em>  
+                                <em style="display: none">{{$item->id}}</em>                                
+                                <p></p>
+
                               </i>
                             </div>
                         </div>

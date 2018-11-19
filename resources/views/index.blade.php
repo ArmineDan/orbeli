@@ -5,7 +5,7 @@
 
 <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
-    <div class="blog-text titel_new display-inline-block ">
+    <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
         <div class="content padding-19px-all xs-padding-20px-all">
             <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="blog-grid.html" class="text-medium-gray ">{{$all_last_posts['main_post'][0]->name .' '. $all_last_posts['main_post'][0]->lastname}}</a></span></div>
             <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_post'][0]->title}}</a>
@@ -16,7 +16,7 @@
 @endsection
 @section('main_right')
 
-<ul class="latest-post position-relative">
+<ul class="latest-post position-relative" id="latest_post_main_right_ul_narek">
         @foreach ($all_last_posts['main_right'] as $item)                             
         <li class="aa">
           <figure id="figure_narek">
@@ -44,8 +44,8 @@
         <div class="content padding-19px-all xs-padding-20px-all">
             <div class="black text-extra-small margin-5px-bottom text-uppercase alt-font">
                 <span>
-                        <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
-                        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> 
+                <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> 
                 {{$all_last_posts['main_video'][0]->duration }}</span></div>
             <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
         </div>

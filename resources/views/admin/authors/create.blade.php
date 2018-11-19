@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Authors <code>{{$locale}}</code> </h2>
+    <h2> Create Authors <small><code>Last id:{{$last_id}} Lang:{{$locale}}</code></small></h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -83,25 +83,24 @@
         <hr>
 
         <label for="title">Facebook</label>
-        <input type="text" name="faceebook" class="form-control" placeholder="Facebook">
+      <input type="text" name="faceebook" class="form-control" placeholder="Facebook" value="http://facebook.com">
         <hr>
 
         <label for="title">Twitter</label>
-        <input type="text" name="twitter" class="form-control" placeholder="Twitter">
+        <input type="text" name="twitter" class="form-control" placeholder="Twitter" value="http://twitter.com">
         <hr>
 
         <label for="title">Linkedin</label>
-        <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
+        <input type="text" name="linkedin" class="form-control" placeholder="Linkedin" value="http://linkedin.com">
         <hr>
 
         <label for="title">Email</label>
         <input type="email" name="email" class="form-control" placeholder="Email">
-        <hr>
 
         <input type="hidden" value="1" name="lang_id">
         <br>
 
-        <button type="submit" class="btn btn-success"> Save </button>
+        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
     </form>
 </div>
 

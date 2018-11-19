@@ -16,9 +16,9 @@ class CreateAboutUsesTable extends Migration
         Schema::create('about_uses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('short_text')->nullable();            
             $table->text('html_code');
-            $table->string('img');           
+            $table->integer('lang_id')->unsigned();
+            $table->timestamps();
         });
     }
 

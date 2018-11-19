@@ -18,12 +18,12 @@ class AuthorController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     protected $folder_name = 'author';
+     protected $folder_name = 'authors';
 
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $author = Author::orderBy('id','asc')->where('lang_id',$lang_id)->paginate(5);
+        $author = Author::orderBy('id','desc')->where('lang_id',$lang_id)->paginate(5);
         return view('admin.authors.index',[
             'locale' => App::getLocale(),
             'author' => $author,
@@ -50,7 +50,7 @@ class AuthorController extends Controller
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-
+        
         return view("admin.authors.create",[
             'locale' => \App::getLocale(),
             'last_id' =>$last_id,
@@ -80,13 +80,6 @@ class AuthorController extends Controller
             'email' => 'required',
         ]);
         $author = new Author;
-        
-        // $parralax->title = $request->input('title');
-        // $parralax->text = $request->input('text');
-        // $parralax->link = $request->input('link');
-        // $parralax->img = $request->input('img');
-        // $parralax->lang_id = $locale;
-        // $parralax->save();
 
         $paraParams = [
             'name' => $request->input('name'),
@@ -130,26 +123,29 @@ class AuthorController extends Controller
                                 WHERE   (TABLE_NAME = 'authors')");
 
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        
-        $lang_id = Lang::getLangId();
-        $folder_name = 'authors';
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        $folder_name = $this->folder_name;
+        $images = Storage::files('public/'.$folder_name.'/'.$id);
         $imageurls = [];
+
+
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-    
+
         $author = Author::find($id);
         App::setLocale($locale);
-        
-        return view('admin.authors.edit',[
+
+        return view("admin.authors.edit",[
             'author' => $author,
             'locale'=>$locale,
             'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
+
             'imageurls' => $imageurls,
+            'folder_name' => $folder_name,
+
         ]);
+
     }
 
     /**
@@ -194,8 +190,10 @@ class AuthorController extends Controller
      * @param  \App\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id, $locale)
     {
-        //
+        $author = Author::find($id);
+        $author->delete();
+        return redirect()->route('admin.authors.index', $locale);
     }
 }

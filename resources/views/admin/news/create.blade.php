@@ -5,14 +5,14 @@
 <div class="container">
   {{-- js-ok-in-app_admin --}}
   <h3>Create News <small> № {{$last_id}}<code> lang:{{$locale}}</code><small></h3>
-
     @include('admin.common.imgMessages')
-
+    
     <div class="row">
         <form action="{{ route('admin.document.uploadimage', $locale) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
+
                 <input type="text" hidden name="post_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
@@ -22,6 +22,7 @@
         </form>
     </div>
     <hr>
+
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -41,6 +42,7 @@
     </tbody>
     </table>        
     @endisset
+
 
     <form action="{{ route('admin.news.store', $locale) }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
@@ -127,4 +129,5 @@
     </form>
     <hr>
 </div>
+
 @endsection

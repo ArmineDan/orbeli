@@ -110,7 +110,8 @@
             <br>
             
             <input type="hidden" name="lang_id" value="{{$author['lang_id']}}">
-            <button class="btn btn-success">Save</button>
+
+            <div class="well"><button class="btn btn-success">Update</button></div>
 
     </form>
 

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h2>Partners List <small><code> lang:{{$locale}}</code><small></h2>
+        <h2>Partners List <small><code>Lang:{{$locale}}</code><small></h2>
         <div class="table-resposive">
         <a href="{{route('admin.partners.create', $locale)}}" class="btn btn-primary pull-right">Create Partners <i class="fa fa-plus"></i> </a>
         <table class="table table-bordered table-striped table-hover" style="font-size: 15px;">
@@ -25,7 +25,7 @@
                           <th>{{$item->p_name}}</th>
                           <th>{{$item->url}}</th>
                           <th>{{$item->text}}</th>
-                          <th>{{$item->logo}}</th>
+                          <th><img src="{{$item->logo}}" width="120"></th>
 
                           <td>
                             <a href="{{route('admin.partners.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
@@ -45,6 +45,7 @@
                       </tbody>
             @endforeach
         </table>
+        <center>{{$partner->links()}}</center>
         </div>
     </div>
 

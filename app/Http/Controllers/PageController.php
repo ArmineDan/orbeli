@@ -9,6 +9,7 @@ use App\Archieve;
 use App\Announcement;
 use App\Post;
 use App\Tags;
+use App\Lang;
 use App\Video;
 use App\News;
 use Illuminate\Http\Request;
@@ -16,8 +17,6 @@ use App\Event;
 use App;
 use DB;
 use Session;
-
- 
 
 
 class PageController extends Controller
@@ -50,8 +49,9 @@ class PageController extends Controller
                         $main_post =  Post::main_post();  
                         $main_right =  Post::main_right();  
                         $main_video = Post::main_video();
+                        $contact = DB::select("SELECT * FROM contacts");
                         $popular_tags=Tags::load_all_popular_tags();  
-                        $parralax = Post::parralax();                      
+                        $parralax = Post::parralax();  
                         $get = PageController::take_id($main_right);
                         $last_posts_xoragrer = Post::xoragreri_poster($get); 
 
@@ -68,8 +68,8 @@ class PageController extends Controller
                             "event"=> $calendar,
                             "xoragrer"=>$last_posts_xoragrer,
                             "lang"=>$lang,
-                            "parralax" => $parralax
-                            
+                            "parralax" => $parralax,
+                            "contact" => $contact
                         ); 
            
                        // return  $all_last_posts;
@@ -453,29 +453,27 @@ class PageController extends Controller
                     return  redirect('/'.App::getLocale());
                 }         
 
-            }   
+            }
             
-            public function contacts($locale='hy'){
+            public function contact($locale){
                 $rules = ['en','ru','hy'];                      
                 if(in_array($locale,$rules))
-                    {
-                       Session::put('locale',$locale);
+                {
+                        Session::put('locale',$locale);
                         App::setLocale($locale);
-                        $lang= App::getLocale();
+                        $lang = App::getLocale();                 
                         $calendar= Event::event($lang);
                         $menu = Post::menu();
-                                                                
-                    $all_last_posts = array(
-                        "menu"=>$menu,
-                        "event"=> $calendar,
-                        "lang"=>$lang,                    
-                    ); 
-                return view('contacts')->with('all_last_posts',$all_last_posts);
-            }else{              
-                return  redirect('/'.App::getLocale());
-            }    
-
+                        $categories = Post::categories();
+                        $lang_id = Lang::getLangId();
+                        $cont = DB::select("SELECT * FROM contacts WHERE lang_id=$lang_id");
+                
+                $all_data=array("lang"=> $lang,"cont" => $cont,"event"=> $calendar,"menu"=>$menu, "categories"=>$categories);              
+                   return view('contacts')->with('all_last_posts',$all_data);
+                }
+                else{              
+                    return  redirect('/'.App::getLocale());
+                }         
             }
-
 }
  

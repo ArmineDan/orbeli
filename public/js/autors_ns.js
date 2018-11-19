@@ -1,11 +1,15 @@
 $(".autors_narek_mail_icon").click(function(){
+    
+    var self = $(this);
     $.post(
         "/php/author_mail.php",
         {
-            id: $(this).children().html() 
+            id: $(this).find("em").html() 
         },
         function (result){
-            $(this).find("em").html(result)
+
+            self.find("p").html(result)
+
         }
     )
 })

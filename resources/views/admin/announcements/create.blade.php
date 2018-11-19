@@ -3,9 +3,7 @@
 @section('content')
 
 <div class="container">
-
-    <h2> Create Announcement <code>{{$locale}}</code> </h2>
-
+    <h2>Create Announcements <small>№ {{$last_id}} <code>lang:{{$locale}}</code> </small></h2>
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
         <ul>
@@ -62,55 +60,60 @@
             {{ csrf_field() }}
 
         <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" placeholder="Create title">
+
+        <input name="title" class="form-control" placeholder="Create Title">
         <hr>
 
-        <label for="title">Short Text</label>
-        <input type="text" name="short_text" class="form-control" placeholder="Create short text">
-        <hr>
-
-        <label for="title">Long Text</label>
-        <input type="text" name="long_text" class="form-control" placeholder="Create long text">
-        <hr>
-
-        <label for="post_short_text">HTML code</label>
-        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Create code">       
+        <label for="short_text">Short Text</label>
+        <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
         </textarea>
         <hr>
 
-        <label for="title">IMG <code> 500x500 </code> </label>
-        <input type="text" name="img" class="form-control" placeholder="Create img">
+        <label for="html_code">HTML code</label>
+        <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control">       
+        </textarea>
         <hr>
 
-        <label for="title">Thumb IMG <code> 500x500 </code> </label>
-        <input type="text" name="thumb_img" class="form-control" placeholder="Create thumb img">
+        <label for="img">Img <code> 500x500 </code> </label>
+        <input name="img" class="form-control" placeholder="Img">
         <hr>
 
-        <label for="meta_k">Meta data 
-          <br>
-          Meta keywords <kbd> without spaces </kbd>
-        </label>
-        <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keyword separated by commas">
+        <h5 for="date">Date</h5>
+        <input type="date" name="date" class="form-control" placeholder="select date">
         <hr>
 
-        <label for="meta_d">Meta description</label>
-        <input type="text" name="meta_d" class="form-control" placeholder=" Insert meta-description">
+        <select name="status" class="form-control">
+            <option>Select Status</option>
+            <option>Published</option>
+            <option>no published</option>
+        </select><hr>
+
+        <label for="meta_k">Meta keywords <kbd>without spaces</kbd> </label>
+        <input type="email" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
         <hr>
 
-        <input type="hidden" value="{{ date('Y-m-d H:i:s') }}" name="date">
+        <label for="meta_d"> Meta description </label>
+        <input name="meta_d" class="form-control" placeholder="Insert meta-description">
+        <hr>
 
-        <input type="hidden" name="status" value="published">
+        <h5 for="duration">Duration <code>minute</code>
+        <span class="btn btn-danger" onclick="CountDurationLong()">count</span>
+        <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
+        </h5>
+        <input name="p_duratioan" id="duration" class="form-control" value="5">
+        <hr>
 
-        <input type="hidden" name="view" value="0">
-
-        <input type="hidden" name="a_duration" value="30">
-
-        <input type="hidden" name="post_typ" value="1">
-
-        <input type="hidden" name="author_id" value="1">
+        <label for="authors_id"> Select Author Id </label>
+        <select name="author_id" class="form-control">
+            @foreach ($authors as $item)
+                <option value="{{$item->id}}"> {{ $item->name }} {{ $item->lastname }} </option>
+            @endforeach
+        </select><br>
 
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
-        <br>
+
+        <input name="view" value="0" type="hidden"><br>
+
 
         <button type="submit" class="btn btn-success"> Save </button>
     </form>

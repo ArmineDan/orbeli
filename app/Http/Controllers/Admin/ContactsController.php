@@ -6,8 +6,10 @@ use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App;
-use App\Post;
+
+use App;    
+use App\Lang;
+
 
 class ContactsController extends Controller
 {
@@ -41,7 +43,7 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -52,7 +54,7 @@ class ContactsController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show()
     {
         //
     }
@@ -71,7 +73,7 @@ class ContactsController extends Controller
         
         return view('admin.contact.edit',[
             'contact' => $contact,
-            'locale'=>$locale,
+            'locale'=> $contact,
         ]);
     }
 
@@ -82,14 +84,17 @@ class ContactsController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $locale, $id)
+    public function update(Request $request, $id, $locale)
     {
         $this->validate($request,[
             'address' => 'required',
             'phone' => 'required',
             'mail' => 'required',
             'title' => 'required',
-            'text' => 'required'
+
+            'text' => 'required',
+            'lang_id' => 'required'
+
         ]);
         
         $contact = Contact::find($id);
@@ -98,6 +103,7 @@ class ContactsController extends Controller
             $contact->mail_icon_text = $request->input('mail');
             $contact->big_text_title = $request->input('title');
             $contact->big_text = $request->input('text');
+            $contact->lang_id = $request->input('lang_id');
         $contact->save();
 
         return redirect()->route('admin.contact.index', $locale)->with('success','Post Created');

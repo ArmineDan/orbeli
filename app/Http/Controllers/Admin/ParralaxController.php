@@ -18,9 +18,15 @@ class ParralaxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $folder_name = "parralax";
+
     public function index()
     {
-        $parralax = DB::select("SELECT * FROM parralaxes");
+
+        $lang_id = Post::getLangId();
+        $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id=$lang_id");
+        //return $ns_post;
+
         return view('admin.parralax.index',[
             'locale' => App::getLocale(),
             'parralax' => $parralax,
@@ -34,29 +40,7 @@ class ParralaxController extends Controller
      */
     public function create()
     {
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'parralaxes')");
-
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        // return $last_id;
-        $lang_id = Post::getLangId();
-        // return $lang_id;
-        $folder_name = 'parralax';
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
-        // return $images;
-        $imageurls = [];
-        for ($i=0; $i < count($images) ; $i++) {
-            $imageurls[$i]['url'] = Storage::url($images[$i]);
-            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
-        }
-        return view("admin/parralax/create",[
-            'locale' => \App::getLocale(),
-            'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
-            'imageurls' => $imageurls,
-            'lang_id' =>$lang_id,
-        ]);
+        //
     }
 
     /**
@@ -65,32 +49,9 @@ class ParralaxController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $locale)
+    public function store()
     {
-        // return $locale;
-        $this->validate($request,[
-            'title' => 'required',
-            'text' => 'required',
-            'link' => 'required',
-            'img' => 'required',
-            'lang_id' => 'required',
-        ]);
-        $parralax = new parralax;
-
-        $paraParams = [
-            'title' => $request->input('title'),
-            'text' => $request->input('text'),
-            'img' => $request->input('img'),
-            'link' => $request->input('link'),
-            'lang_id' => $request->input('lang_id'),
-        ];
-
-        // $parralax->create($paraParams);
-        DB::table('parralaxes')->insert( $paraParams );
-
-        // echo 'ok';
-
-        return redirect()->route('admin.parralax.index', App::getLocale());
+       //
     }
 
     /**
@@ -112,26 +73,29 @@ class ParralaxController extends Controller
      */
     public function edit($id, $locale)
     {
-        // $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-        //                         FROM    information_schema.TABLES
-        //                         WHERE   (TABLE_NAME = 'parralaxes')");
 
-        // $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        
-        $last_id = 1; // default always = 1 //
-        $lang_id = Lang::getLangId();
-        $folder_name = 'parralax';
-        $images = Storage::files('public/'.$folder_name);
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'parralaxes')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        $folder_name = $this->folder_name;
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
+
+
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-    
+
         $parralax = Parralax::find($id);
         App::setLocale($locale);
         
         return view('admin.parralax.edit',[
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
             'parralax' => $parralax,
             'locale'=>$locale,
             'last_id' =>$last_id,
@@ -172,10 +136,8 @@ class ParralaxController extends Controller
      * @param  \App\parralax  $parralax
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $locale)
+    public function destroy()
     {
-        $parralax = Parralax::find($id);
-        $parralax->delete();
-        return redirect()->route('admin.parralax.index', $locale);
+        //
     }
 }

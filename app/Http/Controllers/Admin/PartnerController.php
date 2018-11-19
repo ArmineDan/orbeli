@@ -16,12 +16,12 @@ class PartnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $folder_name = "partner";
+    protected $folder_name = "partners";
 
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $partner = DB::select("SELECT * FROM partners");
+        $partner = Partner::orderBy('id','desc')->where('lang_id',$lang_id)->paginate(3);
         return view('admin.partners.index',[
             'locale' => App::getLocale(),
             'partner' => $partner,
@@ -43,7 +43,9 @@ class PartnerController extends Controller
         // return $last_id;
         $lang_id = Lang::getLangId();
         // return $lang_id;
-        $folder_name = 'partner';
+
+        $folder_name = $this->folder_name;
+
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         // return $images;
         $imageurls = [];
@@ -110,14 +112,10 @@ class PartnerController extends Controller
      */
     public function edit($id, $locale)
     {
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'partners')");
 
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
         $lang_id = Lang::getLangId();
-        $folder_name = 'partner';
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        $images = Storage::files('public/'.$this->folder_name.'/'.$id);
+
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -129,9 +127,9 @@ class PartnerController extends Controller
         
         return view('admin.partners.edit',[
             'partner' => $partner,
-            'locale'=>$locale,
-            'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
+            'locale'=> $locale,
+            'last_id' => $id,
+            'folder_name' => $this->folder_name,
             'imageurls' => $imageurls,
         ]);
     }

@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Authors <code>{{$locale}}</code> </h2>
+    <h2> Create Partners <small>N: {{$last_id}} <code>lang: {{$locale}}</code> </small></h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -61,27 +61,27 @@
     <form action="{{ route('admin.partners.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-        <label for="title">Partners Name</label>
+        <label for="title">Partner Name</label>
         <input type="text" name="name" class="form-control" placeholder="Create name">
         <hr>
 
-        <label for="title">Partners URL</label>
+        <label for="title">Partner URL</label>
         <input type="text" name="url" class="form-control" placeholder="Create url">
         <hr>
 
-        <label for="title">Partners Text</label>
-        <input type="text" name="text" class="form-control" placeholder="Create text">
+        <label for="title">Partner Description</label>
+        <input type="text" name="text" class="form-control" placeholder="Create Description">
         <hr>
 
-        <label for="title">Logo <code> 500x500 </code> </label>
-        <input type="text" name="logo" class="form-control" placeholder="Create logo">
-        <hr>
+        <label for="title">Partner Logo <code> 225x225 </code> </label>
+        <input type="text" name="logo" class="form-control" placeholder="Logo Url">
 
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
         <input type="text" name="partner" value="{{$last_id}}" hidden>
         <br>
 
-        <button type="submit" class="btn btn-success"> Save </button>
+        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
+        
     </form>
 </div>
 
