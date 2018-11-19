@@ -194,7 +194,7 @@ class PageController extends Controller
                 "tags"=> $tags,
                 "same_posts"=>$the_same_video_posts,
                 "id"=>$id,
-                "folder"=>'video'
+                "folder"=>'opinion'
                         );  
             // return $the_same_video_posts;
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
@@ -236,7 +236,7 @@ class PageController extends Controller
                 "tags"=> $tags,
                 "same_posts"=>$the_same_video_posts,
                 "id"=>$id,
-                "folder"=>'video'
+                "folder"=>'announcement'
                         );  
             // return $the_same_video_posts;
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
@@ -278,7 +278,7 @@ class PageController extends Controller
                 "tags"=> $tags,
                 "same_posts"=>$the_same_video_posts,
                 "id"=>$id,
-                "folder"=>'video'
+                "folder"=>'news'
                         );  
             // return $the_same_video_posts;
                         return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);

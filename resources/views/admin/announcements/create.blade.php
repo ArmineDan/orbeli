@@ -3,9 +3,7 @@
 @section('content')
 
 <div class="container">
-
     <h2>Create Announcements <small>№ {{$last_id}} <code>lang:{{$locale}}</code> </small></h2>
-
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
         <ul>
@@ -62,6 +60,7 @@
             {{ csrf_field() }}
 
         <label for="title">Title</label>
+
         <input name="title" class="form-control" placeholder="Create Title">
         <hr>
 
@@ -114,6 +113,7 @@
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
 
         <input name="view" value="0" type="hidden"><br>
+
 
         <button type="submit" class="btn btn-success"> Save </button>
     </form>

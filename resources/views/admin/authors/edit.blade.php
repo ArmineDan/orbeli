@@ -108,6 +108,7 @@
             <label for="post_short_text">Email</label>
             <input name="email" class="form-control" value="{{ $author['email'] }}">
             <br>
+            
             <input type="hidden" name="lang_id" value="{{$author['lang_id']}}">
 
             <div class="well"><button class="btn btn-success">Update</button></div>

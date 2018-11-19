@@ -54,7 +54,7 @@
 
         <label for="status">Status</label>
         <select name="status" class="form-control" >
-            <option value="" style="display:none">Select Post status</option>
+            <option value="" style="display:none">Select Video status</option>
             <option value="published" @if($video->status =='published') selected @endif >Published</option>
             <option value="not_published" @if($video->status == 'not_published') selected @endif>Not published</option>       
         </select>
@@ -72,7 +72,7 @@
                 {{ $author->name }} {{ $author->lastname }} 
             </option>
             @empty
-                <option value="">Please Insert One Author, then update the Post.</option>
+                <option value="">Please Insert One Author, then update the Video.</option>
             @endforelse
         </select>
         <hr>
@@ -88,6 +88,7 @@
         <hr>
 
         <label for="post_full_text">Full Content</label>
+        <p>For sharing video add "embed"-link<code>https://www.youtube.com/<mark>embed</mark>/SHo3fAZfXMk</code></p>
         <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control">       
             {{ $video->html_code }}
         </textarea>
@@ -101,9 +102,27 @@
         <input type="text" name="duration" id="duration" class="form-control" value="{{$video->duration}}">
         <hr>
 
-        <label for="" style="display:block">Video tags <kbd>without spaces</kbd></label>
+        {{-- <label for="" style="display:block">Video tags <kbd>without spaces</kbd></label>
         <p>{{$allTagsList}}</p>
         <input type="text" name="tags" class="form-control" value="{{$videoTagsList}}">
+        <hr> --}}
+
+        <label for="" style="display:block">Video tags</label>        
+        <input type="text" name="new_tag" id="new_tag" value="">
+        <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+        <select name="tags[]" id="ex-search" multiple="multiple">
+            @if ($atags)
+                @for ($i = 0; $i < count($atags); $i++)
+                    <option value="{{$atags[$i]}}"
+                    @if (in_array($atags[$i], $vtags))
+                        selected="selected"
+                    @endif                    
+                    >{{$atags[$i]}}</option>
+                @endfor
+            @else
+            <option value="">No tags in list. Please add new tags manually.</option>        
+            @endif
+        </select>
         <hr>
 
         <label for="">Viewed</label>
@@ -117,7 +136,7 @@
         <input type="text" name="meta_d" class="form-control" value="{{ $video->meta_d }}">
         <hr>
 
-        <label for="post_files">Post files</label>
+        <label for="post_files">Video files</label>
         <div class="panel panel-default">
             <div class="panel-heading">
                 To manage Files and Comments, please, push here
@@ -135,7 +154,7 @@
                     </li>
                     @empty
                     <li class="list-group-item">
-                        <mark>Current Post doesn't have attached files.</mark>
+                        <mark>Current Video doesn't have attached files.</mark>
                     </li>                                                    
                     @endforelse
                 </ul>
@@ -147,8 +166,5 @@
             <button type="submit" class="btn btn-info" style="width:15%">Update</button>
         </div>
     </form>
-
-
-
 </div>    
 @endsection

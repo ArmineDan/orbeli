@@ -77,6 +77,7 @@
         <input type="text" name="logo" class="form-control" placeholder="Logo Url">
 
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
+        <input type="text" name="partner" value="{{$last_id}}" hidden>
         <br>
 
         <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>

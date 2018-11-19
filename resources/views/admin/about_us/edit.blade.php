@@ -14,7 +14,9 @@
     @endif
 
 
+
     <h2> Edit About Us <small><code>Number {{$about_us['id']}}</code></h2></small>
+
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -76,6 +78,7 @@
             <input name="title" class="form-control" value="{{ $about_us['title'] }}">
             <hr>
 
+
             <label for="post_short_text">HTML Code</label>
             <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
                 {{ $about_us['html_code'] }}
@@ -83,6 +86,7 @@
             <br>
 
             <div class="well"><button class="btn btn-success">Save</button></div>
+
 
     </form>
 

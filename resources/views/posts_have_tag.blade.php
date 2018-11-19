@@ -9,12 +9,12 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
                    
-                   <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->title}} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100" style="font-weight:bold;height:82px">{{$item->title}} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>{{$item->p_duratioan.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -48,11 +48,11 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100" style="font-weight:bold;height:82px">{{$item->title}} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>{{$item->duration.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -85,11 +85,11 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100" style="font-weight:bold;height:82px">{{$item->title}} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>{{$item->a_duration.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -123,11 +123,11 @@
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}">
-                       <img src="/{{$item->img}}" alt="" data-no-retina="">
+                       <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100" style="font-weight:bold;height:82px">{{$item->title}} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>{{$item->n_duration.' '.trans('text.minute') }} </span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                                       

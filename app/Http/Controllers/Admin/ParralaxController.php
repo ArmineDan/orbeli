@@ -8,10 +8,11 @@ use App\Http\Controllers\Controller;
 use DB;
 use App;
 use Illuminate\Support\Facades\Storage;
-use App\Post;
+use App\Lang;
 
 class ParralaxController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,11 @@ class ParralaxController extends Controller
 
     public function index()
     {
+
         $lang_id = Post::getLangId();
         $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id=$lang_id");
         //return $ns_post;
+
         return view('admin.parralax.index',[
             'locale' => App::getLocale(),
             'parralax' => $parralax,
@@ -70,6 +73,7 @@ class ParralaxController extends Controller
      */
     public function edit($id, $locale)
     {
+
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
                                 FROM    information_schema.TABLES
                                 WHERE   (TABLE_NAME = 'parralaxes')");
@@ -79,11 +83,12 @@ class ParralaxController extends Controller
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
 
+
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-       
+
         $parralax = Parralax::find($id);
         App::setLocale($locale);
         
@@ -93,6 +98,9 @@ class ParralaxController extends Controller
             'imageurls' => $imageurls,
             'parralax' => $parralax,
             'locale'=>$locale,
+            'last_id' =>$last_id,
+            'folder_name' =>$folder_name,
+            'imageurls' => $imageurls,
         ]);
     }
 
@@ -103,7 +111,7 @@ class ParralaxController extends Controller
      * @param  \App\parralax  $parralax
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $locale, $id)
+    public function update(Request $request, $id, $locale)
     {
         $this->validate($request,[
             'title' => 'required',

@@ -24,8 +24,8 @@
                           <td>{{$item->text}}</td>
                           <td>{{$item->link}}</td>
                           <td><img src="{{$item->img}}" width="120"></td>
+
                           <td>
-                              {{-- route('admin.post.show', [$post, $locale]) --}}
                             <a href="{{route('admin.parralax.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
                               <i class="glyphicon glyphicon-edit"></i> 
                             </a>

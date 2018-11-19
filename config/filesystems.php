@@ -54,6 +54,20 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        
+        'upload' => [
+            'driver' => 'local',
+            'root' => public_path('/storage'),
+            /*'url' => env('APP_URL').'/storage',*/
+            'visibility' => 'public',
+        ],        
+
+        'upload' => [
+            'driver' => 'local',
+            'root' => public_path('/storage'),
+            /*'url' => env('APP_URL').'/storage',*/
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

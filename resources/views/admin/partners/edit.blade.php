@@ -72,8 +72,8 @@
             {{ csrf_field() }}
             {{ method_field('put') }}
 
-            <label for="title">Partner Name</label>
-                <input name="p_name" class="form-control" value="{{ $partner['p_name'] }}">
+            <label for="name">Partner Name</label>
+                <input name="name" class="form-control" value="{{ $partner['p_name'] }}">
             <hr>
 
             <label for="url">Partner URL</label>
@@ -86,7 +86,7 @@
             </textarea>
             <hr>
 
-            <label for="title">Partner logo</label>
+            <label for="logo">Partner logo</label>
                 <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
             <br>
             

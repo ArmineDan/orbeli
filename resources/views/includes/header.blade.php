@@ -6,11 +6,11 @@
     </form>
     </div>
 
-<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: rgba(41, 46, 49, 1.00)" >
+<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
         <div class="row">  
        <div class="col-md-1 col-xs-5">
-                <a href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo"><img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli"><img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
+                <a style="position: absolute;" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo"><img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli"><img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
             </div>					
             <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">

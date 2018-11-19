@@ -54,17 +54,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.js"></script>
-{{-- @if ($locale == 'fr') $locale is a predefined variable holding the user's locale --}}
-{{-- <script src="/js/locale/ru.js"></script> --}}
-{{-- @endif --}}
+
+ @if ( $all_last_posts['lang'] == 'ru')
+ <script src="https://fullcalendar.io/js/fullcalendar-3.8.0/locale-all.js"></script> 
+ <script> 
+ console.log("ruuuuuuuuuuuuu")
+
+    $('#calendar').fullCalendar({
+  lang: 'ru'
+});
+
+</script> 
+
+@endif
 <script>
-    var count=0;
-$(".calendar").mouseover(function(){
-    count++;
-    if (count==1){
-     // alert("fffffffff");
-      $(".fc-left .fc-today-button").trigger('click');
-      }   
+    
+$(".calendar").mouseover(function(){ 
+    $('[id^="calendar"]').fullCalendar('today');
+  
 })
 
     </script>

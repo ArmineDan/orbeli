@@ -13,6 +13,9 @@ class Opinion extends Model
 {
 
     use Taggable;
+    protected $fillable = [
+        'title', 'short_text', 'html_code', 'img', 'date', 'status', 'meta_k', 'meta_d', 'o_duration', 'view', 'post_typ', 'author_id', 'lang_id',
+    ];
    
     static function load_all(){ 
         $lang= App::getLocale();

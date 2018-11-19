@@ -140,7 +140,7 @@
             <span class="text text-info">only for "Economy"-category</span>
             <div id="long_text_wrap" style="display:none">
                 <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
-                        {{ $post['long_text'] }}
+                    {{ $post['long_text'] }}
                 </textarea>
             </div>
             <hr>
@@ -152,13 +152,13 @@
             <hr>
           
             <label for="img">Main image 900x600: <code>/storage/post/14/clouds-picture.jpg</code></label>
-            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" required>
+            <input type="text" name="img" id="img" class="form-control" value="{{ $post['img']}}" >
             <hr>
           
             <label for="thumb_img">Croped image 450x600: <code>/storage/post/14/cropped-clouds-picture.jpg</code></label><br>
             <span class="text text-info">only for "Economy"-category</span>
             <div id="thumb_img_wrap" style="display:none">
-                <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" required>
+                <input type="text" name="thumb_img" id="thumb_img" class="form-control" value="{{ $post['thumb_img'] }}" >
             </div>
             <hr>
 
@@ -169,9 +169,27 @@
               <input type="text" name="p_duratioan" id="duration" class="form-control" value="{{$post['p_duratioan']}}">
               <hr>
 
-            <label for="" style="display:block">Post tags <kbd>without spaces</kbd></label>
+            {{-- <label for="" style="display:block">Post tags <kbd>without spaces</kbd></label>
             <p>{{$allTagsList}}</p>
             <input type="text" name="tags" class="form-control" value="{{ $postTagsList }}">
+            <hr> --}}
+
+            <label for="" style="display:block">Post tags</label>            
+            <input type="text" name="new_tag" id="new_tag" value="">
+            <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+            <select name="tags[]" id="ex-search" multiple="multiple">
+                @if ($atags)
+                    @for ($i = 0; $i < count($atags); $i++)
+                        <option value="{{$atags[$i]}}"
+                        @if (in_array($atags[$i], $ptags))
+                            selected="selected"
+                        @endif                    
+                        >{{$atags[$i]}}</option>
+                    @endfor
+                @else
+                <option value="">No tags in list. Please add new tags manually.</option>        
+                @endif
+            </select>
             <hr>
 
             <label for="">Viewed</label>

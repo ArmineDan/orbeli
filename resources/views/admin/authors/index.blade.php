@@ -26,7 +26,7 @@
                           <td>{{$item->name}}</td>
                           <td>{{$item->lastname}}</td>
                           <td>{{$item->sub_name}}</td>
-                          <td> {{$item->email}} </td>
+
                           <td> <img src="{{$item->img}}" width="120"> </td>
                       
                           <td>
@@ -43,6 +43,7 @@
                                 </form>
                             </td>
                 
+
                           </tr>
                       </tbody>
             @endforeach

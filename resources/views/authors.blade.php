@@ -20,6 +20,7 @@
                               <i class="fa fa-envelope autors_narek_mail_icon">
                                 <em style="display: none">{{$item->id}}</em>                                
                                 <p></p>
+
                               </i>
                             </div>
                         </div>

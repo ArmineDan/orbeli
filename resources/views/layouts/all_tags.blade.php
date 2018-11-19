@@ -103,6 +103,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
 {!!  $all_last_posts['event']->script() !!}
+<script> 
+    $(".calendar").mouseover(function(){$('[id^="calendar"]').fullCalendar('today'); })
+</script>
 
 </body>
 </html>

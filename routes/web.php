@@ -31,6 +31,7 @@ Route::group( $admin_rules , function() {
   Route::resource('/category', 'CategoryController', ['as'=>'admin']);
   Route::resource('/post', 'PostController', ['as'=>'admin']);
   Route::resource('/video', 'VideoController', ['as'=>'admin']);
+  Route::resource('/opinion', 'OpinionController', ['as'=>'admin']);
   Route::resource('/comment', 'CommentController', ['as'=>'admin']);
   Route::resource('/document', 'DocumentController', ['as'=>'admin']);
   Route::post('/document/uploadimage', 'DocumentController@uploadimage')->name('admin.document.uploadimage');
@@ -42,8 +43,10 @@ Route::group( $admin_rules , function() {
   Route::resource('/contact', 'ContactsController', ['as'=>'admin']);
   Route::resource('/authors', 'AuthorController', ['as'=>'admin']);
   Route::resource('/partners', 'PartnerController', ['as'=>'admin']);
-  Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
+
   Route::resource('/about_us', 'About_usController', ['as'=>'admin']);
+  Route::resource('/news', 'NewsController', ['as'=>'admin']);
+  Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 

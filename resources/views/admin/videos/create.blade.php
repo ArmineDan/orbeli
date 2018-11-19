@@ -47,15 +47,14 @@
       <input type="text" name="post_typ" value="{{$post_typ}}" hidden>
 
       <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name">
+      <input type="text" name="title" class="form-control" placeholder="Video name">
       <hr>
 
       <h5 for="status">Status</h5>
       <select name="status" class="form-control" >
-          <option value="" style="display:none">Select Post status</option>
+          <option value="" style="display:none">Select Video status</option>
           <option value="published">Published</option>
           <option value="not_published">Not published</option>
-          {{-- <option value="main">Main Post</option> --}}
       </select>
       <hr>
 
@@ -65,7 +64,7 @@
         @forelse ($authors as $author)
             <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
-            <option value="">Please Insert One Author, then update the Post.</option>
+            <option value="">Please Insert One Author, then update the Video.</option>
         @endforelse
       </select>
       <hr>
@@ -80,6 +79,7 @@
       <hr>
 
       <h5 for="post_full_text">Full Content</h5>
+      <p>For sharing video add "embed"-link<code>https://www.youtube.com/<mark>embed</mark>/SHo3fAZfXMk</code></p>
       <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input content">       
         Content comes here ...
       </textarea>
@@ -93,9 +93,23 @@
       <input type="text" name="duration" id="duration" class="form-control" value="1">
       <hr>
 
-      <h5 for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></h5>
+      {{-- <h5 for="" style="display:block">Select tags for current video, separated by comma.<kbd>without spaces</kbd></h5>
       <p>{{ implode(",",$tags) }}</p>
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
+      <hr> --}}
+
+      <h5 style="display:block">Select tags for current video</h5>
+      <input type="text" name="new_tag" id="new_tag" value="">
+      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+        @if ($tags)
+         @for ($i = 0; $i < count($tags); $i++)
+         <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
+         @endfor
+        @else
+        <option value="">No tags in list. Please add new tags manually.</option>        
+        @endif
+      </select>
       <hr>
 
       <h4>Meta data</h4>
@@ -104,7 +118,8 @@
       <h5 for="meta_d">Meta description</h5>
       <input type="text" name="meta_d" class="form-control" placeholder="Insert meta-description">
       <hr>
+
       <button type="submit" class="btn btn-success" style="width:130px">Next</button>
     </form><hr>
-<div>   
+  </div>
 @endsection

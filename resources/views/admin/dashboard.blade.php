@@ -32,11 +32,16 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('admin.post.index', $locale) }}">
+                <a href="{{ route('admin.news.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">News:
+                        <span class="text-indent btn btn-default">News:
                             <span class="label label-success">150</span>
-                        </span>                    
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.news.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -54,11 +59,16 @@
 
         <div class="row">
         <div class="col-md-4">
-                <a href="{{ 'link.to.all.opinions' }}">
+                <a href="{{ route('admin.opinion.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Opinions: 
-                            <span class="label label-success">1</span>
-                        </span>                    
+                        <span class="text-indent btn btn-default">Opinions: 
+                            <span class="label label-success">{{$opinion->count()}}</span>
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.opinion.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -90,7 +100,9 @@
 
         <div class="row">
             <div class="col-md-3">
-                <a href="{{route('admin.partners.index', $locale)}}">
+
+                <a href="{{ route('admin.partners.index', $locale) }}">
+
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Partners: 
                             <span class="label label-success">1</span>

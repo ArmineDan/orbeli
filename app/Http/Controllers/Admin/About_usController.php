@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App;    
 use App\Lang;
+
 class About_usController extends Controller
 {
     /**
@@ -16,17 +17,18 @@ class About_usController extends Controller
      */
     protected $folder_name = "about_us";
     protected $last_id = "1";
-
     public function index()
     {
         $lang_id = Lang::getLangId();
         $about_us = DB::select("SELECT * FROM about_uses WHERE lang_id = $lang_id");
+
         return view('admin.about_us.index',[
             'locale' => App::getLocale(),
             'about_us' => $about_us,
         ]);
         return view('admin.about_us.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,18 +36,59 @@ class About_usController extends Controller
      */
     public function create()
     {
-        //
+
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'about_uses')");
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        $folder_name = $this->folder_name;
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        $imageurls = [];
+
+        for ($i=0; $i < count($images) ; $i++) {
+            $imageurls[$i]['url'] = Storage::url($images[$i]);
+            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+        }
+
+        return view("admin.about_us.create",[
+            'locale' => \App::getLocale(),
+            'last_id' =>$last_id,
+            'imageurls' => $imageurls,
+            'folder_name' => $folder_name,
+        ]);
     }
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+
+    public function store(Request $request, $locale)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'short_text' => 'required',
+            'html_code' => 'required',
+            'img' => 'required',
+        ]);
+        $about_us = new About_us;
+
+        $paraParams = [
+            'title' => $request->input('title'),
+            'short_text' => $request->input('short_text'),
+            'html_code' => $request->input('html_code'),
+            'img' => $request->input('img'),
+        ];
+
+        DB::table('about_uses')->insert( $paraParams );
+
+        return redirect()->route('admin.about_us.index', App::getLocale());
     }
+
+
     /**
      * Display the specified resource.
      *
@@ -56,6 +99,7 @@ class About_usController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -64,8 +108,16 @@ class About_usController extends Controller
      */
     public function edit($id, $locale)
     {
+
         $lang_id = Lang::getLangId();
         $images = Storage::files('public/'.$this->folder_name.'/'.$this->last_id);
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                 FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'about_uses')");
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;     
+        $lang_id = Lang::getLangId();
+        $folder_name = 'about_us';
+        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -74,8 +126,9 @@ class About_usController extends Controller
     
         $about_us = About_us::find($id);
         // return $about_us;x
-        App::setLocale($locale);
-        
+
+      App::setLocale($locale);
+       
         return view('admin.about_us.edit',[
             'about_us' => $about_us,
             'locale'=>$locale,
@@ -84,6 +137,8 @@ class About_usController extends Controller
             'imageurls' => $imageurls,
         ]);
     }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -95,21 +150,28 @@ class About_usController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
+
+            'text' => 'required',
             'html_code' => 'required',
+            'img' => 'required',
+
         ]);
         
         $about_us = About_us::find($id);
             $about_us->title = $request->input('title');
+
             $about_us->html_code = $request->input('html_code');
         $about_us->save();
         return redirect()->route('admin.about_us.index', $locale)->with('success','Post Created');
     }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\About_us  $about_us
      * @return \Illuminate\Http\Response
      */
+
     public function destroy()
     {
       //

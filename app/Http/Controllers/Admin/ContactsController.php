@@ -6,8 +6,10 @@ use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+
 use App;    
 use App\Lang;
+
 
 class ContactsController extends Controller
 {
@@ -18,11 +20,10 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $lang_id = Lang::getLangId();
-        $contact = DB::select("SELECT * FROM contacts WHERE lang_id=$lang_id");
+        $contact = DB::select("SELECT * FROM contacts");
         return view('admin.contact.index',[
             'locale' => App::getLocale(),
-            'contact' => $contact,
+            'contact' => $contact
         ]);
     }
 
@@ -66,6 +67,7 @@ class ContactsController extends Controller
      */
     public function edit($id, $locale)
     {
+        
         $contact = Contact::find($id);
         App::setLocale($locale);
         
@@ -89,8 +91,10 @@ class ContactsController extends Controller
             'phone' => 'required',
             'mail' => 'required',
             'title' => 'required',
+
             'text' => 'required',
             'lang_id' => 'required'
+
         ]);
         
         $contact = Contact::find($id);

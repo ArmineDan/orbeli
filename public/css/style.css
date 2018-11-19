@@ -2509,7 +2509,7 @@ header.header-appear nav.header-light, header.sticky nav.navbar-fixed-top.header
 header.header-appear nav.header-dark, header.sticky nav.navbar-fixed-top.header-dark, header.sticky nav.navbar-scroll-fixed-top.header-dark {background-color: #000000;}
 
 /* collepsed menu icon */
-.navbar-default .navbar-toggle .icon-bar, header.sticky .navbar-default.header-light .navbar-toggle .icon-bar, header.sticky .navbar-default.header-light-transparent .navbar-toggle .icon-bar {background: #232323; }
+.navbar-default .navbar-toggle .icon-bar, header.sticky .navbar-default.header-light .navbar-toggle .icon-bar, header.sticky .navbar-default.header-light-transparent .navbar-toggle .icon-bar {//background: #232323; }
 .navbar-default.white-link .navbar-toggle .icon-bar, header.sticky .navbar-default.header-dark .navbar-toggle .icon-bar, header.sticky .navbar-default.header-dark-transparent .navbar-toggle .icon-bar {background: #fff; }
 
 /* hamburger menu */
@@ -3665,8 +3665,8 @@ a img.aligncenter { display: block; margin-left: auto; margin-right: auto }
 .scroll-top-arrow:hover {background: #000; opacity: .8; color: #fff; border-color: #ff214f}
 .scroll-top-arrow i {line-height: 30px;  position: relative;}
 
-.bg-dark-footer{background-color:#141414;}
-.footer-logo {max-height: 28px;}
+.bg-dark-footer{background-color:#2c3a4a;}
+.footer-logo {max-height: 63px;}
 
 /* footer input */
 footer input::-webkit-input-placeholder { color: #6f6f6f; text-overflow: ellipsis; font-size: 11px; font-weight: 400; opacity:1;}

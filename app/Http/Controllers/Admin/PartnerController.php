@@ -43,7 +43,9 @@ class PartnerController extends Controller
         // return $last_id;
         $lang_id = Lang::getLangId();
         // return $lang_id;
+
         $folder_name = $this->folder_name;
+
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         // return $images;
         $imageurls = [];
@@ -77,13 +79,6 @@ class PartnerController extends Controller
             'lang_id' => 'required',
         ]);
         $partner = new Partner;
-        
-        // $parralax->title = $request->input('title');
-        // $parralax->text = $request->input('text');
-        // $parralax->link = $request->input('link');
-        // $parralax->img = $request->input('img');
-        // $parralax->lang_id = $locale;
-        // $parralax->save();
 
         $paraParams = [
             'p_name' => $request->input('name'),
@@ -93,10 +88,7 @@ class PartnerController extends Controller
             'lang_id' => $request->input('lang_id'),
         ];
 
-        // $parralax->create($paraParams);
         DB::table('partners')->insert( $paraParams );
-
-        // echo 'ok';
 
         return redirect()->route('admin.partners.index', App::getLocale());
     }
@@ -120,8 +112,10 @@ class PartnerController extends Controller
      */
     public function edit($id, $locale)
     {
+
         $lang_id = Lang::getLangId();
         $images = Storage::files('public/'.$this->folder_name.'/'.$id);
+
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -150,14 +144,14 @@ class PartnerController extends Controller
     public function update(Request $request, $id, $locale)
     {
         $this->validate($request,[
-            'p_name' => 'required',
+            'name' => 'required',
             'url' => 'required',
             'text' => 'required',
             'logo' => 'required',
         ]);
         
         $partner = Partner::find($id);
-            $partner->p_name = $request->input('p_name');
+            $partner->p_name = $request->input('name');
             $partner->url = $request->input('url');
             $partner->text = $request->input('text');
             $partner->logo = $request->input('logo');

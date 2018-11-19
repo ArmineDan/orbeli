@@ -68,7 +68,7 @@ class Post extends Model
         ->where('posts.status','<>','main')
         ->where('posts.lang_id','=', $lng)         
         ->join('authors', 'authors.id', '=', 'posts.author_id')
-        ->orderByRaw('date DESC')   
+        ->orderByRaw('posts.id DESC')   
         ->limit(4)
         ->get();
         return $main_right;
@@ -97,12 +97,22 @@ class Post extends Model
             $allTagsArray = [];
             $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 
                         JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id
-                        WHERE lang_id=$lang_id");
+                        WHERE t2.lang_id=$lang_id");
             for ($i=0; $i < count($allTagsColumn); $i++) { 
                 $allTagsArray[$i] = $allTagsColumn[$i]->name;
             }
             return $allTagsArray;
         }
+
+        static function getTagsByLangId($lang_id) {
+            $allTags = [];
+            $allTagsColumn = DB::select("SELECT name from taggable_tags where lang_id = ?", [$lang_id]);
+            for ($i=0; $i < count($allTagsColumn); $i++) { 
+                $allTags[$i] = $allTagsColumn[$i]->name;
+            }
+            return $allTags;
+        }
+        
         // taggabe native fucntions
         // $allTags = Post::allTags();
         // $tagArray = $post->tagArray;
