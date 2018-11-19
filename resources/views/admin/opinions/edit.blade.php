@@ -54,7 +54,7 @@
 
         <label for="status">Status</label>
         <select name="status" class="form-control" >
-            <option value="" style="display:none">Select Post status</option>
+            <option value="" style="display:none">Select Opinion status</option>
             <option value="published" @if($opinion->status =='published') selected @endif >Published</option>
             <option value="not_published" @if($opinion->status == 'not_published') selected @endif>Not published</option>       
         </select>
@@ -72,7 +72,7 @@
                 {{ $author->name }} {{ $author->lastname }} 
             </option>
             @empty
-                <option value="">Please Insert One Author, then update the Post.</option>
+                <option value="">Please Insert One Author, then update the Opinion.</option>
             @endforelse
         </select>
         <hr>
@@ -103,9 +103,27 @@
         <input type="text" name="o_duration" id="duration" class="form-control" value="{{$opinion->o_duration}}">
         <hr>
 
-        <label for="" style="display:block">Opinion tags <kbd>without spaces</kbd></label>
+        {{-- <label for="" style="display:block">Opinion tags <kbd>without spaces</kbd></label>
         <p>{{$allTagsList}}</p>
         <input type="text" name="tags" class="form-control" value="{{$opinionTagsList}}">
+        <hr> --}}
+
+        <label for="" style="display:block">Opinion tags</label>        
+        <input type="text" name="new_tag" id="new_tag" value="">
+        <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+        <select name="tags[]" id="ex-search" multiple="multiple">
+            @if ($atags)
+                @for ($i = 0; $i < count($atags); $i++)
+                    <option value="{{$atags[$i]}}"
+                    @if (in_array($atags[$i], $otags))
+                        selected="selected"
+                    @endif                    
+                    >{{$atags[$i]}}</option>
+                @endfor
+            @else
+            <option value="">No tags in list. Please add new tags manually.</option>        
+            @endif
+        </select>
         <hr>
 
         <label for="">Viewed</label>
@@ -137,7 +155,7 @@
                     </li>
                     @empty
                     <li class="list-group-item">
-                        <mark>Current Post doesn't have attached files.</mark>
+                        <mark>Current Opinion doesn't have attached files.</mark>
                     </li>                                                    
                     @endforelse
                 </ul>
@@ -149,20 +167,5 @@
             <button type="submit" class="btn btn-info" style="width:15%">Update</button>
         </div>
     </form>
-
-    <script>
-        function CountDurationLong() {
-            var longDesc = CKEDITOR.instances['post_long_text'].getData();            
-            // console.log(longDesc);
-            var stats = window.reading_time(longDesc);
-            // console.log(stats);
-    
-            var duration = document.getElementById('duration');
-            duration.value = stats.minutes;
-            document.getElementById('time_text').textContent = stats.text;
-            document.getElementById('time_words').textContent = ' /words: ' + stats.words;
-        }
-      </script>
-
 </div>    
 @endsection

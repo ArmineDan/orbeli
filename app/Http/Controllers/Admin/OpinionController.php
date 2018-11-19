@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
-
 class OpinionController extends Controller
 {
 
@@ -35,7 +34,7 @@ class OpinionController extends Controller
     public function index()
     {
         $lang_id = Lang::getLangId();
-        $opinions = Opinion::where('lang_id', '=', $lang_id)->paginate(10);
+        $opinions = Opinion::where('lang_id', '=', $lang_id)->orderBy('id', 'desc')->paginate(10);
         return view('admin.opinions.index', [
             'opinions' => $opinions,
             'locale' => App::getLocale(),
@@ -50,9 +49,9 @@ class OpinionController extends Controller
     public function create()
     {
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-        FROM    information_schema.TABLES
-        WHERE   (TABLE_NAME = 'opinions')
-        AND table_schema=DATABASE()");        
+            FROM    information_schema.TABLES
+            WHERE   (TABLE_NAME = 'opinions')
+            AND table_schema=DATABASE()");
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
 
         $folder_name = $this->folder_name;
@@ -65,13 +64,9 @@ class OpinionController extends Controller
         }
         
         $lang_id = Lang::getLangId();
-        $authors = Author::where('lang_id', $lang_id)->get();        
+        $authors = Author::where('lang_id', $lang_id)->get();
 
-        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id WHERE lang_id=$lang_id");
-        $allTags = [];
-        for ($i=0; $i < count($allTagsColumn); $i++) { 
-            $allTags[$i] = $allTagsColumn[$i]->name;
-        }
+        $allTags = Post::getTagsByLangId($lang_id);
 
         return view('admin.opinions.create', [
             'opinion' => [],
@@ -107,7 +102,7 @@ class OpinionController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
         ]);
 
         $opinion = Opinion::create($request->all());
@@ -117,8 +112,16 @@ class OpinionController extends Controller
         // add tags to this Opinion
         if($request->input('tags')) {
             // $tagsString = $request->tags;
-            $tagsArray = explode(',',$request->tags);
+            // $tagsArray = explode(',',$request->tags);
+            $tagsArray = $request->tags;
             $opinion->tag($tagsArray); // store-to-db
+
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
         }
 
         // add date into Event if not exists
@@ -185,7 +188,8 @@ class OpinionController extends Controller
         $authors = Author::where('lang_id', $lang_id)->get();
         $docsObject = $opinion->getDocuments()->get();
 
-        $allTagsArray = Post::getAllTagsByLangId($lang_id);
+        $allTagsArray = Post::getTagsByLangId($lang_id);
+        $opinionTagsArray = $opinion->tagArray;
         $allTagsList = implode(',',$allTagsArray);
         $opinionTagsList = $opinion->tagList;
 
@@ -208,6 +212,8 @@ class OpinionController extends Controller
             'folder_name' => $this->folder_name,
             'imageurls' => $imageurls,
             'post_typ' => $this->post_typ,
+            'atags' => $allTagsArray,
+            'otags' => $opinionTagsArray,
         ]);
 
     }
@@ -234,7 +240,7 @@ class OpinionController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
         ]);
 
         // return $request->all();
@@ -248,8 +254,22 @@ class OpinionController extends Controller
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
                 $opinion->retag($request->input('tags'));
+
+                // update lang_id into taggable_tags
+                // $tagsArray = explode(',',$request->tags);
+                $tagsArray = $request->tags;
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
             }            
         }
+        // update lang_id into taggable_taggables
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Opinion')
+        ->where('taggable_id', $opinion_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
 
         return redirect()->route('admin.opinion.edit', [$opinion->id, $locale]);
 

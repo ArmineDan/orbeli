@@ -787,6 +787,11 @@
         var createError = __webpack_require__(7);
         var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
+$(document).ready(function () {
+  CKEDITOR.replace('post_short_text', { height: 150 });
+  CKEDITOR.replace('post_long_text', { height: 150 });
+  CKEDITOR.replace('post_full_text');
+});
         module.exports = function xhrAdapter(config) {
             return new Promise(function dispatchXhrRequest(resolve, reject) {
                 var requestData = config.data;
@@ -823,6 +828,9 @@
                     requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
                 }
 
+var app = new Vue({
+  el: '#app'
+});
                 request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
 
                 // Set the request timeout in MS

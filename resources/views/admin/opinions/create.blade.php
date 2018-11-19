@@ -2,7 +2,9 @@
 
 
 @section('content')
+
 <div class="container">
+    {{-- js-here --}}
     <h3>Create Opinion <small> № {{$last_id}}<code> lang:{{$locale}}</code><small></h3>
 
     
@@ -49,12 +51,12 @@
       <input type="text" name="post_typ" value="{{$post_typ}}" hidden>
 
       <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name">
+      <input type="text" name="title" class="form-control" placeholder="Opinion name">
       <hr>
 
       <h5 for="status">Status</h5>
       <select name="status" class="form-control" >
-          <option value="" style="display:none">Select Post status</option>
+          <option value="" style="display:none">Select Opinion status</option>
           <option value="published">Published</option>
           <option value="not_published">Not published</option>
       </select>
@@ -66,13 +68,13 @@
         @forelse ($authors as $author)
             <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
-            <option value="">Please Insert One Author, then update the Post.</option>
+            <option value="">Please Insert One Author, then update the Opinion.</option>
         @endforelse
       </select>
       <hr>
 
       <h5 for="date">Date</h5>
-      <input type="date" name="date" class="form-control" placeholder="select date">
+        <input type="date" name="date" class="form-control" placeholder="select date">
       <hr>
 
       <h5 for="post_short_text">Short Description <code>without any media.</code></h5>
@@ -98,9 +100,23 @@
       <input type="text" name="o_duration" id="duration" class="form-control" value="1">
       <hr>
 
-      <h5 for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></h5>
+      {{-- <h5 for="" style="display:block">Select tags for current Opinion, separated by comma.<kbd>without spaces</kbd></h5>
       <p>{{ implode(",",$tags) }}</p>
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
+      <hr> --}}
+
+      <h5 style="display:block">Select tags for current Opinion</h5>
+      <input type="text" name="new_tag" id="new_tag" value="">
+      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+        @if ($tags)
+         @for ($i = 0; $i < count($tags); $i++)
+         <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
+         @endfor
+        @else
+        <option value="">No tags in list. Please add new tags manually.</option>        
+        @endif
+      </select>
       <hr>
 
       <h4>Meta data</h4>
@@ -111,19 +127,5 @@
       <hr>
       <button type="submit" class="btn btn-success" style="width:130px">Next</button>
     </form><hr>
-<div>
-  
-  <script>
-    function CountDurationLong() {
-        var longDesc = CKEDITOR.instances['post_long_text'].getData();            
-        // console.log(longDesc);
-        var stats = window.reading_time(longDesc);
-        // console.log(stats);
-
-        var duration = document.getElementById('duration');
-        duration.value = stats.minutes;
-        document.getElementById('time_text').textContent = stats.text;
-        document.getElementById('time_words').textContent = ' /words: ' + stats.words;
-    }
-  </script>
+  </div>
 @endsection
