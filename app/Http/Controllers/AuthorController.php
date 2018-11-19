@@ -26,10 +26,11 @@ class AuthorController extends Controller
                 Session::put('locale',$locale);
                 App::setLocale($locale);
                 $lang = App::getLocale(); 
-        
+                $lng = Post:: getLangId(); 
         $menu = Post::menu();
         $authors =DB::table('authors')
-        ->select('*') 
+        ->select('*')
+        ->where('lang_id','=', $lng) 
         ->paginate(8);
         $mostViewed = Post::mostViewed();
         $popular_tags = Tags::load_all_popular_tags(); 
@@ -79,8 +80,7 @@ class AuthorController extends Controller
         "a_posts" => $a_last_posts
          );
 
-
-       //return $all_last_posts['a_posts'][0];
+//return count($a_last_posts);
        return  view('about_me',compact('all_last_posts'));
     
         }

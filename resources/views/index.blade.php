@@ -25,7 +25,7 @@
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
-                    <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
+                    <span class="display-inline-block margin-5px-bottom"  style="font-weight:bold">{{$item->title}}</span></a> 
                     <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
             </li>
         @endforeach                            
@@ -68,7 +68,7 @@
                         </a>
                     </div>
           <div class="author">
-                            <span  class="post-title text-medium text-extra-dark-gray width-100 display-block md-width-100">{{$item->title}}
+                            <span  class="post-title text-medium text-extra-dark-gray width-100 display-block md-width-100"  style="font-weight:bold">{{$item->title}}
                             </span> 
                             
                       <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
@@ -116,8 +116,8 @@
                             </a>
                         </div>
                         <div class="post-details">
-                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100">{{$item->short_text}} </a>
-                            <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>10 ր.</span>
+                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height: 82px">{{$item->title}} </a>
+                            <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{$item->o_duration." ".trans('text.minute') }}</span>
                           <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                           <div class="author text_left_a">
                                    <img src="{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">

@@ -68,7 +68,7 @@ class Post extends Model
         ->where('posts.status','<>','main')
         ->where('posts.lang_id','=', $lng)         
         ->join('authors', 'authors.id', '=', 'posts.author_id')
-        ->orderByRaw('date DESC')   
+        ->orderByRaw('posts.id DESC')   
         ->limit(4)
         ->get();
         return $main_right;

@@ -33,7 +33,7 @@
                 <!-- end social media -->
             </div>
             <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-right text-small xs-text-center">&COPY; 2018 Պատրաստված է՝   <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ"> Վեբէքս Թեքնոլոջիս ՍՊԸ</a></div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">&COPY; 2018 Պատրաստված է՝   <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ"> Վեբէքս Թեքնոլոջիս ՍՊԸ</a></div>
            
                  </div>
         </div>

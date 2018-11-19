@@ -6,7 +6,7 @@
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: visible; animation-name: fadeInUp; height: 317px;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                   <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}">
+                   <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}" style="font-weight:bold" >
                        <img src="{{$item->oimg}}" alt="" data-no-retina="">
                    </a>
                </div>

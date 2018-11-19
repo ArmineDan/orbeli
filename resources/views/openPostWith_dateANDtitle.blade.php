@@ -25,7 +25,7 @@
                                              <a href="{{$all_last_posts['post'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
                                              <a href="{{$all_last_posts['post'][0]->twitter}}"  target="_blank"><i class="fa fa-twitter"></i></a>
                                            <a href="{{$all_last_posts['post'][0]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
-                                         <a  id="take_mail" class="{{$all_last_posts['post'][0]->id}}" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
+                                         <a  id="take_mail" class="{{$all_last_posts['post'][0]->author_id}}" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
                                            <a href="#">
                                            <div id="em_status"></div>
                                            </a>
@@ -279,42 +279,11 @@
         }
 			  
          
-		 /*	$.ajax({
-				url: 'https://www.google.com/recaptcha/api/siteverify',
-				headers: {
-					'Authorization':'Basic xxxxxxxxxxxxx',
-					'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
-					'Content-Type':'application/json'
-				},
-				method: 'POST',
-				dataType: 'json',
-				data: {
-					 secret : '6LeVzHoUAAAAAOAb0eH2RPHg-pxeEhy1bXyTsnif',
-                    response : $('#g-recaptcha-response').val(),
-					remoteip: '198.199.124.113'
-                      
-				}
-				success: function(data){
-				  console.log('succes: '+data);
-				}
-			  });
-
- 
-		 $.post(
-                "https://www.google.com/recaptcha/api/siteverify",
-                { header:{'content-type' :'application/json, charset=utf-8}
-                    secret : '6LeVzHoUAAAAAOAb0eH2RPHg-pxeEhy1bXyTsnif',
-                    response : $('#g-recaptcha-response').val(),
-					remoteip: '198.199.124.113'
-                      
-                },
-                function(result){
-                    $("#comment_answer_ns").html(result);
-                }
-				)*/
+		
        
     })    
 </script>
+
 {!!  $all_last_posts['event']->script() !!}
 </body>
 </html>
