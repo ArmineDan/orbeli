@@ -20,7 +20,7 @@ class CreateContactsTable extends Migration
                 $table->string('mail_icon_text');
                 $table->string('big_text_title');
                 $table->string('big_text');
-                $table->string('lang_id');
+                $table->integer('lang_id')->unsigned();
             $table->timestamps();
         });
     }

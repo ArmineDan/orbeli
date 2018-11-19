@@ -1,4 +1,8 @@
-<div id="see_all_images_ns"> <center><img src=""></center> </div>
+<div id="see_all_images_ns"> 
+    <center>
+        <img src="">
+    </center> 
+</div>
 @include('../includes.links')
     <body>
             @include('../includes.facebook_script' )
@@ -208,12 +212,12 @@
 <script type="text/javascript" src="/js/dev.js"></script>
 <script>
     $("#html_div img").click(function(){
-        $("#see_all_images_ns").css("display","block");
+        $("#see_all_images_ns").fadeIn(500);
         $("#see_all_images_ns img").attr("src",$(this).attr("src"))
     })
 
     $("#see_all_images_ns").click(function(){
-        $("#see_all_images_ns").css("display","none");
+        $("#see_all_images_ns").fadeOut(500);
     })
    
     $("#send_comment").click(function(){

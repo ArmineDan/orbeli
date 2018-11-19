@@ -14,7 +14,7 @@
     @endif
 
 
-    <h2> Edit parralax Number {{$partner['id']}} </h2>
+    <h2> Edit Partner <small>N: {{$partner['id']}} <code> lang: {{$locale}}</code></small> </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -40,7 +40,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="author_id" value="{{$last_id}}">
+                <input type="text" hidden name="post_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
@@ -80,7 +80,7 @@
                 <input name="url" class="form-control" value="{{ $partner['url'] }}">
             <hr>
 
-            <label for="post_short_text">Partner Text</label>
+            <label for="post_short_text">Partner Description</label>
             <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control">       
                 {{ $partner['text'] }}
             </textarea>
@@ -88,9 +88,9 @@
 
             <label for="title">Partner logo</label>
                 <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
-            <hr>
+            <br>
             
-            <button class="btn btn-success">Save</button>
+            <div class="well"><button class="btn btn-success">Save</button></div>
 
     </form>
 

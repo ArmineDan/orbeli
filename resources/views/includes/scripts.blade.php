@@ -66,6 +66,7 @@ $(".calendar").mouseover(function(){
       $(".fc-left .fc-today-button").trigger('click');
       }   
 })
+
     </script>
 
 {!!  $all_last_posts['event']->script() !!}

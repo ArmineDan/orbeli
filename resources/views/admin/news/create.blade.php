@@ -3,9 +3,18 @@
 @section('content')
 
 <div class="container">
+    @if(count($errors) > 0) 
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <h2> Create Parralax <code>{{$last_id}}</code> <kbd>{{$locale}}</kbd> </h2>
 
+    <h2> Edit News Number {{$news['id']}} </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -31,7 +40,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="post_id" value="{{$last_id}}">
+                <input type="text" hidden name="author_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
@@ -59,32 +68,38 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.parralax.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.partners.update', [$news, $locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
+            {{ method_field('put') }}
 
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" placeholder="Create name">
-        <hr>
+            <label for="title">News Title</label>
+                <input name="title" class="form-control" value="{{ $news['title'] }}">
+            <hr>
 
-        <label for="post_short_text">Parallax Text</label>
-        <textarea name="text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input text">       
-        </textarea>
-        <hr>
+            <label for="short_text">News Short Text</label>
+            <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $news['short_text'] }}
+            </textarea>
+            <hr>
 
-        <label for="title">Link</label>
-        <input type="text" name="link" class="form-control" placeholder="Create link">
-        <hr>
+            <label for="html_code">News HTML Code</label>
+            <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $news['html_code'] }}
+            </textarea>
+            <hr>
 
-        <label for="title">Post main image 900x600: upload and past url here 
-            <code>/storage/parralax/6/parallax-1.jpg</code>
-        </label>
-        <input type="text" name="img" class="form-control" placeholder="Create img">
-        <br>
+            <label for="img">News Img</label>
+                <input name="img" class="form-control" value="{{ $news['img'] }}">
+            <hr>
 
-        
-        <input type="text" name="lang_id" id="" value="{{$lang_id}}" hidden>
-        <button type="submit" class="btn btn-success"> Save </button>
+            <label for="thumb_img">News Thumb Img</label>
+                <input name="thumb_img" class="form-control" value="{{ $news['thumb_img'] }}">
+            <hr>
+
+            <button class="btn btn-success">Save</button>
+
     </form>
+
 </div>
 
 @endsection

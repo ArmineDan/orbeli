@@ -6,18 +6,18 @@
         <h2>Contact List <small><code> lang:{{$locale}}</code><small></h2>
         <div class="table-resposive">
         <table class="table table-bordered table-striped table-hover" style="font-size: 15px">
-            @foreach ($contact as $item)
-                <thead class="thead-dark">
-                        <tr>
-                          <th>Row</th>
-                          <th>Address</th>
-                          <th>Phone</th>
-                          <th>Mail</th>
-                          <th>Title</th>
-                          <th>Text</th>
-                          <th>Edit</th>
-                        </tr>
-                      </thead>
+          <thead class="thead-dark">
+            <tr>
+              <th>Row</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Mail</th>
+              <th>Title</th>
+              <th>Text</th>
+              <th>Edit</th>
+            </tr>
+          </thead>  
+          @foreach ($contact as $item)
                       <tbody>
                         <tr>
                           <th>{{$item->id}}</th>

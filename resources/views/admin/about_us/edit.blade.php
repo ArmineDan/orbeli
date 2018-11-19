@@ -3,8 +3,18 @@
 @section('content')
 
 <div class="container">
+    @if(count($errors) > 0) 
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <h2> Create Partners <small>N: {{$last_id}} <code>lang: {{$locale}}</code> </small></h2>
+
+    <h2> Edit About Us <small><code>Number {{$about_us['id']}}</code></h2></small>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -58,30 +68,24 @@
     </table>        
     @endisset
 
-    <form action="{{ route('admin.partners.store', $locale) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.about_us.update', [$locale, $about_us]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
+            {{ method_field('put') }}
 
-        <label for="title">Partner Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Create name">
-        <hr>
+            <label for="title">Title</label>
+            <input name="title" class="form-control" value="{{ $about_us['title'] }}">
+            <hr>
 
-        <label for="title">Partner URL</label>
-        <input type="text" name="url" class="form-control" placeholder="Create url">
-        <hr>
+            <label for="post_short_text">HTML Code</label>
+            <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $about_us['html_code'] }}
+            </textarea>
+            <br>
 
-        <label for="title">Partner Description</label>
-        <input type="text" name="text" class="form-control" placeholder="Create Description">
-        <hr>
+            <div class="well"><button class="btn btn-success">Save</button></div>
 
-        <label for="title">Partner Logo <code> 225x225 </code> </label>
-        <input type="text" name="logo" class="form-control" placeholder="Logo Url">
-
-        <input type="hidden" value="{{$lang_id}}" name="lang_id">
-        <br>
-
-        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
-        
     </form>
+
 </div>
 
 @endsection

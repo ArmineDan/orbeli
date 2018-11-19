@@ -42,6 +42,8 @@ Route::group( $admin_rules , function() {
   Route::resource('/contact', 'ContactsController', ['as'=>'admin']);
   Route::resource('/authors', 'AuthorController', ['as'=>'admin']);
   Route::resource('/partners', 'PartnerController', ['as'=>'admin']);
+  Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
+  Route::resource('/about_us', 'About_usController', ['as'=>'admin']);
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
@@ -72,6 +74,7 @@ Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost_o
 Route::get('/{locale}/announcement/{date}/{title}', 'PageController@openCurrentPost_announce');
 Route::get('/{locale}/news/{date}/{title}', 'PageController@openCurrentPost_news');
 
+Route::get('/{locale}/contacts','PageController@contact');
 
 Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
 Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
@@ -79,7 +82,6 @@ Route::get('/{locale}/all/tags/', 'PageController@allTags');
 
 
 Route::get('/{locale}', 'PageController@index');
-Route::get('/{locale}/contacts', 'PageController@contacts');
 Route::get('/{locale}/tags/{tag_id}', 'LoadAll@posts_whith_current_tag');
 Route::get('/', 'PageController@index');
 Route::get('{locale}/search/{s?}', 'SearchesController@getIndex')->where('s', '[\w\d]+');

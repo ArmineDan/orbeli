@@ -3962,6 +3962,13 @@ aside .latest-post li.aa figure {width: 179px;}
     .pull-left{
         padding: 15px !important
     }
+    #index_main_div_nark a{
+        font-size: 12px;
+    }
+    #latest_post_main_right_ul_narek{
+        margin-top: -200px;
+    }
+    
 }
 
 .xoragir_d{height: auto !important}
@@ -4021,7 +4028,7 @@ aside .latest-post li.aa figure {width: 179px;}
   z-index: 10;
   position: fixed;
   display: none;
-  overflow: auto
+  overflow: auto;
 }
  
 #see_all_images_ns img{margin-top: 100px} 

@@ -1,35 +1,32 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
-use App\Parralax;
+use App\About_us;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use App;
 use Illuminate\Support\Facades\Storage;
-use App\Post;
-
-class ParralaxController extends Controller
+use DB;
+use App;    
+use App\Lang;
+class About_usController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $folder_name = "parralax";
+    protected $folder_name = "about_us";
+    protected $last_id = "1";
 
     public function index()
     {
-        $lang_id = Post::getLangId();
-        $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id=$lang_id");
-        //return $ns_post;
-        return view('admin.parralax.index',[
+        $lang_id = Lang::getLangId();
+        $about_us = DB::select("SELECT * FROM about_uses WHERE lang_id = $lang_id");
+        return view('admin.about_us.index',[
             'locale' => App::getLocale(),
-            'parralax' => $parralax,
+            'about_us' => $about_us,
         ]);
+        return view('admin.about_us.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -39,7 +36,6 @@ class ParralaxController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,88 +44,74 @@ class ParralaxController extends Controller
      */
     public function store()
     {
-       //
+        //
     }
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\parralax  $parralax
+     * @param  \App\About_us  $about_us
      * @return \Illuminate\Http\Response
      */
-    public function show(parralax $parralax)
+    public function show(About_us $about_us)
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\parralax  $parralax
+     * @param  \App\About_us  $about_us
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $locale)
     {
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'parralaxes')");
-
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
-        $folder_name = $this->folder_name;
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
+        $lang_id = Lang::getLangId();
+        $images = Storage::files('public/'.$this->folder_name.'/'.$this->last_id);
         $imageurls = [];
-
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-       
-        $parralax = Parralax::find($id);
+    
+        $about_us = About_us::find($id);
+        // return $about_us;x
         App::setLocale($locale);
         
-        return view('admin.parralax.edit',[
-            'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
-            'imageurls' => $imageurls,
-            'parralax' => $parralax,
+        return view('admin.about_us.edit',[
+            'about_us' => $about_us,
             'locale'=>$locale,
+            'last_id' =>$this->last_id,
+            'folder_name' =>$this->folder_name,
+            'imageurls' => $imageurls,
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\parralax  $parralax
+     * @param  \App\About_us  $about_us
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $locale, $id)
     {
         $this->validate($request,[
             'title' => 'required',
-            'text' => 'required',
-            'link' => 'required',
-            'img' => 'required'
+            'html_code' => 'required',
         ]);
         
-        $parralax = Parralax::find($id);
-            $parralax->title = $request->input('title');
-            $parralax->text = $request->input('text');
-            $parralax->link = $request->input('link');
-            $parralax->img = $request->input('img');
-        $parralax->save();
-
-        return redirect()->route('admin.parralax.index', $locale)->with('success','Post Created');
+        $about_us = About_us::find($id);
+            $about_us->title = $request->input('title');
+            $about_us->html_code = $request->input('html_code');
+        $about_us->save();
+        return redirect()->route('admin.about_us.index', $locale)->with('success','Post Created');
     }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\parralax  $parralax
+     * @param  \App\About_us  $about_us
      * @return \Illuminate\Http\Response
      */
     public function destroy()
     {
-        //
+      //
     }
 }

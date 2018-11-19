@@ -12,15 +12,11 @@
                   <th> Row </th>
                   <th> Name </th>
                   <th> LastName </th>
-                  <th> Sub_name </th>
-                  <th> Img </th>
-                  <th> Biography</th>
-                  <th> lang_id </th>
-                  <th> Facebook </th>
-                  <th> Twitter </th>
-                  <th> Linkedin </th>
+                  <th> Expert name </th>
                   <th> Email </th>
+                  <th> Img </th>
                   <th> Edit </th>
+                  <th> Delete </th>
                 </tr>
               </thead>
             @foreach ($author as $item)
@@ -30,19 +26,22 @@
                           <td>{{$item->name}}</td>
                           <td>{{$item->lastname}}</td>
                           <td>{{$item->sub_name}}</td>
-                          <td> {{$item->img}} </td>
-                          <td> <textarea>{{$item->biography}}</textarea></td>
-                          <td> {{$item->lang_id}} </td>
-                          <td> {{$item->faceebook}} </td>
-                          <td> {{$item->twitter}} </td>
-                          <td> {{$item->linkedin}} </td>
                           <td> {{$item->email}} </td>
-
+                          <td> <img src="{{$item->img}}" width="120"> </td>
+                      
                           <td>
                             <a href="{{route('admin.authors.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
                               <i class="glyphicon glyphicon-edit"></i> 
                             </a>
                           </td>
+
+                          <td>
+                              <form action="{{ route('admin.authors.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">
+                                  {{ csrf_field() }}
+                                  {{ method_field('DELETE') }}
+                                  <button type="submit" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></td>
+                                </form>
+                            </td>
                 
                           </tr>
                       </tbody>
