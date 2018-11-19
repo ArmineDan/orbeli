@@ -96,9 +96,23 @@
         <input type="text" name="n_duration" id="duration" class="form-control" value="1">
         <hr>
 
-        <label for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></label>
+        {{-- <label for="" style="display:block">Select tags for current post, separated by comma.<kbd>without spaces</kbd></label>
         <p>{{ implode(",",$tags) }}</p>
         <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
+        <hr> --}}
+
+        <h5 style="display:block">Select tags for current News</h5>
+        <input type="text" name="new_tag" id="new_tag" value="">
+        <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+        <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+            @if ($tags)
+            @for ($i = 0; $i < count($tags); $i++)
+            <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
+            @endfor
+            @else
+            <option value="">No tags in list. Please add new tags manually.</option>        
+            @endif
+        </select>
         <hr>
 
         <h4>Meta data</h4>

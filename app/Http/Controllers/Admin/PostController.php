@@ -109,7 +109,7 @@ class PostController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
         ]);
       
 
@@ -119,7 +119,8 @@ class PostController extends Controller
         $post_id = $post->id;
         if($request->input('tags')) {
             // $tagsString = $request->tags;
-            $tagsArray = explode(',',$request->tags);
+            // $tagsArray = explode(',',$request->tags);
+            $tagsArray = $request->tags;
             $post->tag($tagsArray); // store-to-db
 
             // update lang_id into taggable_tags
@@ -206,6 +207,7 @@ class PostController extends Controller
         $docsObject = $post->getDocuments()->get();
 
         $allTagsArray = Post::getTagsByLangId($lang_id);
+        $postTagsArray = $post->tagArray;
         $allTagsList = implode(',',$allTagsArray);
         $postTagsList = $post->tagList;      
 
@@ -230,6 +232,8 @@ class PostController extends Controller
                 'docsObject' => $docsObject,
                 'folder_name' => $this->folder_name,
                 'imageurls' => $imageurls,
+                'atags' => $allTagsArray,
+                'ptags' => $postTagsArray,
             ]);
 
         } else {
@@ -262,7 +266,7 @@ class PostController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
         ]);
 
         // return $request->all();
@@ -278,7 +282,8 @@ class PostController extends Controller
                 $post->retag($request->input('tags'));
 
                 // update lang_id into taggable_tags
-                $tagsArray = explode(',',$request->tags);
+                // $tagsArray = explode(',',$request->tags);
+                $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
                     DB::table('taggable_tags')
                     ->where('name', $tagsArray[$i])

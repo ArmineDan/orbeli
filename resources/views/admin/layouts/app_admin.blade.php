@@ -11,9 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" >    
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/css/picker.css')}}" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/select-picker@0.3.2/dist/picker.css"> --}}
+    
     <style>
         .cat-edit {
             font-size: 20px;
@@ -23,6 +26,29 @@
         #app label {
             font-size: 14px;
         }
+        .picker {
+            font-size: 18px;
+        }
+        .picker .pc-select {
+            min-width: 300px;
+        }
+        #new_tag {
+            border-radius: 2px;
+            border: 1px solid grey;
+            font-size: 16px;
+            line-height: 157%;
+            text-indent: 3px;
+        }
+        #add_tag_btn {
+            color: #fff;
+            background-color: #31b0d5;
+            vertical-align: middle;
+            padding: 7px 10px;
+            margin-bottom: 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
     </style>
 </head>
 <body>
@@ -116,8 +142,13 @@
             filebrowserUploadUrl: '/manage/laravel-filemanager/upload?type=Files&_token='
         };
     </script> --}}
-    <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}" type="text/javascript"></script>    
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script> --}}
+    {{-- <script src="https://unpkg.com/select-picker@0.3.2/dist/picker.min.js"></script> --}}
+    <script src="{{ asset('js/jquery3.3.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/picker.min.js') }}" type="text/javascript"></script>
+    
     <script type="text/javascript">
     
         function getStatusChangeValue(event) {
@@ -187,8 +218,81 @@
             document.getElementById('time_text').textContent = stats.text;
             document.getElementById('time_words').textContent = ' /words: ' + stats.words;
         }
+
+        // https://picker.adam-uhlir.me/#coloring
+        $('#ex-search').picker({search : true, limit : 5});
+
+        if(document.getElementsByClassName('pc-element').length > 5) {
+            document.getElementsByClassName('pc-trigger')[0].style.display = 'none';   
+        }
+
+        // pushed button
+        function addNewTag(event) {
+            let pc_element = document.getElementsByClassName('pc-element');
+            
+            if(pc_element.length > 5) {
+                console.log(pc_element.length, '------ addNewTag: out of limit ------');
+                alert('The limit of tags are only 5 !');
+                return false;
+            }
+
+            let new_tag = document.getElementById('new_tag').value;
+
+            if(new_tag.length <= 2) {
+                alert('The tag must have at least 3 simbols!');
+                return false;
+            }
+            console.log(new_tag);
+            let ex_search = document.getElementById('ex-search');
+            
+            let tmpOption = document.createElement('option');            
+            tmpOption.value = new_tag;
+            tmpOption.textContent = new_tag;
+            // console.log(tmpOption);
+            ex_search.insertAdjacentElement('beforeend',tmpOption);
+
+            let pc_list_ul = document.querySelector('.pc-list ul');
+            // let ul_last_child = pc_list_ul.lastElementChild;
+            // let data_order = Number(ul_last_child.getAttribute('data-order')) + 1;
+
+            let new_data_order = ex_search.options.length-1;
+            // console.log(new_data_order, '-----lolo');
+
+            let tmpLi = document.createElement('li');
+            tmpLi.setAttribute('data-order', new_data_order);
+            tmpLi.setAttribute('data-id',new_tag);
+            tmpLi.textContent = new_tag;
+            pc_list_ul.insertAdjacentElement('beforeend',tmpLi);
+            $('#ex-search').picker('set', new_tag);
+        }
+
+        // API events
+        $('#ex-search').on('sp-change', function() {
+            console.log('hey')
+            let pc_trigger = document.getElementsByClassName('pc-trigger')[0];
+            console.log(pc_trigger.style.display);
+            // let ex_search = document.getElementById('ex-search');
+            let options = document.getElementById("ex-search").options;
+            // console.log(options)
+            let selectedOpt = 0;
+            for (let index = 0; index < options.length; index++) {
+                if(options.item(index).hasAttribute('selected')) {
+                    selectedOpt +=1;
+                }                
+            }
+            console.log(selectedOpt);
+            if(selectedOpt < 5) {
+                document.getElementById('add_tag_btn').setAttribute('onclick', 'addNewTag(event)')
+                console.log('hey-hey')
+            }else {
+                document.getElementById('add_tag_btn').setAttribute('onclick', 'alertLimitmessage()') 
+            }
+        })
         
-        console.log('<<<<<<<<<---------------------hey how are you');
+        function alertLimitmessage() {
+            alert('you already have 5 tags');
+        }
+        console.log('<<<<<<<<<---------------------hey how are you');        
       </script>
       
 </body>

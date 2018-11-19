@@ -103,9 +103,27 @@
         <input type="text" name="o_duration" id="duration" class="form-control" value="{{$opinion->o_duration}}">
         <hr>
 
-        <label for="" style="display:block">Opinion tags <kbd>without spaces</kbd></label>
+        {{-- <label for="" style="display:block">Opinion tags <kbd>without spaces</kbd></label>
         <p>{{$allTagsList}}</p>
         <input type="text" name="tags" class="form-control" value="{{$opinionTagsList}}">
+        <hr> --}}
+
+        <label for="" style="display:block">Opinion tags</label>        
+        <input type="text" name="new_tag" id="new_tag" value="">
+        <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+        <select name="tags[]" id="ex-search" multiple="multiple">
+            @if ($atags)
+                @for ($i = 0; $i < count($atags); $i++)
+                    <option value="{{$atags[$i]}}"
+                    @if (in_array($atags[$i], $otags))
+                        selected="selected"
+                    @endif                    
+                    >{{$atags[$i]}}</option>
+                @endfor
+            @else
+            <option value="">No tags in list. Please add new tags manually.</option>        
+            @endif
+        </select>
         <hr>
 
         <label for="">Viewed</label>

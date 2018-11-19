@@ -109,8 +109,11 @@ class VideoController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
+            // 'basic' => 'required|array',
         ]);
+
+        // return $request->all();
 
         $video = Video::create($request->all());
         $video_id = $video->id;
@@ -118,7 +121,8 @@ class VideoController extends Controller
         // add tags to this Video
         if($request->input('tags')) {
             // $tagsString = $request->tags;
-            $tagsArray = explode(',',$request->tags);
+            // $tagsArray = explode(',',$request->tags);
+            $tagsArray = $request->tags;
             $video->tag($tagsArray); // store-to-db
 
             // update lang_id into taggable_tags
@@ -194,8 +198,25 @@ class VideoController extends Controller
         $docsObject = $video->getDocuments()->get();
 
         $allTagsArray = Post::getTagsByLangId($lang_id);
+        $videoTagsArray = $video->tagArray;
         $allTagsList = implode(',',$allTagsArray);
         $videoTagsList = $video->tagList;
+        
+        // echo '<pre>';
+        // var_dump($allTagsArray);
+        // var_dump($videoTagsArray);
+        // echo '</pre>';
+        // return 'true';
+        
+        // array_push($allTagsArray,"blue","yellow");
+        // for ($i=0; $i < count($allTagsArray); $i++) {
+        //     if ( \in_array($allTagsArray[$i], $videoTagsArray) ) {
+        //         echo $allTagsArray[$i] . ' - selected <br>';
+        //     }else{
+        //         echo $allTagsArray[$i] . '<br>';
+        //     }
+        // }
+        // return 'true';
 
         $images = Storage::files('public/'.$this->folder_name.'/'.$video->id);
         $imageurls = [];
@@ -216,6 +237,8 @@ class VideoController extends Controller
             'folder_name' => $this->folder_name,
             'imageurls' => $imageurls,
             'post_typ' => $this->post_typ,
+            'atags' => $allTagsArray,
+            'vtags' => $videoTagsArray,
         ]);
         // return 'hello edit video - ' . $id . ' - lng - ' . $locale;
     }
@@ -246,7 +269,7 @@ class VideoController extends Controller
             'post_typ'=>'required|integer',
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
-            'tags'=> 'required|string',
+            'tags'=> 'required|array',
         ]);
 
         // return $request->all();
@@ -262,7 +285,8 @@ class VideoController extends Controller
                 $video->retag($request->input('tags'));
 
                 // update lang_id into taggable_tags
-                $tagsArray = explode(',',$request->tags);
+                // $tagsArray = explode(',',$request->tags);
+                $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
                     DB::table('taggable_tags')
                     ->where('name', $tagsArray[$i])
