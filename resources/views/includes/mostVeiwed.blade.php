@@ -8,7 +8,7 @@
                                         </figure>
                                         <div class="display-table-cell vertical-align-top text-small" id="most_view_div_narek">
                                             <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
-                                                <span class="display-inline-block margin-5px-bottom">{{$item->title}}</span></a> 
+                                                <span class="text-extra-dark-gray display-inline-block margin-5px-bottom" style="font-weight:bold" >{{$item->title}}</span></a> 
                                                 <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
 
                                     </li>
