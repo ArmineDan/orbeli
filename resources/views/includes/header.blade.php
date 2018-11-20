@@ -10,7 +10,7 @@
     <div class="container-fluid nav-header-container">      
         <div class="row">  
        <div class="col-md-1 col-xs-5">
-                <a style="position: absolute;" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo">
+                <a style="position: fixed; top:0" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo">
                     <img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli">
                     <img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
             </div>					
