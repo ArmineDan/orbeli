@@ -257,7 +257,7 @@ a.text-very-light-gray-hover:hover {color:#ededed}
 .bg-medium-light-gray {background-color:#ededed}
 .bg-light-gray {background-color:#f7f7f7}
 .bg-very-light-gray {background-color:#fafafa}
-.bg-deep-pink {background-color:#ff214f;}
+.bg-deep-pink {background-color:#ffc757;}
 .bg-transparent-white { background-color: rgba(255,255,255,0.3); background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,1) 96%, rgba(255,255,255,1) 100%); background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(37%, rgba(255,255,255,0)), color-stop(96%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1))); background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,1) 96%, rgba(255,255,255,1) 100%); background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,1) 96%, rgba(255,255,255,1) 100%); background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,1) 96%, rgba(255,255,255,1) 100%); background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,1) 96%, rgba(255,255,255,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 ); }
 .bg-transparent-black { background-color: rgba(0,0,0,0); background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 37%, rgba(0,0,0,1) 96%, rgba(0,0,0,1) 100%); background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,0)), color-stop(37%, rgba(0,0,0,0)), color-stop(96%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,1))); background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 37%, rgba(0,0,0,1) 96%, rgba(0,0,0,1) 100%); background: -o-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 37%, rgba(0,0,0,1) 96%, rgba(0,0,0,1) 100%); background: -ms-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 37%, rgba(0,0,0,1) 96%, rgba(0,0,0,1) 100%); background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 37%, rgba(0,0,0,1) 96%, rgba(0,0,0,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1 ); }
 .bg-white-opacity { background-color: rgba(255, 255, 255, 0.85); }
@@ -611,7 +611,7 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 
 .aside-title {position: relative; overflow:hidden}
 .aside-title span {display: inline-block; vertical-align:middle; margin-right: 20px;}
-.aside-title:after {content: ""; display: inline-block; width: 100%; background: #ff214f; height: 1px; top: 50%; position: absolute;}
+.aside-title:after {content: ""; display: inline-block; width: 100%; background: #ffc757; height: 1px; top: 50%; position: absolute;}
 .right-sidebar {padding-right:45px;}
 .left-sidebar {padding-left:45px;}
 .left-sidebar1 {

@@ -64,8 +64,32 @@
 						   <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin">
                                 <?php echo html_entity_decode($all_last_posts['post'][0]->html_code, ENT_QUOTES | ENT_XML1, 'UTF-8'); ?>
                                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                                <div class="author">                              
-                            {{-- <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i> {{$all_last_posts['post'][0]->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> --}}
+                                <div class="author">    
+                                 <?php 
+                                
+                                    switch ( $all_last_posts['folder']) {
+                                            case 'post':
+                                            $dur = $all_last_posts['post'][0]->p_duratioan;
+                                            break;
+                                            case 'opinion':
+                                            $dur = $all_last_posts['post'][0]->o_duration;
+                                            break;
+                                            case 'announcement':
+                                            $dur = $all_last_posts['post'][0]->a_duration;
+                                            break;
+                                            case 'news':
+                                            $dur = $all_last_posts['post'][0]->n_duration;
+                                            break;
+                                            case 'video':
+                                            $dur = $all_last_posts['post'][0]->duration;
+                                            break;
+                                        
+                                        default:
+                                        $dur = 1;
+                                            break;
+                                    }  
+                                    ?>                             
+                            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
                             </div>
                             </div>
                            
@@ -76,7 +100,7 @@
                                             <div class="tag-cloud" > 
     
                                             <a href="{{$item->link}}" download title="{{$item->type}}">
-                                                <img width="12" src="/images/icons/{{$item->type}}.png" alt=""  data-no-retina=""> 
+                                                <img width="12" src="/images/icons/download.png" > 
                                                 {{$item->name}}
                                             </a>
                                                  
@@ -195,9 +219,9 @@
                                          </div>
                                          <div class="post-details">
                                              <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$all_last_posts['same_posts'][$i][0]->date}} |  <a href="#" class="text-medium-gray">{{substr($all_last_posts['same_posts'][$i][0]->name, 0, 2) .'. '. $all_last_posts['same_posts'][$i][0]->lastname}}</a></span>
-                                         <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}"  class="post-title text-medium text-extra-dark-gray width-90 display-block sm-width-100">{{$all_last_posts['same_posts'][$i][0]->title}}</a>
+                                         <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight:bold;height:73px">{{$all_last_posts['same_posts'][$i][0]->title}}</a>
                                              <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb sm-margin-15px-tb"></div>
-                                             <p class="width-90 xs-width-100">{{$all_last_posts['same_posts'][$i][0]->short_text}}</p>
+                                             <p class="width-90 xs-width-100">{!!$all_last_posts['same_posts'][$i][0]->short_text!!}</p>
                                          </div>
                                      </div>
                                  </div> 
