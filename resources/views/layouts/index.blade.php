@@ -99,6 +99,7 @@
      @include('../includes.footer')        
         <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>            
           @include('../includes.scripts')
+ 
            {{-- <script src="/js/jquery.jscroll.min.js"></script>      
           <script type="text/javascript" src="/js/main.js"></script> --}}
           {!!  $all_last_posts['event']->script() !!}

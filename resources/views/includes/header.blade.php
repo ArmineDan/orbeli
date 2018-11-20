@@ -10,7 +10,9 @@
     <div class="container-fluid nav-header-container">      
         <div class="row">  
        <div class="col-md-1 col-xs-5">
-                <a style="position: absolute;" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo"><img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli"><img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
+                <a style="position: absolute;" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo">
+                    <img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli">
+                    <img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
             </div>					
             <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
@@ -25,13 +27,42 @@
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
-                       
+                       <li class="dropdown simple-dropdown">
+                            <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                             <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
+                                
+                                <li> <a href="{{url($all_last_posts['lang'].'/announcements')}}"  title="{{trans('text.announcements')}}">{{trans('text.announcements')}}</a> </li> 
+                                <li> <a href="{{url($all_last_posts['lang'].'/news')}}"  title="{{trans('text.news')}}">{{trans('text.news')}}</a> </li>
+                                <li><a href="{{url($all_last_posts['lang'].'/partners')}}" title="{{trans('text.partners')}}">{{trans('text.partners')}}</a> </li>
+                                <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="{{trans('text.auth')}}">{{trans('text.auth')}}</a> </li>
+                                <li><a href="#" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
+                                <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="{{trans('text.contacts')}}">{{trans('text.contacts')}}</a> </li>                              
+                             </ul>
+                        </li>
+                        
+                        <li class="calendar dropdown simple-dropdown" >
+                                <a href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
+                                 <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;">
+                                    <li> 
+                                            
+                                                    <div class="panel panel-default">
+                                                        
+                                        <div class="panel-body">
+                                                            {!! $all_last_posts['event']->calendar() !!}
+                                                        </div>
+                                                    </div>
+                                                
+                                           
+                                            </li>     
+                                                        
+                                 </ul>
+                            </li>  
                       </ul>
                 </div>
                 
             </div> 
                 
-                    
+{{--                     
                     <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
                             <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-2">
                                 <span class="sr-only">toggle navigation</span>
@@ -57,7 +88,7 @@
                                   </ul>
                             </div>
                             
-                        </div> 
+                        </div>  
                         <div class="navbar-collapse collapse" >                     
                        
                                 <ul id="accordion1" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
@@ -80,7 +111,7 @@
                                          </ul>
                                     </li>  
                                   </ul>
-                            </div>   
+                            </div>   --}}
                             
                 <div class="col-md-1 col-sm-2 col-xs-2 width-auto  single-search xs-no-padding-right">
                     <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
