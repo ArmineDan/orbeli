@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bb952a81f45207b5881ecca39c3bcfa",
+    "content-hash": "c8e3a67c0a370ac2714dbc19bce122b2",
     "packages": [
         {
             "name": "cviebrock/eloquent-taggable",
@@ -1343,6 +1343,59 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "skydiver/laravel-route-blocker",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skydiver/laravel-route-blocker.git",
+                "reference": "9b644ef15ffe2b1dffc7d8533b3cb3cb9b135b70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skydiver/laravel-route-blocker/zipball/9b644ef15ffe2b1dffc7d8533b3cb3cb9b135b70",
+                "reference": "9b644ef15ffe2b1dffc7d8533b3cb3cb9b135b70",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.1",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Skydiver\\LaravelRouteBlocker\\LaravelRouteBlockerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Skydiver\\LaravelRouteBlocker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martín M.",
+                    "homepage": "http://flydev.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Block routes by IP",
+            "homepage": "https://github.com/skydiver/laravel-route-blocker",
+            "keywords": [
+                "block",
+                "laravel",
+                "php",
+                "routes",
+                "security"
+            ],
+            "time": "2018-08-10T20:35:08+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

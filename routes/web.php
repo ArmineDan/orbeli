@@ -23,7 +23,7 @@ if ((Request::segment(1) === 'admin' || Request::segment(1) === 'home') && in_ar
 $admin_rules = [
     'prefix'=>'admin/{locale}',
     'namespace'=>'Admin',
-    'middleware'=>['auth'],
+    'middleware'=>['auth'], // ,'whitelist:my_group'
 ];
 
 Route::group( $admin_rules , function() {
