@@ -50,12 +50,15 @@ class AuthorController extends Controller
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
+
+        $lang_id = Lang::getLangId();
         
         return view("admin.authors.create",[
             'locale' => \App::getLocale(),
             'last_id' =>$last_id,
             'imageurls' => $imageurls,
             'folder_name' => $folder_name,
+            'lang_id' => $lang_id,
         ]);
     }
 

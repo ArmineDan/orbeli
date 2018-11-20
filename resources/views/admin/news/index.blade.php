@@ -45,9 +45,9 @@
                 </td>      
               </tr>
               @empty
-              <tr>
+              <tr class="text-center">
                   <td colspan="5">
-                    <h3>No data to show!</h3>
+                    <h4><mark>No data to show! </mark></h4>
                   </td>
               </tr>
               @endforelse  

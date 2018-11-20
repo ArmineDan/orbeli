@@ -141,6 +141,19 @@ class PostController extends Controller
         ->where('taggable_id', $post_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
 
+        // check and replace other posts with status = "main"
+        if($post->status == 'main') {
+            $mainPosts = Post::where('status','=', 'main')->having('lang_id','=',$post->lang_id)->get();
+            // return $mainPosts;
+            if(count($mainPosts) > 1) {
+                foreach ($mainPosts as $key => $mainPost) {
+                   if($mainPost->id != $post->id) {
+                       Post::find($mainPost->id)->update(['status' => 'published']);
+                   } 
+                }
+            }
+        }
+
         return redirect()->route('admin.post.show', [$post_id, App::getLocale()]);
     }
 

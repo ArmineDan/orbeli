@@ -13,9 +13,9 @@
         </div>
     @endif
 
-    <h2> Edit contact Number <small><code>{{$contact['lang_id']}}</code></small> </h2>
+    <h2> Edit contacts <small><code> lang:{{$locale}} </code></small></h2>
 
-    <form action="{{ route('admin.contact.update', [$locale, $contact]) }}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin.contact.update', [$contact['id'],$locale]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             {{ method_field('put') }}
 
@@ -44,7 +44,7 @@
             <input type="hidden" name="lang_id" value="{{ $contact['lang_id'] }}">
 
             <div class="well">
-                <button class="btn btn-success">Save</button>
+                <button class="btn btn-success" style="width:130px">Update</button>
             </div>
     </form>
 

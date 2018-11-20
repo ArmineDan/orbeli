@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container">
+    <h2> Edit Partner <small>N: {{$partner['id']}} <code> lang: {{$locale}}</code></small> </h2>
+    <hr>
     @if(count($errors) > 0) 
         <div class="alert alert-danger">
             <ul>
@@ -14,7 +16,7 @@
     @endif
 
 
-    <h2> Edit Partner <small>N: {{$partner['id']}} <code> lang: {{$locale}}</code></small> </h2>
+    
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -44,10 +46,11 @@
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="width:130px">Upload Images</button>
+                <button type="submit" class="btn btn-success" style="width:130px;margin-top:5px">Upload Images</button>
             </div>     
         </form>
     </div>
+    <hr>
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -88,12 +91,13 @@
 
             <label for="logo">Partner logo</label>
                 <input name="logo" class="form-control" value="{{ $partner['logo'] }}">
-            <br>
+            <hr>
             
-            <div class="well"><button class="btn btn-success">Save</button></div>
-
+            <div class="well">
+                <button class="btn btn-success" style="width:130px">Save</button>
+            </div>
     </form>
-
+    <hr>
 </div>
 
 @endsection

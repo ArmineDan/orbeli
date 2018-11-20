@@ -4,7 +4,16 @@
 
 <div class="container">
 
-    <h2> Create About Us <code>{{$locale}}</code> </h2>
+    <h3> Create About Us <small><code> lang:{{$locale}}</code></small></h3>
+    @if(count($errors) > 0) 
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -34,10 +43,13 @@
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="width:130px">Upload Images</button>
+                <button type="submit" class="btn btn-success" style="width:130px;margin-top:5px">
+                  Upload Images
+                </button>
             </div>     
         </form>
     </div>
+    <hr>
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -59,25 +71,20 @@
     @endisset
 
     <form action="{{ route('admin.about_us.store', $locale) }}" method="POST" class="form-horizontal">
-            {{ csrf_field() }}
+        {{ csrf_field() }}
+        <input type="text" name="lang_id" value="{{$lang_id}}" hidden>
 
         <label for="title">Title</label>
         <input type="text" name="title" class="form-control" placeholder="Create Title">
         <hr>
 
-        <label for="short_text">Short Text</label>
-        <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Create Text"></textarea>
-        <hr>
-
         <label for="html_code">HTML code</label>
-        <input type="text" name="html_code" class="form-control" placeholder="Create Code">
-        <hr>
-
-        <label for="html_code">Img</label>
-        <input type="text" name="img" class="form-control" placeholder="Create Img">
-        <hr>
-
-        <button type="submit" class="btn btn-success"> Save </button>
+        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="About content here ..."></textarea>
+        <hr>        
+        
+        <div class="well">
+          <button type="submit" class="btn btn-success" style="width:130px"> Save </button>
+        </div>
     </form>
 </div>
 

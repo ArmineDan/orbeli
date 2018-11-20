@@ -57,6 +57,7 @@
             <option value="" style="display:none">Select Video status</option>
             <option value="published" @if($video->status =='published') selected @endif >Published</option>
             <option value="not_published" @if($video->status == 'not_published') selected @endif>Not published</option>       
+            <option value="main" @if($video->status =='main') selected @endif >Main Post</option>
         </select>
         <hr>
 

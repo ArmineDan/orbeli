@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    <h3> Edit About Us <small><code> lang:{{$locale}}</code></small></h3>
     @if(count($errors) > 0) 
         <div class="alert alert-danger">
             <ul>
@@ -12,11 +13,6 @@
             </ul>
         </div>
     @endif
-
-
-
-    <h2> Edit About Us <small><code>Number {{$about_us['id']}}</code></h2></small>
-
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -46,10 +42,11 @@
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="width:130px">Upload Images</button>
+                <button type="submit" class="btn btn-success" style="width:130px;margin-top:5px">Upload Images</button>
             </div>     
         </form>
     </div>
+    <hr>
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -71,23 +68,25 @@
     @endisset
 
     <form action="{{ route('admin.about_us.update', [$locale, $about_us]) }}" method="POST" class="form-horizontal">
-            {{ csrf_field() }}
-            {{ method_field('put') }}
+        {{ csrf_field() }}
+        {{ method_field('put') }}
+        <input type="text" name="lang_id" value="{{$lang_id}}" hidden>
 
-            <label for="title">Title</label>
-            <input name="title" class="form-control" value="{{ $about_us['title'] }}">
-            <hr>
-
-
-            <label for="post_short_text">HTML Code</label>
-            <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
-                {{ $about_us['html_code'] }}
-            </textarea>
-            <br>
-
-            <div class="well"><button class="btn btn-success">Save</button></div>
+        <label for="title">Title</label>
+        <input name="title" class="form-control" value="{{ $about_us['title'] }}">
+        <hr>
 
 
+        <label for="post_short_text">HTML Code</label>
+        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
+            {{ $about_us['html_code'] }}
+        </textarea>
+        <br>
+
+        <div class="well">
+            <button class="btn btn-success" style="width:130px">Update</button>
+        </div>
+        <hr>
     </form>
 
 </div>

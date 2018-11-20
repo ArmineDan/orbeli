@@ -142,6 +142,19 @@ class VideoController extends Controller
         ->where('taggable_id', $video_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
 
+        // check and replace other videos with status = "main"
+        if($video->status == 'main') {
+            $mainVideos = Video::where('status','=', 'main')->having('lang_id','=',$video->lang_id)->get();
+            // return $mainVideos;
+            if(count($mainVideos) > 1) {
+                foreach ($mainVideos as $key => $mainVideo) {
+                   if($mainVideo->id != $video->id) {
+                    Video::find($mainVideo->id)->update(['status' => 'published']);
+                   } 
+                }
+            }
+        }
+
         return redirect()->route('admin.video.show', [$video_id, App::getLocale()]);
 
     }
@@ -300,6 +313,19 @@ class VideoController extends Controller
         ->where('taggable_type', 'App\\Video')
         ->where('taggable_id', $video_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
+
+        // check and replace other videos with status = "main"
+        if($video->status == 'main') {
+            $mainVideos = Video::where('status','=', 'main')->having('lang_id','=',$video->lang_id)->get();
+            // return $mainVideos;
+            if(count($mainVideos) > 1) {
+                foreach ($mainVideos as $key => $mainVideo) {
+                   if($mainVideo->id != $video->id) {
+                    Video::find($mainVideo->id)->update(['status' => 'published']);
+                   } 
+                }
+            }
+        }
 
         return redirect()->route('admin.video.edit', [$video_id, $locale]);
 
