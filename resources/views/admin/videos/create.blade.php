@@ -55,6 +55,7 @@
           <option value="" style="display:none">Select Video status</option>
           <option value="published">Published</option>
           <option value="not_published">Not published</option>
+          <option value="main">Main Post</option>
       </select>
       <hr>
 

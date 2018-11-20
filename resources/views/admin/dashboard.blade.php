@@ -7,7 +7,7 @@
                 <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Posts:
-                            <span class="label label-success">{{$posts->count()}}</span>
+                            <span class="label label-success">{{$posts}}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.post.create', $locale) }}" class="label label-info">
@@ -21,7 +21,7 @@
                 <a href="{{ route('admin.video.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Video-Posts:
-                            <span class="label label-success">{{$videos->count()}}</span>
+                            <span class="label label-success">{{$videos}}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.video.create', $locale) }}" class="label label-info">
@@ -35,7 +35,7 @@
                 <a href="{{ route('admin.news.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">News:
-                            <span class="label label-success">150</span>
+                            <span class="label label-success">{{ $news }}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.news.create', $locale) }}" class="label label-info">
@@ -62,7 +62,7 @@
                 <a href="{{ route('admin.opinion.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Opinions: 
-                            <span class="label label-success">{{$opinion->count()}}</span>
+                            <span class="label label-success">{{$opinion}}</span>
                         </span>
                         <div>                            
                             <a href="{{ route('admin.opinion.create', $locale) }}" class="label label-info">
@@ -76,8 +76,13 @@
                 <a href="{{route('admin.authors.index', $locale)}}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Authors: 
-                            <span class="label label-success">25</span>
-                        </span>                    
+                            <span class="label label-success">{{ $authors }}</span>
+                        </span>
+                        <div>                            
+                            <a href="{{ route('admin.authors.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -85,7 +90,7 @@
                 <a href="{{ route('admin.category.index', $locale)}}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Categories:
-                            <span class="label label-success">{{$categories->count()}}</span>
+                            <span class="label label-success">{{$categories}}</span>
                         </span>
                         <div>
                             <a href="{{ route('admin.category.create', $locale) }}" class="label label-info">
@@ -105,8 +110,13 @@
 
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Partners: 
-                            <span class="label label-success">1</span>
-                        </span>                    
+                            <span class="label label-success">{{ $partners }}</span>
+                        </span>
+                        <div>
+                            <a href="{{ route('admin.partners.create', $locale) }}" class="label label-info">
+                                create new <i class="glyphicon glyphicon-plus"></i>                                
+                            </a>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -114,7 +124,7 @@
                 <a href="{{ route('admin.about_us.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">About Us: 
-                            <span class="label label-success">1</span>
+                            <span class="label label-success">{{ $aboutus }}</span>
                         </span>                    
                     </div>
                 </a>
@@ -123,7 +133,7 @@
                 <a href="{{ route('admin.parralax.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Parallax: 
-                            <span class="label label-success">1</span>
+                            <span class="label label-success">{{ $parallax }}</span>
                         </span>                    
                     </div>
                 </a>
@@ -133,7 +143,7 @@
                 <a href="{{ route('admin.contact.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Contact us: 
-                            <span class="label label-success">1</span>
+                            <span class="label label-success">{{ $contacts }}</span>
                         </span>                    
                     </div>
                 </a>

@@ -20,10 +20,11 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contact = DB::select("SELECT * FROM contacts");
+        $lang_id = Lang::getLangId();
+        $contact = DB::select("SELECT * FROM contacts WHERE lang_id = ?", [$lang_id]);
         return view('admin.contact.index',[
             'locale' => App::getLocale(),
-            'contact' => $contact
+            'contact' => $contact,
         ]);
     }
 
@@ -73,7 +74,7 @@ class ContactsController extends Controller
         
         return view('admin.contact.edit',[
             'contact' => $contact,
-            'locale'=> $contact,
+            'locale'=> $locale,
         ]);
     }
 
@@ -86,6 +87,7 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id, $locale)
     {
+        
         $this->validate($request,[
             'address' => 'required',
             'phone' => 'required',
@@ -106,7 +108,7 @@ class ContactsController extends Controller
             $contact->lang_id = $request->input('lang_id');
         $contact->save();
 
-        return redirect()->route('admin.contact.index', $locale)->with('success','Post Created');
+        return redirect()->route('admin.contact.index', $locale);//->with('success','Post Created');
     }
 
     /**

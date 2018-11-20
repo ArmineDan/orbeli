@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h2>Parralax List <small><code> lang:{{$locale}}</code><small></h2>
+        <h2>Parallax <small><code> lang:{{$locale}}</code><small></h2>
         <div class="table-resposive">
         <table class="table table-bordered table-striped table-hover" style="font-size: 15px;">
             <thead class="thead-dark">

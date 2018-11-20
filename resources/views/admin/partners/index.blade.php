@@ -4,6 +4,7 @@
 
     <div class="container">
         <h2>Partners List <small><code>Lang:{{$locale}}</code><small></h2>
+        <hr>
         <div class="table-resposive">
         <a href="{{route('admin.partners.create', $locale)}}" class="btn btn-primary pull-right">Create Partners <i class="fa fa-plus"></i> </a>
         <table class="table table-bordered table-striped table-hover" style="font-size: 15px;">
@@ -37,7 +38,7 @@
                             <form action="{{ route('admin.partners.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></td>
+                            <button type="submit" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i></button></td>
                             </form>  
                           </td>
                 

@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Partners <small>N: {{$last_id}} <code>lang: {{$locale}}</code> </small></h2>
+    <h3> Create Partners <small>N: {{$last_id}} <code>lang:{{$locale}}</code> </small></h3>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -34,10 +34,11 @@
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="width:130px">Upload Images</button>
+                <button type="submit" class="btn btn-success" style="width:130px;margin-top:5px">Upload Images</button>
             </div>     
         </form>
     </div>
+    <hr>
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -69,11 +70,11 @@
         <input type="text" name="url" class="form-control" placeholder="Create url">
         <hr>
 
-        <label for="title">Partner Description</label>
+        <label for="title">Partner Description <code>max-simbols: 90</code></label>
         <input type="text" name="text" class="form-control" placeholder="Create Description">
         <hr>
 
-        <label for="title">Partner Logo <code> 225x225 </code> </label>
+        <label for="title">Partner Logo <code> 225x225px </code> </label>
         <input type="text" name="logo" class="form-control" placeholder="Logo Url">
 
         <input type="hidden" value="{{$lang_id}}" name="lang_id">

@@ -27,12 +27,16 @@
                     <td>{{$video->title}}</td>
                     <td>{{$video->duration}}</td>
                     <td>{{$video->date ??'no-date'}}</td>
-                    
-                    @if ($video->status == 'not_published')
+
+                    @if ($video->status == 'main')
+                    <td class="alert alert-success">{{$video->status}}</td>
+                    @elseif($video->status == 'not_published')
                     <td class="alert alert-danger">{{$video->status}}</td>
                     @else
                     <td>{{$video->status}}</td>
-                    @endif                  
+                    @endif  
+                    
+                                     
                     <td class="text-center" style="min-width:15%">
                       {{--['id'=>$category->id]--}}
                       <form action="{{ route('admin.video.destroy', [$video, $locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
@@ -54,9 +58,9 @@
                     </td>
                 </tr>
               @empty
-                <tr>
+                <tr class="text-center">
                   <td colspan="5">
-                    <h3>No data to show!</h3>
+                    <h4><mark> No data to show! </mark></h4>
                   </td>
                 </tr>
               @endforelse               

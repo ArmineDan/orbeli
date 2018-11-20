@@ -8,25 +8,29 @@ use DB;
 use App;    
 use App\Lang;
 
+
 class About_usController extends Controller
 {
+    protected $folder_name = "about_us";
+    protected $last_id = "1";
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    protected $folder_name = "about_us";
-    protected $last_id = "1";
+
     public function index()
     {
         $lang_id = Lang::getLangId();
         $about_us = DB::select("SELECT * FROM about_uses WHERE lang_id = $lang_id");
 
+        // return $about_us;
         return view('admin.about_us.index',[
             'locale' => App::getLocale(),
             'about_us' => $about_us,
         ]);
-        return view('admin.about_us.index');
+        // return view('admin.about_us.index');
     }
 
     /**
@@ -37,24 +41,28 @@ class About_usController extends Controller
     public function create()
     {
 
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'about_uses')");
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+        //                         FROM    information_schema.TABLES
+        //                         WHERE   (TABLE_NAME = 'about_uses')");
+        // $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        $last_id = $this->last_id;
         $folder_name = $this->folder_name;
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
-
         for ($i=0; $i < count($images) ; $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
 
+        $lang_id = Lang::getLangId();
+        // return $lang_id;
+
         return view("admin.about_us.create",[
-            'locale' => \App::getLocale(),
+            'locale' => App::getLocale(),
             'last_id' =>$last_id,
             'imageurls' => $imageurls,
             'folder_name' => $folder_name,
+            'lang_id' => $lang_id,
         ]);
     }
 
@@ -70,17 +78,16 @@ class About_usController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'short_text' => 'required',
             'html_code' => 'required',
-            'img' => 'required',
+            'lang_id' => 'required|integer',
         ]);
         $about_us = new About_us;
 
         $paraParams = [
             'title' => $request->input('title'),
-            'short_text' => $request->input('short_text'),
+            'lang_id' => $request->input('lang_id'),
             'html_code' => $request->input('html_code'),
-            'img' => $request->input('img'),
+            // 'img' => $request->input('img'),
         ];
 
         DB::table('about_uses')->insert( $paraParams );
@@ -108,33 +115,22 @@ class About_usController extends Controller
      */
     public function edit($id, $locale)
     {
-
+        $about_us = About_us::find($id);
         $lang_id = Lang::getLangId();
         $images = Storage::files('public/'.$this->folder_name.'/'.$this->last_id);
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                 FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'about_uses')");
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;     
-        $lang_id = Lang::getLangId();
-        $folder_name = 'about_us';
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
-        }
-    
-        $about_us = About_us::find($id);
-        // return $about_us;x
-
-      App::setLocale($locale);
-       
+        } 
+        
         return view('admin.about_us.edit',[
             'about_us' => $about_us,
             'locale'=>$locale,
-            'last_id' =>$this->last_id,
-            'folder_name' =>$this->folder_name,
+            'last_id' => $this->last_id,
+            'folder_name' => $this->folder_name,
             'imageurls' => $imageurls,
+            'lang_id' => $lang_id,
         ]);
     }
 
@@ -150,16 +146,13 @@ class About_usController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-
-            'text' => 'required',
+            'lang_id' => 'required|integer',
             'html_code' => 'required',
-            'img' => 'required',
-
         ]);
         
         $about_us = About_us::find($id);
             $about_us->title = $request->input('title');
-
+            $about_us->lang_id = $request->input('lang_id');
             $about_us->html_code = $request->input('html_code');
         $about_us->save();
         return redirect()->route('admin.about_us.index', $locale)->with('success','Post Created');

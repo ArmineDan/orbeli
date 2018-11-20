@@ -19,11 +19,12 @@ class ParralaxController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $folder_name = "parralax";
+    protected $default_id = 1;
 
     public function index()
     {
 
-        $lang_id = Post::getLangId();
+        $lang_id = Lang::getLangId();
         $parralax = DB::select("SELECT * FROM parralaxes WHERE lang_id=$lang_id");
         //return $ns_post;
 
@@ -74,11 +75,13 @@ class ParralaxController extends Controller
     public function edit($id, $locale)
     {
 
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'parralaxes')");
+        // $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+        //                         FROM    information_schema.TABLES
+        //                         WHERE   (TABLE_NAME = 'parralaxes')");
 
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        // $last_id = $last_id_array[0]->AUTO_INCREMENT;
+        
+        $last_id = $this->default_id;        
         $folder_name = $this->folder_name;
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
         $imageurls = [];

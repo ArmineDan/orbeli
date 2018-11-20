@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h2> Create Authors <small><code>Last id:{{$last_id}} Lang:{{$locale}}</code></small></h2>
+    <h2> Create Authors <small>№ {{$last_id}} <code>Lang:{{$locale}}</code></small></h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -69,7 +69,7 @@
         <input type="text" name="lastname" class="form-control" placeholder="Create LastName">
         <hr>
 
-        <label for="title">Sub Name</label>
+        <label for="title">Expert</label>
         <input type="text" name="sub_name" class="form-control" placeholder="Create sub_name">
         <hr>
 
@@ -97,7 +97,7 @@
         <label for="title">Email</label>
         <input type="email" name="email" class="form-control" placeholder="Email">
 
-        <input type="hidden" value="1" name="lang_id">
+        <input type="hidden" value="{{$lang_id}}" name="lang_id">
         <br>
 
         <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
