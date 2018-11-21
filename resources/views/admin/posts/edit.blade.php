@@ -78,7 +78,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading"><label for="post_typ">Category</label></div>
                 <div class="panel-body">
-                    <select name="post_typ" class="form-control" onchange="checkCategory(event)">
+                    <select name="post_typ" class="form-control" onchange="checkCategory()">
                             <option value="">Select Category</option>
                         @forelse ($categories as $category)
                             <option value="{{ $category->id }}"

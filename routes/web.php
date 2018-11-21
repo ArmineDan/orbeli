@@ -1,7 +1,4 @@
 <?php
-
-use Spatie\Sitemap\SitemapGenerator;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,9 +54,14 @@ Route::group( $admin_rules , function() {
 
 Auth::routes();
 
-Route::get('sitemap/generate', function () {
-  SitemapGenerator::create(base_url())->writeToFile(public_path());
+$sitemap_rules = [
+  'prefix' => 'sitemap',
+  'namespace' => 'Sitemap',
+];
+Route::group($sitemap_rules, function () {
+  Route::get('/', 'SitemapController@index');
 });
+
 
 // Route::get('/home/{locale}', 'HomeController@index')->name('home');
 
