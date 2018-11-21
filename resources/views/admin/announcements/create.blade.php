@@ -60,7 +60,6 @@
             {{ csrf_field() }}
 
         <label for="title">Title</label>
-
         <input name="title" class="form-control" placeholder="Create Title">
         <hr>
 
@@ -89,18 +88,18 @@
         </select><hr>
 
         <label for="meta_k">Meta keywords <kbd>without spaces</kbd> </label>
-        <input type="email" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
+        <input name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
         <hr>
 
         <label for="meta_d"> Meta description </label>
         <input name="meta_d" class="form-control" placeholder="Insert meta-description">
         <hr>
 
-        <h5 for="duration">Duration <code>minute</code>
+        <h5 for="a_duration">Duration <code>minute</code>
         <span class="btn btn-danger" onclick="CountDurationLong()">count</span>
         <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
         </h5>
-        <input name="p_duratioan" id="duration" class="form-control" value="5">
+        <input name="a_duration" id="duration" class="form-control" value="5">
         <hr>
 
         <label for="authors_id"> Select Author Id </label>
@@ -110,10 +109,11 @@
             @endforeach
         </select><br>
 
+        <input type="hidden" value="1" name="post_typ">
+
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
 
         <input name="view" value="0" type="hidden"><br>
-
 
         <button type="submit" class="btn btn-success"> Save </button>
     </form>
