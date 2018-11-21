@@ -12,7 +12,7 @@
                 <!-- start logo -->
                 <div class="col-md-4 col-sm-2 col-xs-12 text-center display-table xs-margin-10px-bottom">
                     <div class="display-table-cell vertical-align-middle">
-                        <a  href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" ><img class="footer-logo" src="/images/logo-white.png" data-rjs="images/logo-white@2x.png" alt="Orbeli"></a>
+                        <a  href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" ><img class="footer-logo" src="/images/logo-footer.png" data-rjs="images/logo-footere@2x.png" alt="Orbeli"></a>
                     </div>
                 </div>
                 <!-- end logo -->

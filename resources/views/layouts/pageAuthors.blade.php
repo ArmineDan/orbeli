@@ -7,7 +7,7 @@
         <section class="visibl">
         <div class="container">
            <div class="row">
-                       <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom no-padding-left sm-no-padding-right">
+                       <main class="col-md-12 col-sm-10 col-xs-10 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom padding-left sm-padding-right">
                           <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{$all_last_posts['text']}}</span></div>
                              @yield('authors')
                         </main>
@@ -81,9 +81,7 @@
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-<script> 
-    $(".calendar").mouseover(function(){$('[id^="calendar"]').fullCalendar('today'); })
-</script>
+<script src="/js/calen.js"></script>  
 
 {!!  $all_last_posts['event']->script() !!}
 

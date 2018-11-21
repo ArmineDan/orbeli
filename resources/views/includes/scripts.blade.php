@@ -67,13 +67,5 @@
 </script> 
 
 @endif
-<script>
-    
-$(".calendar").mouseover(function(){ 
-    $('[id^="calendar"]').fullCalendar('today');
-  
-})
-
-    </script>
-
+<script src="/js/calen.js"></script> 
 {!!  $all_last_posts['event']->script() !!}
