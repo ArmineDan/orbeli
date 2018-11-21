@@ -7,9 +7,7 @@ $(".autors_narek_mail_icon").click(function(){
             id: $(this).find("em").html() 
         },
         function (result){
-
-            self.find("p").html(result)
-
+            self.next().html(result)
         }
     )
 })
