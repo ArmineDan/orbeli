@@ -177,7 +177,7 @@
         var is_economy = catIndexes.indexOf(value);
         console.log(is_economy);
 
-            if(is_economy > 0) {
+            if(is_economy >= 0) {
                 long_text_wrap.style.display = 'block';
                 thumb_img_wrap.style.display = 'block';
                 console.log(long_text_wrap)

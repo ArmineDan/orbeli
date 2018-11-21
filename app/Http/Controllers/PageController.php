@@ -475,5 +475,10 @@ class PageController extends Controller
                     return  redirect('/'.App::getLocale());
                 }         
             }
+            public function pagenotfound(){
+
+                return view('error.pageNotFound');
+
+            }
 }
  
