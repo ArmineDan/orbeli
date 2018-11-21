@@ -9,12 +9,12 @@
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
         <div class="row">  
-       <div class="col-md-1 col-xs-5">
+       <div class="col-md-1 col-sm-1 col-xs-1">
                 <a style="position: fixed; top:0" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo">
-                    <img src="/images/logo-white.png" data-rjs="/images/logo@2x.png" class="logo-dark" alt="Orbeli">
-                    <img src="/images/logo-white.png" data-rjs="/images/logo-white@2x.png" alt="Orbeli" class="logo-light default"></a>
+                    <img src="/images/logo-white.png" data-rjs="/images/logo.png" class="logo-dark" alt="Orbeli">
+                    <img src="/images/logo-white.png" data-rjs="/images/logo-white.png" alt="Orbeli" class="logo-light default"></a>
             </div>					
-            <div class="col-md-10 col-xs-2 width-auto pull-right accordion-menu xs-no-padding-right">
+            <div class="col-md-10 col-sm-8  col-xs-8 pull-right accordion-menu xs-no-padding-right margin-20px-left" style="margin-right: 67px;">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
                     <span class="sr-only">toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-collapse collapse " id="navbar-collapse-toggle-1">
-                    <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
+                    <ul id="accordion" class="nav navbar-nav navbar-left margin-20px-left alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                        @foreach ($all_last_posts['menu'] as $item)                      
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
@@ -40,25 +40,14 @@
                              </ul>
                         </li>
                         
-                        <li class="calendar dropdown simple-dropdown" >
-                                <a href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
-                                 <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;">
-                                    <li> 
-                                            
-                                                    <div class="panel panel-default">
-                                                        
-                                        <div class="panel-body">
-                                                            {!! $all_last_posts['event']->calendar() !!}
-                                                        </div>
-                                                    </div>
-                                                
-                                           
-                                            </li>     
-                                                        
-                                 </ul>
-                            </li>  
+                        
+                       
+                       
+                       
                       </ul>
                 </div>
+
+               
                 
             </div> 
                 
@@ -88,7 +77,7 @@
                                   </ul>
                             </div>
                             
-                        </div>  
+                        </div>   
                         <div class="navbar-collapse collapse" >                     
                        
                                 <ul id="accordion1" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
@@ -111,28 +100,43 @@
                                          </ul>
                                     </li>  
                                   </ul>
-                            </div>   --}}
+                            </div>  --}}
                             
-                <div class="col-md-1 col-sm-2 col-xs-2 width-auto  single-search xs-no-padding-right">
-                    <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
-                    <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
+                <div id="arch">
+                     
+                                <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
+                                   
+                                <div class="calendar  col-md-4 col-sm-5 col-xs-12" style=" display:none;
+                                position: absolute; top: 65%; right:0">
+                                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                                {!! $all_last_posts['event']->calendar() !!}
+                                                            </div>
+                                                        </div>
+                                    </div>  
+                            
+                                
                 </div> 
 
+                <div class=" single-search xs-no-padding-right">
+                        <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
+                        <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
+                    </div> 
                     
 
-            <div class=" col-md-1 col-xs-2 width-auto  xs-no-padding-right" style="margin-left:auto">
-                <ul class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
-                <li style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
-                          <a href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
-                         </li>
+            <div class=" col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
+                <div data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
+                <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
+                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
+                         </span>
                          
-                         <li style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
-                         <a href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
-                         </li>
+                         <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
+                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
+                         </span>
                          
-                        <li style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
-                            <a href="{{url('/en')}}" title="Անգլերեն">Eng |</a> </li>                                   
-                    </ul>
+                        <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
+                            <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng |</a> </span>                                   
+                        </div>
                  
              </div> 
 

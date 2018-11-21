@@ -10,7 +10,7 @@
 </div>
 
 @foreach ($all_last_posts['a_posts'] as $item)
-<div class="col-md-4 col-sm-6 col-xs-12 last-paragraph-no-margin sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn" style=" animation-name: none;">
+<div class="col-md-4 col-sm-4 col-xs-12 last-paragraph-no-margin sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn" style=" animation-name: none;">
     <div class="blog-post blog-post-style1 xs-text-center">
         <div class="blog-post-images overflow-hidden margin-25px-bottom sm-margin-20px-bottom">
             <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" >
