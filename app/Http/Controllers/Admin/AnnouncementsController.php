@@ -37,7 +37,7 @@ class AnnouncementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($locale)
     {
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
                                 FROM    information_schema.TABLES
@@ -55,18 +55,14 @@ class AnnouncementsController extends Controller
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
 
-
         $authors = DB::select("SELECT * FROM authors WHERE lang_id=$lang_id");
 
-
         return view('admin.announcements.create',[
-            'locale' => \App::getLocale(),
-            'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
+            'locale' => $locale,
+            'last_id' => $last_id,
+            'folder_name' => $folder_name,
             'imageurls' => $imageurls,
-
             'authors' => $authors,
-
             'lang_id' =>$lang_id,
         ]);
         
@@ -84,20 +80,21 @@ class AnnouncementsController extends Controller
         $this->validate($request,[
             'title' => 'required',
             'short_text' => 'required',
-
             'html_code' => 'required',
-            'img' => 'required',
 
+            'img' => 'required',
             'date' => 'required',
             'status' => 'required',
+
             'meta_k' => 'required',
             'meta_d' => 'required',
+            'view' => 'required',
 
-            'p_duratioan' => 'required',
-            'author_id' => 'required',
+            'a_duration' => 'required',
             'post_typ' => 'required',
-            'lang_id' => 'required',
-            'view' => 'required'
+            'author_id' => 'required',
+
+            'lang_id' => 'required'
 
         ]);
         $announcements = new Announcement;
@@ -105,20 +102,21 @@ class AnnouncementsController extends Controller
         $paraParams = [
             'title' => $request->input('title'),
             'short_text' => $request->input('short_text'),
-
             'html_code' => $request->input('html_code'),
-            'img' => $request->input('img'),
 
+            'img' => $request->input('img'),
             'date' => $request->input('date'),
             'status' => $request->input('status'),
+
             'meta_k' => $request->input('meta_k'),
             'meta_d' => $request->input('meta_d'),
+            'view' => $request->input('view'), 
 
-            'a_duratioan' => $request->input('p_duratioan'),
-            'author_id' => $request->input('author_id'),
+            'a_duration' => $request->input('a_duration'),
             'post_typ' => $request->input('post_typ'),
-            'lang_id'=> $request->input('author_id'),
-            'view' => $request->input('lang_id'),
+            'author_id' => $request->input('author_id'),
+
+            'lang_id'=> $request->input('lang_id'),
 
         ];
 

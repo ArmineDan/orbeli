@@ -1,5 +1,7 @@
 <?php
 
+use Spatie\Sitemap\SitemapGenerator;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +22,7 @@ if ((Request::segment(1) === 'admin' || Request::segment(1) === 'home') && in_ar
   App::setLocale(Request::segment(2));
 } else {
   // set default / fallback locale
-  App::setLocale('en');
+  App::setLocale('hy');
 }
 
 $admin_rules = [
@@ -54,6 +56,10 @@ Route::group( $admin_rules , function() {
 });
 
 Auth::routes();
+
+Route::get('sitemap/generate', function () {
+  SitemapGenerator::create(base_url())->writeToFile(public_path());
+});
 
 // Route::get('/home/{locale}', 'HomeController@index')->name('home');
 

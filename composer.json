@@ -10,9 +10,10 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "maddhatter/laravel-fullcalendar": "~1.0",
+        "spatie/laravel-sitemap": "2.4",
         "unisharp/laravel-ckeditor": "^4.7",
-        "unisharp/laravel-filemanager": "~1.8",
-     		"maddhatter/laravel-fullcalendar": "~1.0"
+        "unisharp/laravel-filemanager": "~1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

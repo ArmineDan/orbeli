@@ -8,7 +8,7 @@
         <div class="table-resposive">
         <a href="{{route('admin.announcements.create', $locale)}}" class="btn btn-primary pull-right">Create Authors <i class="fa fa-plus"></i> </a>
 
-        <table class="table table-bordered table-striped table-hover" style="font-size: 15px;">
+        <table class="table table-bordered table-striped table-hover" style="font-size: 15px">
             <thead class="thead-dark">
                 <tr>
                   <th> Row </th>
@@ -34,7 +34,7 @@
                           <td> {{$item->html_code}} </td>
                           <td> {{$item->meta_k}} </td>
                           <td> {{$item->meta_d}} </td>
-                          <td> {{$item->img}} </td>
+                          <td> <img src="{{$item->img}}"> </td>
             
                           <td>
                             <a href="{{route('admin.announcements.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
