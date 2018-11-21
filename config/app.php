@@ -191,7 +191,7 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Cviebrock\EloquentTaggable\ServiceProvider::class,
-      
+        Skydiver\LaravelRouteBlocker\LaravelRouteBlockerServiceProvider::class,
 
 
     ],

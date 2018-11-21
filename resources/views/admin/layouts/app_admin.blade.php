@@ -194,6 +194,16 @@
         // var text = 'hello world';
         // var stats = window.reading_time(text);
         // console.log(stats);
+        function CountDuration() {
+            var fullDesc = CKEDITOR.instances['post_full_text'].getData();            
+            // console.log(fullDesc);
+            let stats = window.reading_time(fullDesc);
+            // console.log(stats);
+            let duration = document.getElementById('duration');
+            duration.value = Math.ceil( stats.minutes );
+            document.getElementById('time_text').textContent = stats.text;
+            document.getElementById('time_words').textContent = ' /words: ' + stats.words;
+        }
 
         function CountDurationLong() {
             var longDesc = CKEDITOR.instances['post_long_text'].getData();            
