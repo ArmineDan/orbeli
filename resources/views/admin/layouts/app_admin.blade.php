@@ -169,13 +169,21 @@
 
         var long_text_wrap = document.getElementById('long_text_wrap');
         var thumb_img_wrap = document.getElementById('thumb_img_wrap');
+
+        window.onload = function() {
+            var category = document.getElementsByName('post_typ')[0];
+            if(category) {
+                checkCategory();
+            }
+            
+        }
         
-        
-        function checkCategory(event) {
-        var catIndexes = [2,7,12];
-        var value = Number(event.target.value);
-        var is_economy = catIndexes.indexOf(value);
-        console.log(is_economy);
+        function checkCategory() {
+            var catIndexes = [2,7,12];
+            var category = document.getElementsByName('post_typ')[0];
+            var value = Number(category.value);
+            var is_economy = catIndexes.indexOf(value);
+            console.log(is_economy);
 
             if(is_economy >= 0) {
                 long_text_wrap.style.display = 'block';

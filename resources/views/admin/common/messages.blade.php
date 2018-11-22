@@ -3,7 +3,7 @@
 @if (count($errors) > 0)
   <!-- Список ошибок формы -->
   <div class="alert alert-danger">
-    <h4>Error:</h4>
+    <h4>Error:</h4><hr>
     <ul>
       @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
@@ -11,9 +11,3 @@
     </ul>
   </div>
 @endif
-
-{{-- @if (session('success'))
-    <div class="alert alert-success">
-      {{ $success_message }}
-    </div>
-@endif --}}

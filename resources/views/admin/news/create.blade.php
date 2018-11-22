@@ -4,7 +4,8 @@
 
 <div class="container">
   {{-- js-ok-in-app_admin --}}
-  <h3>Create News <small> № {{$last_id}}<code> lang:{{$locale}}</code><small></h3>
+    <h3>Create News <small> № {{$last_id}}<code> lang:{{$locale}}</code><small></h3>
+
     @include('admin.common.imgMessages')
     
     <div class="row">

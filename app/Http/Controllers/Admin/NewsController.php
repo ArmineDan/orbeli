@@ -141,7 +141,7 @@ class NewsController extends Controller
         }
 
         // add date into Event if not exists
-        Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
 
         // update lang_id into taggable_taggables
         DB::table('taggable_taggables')
@@ -261,8 +261,8 @@ class NewsController extends Controller
         $old_date = $news->date;
 
         $news->update($request->all());
-        Event::checkAndSaveIfNotExists($request->input('date'));
-        Event::checkAndDeleteEventDate($old_date);
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
+        Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
@@ -297,7 +297,15 @@ class NewsController extends Controller
     public function destroy($id, $locale)
     {
         $news = News::find($id);
+        $date = $news->date;
+        $lang_id = $news->lang_id;
+
+        $news->getDocuments()->delete(); // 100
+        $news->getComments()->delete(); // 100
+        $news->detag(); // 100
         $news->delete();
+
+        Event::checkAndDeleteEventDate($date, $lang_id); // 100
         return redirect()->route('admin.news.index', $locale);
     }
 }

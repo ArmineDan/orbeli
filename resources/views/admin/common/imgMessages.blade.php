@@ -1,13 +1,13 @@
-
-@if(count($errors) > 0) 
+@if (count($errors) > 0)
 <div class="alert alert-danger">
-  <ul>
-  @foreach ($errors->all() as $error)
-  <li>{{ $error }}</li>
-  @endforeach
-</ul>
+    <h4>Errors:</h4>
+    <ul>
+    @foreach ($errors->messages() as $key => $value)
+        <li style="font-size:15px">{{ $key . ' --> '. $value[0] }}</li>
+    @endforeach
+    </ul>
 </div>
-@endif    
+@endif  
   
 @isset(session()->get( 'imgDebug' )['errors'])
 <div class="alert alert-danger">

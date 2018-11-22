@@ -134,7 +134,7 @@ class VideoController extends Controller
         }
 
         // add date into Event if not exists
-        Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
 
         // update lang_id into taggable_taggables
         DB::table('taggable_taggables')
@@ -290,8 +290,8 @@ class VideoController extends Controller
         $old_date = $video->date;
 
         $video->update($request->all());
-        Event::checkAndSaveIfNotExists($request->input('date'));
-        Event::checkAndDeleteEventDate($old_date);
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
+        Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
@@ -340,13 +340,15 @@ class VideoController extends Controller
     public function destroy($video_id, $locale)
     {
         $video = Video::findOrFail($video_id);
+        $date = $video->date;
+        $lang_id = $video->lang_id;
 
         $video->getDocuments()->delete(); // 100
         $video->getComments()->delete(); // 100
         $video->detag(); // 100
         $video->delete(); // 100
-        $date = $video->date;        
-        Event::checkAndDeleteEventDate($date); // 100
+        
+        Event::checkAndDeleteEventDate($date, $lang_id); // 100
         return redirect()->route('admin.video.index', $locale);
         
     }
