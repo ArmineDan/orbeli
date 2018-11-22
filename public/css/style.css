@@ -3947,7 +3947,7 @@ aside .latest-post li.aa figure {width: 179px;}
 .fc-end{
     background-color: rgba(0,0,0,0.3) !important;
     margin-top: -29px !important;
-    height: 40px !important;
+    height: 80px !important;
     border-color: transparent !important
 }
 
@@ -4054,3 +4054,6 @@ aside .latest-post li.aa figure {width: 179px;}
         width: 1000px;
     }
 }
+
+@media(max-width: 648px){#figure_narek a img{width: 400px}}
+

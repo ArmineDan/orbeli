@@ -18,13 +18,13 @@ class Event extends Model
                Session::put('locale',$locale);
                 App::setLocale($locale);
                 $lang = App::getLocale(); 
-                // $lng = DB::table('langs')
-                // ->where('lng','=',$lang)
-                // ->value('id');
+                $lng = DB::table('langs')
+                ->where('lng','=',$lang)
+                ->value('id');
                 
         $events = [];
-        $data = Event::all();
-        // $data = DB::table("events")->where('lang_id','=',$lng)->get();
+        //$data = Event::all();
+        $data = DB::table("events")->where('lang_id','=',$lng)->get();
        
  
         if($data->count()) {
@@ -51,10 +51,11 @@ class Event extends Model
         }       
     }
     
+
     static function checkAndSaveIfNotExists($date, $lang_id) {
         // $event = Event::having('start_date','=', $date)->get();
         $event = Event::where('lang_id','=', $lang_id)->having('start_date','=', $date)->get();
-        if(count($event) == 0) {
+      if(count($event) == 0) {
             Event::create(['start_date' => $date, 'end_date' => $date, 'lang_id' => $lang_id]);
         }
     }

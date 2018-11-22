@@ -36,6 +36,15 @@ return[
  "text_area"=>'Ваше мнение',
  "posts"=>"Статьи",
  "search"=>"Поиск",
- "search_result"=>"Результат поиска"
- 
+ "search_result"=>"Результат поиска",
+ "footer_first" => "ORBELI - Центр аналитических исследований",
+ "footer_second" => "Изготовитель` ",
+ "footer_third" => "Социальные сети",
+ "footer_webex" => "Webex Technologies LLC",
+ "send_comment_ok" => "Ваш комментарий отправлен",
+ "send_comment_error" => "Ваш комментарий не отправлен, повторите попытку.",
+ "error_page"=>"СТРАНИЦА НЕ НАЙДЕНА",
+ "error_page_text"=>"Страница, которую вы искали, не найдена.",
+ "textarea"=>"Ваш комментарий",
+ "back"=>"Назад"
 ];

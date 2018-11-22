@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <h2> Edit Announcement Number <code>{{$announcement['id']}}</code> </h2>
+    <h2> Edit Announcement <small><code>Number:{{$announcement['id']}}</code></small> </h2>
 
     @isset(session()->get( 'imgDebug' )['errors'])
       <div class="alert alert-danger">
@@ -39,7 +39,7 @@
             {{ csrf_field() }}
             <div class="col-md-3">      
                 <input type="file" name="images[]" id="images" multiple="multiple" class="btn btn-default">
-                <input type="text" hidden name="author_id" value="{{$last_id}}">
+                <input type="text" hidden name="post_id" value="{{$last_id}}">
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
@@ -72,31 +72,76 @@
             {{ method_field('put') }}
 
         <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" value="{{$announcement['title']}}">
+        <input name="title" class="form-control" value="{{$announcement['title']}}">
         <hr>
 
-        <label for="title">Short Text</label>
-        <input type="text" name="short_text" class="form-control" value="{{$announcement['short_text']}}">
-        <hr>
-
-        <label for="title">Long Text</label>
-        <input type="text" name="long_text" class="form-control" value="{{$announcement['long_text']}}">
-        <hr>
-
-        <label for="post_short_text">HTML code</label>
-        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control" value="{{$announcement['html_code']}}">       
+        <label for="short_text">Short Text</label>
+        <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
+            {{$announcement['short_text']}}
         </textarea>
         <hr>
 
-        <label for="title">IMG <code> 500x500 </code> </label>
-        <input type="text" name="img" class="form-control" value="{{$announcement['img']}}">
+        <label for="html_code">HTML code</label>
+        <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control" value="{{$announcement['html_code']}}">       
+            {{$announcement['html_code']}}
+        </textarea>
         <hr>
 
-        <label for="title">Thumb IMG <code> 500x500 </code> </label>
-        <input type="text" name="thumb_img" class="form-control" value="{{$announcement['thumb_img']}}">
-        <br>
+        <label for="img">Img <code> 900x600 </code> </label>
+        <input name="img" class="form-control" value="{{$announcement['img']}}">
+        <hr>
 
-        <button class="btn btn-success">Save</button>
+        <h5 for="date">Date</h5>
+        <input type="date" name="date" class="form-control" value="{{$announcement['date']}}">
+        <hr>
+
+        <label for="status">Select Status</label>
+            <select name="status" class="form-control" >
+                <option value="published" @if($announcement->status =='published') selected @endif >Published</option>
+                <option value="not_published" @if($announcement->status == 'not_published') selected @endif>Not published</option>       
+            </select>
+            <hr>
+        
+
+        <label for="meta_k">Meta keywords <kbd>without spaces</kbd> </label>
+        <input name="meta_k" class="form-control" value="{{$announcement['meta_k']}}">
+        <hr>
+
+        <label for="meta_d"> Meta description </label>
+        <input name="meta_d" class="form-control" value="{{$announcement['meta_d']}}">
+        <hr>
+
+        <h5 for="a_duration">Duration <code>minute</code>
+            <span class="btn btn-danger" onclick="CountDurationLong()">count</span>
+            <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
+        </h5>
+
+        <input name="a_duration" id="duration" class="form-control" value="{{$announcement['a_duration']}}">
+        <hr>
+    
+        <label for="authors_id">Select Author Id</label>
+            <select name="author_id" class="form-control">
+                @forelse ($authors as $item)
+                <option value="{{ $item->id }}"
+                    @if ($announcement['author_id'] == $item->id)
+                        selected='selected'
+                    @endif
+                    >
+                    {{ $item->name }} {{ $item->lastname }} 
+                </option>
+                @empty
+                    <option value="">Please Insert One Author, then update the Post.</option>
+                @endforelse
+            </select>
+            <hr> 
+
+        <input type="hidden" value="{{$announcement['post_typ']}}" name="post_typ">
+
+        <input type="hidden" value="{{$lang_id}}" name="lang_id">
+
+        <input name="view" value="{{$announcement['view']}}" type="hidden"><br>
+            
+        <div class="well"><button class="btn btn-success">Update</button></div>
 
     </form>
 

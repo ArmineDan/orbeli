@@ -8,7 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Lang;
-
+use App\Author;
+use App\Document;
+use App\Comment;
+use Validator;
 use App;
 
 
@@ -19,12 +22,13 @@ class AnnouncementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
 
     public function index($locale)
     {
         $lang_id = Lang::getLangId();
 
-        $announcement = DB::select("SELECT * FROM announcements WHERE lang_id=$lang_id");
+        $announcement = DB::select("SELECT * FROM announcements WHERE lang_id='$lang_id'");
 
         return view('admin.announcements.index',[
             'locale' => $locale,
@@ -55,7 +59,7 @@ class AnnouncementsController extends Controller
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
 
-        $authors = DB::select("SELECT * FROM authors WHERE lang_id=$lang_id");
+        $authors = DB::select("SELECT * FROM authors WHERE lang_id='$lang_id'");
 
         return view('admin.announcements.create',[
             'locale' => $locale,
@@ -63,7 +67,7 @@ class AnnouncementsController extends Controller
             'folder_name' => $folder_name,
             'imageurls' => $imageurls,
             'authors' => $authors,
-            'lang_id' =>$lang_id,
+            'lang_id' => $lang_id,
         ]);
         
     }
@@ -131,9 +135,38 @@ class AnnouncementsController extends Controller
      * @param  \App\Announcements  $announcements
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcements $announcements)
+    public function show($id, $locale)
     {
-        //
+        $announcement = Announcement::findOrFail($id);
+        $lang_id = $announcement->lang_id;
+
+        $comments = Announcement::find($announcement->id)->getComments()->get();
+        $folder_name = "announcements";
+        $files = Storage::files('public/'.$folder_name.'/'.$announcement->id);
+        $fileurls = [];
+
+        for ($i=0; $i < count($files) ; $i++) {
+            $fileurls[$i]['url'] = Storage::url($files[$i]);
+            $fileurls[$i]['size'] = $size = Storage::size($files[$i]);
+            if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
+                if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Announcement')->exists()) {
+                    // return 'into if';
+                    Announcement::findOrFail($announcement->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                }
+            }            
+        }
+        
+        $docsObject = Announcement::findOrFail($announcement->id)->getDocuments()->get(); // don't change this position //
+        
+        return view('admin.announcements.show', [
+            'announcement' => $announcement,
+            'locale' => $locale,
+            'fileurls' => $fileurls,
+            'docsObject' => $docsObject,
+            'comments' => $comments,
+            'folder_name' => $folder_name,
+        ]);
+        // return 'Show News-'. $news_id . ' | lng: ' .$locale;
     }
 
     /**
@@ -152,11 +185,9 @@ class AnnouncementsController extends Controller
 
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
 
-        $lang_id = Lang::getLangId();
         $folder_name = 'announcements';
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
 
-        // return $images;
         $imageurls = [];
         for ($i=0; $i < count($images); $i++) {
             $imageurls[$i]['url'] = Storage::url($images[$i]);
@@ -167,6 +198,8 @@ class AnnouncementsController extends Controller
 
         App::setLocale($locale);
 
+        $lang_id = $announcement->lang_id;
+        $authors = Author::where('lang_id', $lang_id)->get();
 
         return view('admin.announcements.edit',[
             'announcement' => $announcement,
@@ -174,6 +207,8 @@ class AnnouncementsController extends Controller
             'last_id' =>$last_id,
             'folder_name' =>$folder_name,
             'imageurls' => $imageurls,
+            'authors' => $authors,
+            'lang_id' => $lang_id
         ]);
     }
 
@@ -189,23 +224,31 @@ class AnnouncementsController extends Controller
         $this->validate($request,[
             'title' => 'required',
             'short_text' => 'required',
-
             'html_code' => 'required',
             'img' => 'required',
-            'meta_d '=> 'required',
-            'meta_k' => 'required', 
-
+            'date' => 'required',
+            'status' => 'required',
+            'meta_k' =>  'required',
+            'meta_d' =>  'required',
+            'a_duration' =>  'required',
+            'author_id' =>  'required',
+            'post_typ' => 'required',
+            'view' => 'required'
         ]);
         
         $announcement = Announcement::find($id);
-        $announcement->title = $request->input('title');
-        $announcement->short_text = $request->input('short_text');
-
-        $announcement->html_code = $request->input('html_code');
-        $announcement->img = $request->input('img');
-        $announcement->meta_d = $request->input('meta_d');
-        $announcement->meta_k = $request->input('meta_k');
-
+            $announcement->title = $request->input('title');
+            $announcement->short_text = $request->input('short_text');
+            $announcement->html_code = $request->input('html_code');
+            $announcement->img = $request->input('img');
+            $announcement->date = $request->input('date');
+            $announcement->status = $request->input('status');
+            $announcement->meta_k = $request->input('meta_k');
+            $announcement->meta_d = $request->input('meta_d');
+            $announcement->a_duration = $request->input('a_duration');
+            $announcement->author_id = $request->input('author_id');
+            $announcement->post_typ = $request->input('post_typ');
+            $announcement->view = $request->input('view');
         $announcement->save();
 
         return redirect()->route('admin.announcements.index', $locale)->with('success','Post Created');

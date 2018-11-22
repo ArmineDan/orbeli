@@ -43,18 +43,13 @@
                                 @yield('comments')                                              
                         </div>
                         <!-- end post item -->                      
-                               <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
-                                <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span> {{trans('text.xoragrer')}}</span></div>
-                                 
-                                @yield('xoragrer')
-                                                        
-                               </div>
-                             
-                      
-                    </main>
-    
-                    <aside class="col-md-3 col-sm-12 col-xs-12 pull-left">
-                           
+                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
+                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span> {{trans('text.xoragrer')}}</span></div>
+                            @yield('xoragrer')  
+                        </div>  
+                    </main>    
+                    <aside class="col-md-3 col-sm-12 col-xs-12 pull-left">  
+
                        <div class="margin-45px-bottom xs-margin-25px-bottom">
                             @include('includes.mostVeiwed',$all_last_posts['mostViewed'])
                         </div>

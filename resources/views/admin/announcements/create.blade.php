@@ -73,7 +73,7 @@
         </textarea>
         <hr>
 
-        <label for="img">Img <code> 500x500 </code> </label>
+        <label for="img">Img <code> 900x600 </code> </label>
         <input name="img" class="form-control" placeholder="Img">
         <hr>
 
@@ -115,7 +115,7 @@
 
         <input name="view" value="0" type="hidden"><br>
 
-        <button type="submit" class="btn btn-success"> Save </button>
+        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
     </form>
 </div>
 

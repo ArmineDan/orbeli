@@ -24,6 +24,7 @@ class News extends Model
     public function getComments() {
         return $this->comments();
     }
+    
     static  function get_news_id($date,$title)
     {
         return $get_announce_id = DB::table('news') 
