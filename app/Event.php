@@ -10,7 +10,7 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class Event extends Model
 {
-    protected $fillable = ['title','start_date','end_date'];
+    protected $fillable = ['title','start_date','end_date', 'lang_id'];
     static function event($locale) {
         $rules = ['en','ru','hy'];                      
         if(in_array($locale,$rules))
@@ -51,20 +51,21 @@ class Event extends Model
         }       
     }
     
-    static function checkAndSaveIfNotExists($date) {
-        $event = Event::having('start_date','=', $date)->get();
+    static function checkAndSaveIfNotExists($date, $lang_id) {
+        // $event = Event::having('start_date','=', $date)->get();
+        $event = Event::where('lang_id','=', $lang_id)->having('start_date','=', $date)->get();
         if(count($event) == 0) {
-            Event::create(['start_date' => $date, 'end_date' => $date]);
+            Event::create(['start_date' => $date, 'end_date' => $date, 'lang_id' => $lang_id]);
         }
     }
 
-    static function dateHasOtherEvents($date) {
+    static function dateHasOtherEvents($date, $lang_id) {
         // '2018-11-10'
-        $ps = DB::table('posts')->select('id')->whereDate('date', $date)->get();
-        $vd = DB::table('videos')->select('id')->whereDate('date', $date)->get();
-        $op = DB::table('opinions')->select('id')->whereDate('date', $date)->get();
-        $ns = DB::table('news')->select('id')->whereDate('date', $date)->get();
-        $an = DB::table('announcements')->select('id')->whereDate('date', $date)->get();
+        $ns = DB::table('news')->select('id')->whereDate('date', $date)->where('lang_id', '=', $lang_id)->get();
+        $ps = DB::table('posts')->select('id')->whereDate('date', $date)->where('lang_id', '=', $lang_id)->get();
+        $vd = DB::table('videos')->select('id')->whereDate('date', $date)->where('lang_id', '=', $lang_id)->get();
+        $op = DB::table('opinions')->select('id')->whereDate('date', $date)->where('lang_id', '=', $lang_id)->get();
+        $an = DB::table('announcements')->select('id')->whereDate('date', $date)->where('lang_id', '=', $lang_id)->get();
 
         if(count($vd) > 0 || count($op) > 0 || count($ns) > 0 || count($an) > 0 || count($ps) > 0) {
             // 'dont touch Event-date <br>';
@@ -75,12 +76,12 @@ class Event extends Model
         }
     }
 
-    static function checkAndDeleteEventDate($date) {
-        $events = Event::having('start_date','=', $date)->get(); // all collected into array
-        $event = Event::having('start_date','=', $date)->first(); // first elem of collection
+    static function checkAndDeleteEventDate($date, $lang_id) {
+        $events = Event::where('lang_id','=', $lang_id)->having('start_date','=', $date)->get(); // all collected into array
+        $event = Event::where('lang_id','=', $lang_id)->having('start_date','=', $date)->first(); // first elem of collection
         if(count($events) > 0) {
             // return $event;
-            if(!self::dateHasOtherEvents($date)) {
+            if(!self::dateHasOtherEvents($date, $lang_id)) {
                 Event::find($event->id)->delete();
             }            
         }

@@ -125,7 +125,7 @@ class OpinionController extends Controller
         }
 
         // add date into Event if not exists
-        Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
 
         // update lang_id into taggable_taggables
         DB::table('taggable_taggables')
@@ -248,8 +248,8 @@ class OpinionController extends Controller
         $old_date = $opinion->date;
 
         $opinion->update($request->all());
-        Event::checkAndSaveIfNotExists($request->input('date'));
-        Event::checkAndDeleteEventDate($old_date);
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
+        Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
@@ -284,13 +284,15 @@ class OpinionController extends Controller
     public function destroy($opinion_id, $locale)
     {
         $opinion = Opinion::findOrFail($opinion_id);
-        $date = $opinion->date;        
+        $date = $opinion->date;
+        $lang_id = $opinion->lang_id;
 
         $opinion->getDocuments()->delete(); // 100
         $opinion->getComments()->delete(); // 100
         $opinion->detag(); // 100
         $opinion->delete(); // 100
-        Event::checkAndDeleteEventDate($date); // 100
+        
+        Event::checkAndDeleteEventDate($date, $lang_id); // 100
         return redirect()->route('admin.opinion.index', $locale);
     }
 }

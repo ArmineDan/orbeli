@@ -131,7 +131,7 @@ class PostController extends Controller
             }
         }
         
-        Event::checkAndSaveIfNotExists($request->input('date'));
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
             // $post_id = $request->input('post_id') - 1;
             // $post = Post::findOrFail($post_id);
         
@@ -287,8 +287,8 @@ class PostController extends Controller
         $post = Post::findOrFail($post_id);
         $old_date = $post->date;
         $post->update($request->all());
-        Event::checkAndSaveIfNotExists($request->input('date'));
-        Event::checkAndDeleteEventDate($old_date);
+        Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
+        Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 
         if($request->input('tags')) {
             if(!empty($request->input('tags'))) {
@@ -364,13 +364,15 @@ class PostController extends Controller
     {
         
         $post = Post::findOrFail($post_id);
+        $date = $post->date;
+        $lang_id = $post->lang_id;
 
         $post->getDocuments()->delete(); // 100
         $post->getComments()->delete(); // 100
         $post->detag(); // 100
         $post->delete(); // 100
-        $date = $post->date;        
-        Event::checkAndDeleteEventDate($date); // 100
+        
+        Event::checkAndDeleteEventDate($date, $lang_id); // 100
         return redirect()->route('admin.post.index', $locale);
     }
 }
