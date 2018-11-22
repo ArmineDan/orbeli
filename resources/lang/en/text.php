@@ -36,5 +36,12 @@ return[
  "text_area"=>'Your review',
  "posts"=>"Posts",
  "search"=>"Enter your keyword",
- "search_result"=>"Search results"
+ "search_result"=>"Search results",
+ "footer_first" => "ORBELI - Analytical Research Center",
+ "footer_second" => "Manufacturer`",
+ "footer_third" => "Social networks",
+ "footer_webex" => "Webex Technologies LLC",
+ "robot" => "Նշել ռոբոտի դաշտը",
+ "send_comment_ok" => "Your comment was sent",
+ "send_comment_error" => "Your comment was not sent, please try again"
 ];

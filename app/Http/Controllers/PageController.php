@@ -98,14 +98,14 @@ class PageController extends Controller
                     //return  $land_id;
                     $calendar= Event::event($lang);
                     $menu = Post::menu();
-                    $categories = Post :: categories();
+                    $categories = Post::categories();
                     $popular_tags=Tags::load_popular_tags('Post');  
                     $post_with_given_id = DB::table('posts as p')                                           
                     ->join('categories as c', 'c.id', '=', 'p.post_typ')
                     ->join('authors as a', 'a.id', '=', 'p.author_id') 
                     ->select('p.*','a.name','a.lastname','a.img as aimg', 'p.img as oimg' )                  
                     ->where('c.name', $id)                
-                    ->orderBy('date','DESC')  
+                    ->orderBy('id','DESC')  
                     ->paginate(6);                                      
                     $mostViewed = Post::mostViewed();
                 

@@ -3,8 +3,18 @@
 require "con1.php";
 mysqli_set_charset($con,"utf8");
 
-$name = mysqli_real_escape_string($con, $_POST['name']);
 $mail = mysqli_real_escape_string($con, $_POST['mail']);
+/*$checkmail = filter_var($mail, FILTER_VALIDATE_EMAIL);
+
+var_dump($checkmail);
+die;
+
+if(!$checkmail)
+{
+	echo "Please, insert correct emial address"; 	
+}*/
+
+$name = mysqli_real_escape_string($con, $_POST['name']);
 $opinion = mysqli_real_escape_string($con, $_POST['opinion']);
 $id = mysqli_real_escape_string($con, $_POST['id']);
 $type = mysqli_real_escape_string($con, $_POST['type']);
@@ -22,19 +32,19 @@ else{
 	}
 	
 if($type=='post'){
-	$tp='App/Post';
+	$tp='App\Post';
 }
 elseif($type=='video'){
-	$tp='App/Video';
+	$tp='App\Video';
 }
 elseif($type=='news'){
-	$tp='App/News';
+	$tp='App\News';
 }
 elseif($type=='opinion'){
-	$tp='App/Opinion';
+	$tp='App\Opinion';
 	}
 	elseif($type=='announcement'){
-	$tp='App/Announcement';
+	$tp='App\Announcement';
 }
 
 

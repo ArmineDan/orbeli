@@ -4054,3 +4054,6 @@ aside .latest-post li.aa figure {width: 179px;}
         width: 1000px;
     }
 }
+
+@media(max-width: 648px){#figure_narek a img{width: 400px}}
+
