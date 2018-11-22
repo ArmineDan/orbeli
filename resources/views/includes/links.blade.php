@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{app()->getLocale()}}">
     <head>
         <!-- title -->
         <title>Orbeli Analitical Research</title>
