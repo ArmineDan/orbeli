@@ -98,5 +98,5 @@ Route::get('/{locale}/tags/{tag_id}', 'LoadAll@posts_whith_current_tag');
 Route::get('/', 'PageController@index');
 Route::get('{locale}/search/{s?}', 'SearchesController@getIndex')->where('s', '[\w\d]+');
 
-//Route::get('/pagenotfound', ['as'=>'notfound', 'uses'=>'PageController@pagenotfound']);  
+Route::get('/pagenotfound', ['as'=>'notfound', 'uses'=>'PageController@pagenotfound']);  
 

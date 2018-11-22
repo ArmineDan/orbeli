@@ -18,13 +18,13 @@ class Event extends Model
                Session::put('locale',$locale);
                 App::setLocale($locale);
                 $lang = App::getLocale(); 
-                // $lng = DB::table('langs')
-                // ->where('lng','=',$lang)
-                // ->value('id');
+                $lng = DB::table('langs')
+                ->where('lng','=',$lang)
+                ->value('id');
                 
         $events = [];
-        $data = Event::all();
-        // $data = DB::table("events")->where('lang_id','=',$lng)->get();
+        //$data = Event::all();
+        $data = DB::table("events")->where('lang_id','=',$lng)->get();
        
  
         if($data->count()) {

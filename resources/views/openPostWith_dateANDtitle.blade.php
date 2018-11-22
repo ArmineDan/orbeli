@@ -164,12 +164,12 @@
                                            <span class="text-small text-outside-line-full alt-font font-weight-600 text-uppercase text-extra-dark-gray">{{trans('text.leave_comment')}}</span>
                                        </div>
                                    </div>
-                                 
+                            
                                    <div class="col-md-6 col-sm-12 col-xs-12">
                                        <input type="text" placeholder="{{trans('text.name')}} *" class="medium-input" id="name_comment_inp_ns">
                                    </div>
                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                       <input type="email" placeholder="{{trans('text.email')}} *" class="medium-input" id="mail_comment_inp_ns">
+                                       <input type="email" placeholder="{{trans('text.email')}} *" class="medium-input" id="mail_comment_inp_ns" required>
                                    </div>
                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                       <textarea placeholder="{{trans('text.textarea')}}..." rows="8" class="medium-textarea" id="opinion_comment_inp_ns" maxlength="500"></textarea>
@@ -183,7 +183,7 @@
                                   <div class="col-md-12 col-sm-12 col-xs-12 text-center">                              
                                     <div class="g-recaptcha" data-sitekey="6LeVzHoUAAAAALgdFaBocO43AD2zgTBB2w8akWOQ"></div>
                                        </div>
-                               
+                                  
                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                         <button id="send_comment" class="btn btn-dark-gray btn-small margin-15px-top" type="submit">{{trans('text.send')}}</button>
                                    </div>
@@ -257,10 +257,11 @@
     })
    
     $("#send_comment").click(function(){
-              
-		if($("#name_comment_inp_ns").val() == ''){
+        var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;       
+		 email=$("#mail_comment_inp_ns").val();
+        if($("#name_comment_inp_ns").val() == ''){
             $("#name_comment_inp_ns").css("border","1px inset red");
-        }else if($("#mail_comment_inp_ns").val() == ''){
+        }else if($("#mail_comment_inp_ns").val() == '' || !emailCheck.test(email)){
             $("#mail_comment_inp_ns").css("border","1px inset red");
         }else if($("#opinion_comment_inp_ns").val() == ''){
 		$("#opinion_comment_inp_ns").css("border","1px inset red");}
@@ -285,9 +286,9 @@
 								
 							$("#com_form").slideUp( "slow", function() {
 								$("#com_btn").show();
-								console.log("aaaa");
+							//	console.log("aaaa");
 							  });															
-							},1000) 
+							},2000) 
 					}   
 					else{
 						
@@ -300,7 +301,10 @@
             $("#name_comment_inp_ns").val(""),
             $("#mail_comment_inp_ns").val(""),
             $("#opinion_comment_inp_ns").val("")
-
+            $("#name_comment_inp_ns, #mail_comment_inp_ns, #opinion_comment_inp_ns").focus(function(){
+                
+                $(this).css("border","1px solid #d1d1d1")})
+            
             $("#name_comment_inp_ns").css("border","1px solid #d1d1d1"),
             $("#mail_comment_inp_ns").css("border","1px solid #d1d1d1"),
             $("#opinion_comment_inp_ns").css("border","1px solid #d1d1d1")
