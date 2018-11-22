@@ -36,5 +36,10 @@ return[
  "text_area"=>'Your review',
  "posts"=>"Posts",
  "search"=>"Enter your keyword",
- "search_result"=>"Search results"
+ "search_result"=>"Search results",
+ "error_page"=>"PAGE NOT FOUND",
+ "error_page_text"=>"The page you were looking for could not be found.",
+ "textarea"=>"Your comment",
+ "back"=>"Back to"
+
 ];
