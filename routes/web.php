@@ -60,6 +60,11 @@ $sitemap_rules = [
 ];
 Route::group($sitemap_rules, function () {
   Route::get('/', 'SitemapController@index');
+  Route::get('/posts', 'SitemapController@posts');
+  Route::get('/news', 'SitemapController@news');
+  Route::get('/opinions', 'SitemapController@opinions');
+  Route::get('/announcements', 'SitemapController@announcements');
+  Route::get('/videos', 'SitemapController@videos');
 });
 
 

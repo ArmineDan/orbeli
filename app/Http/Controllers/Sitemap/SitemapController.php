@@ -33,7 +33,61 @@ class SitemapController extends Controller
             'opinion' => $opinion,
             'announcement' => $announcement,
             'video' => $video,
+            'siteURL' => $this->siteURL(),
 
         ])->header('Content-Type', 'text/xml');
     }
+
+    public function posts() {
+        $posts = Post::leftJoin('langs', 'posts.lang_id', '=', 'langs.id')->get();         
+        return response()->view('sitemap.posts',[
+            'posts' => $posts,
+            'siteURL' => $this->siteURL(),
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function news() {
+        $news = News::leftJoin('langs', 'news.lang_id', '=', 'langs.id')->get();         
+        return response()->view('sitemap.news',[
+            'news' => $news,
+            'siteURL' => $this->siteURL(),
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function opinions() {
+        $opinions = Opinion::leftJoin('langs', 'opinions.lang_id', '=', 'langs.id')->get();
+        // return $opinions;
+        return response()->view('sitemap.opinions',[
+            'opinions' => $opinions,
+            'siteURL' => $this->siteURL(),
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function announcements() {
+        $announcements = Announcement::leftJoin('langs', 'announcements.lang_id', '=', 'langs.id')->get();
+        // return $announcements;
+        return response()->view('sitemap.announcements',[
+            'announcements' => $announcements,
+            'siteURL' => $this->siteURL(),
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function videos() {
+        $videos = Video::leftJoin('langs', 'videos.lang_id', '=', 'langs.id')->get();
+        // return $videos;
+        return response()->view('sitemap.videos',[
+            'videos' => $videos,
+            'siteURL' => $this->siteURL(),
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    /** 
+     * @return http(s)://example.com/ 
+     */
+    public function siteURL() {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $domainName = $_SERVER['HTTP_HOST'].'/';
+        return $protocol.$domainName;
+    }
+
 }
