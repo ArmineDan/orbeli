@@ -52,7 +52,7 @@ class Event extends Model
     }
     
     static function checkAndSaveIfNotExists($date) {
-        $event = Event::having('start_date','=', $date)->get();
+        $event = Event::where('start_date','=', $date)->get();
         if(count($event) == 0) {
             Event::create(['start_date' => $date, 'end_date' => $date]);
         }

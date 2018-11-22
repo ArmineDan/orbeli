@@ -132,6 +132,7 @@ class PostController extends Controller
         }
         
         Event::checkAndSaveIfNotExists($request->input('date'));
+        
             // $post_id = $request->input('post_id') - 1;
             // $post = Post::findOrFail($post_id);
         

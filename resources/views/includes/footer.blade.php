@@ -5,7 +5,7 @@
                 <!-- start slogan -->
                 <div class="col-md-4 col-sm-5 col-xs-12 text-center alt-font display-table xs-text-center xs-margin-15px-bottom">
                     <div class="display-table-cell vertical-align-middle">
-                            ՕՐԲԵԼԻ -  Վերլուծական-հետազոտական կենտրոն
+                        {{trans('text.footer_first')}}
                     </div>
                 </div>
                 <!-- end slogan -->
@@ -19,7 +19,7 @@
                 <!-- start social media -->
                 <div class="col-md-4 col-sm-5 col-xs-12 col-xs-12 text-center display-table xs-text-center">
                     <div class="display-table-cell vertical-align-middle">
-                        <span class="alt-font margin-20px-right">Սոցիալական ցանցերում</span>
+                        <span class="alt-font margin-20px-right">{{trans('text.footer_third')}}</span>
                         <div class="social-icon-style-8 display-inline-block vertical-align-middle">
                             <ul class="small-icon no-margin-bottom">
                                 <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -33,9 +33,8 @@
                 <!-- end social media -->
             </div>
             <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">&COPY; 2018 Պատրաստված է՝   <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ"> Վեբէքս Թեքնոլոջիս ՍՊԸ</a></div>
-           
-                 </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">&COPY; 2018  {{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></div>
+            </div>
         </div>
     </div>
     
