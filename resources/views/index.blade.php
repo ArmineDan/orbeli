@@ -82,7 +82,9 @@
 
 @section('parallax')
 @isset($all_last_posts['parralax'][0])
+ <a href="{{$all_last_posts['parralax'][0]->link}}">
 <section class="mine00 wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url({{$all_last_posts['parralax'][0]->img}}); background-position: 0px 0px; visibility: visible; animation-name: fadeIn;">
+       
     <div class="opacity-medium bg-extra-dark-gray"></div>
     <div class="container">
         <div class="row">
@@ -95,7 +97,9 @@
             </div>
         </div>
     </div>
-</section>      
+
+</section> 
+</a>     
 @endisset
 
   
@@ -138,9 +142,7 @@
 @section('xoragrer')
         <ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
             <li class="grid-sizer"></li>
-
-                @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
-
+       @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
                 <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
                         <div class="blog-post">
                             <div class="blog-post-images overflow-hidden">

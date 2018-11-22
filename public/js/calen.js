@@ -10,10 +10,13 @@
         $('.calendar').css("display","none").toggleClass("highlight");
     }
   )
+  var k=0;
 $("#arch").mouseover(function(){ 
-
-//alert("aaaaaaa");
+k++;
+if(k==1){
+	//alert("aaaaaaa");
     $('[id^="calendar"]').fullCalendar('today');
+} 
     $('.calendar').css("display","block").toggleClass("highlight");
   
 })
