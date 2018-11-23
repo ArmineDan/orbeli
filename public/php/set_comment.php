@@ -32,19 +32,19 @@ else{
 	}
 	
 if($type=='post'){
-	$tp='App\Post';
+	$tp='App\\Post';
 }
 elseif($type=='video'){
-	$tp='App\Video';
+	$tp='App\\Video';
 }
 elseif($type=='news'){
-	$tp='App\News';
+	$tp='App\\News';
 }
 elseif($type=='opinion'){
-	$tp='App\Opinion';
+	$tp='App\\Opinion';
 	}
 	elseif($type=='announcement'){
-	$tp='App\Announcement';
+	$tp='App\\Announcement';
 }
 
 

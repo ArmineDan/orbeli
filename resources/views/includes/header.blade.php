@@ -39,16 +39,8 @@
                                 <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="{{trans('text.contacts')}}">{{trans('text.contacts')}}</a> </li>                              
                              </ul>
                         </li>
-                        
-                        
-                       
-                       
-                       
                       </ul>
                 </div>
-
-               
-                
             </div> 
                 
 {{--                     
@@ -118,13 +110,13 @@
                                 
                 </div> 
 
-                <div class=" single-search xs-no-padding-right">
+                <div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
                         <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
                         <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
                     </div> 
                     
 
-            <div class=" col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
+            <div class="col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
                 <div data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
                 <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
                           <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   

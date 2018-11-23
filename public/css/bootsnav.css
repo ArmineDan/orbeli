@@ -6,7 +6,7 @@ Author : adamnurdin01
 Version : v.1.2
 Created : 2016-06-02
 Last update : 2016-10-19
-
+ 
 ============================================================== */
 
 nav.bootsnav .megamenu-fw .dropdown-menu {left: auto;}
@@ -206,8 +206,10 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{left: -280px;}
 
 }
 
-@media (max-width: 991px) {
-    
+@media (max-width: 1147px) {
+    header a img.logo-dark {
+    max-height: 104px!important;
+}
     /*  navbar responsive */
     nav.navbar.bootsnav .navbar-brand{ display:inline-block;float:none !important;margin:0 !important; }
     nav.navbar.bootsnav .navbar-header{ float:none;display:block;text-align:center;padding-left:30px;padding-right:30px; }
