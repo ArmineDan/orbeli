@@ -173,10 +173,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($post_id, $locale)
-    {   
-        if(!Post::find($post_id)) {
-            return 'no post redirect to Error 404';
-        }
+    {
+        Post::findOrFail($post_id);
         // $lang_id_column = DB::select('select id from langs where lng = ?', [$locale]);
         // $lang_id = $lang_id_column[0]->id;
         // ->where('lang_id', $lang_id)
