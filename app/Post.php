@@ -93,16 +93,21 @@ class Post extends Model
             return $this->morphMany('App\Comment', 'commentable');
         }
 
-        static function getAllTagsByLangId($lang_id) {
-            $allTagsArray = [];
-            $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 
-                        JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id
-                        WHERE t2.lang_id=$lang_id");
-            for ($i=0; $i < count($allTagsColumn); $i++) { 
-                $allTagsArray[$i] = $allTagsColumn[$i]->name;
-            }
-            return $allTagsArray;
+        //_Authors. Получить авторов статьи
+        public function getAuthors() {
+            return $this->morphToMany('App\Author', 'authorable');
         }
+
+        // static function getAllTagsByLangId($lang_id) {
+        //     $allTagsArray = [];
+        //     $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 
+        //                 JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id
+        //                 WHERE t2.lang_id=$lang_id");
+        //     for ($i=0; $i < count($allTagsColumn); $i++) { 
+        //         $allTagsArray[$i] = $allTagsColumn[$i]->name;
+        //     }
+        //     return $allTagsArray;
+        // }
 
         static function getTagsByLangId($lang_id) {
             $allTags = [];

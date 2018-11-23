@@ -10,7 +10,7 @@ class Author extends Model
 {
 
     protected $table="authors";
-    public $timestamps = false; 
+    public $timestamps = false;
 
     static function authors_posts($id){
         $lang= App::getLocale();
@@ -39,8 +39,28 @@ class Author extends Model
         ->where('p.author_id','=', $auth_id) 
         ->where('p.lang_id','=', $lng)            
         ->paginate(3);
-    } 
-    
+    }
+
+    // Обратные поли-отношения Авторов многие-ко-многим
+    public function posts() {
+        return $this->morphedByMany('App\Post', 'authorable');
+    }
+
+    public function videos() {
+        return $this->morphedByMany('App\Video', 'authorable');
+    }
+
+    public function opinions() {
+        return $this->morphedByMany('App\Opinion', 'authorable');
+    }
+
+    public function news() {
+        return $this->morphedByMany('App\News', 'authorable');
+    }
+
+    public function announcements() {
+        return $this->morphedByMany('App\Announcement', 'authorable');
+    }
     
 
 }
