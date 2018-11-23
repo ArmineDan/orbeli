@@ -94,7 +94,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         // return $request->all();
         $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
@@ -113,12 +112,16 @@ class PostController extends Controller
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
             'tags'=> 'required|array',
+            'authors' => 'required|array',
         ]);
       
 
         // return $request->all();
 
         $post = Post::create($request->all());
+        if($request->input('authors')) {
+            $post->getAuthors()->attach($request->authors);
+        } 
         $post_id = $post->id;
         if($request->input('tags')) {
             // $tagsString = $request->tags;
@@ -227,7 +230,10 @@ class PostController extends Controller
         $allTagsArray = Post::getTagsByLangId($lang_id);
         $postTagsArray = $post->tagArray;
         $allTagsList = implode(',',$allTagsArray);
-        $postTagsList = $post->tagList;      
+        $postTagsList = $post->tagList;
+
+        $relAuthors = $post->getAuthors()->select('name', 'lastname')->get();
+        
 
         $images = Storage::files('public/'.$this->folder_name.'/'.$post->id);
         $imageurls = [];
@@ -237,6 +243,7 @@ class PostController extends Controller
                 $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
             }            
         }
+
         // return $imageurls;
         if($post) {
 
@@ -252,6 +259,7 @@ class PostController extends Controller
                 'imageurls' => $imageurls,
                 'atags' => $allTagsArray,
                 'ptags' => $postTagsArray,
+                'relAuthors' => $relAuthors,
             ]);
 
         } else {
@@ -285,13 +293,19 @@ class PostController extends Controller
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
             'tags'=> 'required|array',
+            'authors' => 'required|array',
         ]);
 
         // return $request->all();
 
         $post = Post::findOrFail($post_id);
         $old_date = $post->date;
+
         $post->update($request->all());
+        $post->getAuthors()->detach();
+        if($request->input('authors')) {
+            $post->getAuthors()->attach($request->authors);
+        }
         Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
         Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 
@@ -374,6 +388,7 @@ class PostController extends Controller
 
         $post->getDocuments()->delete(); // 100
         $post->getComments()->delete(); // 100
+        $post->getAuthors()->detach(); // 100
         $post->detag(); // 100
         $post->delete(); // 100
         

@@ -11,6 +11,7 @@
               <tr>
                   <th>Num</th>
                   <th>Title</th>
+                  <th>Viewed</th>
                   <th>Duration</th>
                   <th>Status</th>
                   <th>Main Image</th>
@@ -20,6 +21,7 @@
             <tr>
               <td>{{$video->id}}</td>
               <td>{{$video->title}}</td>
+              <td>{{$video->view}}</td>
               <td>{{$video->duration}}</td>
               @if($video->status == 'not_published')
                 <td class="alert alert-danger">{{$video->status}}</td>

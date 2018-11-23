@@ -172,10 +172,10 @@
 
         window.onload = function() {
             var category = document.getElementsByName('post_typ')[0];
-            if(category) {
+            if(category && category.tagName != 'INPUT') {
+                console.log('====>',category.tagName)
                 checkCategory();
-            }
-            
+            }            
         }
         
         function checkCategory() {
@@ -224,7 +224,8 @@
         }
 
         // https://picker.adam-uhlir.me/#coloring
-        $('#ex-search').picker({search : true, limit : 5});
+        $('#ex-search').picker({search : true, limit : 5}); // tags
+        
 
         if(document.getElementsByClassName('pc-element').length > 5) {
             document.getElementsByClassName('pc-trigger')[0].style.display = 'none';   
@@ -296,6 +297,10 @@
         function alertLimitmessage() {
             alert('you already have 5 tags');
         }
+
+        // multi-authors        
+        $('#ex-search-2').picker({search : true, limit : 5}); // authors
+
         console.log('<<<<<<<<<---------------------hey how are you');        
       </script>
       
