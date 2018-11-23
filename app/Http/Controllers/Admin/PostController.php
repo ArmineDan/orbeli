@@ -30,6 +30,9 @@ class PostController extends Controller
 
     public function index()
     {
+
+        // $post2 = Post::with('getAuthors')->find(1);
+        // return $post2;
         $lang_id = Lang::getLangId();
         return view('admin.posts.index', [
             // 'posts' => Post::paginate(3)

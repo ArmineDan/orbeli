@@ -22,6 +22,9 @@ class Announcement extends Model
     public function getComments() {
         return $this->comments();
     }
+    public function getAuthors() {
+        return $this->morphToMany('App\Author', 'authorable');
+    }
 
     static  function get_announce_id($date,$title)
     {

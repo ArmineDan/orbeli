@@ -24,6 +24,9 @@ class News extends Model
     public function getComments() {
         return $this->comments();
     }
+    public function getAuthors() {
+        return $this->morphToMany('App\Author', 'authorable');
+    }
     
     static  function get_news_id($date,$title)
     {

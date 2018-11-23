@@ -13,9 +13,10 @@
 
 // set locale for '/admin/anything/[en|hy|ru|jp]/anything' only
 // or locale for '/home/[en|hy|ru|]' only
+// || Request::segment(1) === 'home'
 
 
-if ((Request::segment(1) === 'admin' || Request::segment(1) === 'home') && in_array(Request::segment(2), ['en', 'hy', 'ru'])) {
+if ((Request::segment(1) === 'admin' ) && in_array(Request::segment(2), ['en', 'hy', 'ru'])) {
   App::setLocale(Request::segment(2));
 } else {
   // set default / fallback locale
@@ -102,7 +103,7 @@ Route::get('/{locale}/all/tags/', 'PageController@allTags');
 
 Route::get('/{locale}', 'PageController@index');
 Route::get('/{locale}/tags/{tag_id}', 'LoadAll@posts_whith_current_tag');
-Route::get('/', 'PageController@index');
+// Route::get('/', 'PageController@index');
 Route::get('{locale}/search/{s?}', 'SearchesController@getIndex')->where('s', '[\w\d]+');
 
 Route::get('/pagenotfound', ['as'=>'notfound', 'uses'=>'PageController@pagenotfound']);  
