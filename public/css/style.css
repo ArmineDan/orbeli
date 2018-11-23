@@ -4,7 +4,7 @@
 
 Name: style.css
 Version: 1.0
-
+ 
 -------------------------------------
 
 Table of contents
@@ -2310,10 +2310,10 @@ nav.navbar.bootsnav .heder-menu-button .navbar-toggle {float: none; padding: 0; 
 .header-searchbar a i { position: relative; top: -1px;}
 .header-social-icon a:last-child i { margin-right: 0;}
 .search-icon {padding-right: 10px;}
-
+ 
 /* menu center */
 .menu-center .header-right { flex: 1 2 auto;}
-.navbar-collapse {padding-left: 0; padding-right: 0;}
+.navbar-collapse {padding-left: 25px; padding-right: 0;}
 
 /* menu center logo */
 .menu-logo-center .navbar-left > li {float: none; display: inline-block; vertical-align: middle;}
@@ -2346,7 +2346,7 @@ header.sticky nav.header-light-transparent .logo .logo-light, header.sticky nav.
 .nav-top-scroll {position: absolute; top: 0; z-index: 5;}
 header.sticky nav.nav-top-scroll {background-color: inherit;}
 header a.logo {display: inline-block; vertical-align: middle;}
-header a.logo img {max-height:104px;}
+header a.logo img {max-height:105px;}
 header a img.logo-dark{
     max-height: 89px;
 }
@@ -3998,7 +3998,7 @@ aside .latest-post li.aa figure {width: 179px;}
 
 #ns_search_icon{
     position: absolute; 
-    right: 179px;
+    right: 53px;
     top: -8px
 }
 
@@ -4013,7 +4013,7 @@ aside .latest-post li.aa figure {width: 179px;}
     #contacts_h5_narek{font-size: 30px}
 	#ns_search_icon {
     position: absolute;
-    right: 159px!important;
+    right: 42px!important;
     top: -8px;
 }
 }

@@ -41,6 +41,7 @@ return[
  "footer_second" => "Изготовитель` ",
  "footer_third" => "Социальные сети",
  "footer_webex" => "Webex Technologies LLC",
+ "robot" => "Отметьте поле робота",
  "send_comment_ok" => "Ваш комментарий отправлен",
  "send_comment_error" => "Ваш комментарий не отправлен, повторите попытку.",
  "error_page"=>"СТРАНИЦА НЕ НАЙДЕНА",
