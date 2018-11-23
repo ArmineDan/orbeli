@@ -24,6 +24,9 @@ class Video extends Model
     public function getComments() {
         return $this->comments();
     }
+    public function getAuthors() {
+        return $this->morphToMany('App\Author', 'authorable');
+    }
 
     static  function get_video_id($date,$title)
     {

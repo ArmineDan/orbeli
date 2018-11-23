@@ -1466,7 +1466,7 @@
     .feature-box.feature-box-17 .box .content {top: 50px;}
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1147px) {
 
     /* typography */
     h1, h2, h3, h4, h5, h6 {margin:0 0 18px; padding:0; letter-spacing: 0; font-weight: 400;}
@@ -1524,7 +1524,7 @@
 	
 	#ns_search_icon {
     position: absolute;
-    right: 219px;
+    right: 53px;
     top: -8px;
 }
     .navbar-nav > li.dropdown > .fa { display: block; position: absolute; right: 0px; top: 0; color: #fff; font-size: 16px; cursor: pointer; padding: 9px 15px 8px}

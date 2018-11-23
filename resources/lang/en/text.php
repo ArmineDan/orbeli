@@ -41,7 +41,7 @@ return[
  "footer_second" => "Manufacturer`",
  "footer_third" => "Social networks",
  "footer_webex" => "Webex Technologies LLC",
- "robot" => "Նշել ռոբոտի դաշտը",
+ "robot" => "Mark the robot field",
  "send_comment_ok" => "Your comment was sent",
  "send_comment_error" => "Your comment was not sent, please try again",
  "error_page"=>"PAGE NOT FOUND",

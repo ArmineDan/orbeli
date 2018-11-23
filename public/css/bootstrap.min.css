@@ -4660,7 +4660,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     margin-top: 4px
 }
 
-@media (min-width: 768px) {
+@media (min-width:1147px) {
     .navbar-toggle {
         display: none
     }
