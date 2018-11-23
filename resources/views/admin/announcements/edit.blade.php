@@ -118,6 +118,24 @@
 
         <input name="a_duration" id="duration" class="form-control" value="{{$announcement['a_duration']}}">
         <hr>
+
+        <label for="" style="display:block">Post tags</label>            
+            <input type="text" name="new_tag" id="new_tag" value="">
+            <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+            <select name="tags[]" id="ex-search" multiple="multiple">
+                @if ($atags)
+                    @for ($i = 0; $i < count($atags); $i++)
+                        <option value="{{$atags[$i]}}"
+                        @if (in_array($atags[$i], $ptags))
+                            selected="selected"
+                        @endif                    
+                        >{{$atags[$i]}}</option>
+                    @endfor
+                @else
+                <option value="">No tags in list. Please add new tags manually.</option>        
+                @endif
+            </select>
+            <hr>
     
         <label for="authors_id">Select Author Id</label>
             <select name="author_id" class="form-control">

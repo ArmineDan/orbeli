@@ -49,7 +49,6 @@ class AnnouncementsController extends Controller
 
         $last_id = $last_id_array[0]->AUTO_INCREMENT;
 
-        $lang_id = Lang::getLangId();
         $folder_name = 'announcements';
         $images = Storage::files('public/'.$folder_name.'/'.$last_id);
 
@@ -58,8 +57,11 @@ class AnnouncementsController extends Controller
             $imageurls[$i]['url'] = Storage::url($images[$i]);
             $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
         }
-
+        
+        $lang_id = Lang::getLangId();
         $authors = DB::select("SELECT * FROM authors WHERE lang_id='$lang_id'");
+
+        $allTags = Announcement::getTagsByLangId($lang_id);
 
         return view('admin.announcements.create',[
             'locale' => $locale,
@@ -68,6 +70,7 @@ class AnnouncementsController extends Controller
             'imageurls' => $imageurls,
             'authors' => $authors,
             'lang_id' => $lang_id,
+            'tags' => $allTags,
         ]);
         
     }
@@ -80,8 +83,28 @@ class AnnouncementsController extends Controller
      */
     public function store(Request $request, $locale)
     {
-        //return $locale;
-        $this->validate($request,[
+        // $paraParams = [
+        //     'title' => $request->input('title'),
+        //     'short_text' => $request->input('short_text'),
+        //     'html_code' => $request->input('html_code'),
+
+        //     'img' => $request->input('img'),
+        //     'date' => $request->input('date'),
+        //     'status' => $request->input('status'),
+
+        //     'meta_k' => $request->input('meta_k'),
+        //     'meta_d' => $request->input('meta_d'),
+        //     'view' => $request->input('view'), 
+
+        //     'a_duration' => $request->input('a_duration'),
+        //     'post_typ' => $request->input('post_typ'),
+        //     'author_id' => $request->input('author_id'),
+
+        //     'lang_id'=> $request->input('lang_id'),
+
+        // ];
+
+        $validator = $this->validate( $request, [
             'title' => 'required',
             'short_text' => 'required',
             'html_code' => 'required',
@@ -97,36 +120,38 @@ class AnnouncementsController extends Controller
             'a_duration' => 'required',
             'post_typ' => 'required',
             'author_id' => 'required',
-
-            'lang_id' => 'required'
-
+            'lang_id' => 'required',
+            'tags'=> 'required',
         ]);
-        $announcements = new Announcement;
 
-        $paraParams = [
-            'title' => $request->input('title'),
-            'short_text' => $request->input('short_text'),
-            'html_code' => $request->input('html_code'),
+        $announcement = Announcement::create($request->all());
+        $announcement_id = $announcement->id;
+        
+        if($request->input('tags')) {
+            // $tagsString = $request->tags;
+            // $tagsArray = explode(',',$request->tags);
+            $tagsArray = $request->tags;
+            $announcement->tag($tagsArray); // store-to-db
 
-            'img' => $request->input('img'),
-            'date' => $request->input('date'),
-            'status' => $request->input('status'),
+            // update lang_id into taggable_tags
+            for ($i=0; $i < count($tagsArray); $i++) {
+                DB::table('taggable_tags')
+                ->where('name', $tagsArray[$i])
+                ->update(['lang_id' => $request->input('lang_id') ]);
+            }
+        }
 
-            'meta_k' => $request->input('meta_k'),
-            'meta_d' => $request->input('meta_d'),
-            'view' => $request->input('view'), 
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Announcement')
+        ->where('taggable_id', $announcement_id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
 
-            'a_duration' => $request->input('a_duration'),
-            'post_typ' => $request->input('post_typ'),
-            'author_id' => $request->input('author_id'),
+        // DB::table('announcements')->insert( $paraParams );
+      
 
-            'lang_id'=> $request->input('lang_id'),
+        // return $request->all();
 
-        ];
-
-        DB::table('announcements')->insert( $paraParams );
-
-        return redirect()->route('admin.announcements.index', $locale);
+        return redirect()->route('admin.announcements.index', [$announcement_id, $locale]);
     }
 
     /**
@@ -176,7 +201,59 @@ class AnnouncementsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($id, $locale)
+    public function edit(Request $request, $id, $locale)
+    {
+        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
+                                FROM    information_schema.TABLES
+                                WHERE   (TABLE_NAME = 'announcements')");
+
+        $last_id = $last_id_array[0]->AUTO_INCREMENT;
+
+        $announcement = Announcement::findOrFail($id);
+        // $has = App\Post::has('getDocuments')->get();
+        // return $has;
+        $lang_id = $announcement->lang_id;   
+        $folder_name = "announcements";  
+        $authors = Author::where('lang_id', $lang_id)->get();
+        $docsObject = $announcement->getDocuments()->get();
+
+        $allTagsArray = Announcement::getTagsByLangId($lang_id);
+        $postTagsArray = $announcement->tagArray;
+        $allTagsList = implode(',',$allTagsArray);
+        $postTagsList = $announcement->tagList;      
+
+        $images = Storage::files('public/'.$folder_name.'/'.$announcement->id);
+        $imageurls = [];
+        for ($i=0; $i < count($images) ; $i++) { 
+            if(in_array(Document::getTypeFromLink($images[$i]), $this->validImageExp)) {
+                $imageurls[$i]['url'] = Storage::url($images[$i]);
+                $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
+            }            
+        }
+        // return $imageurls;
+        if($announcement) {
+
+            return view('admin.announcements.edit',[
+                'announcement' => $announcement,
+                'authors' => $authors,
+                'locale' => $locale,
+                'allTagsList' => $allTagsList,
+                'postTagsList' => $postTagsList,
+                'docsObject' => $docsObject,
+                'folder_name' => $folder_name,
+                'imageurls' => $imageurls,
+                'atags' => $allTagsArray,
+                'ptags' => $postTagsArray,
+                'last_id' => $last_id,
+                'lang_id' => $lang_id
+            ]);
+
+        } else {
+            return view('404error');
+        }        
+    }
+
+    /*public function edit($id, $locale)
 
     {
         $last_id_array = DB::select("SELECT  AUTO_INCREMENT
@@ -210,7 +287,7 @@ class AnnouncementsController extends Controller
             'authors' => $authors,
             'lang_id' => $lang_id
         ]);
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.
@@ -221,7 +298,7 @@ class AnnouncementsController extends Controller
      */
     public function update(Request $request, $locale, $id)
     {
-        $this->validate($request,[
+        $validator = $this->validate($request,[
             'title' => 'required',
             'short_text' => 'required',
             'html_code' => 'required',
@@ -233,25 +310,36 @@ class AnnouncementsController extends Controller
             'a_duration' =>  'required',
             'author_id' =>  'required',
             'post_typ' => 'required',
-            'view' => 'required'
+            'view' => 'required',
+            'lang_id' => 'required',
+            'tags'=> 'required|array',
         ]);
-        
-        $announcement = Announcement::find($id);
-            $announcement->title = $request->input('title');
-            $announcement->short_text = $request->input('short_text');
-            $announcement->html_code = $request->input('html_code');
-            $announcement->img = $request->input('img');
-            $announcement->date = $request->input('date');
-            $announcement->status = $request->input('status');
-            $announcement->meta_k = $request->input('meta_k');
-            $announcement->meta_d = $request->input('meta_d');
-            $announcement->a_duration = $request->input('a_duration');
-            $announcement->author_id = $request->input('author_id');
-            $announcement->post_typ = $request->input('post_typ');
-            $announcement->view = $request->input('view');
-        $announcement->save();
 
-        return redirect()->route('admin.announcements.index', $locale)->with('success','Post Created');
+        $announcement = Announcement::findOrFail($id);
+        $old_date = $announcement->date;
+        $announcement->update($request->all());
+
+        if($request->input('tags')) {
+            if(!empty($request->input('tags'))) {
+                $announcement->retag($request->input('tags'));
+
+                // update lang_id into taggable_tags
+                // $tagsArray = explode(',',$request->tags);
+                $tagsArray = $request->tags;
+                for ($i=0; $i < count($tagsArray); $i++) {
+                    DB::table('taggable_tags')
+                    ->where('name', $tagsArray[$i])
+                    ->update(['lang_id' => $request->input('lang_id') ]);
+                }
+            }            
+        }
+
+        DB::table('taggable_taggables')
+        ->where('taggable_type', 'App\\Announcement')
+        ->where('taggable_id', $id)
+        ->update(['lang_id' => $request->input('lang_id') ]);
+    
+        return redirect()->route('admin.announcements.index', [$id, $locale]);
     }
 
     /**

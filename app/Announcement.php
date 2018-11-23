@@ -9,6 +9,10 @@ use Cviebrock\EloquentTaggable\Taggable;
 class Announcement extends Model
 {
     use Taggable;
+    
+    protected $fillable = [
+        'title', 'short_text', 'html_code', 'img', 'date', 'status', 'meta_k', 'meta_d', 'view', 'a_duration', 'post_typ', 'author_id', 'lang_id',
+    ];
 
     public function comments()
     {
@@ -29,6 +33,33 @@ class Announcement extends Model
             ->where('announcements.date','=', $date)
             ->where('announcements.title','=', $title)        
             ->value('id');
+    }
+
+    static function getLangId() {
+        $lang= App::getLocale();     
+        return  $lng = DB::table('langs')
+        ->where('lng','=',$lang)
+        ->value('id');  
+    }
+
+    static function getAllTagsByLangId($lang_id) {
+        $allTagsArray = [];
+        $allTagsColumn = DB::select("SELECT DISTINCT t1.name FROM taggable_tags AS t1 
+                    JOIN taggable_taggables AS t2 ON t1.tag_id = t2.tag_id
+                    WHERE t2.lang_id=$lang_id");
+        for ($i=0; $i < count($allTagsColumn); $i++) { 
+            $allTagsArray[$i] = $allTagsColumn[$i]->name;
+        }
+        return $allTagsArray;
+    }
+
+    static function getTagsByLangId($lang_id) {
+        $allTags = [];
+        $allTagsColumn = DB::select("SELECT name from taggable_tags where lang_id = ?", [$lang_id]);
+        for ($i=0; $i < count($allTagsColumn); $i++) { 
+            $allTags[$i] = $allTagsColumn[$i]->name;
+        }
+        return $allTags;
     }
 
     static function open_current_announce($date,$title){

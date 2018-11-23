@@ -102,6 +102,20 @@
         <input name="a_duration" id="duration" class="form-control" value="5">
         <hr>
 
+        <h5 style="display:block">Select tags for current video</h5>
+      <input name="new_tag" id="new_tag" value="">
+      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+        @if ($tags)
+         @for ($i = 0; $i < count($tags); $i++)
+         <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
+         @endfor
+        @else
+        <option value="">No tags in list. Please add new tags manually.</option>        
+        @endif
+      </select>
+      <hr>
+
         <label for="authors_id"> Select Author Id </label>
         <select name="author_id" class="form-control">
             @foreach ($authors as $item)
