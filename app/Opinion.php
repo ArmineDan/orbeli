@@ -42,6 +42,10 @@ class Opinion extends Model
     public function getComments() {
         return $this->comments();
     }
+    public function getAuthors() {
+        return $this->morphToMany('App\Author', 'authorable');
+    }
+    
     static  function get_opinion_id($date,$title)
     {
         return $get_video_id = DB::table('opinions') 
