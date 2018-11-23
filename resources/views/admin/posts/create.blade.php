@@ -149,7 +149,6 @@
       </select>
       <hr>
 
-
       <h5>Meta data</h5>
       <h5 for="meta_k">Meta keywords <kbd>without spaces</kbd></h5>
       <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
