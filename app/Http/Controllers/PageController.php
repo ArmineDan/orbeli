@@ -115,6 +115,7 @@ class PageController extends Controller
                     $post_type =  DB::table('categories as c') 
                     ->where('c.name','=',$id)
                     ->value('id');  
+                    
                     if($post_type === NULL ){
                         $all_data=array(
                         "lang"=> $lang,
@@ -258,7 +259,9 @@ class PageController extends Controller
                         $lang = App::getLocale();
                         $lng=Post::getLangId(); 
                         $calendar= Event::event($lang);
-                        $menu = Post::menu(); 
+                        $menu = Post::menu();
+                        $id=Post::getid($date,$title);
+                         
                 if($id === NULL ){
                     $all_data=array(
                     "lang"=> $lang,
@@ -311,6 +314,7 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $menu = Post::menu(); 
+                        $id=Post::getid($date,$title);
                 if($id === NULL ){
                     $all_data=array(
                     "lang"=> $lang,
