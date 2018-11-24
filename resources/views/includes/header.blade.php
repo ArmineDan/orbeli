@@ -37,7 +37,7 @@
                                 <li> <a href="{{url($all_last_posts['lang'].'/news')}}"  title="{{trans('text.news')}}">{{trans('text.news')}}</a> </li>
                                 <li><a href="{{url($all_last_posts['lang'].'/partners')}}" title="{{trans('text.partners')}}">{{trans('text.partners')}}</a> </li>
                                 <li><a href="{{url($all_last_posts['lang'].'/author')}}" title="{{trans('text.auth')}}">{{trans('text.auth')}}</a> </li>
-                                <li><a href="#" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
+                                <li><a  href="{{url($all_last_posts['lang'].'/about_us')}}" title="{{trans('text.about_us')}}">{{trans('text.about_us')}}</a> </li>
                                 <li><a href="{{url($all_last_posts['lang'].'/contacts')}}" title="{{trans('text.contacts')}}">{{trans('text.contacts')}}</a> </li>                              
                              </ul>
                         </li>
