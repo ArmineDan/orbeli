@@ -12,7 +12,6 @@ use App\Post;
 use App\Tags;
 use App\Lang;
 use App\Video;
-use App\Author;
 use App\News;
 use App\About_us;
 use Illuminate\Http\Request;
