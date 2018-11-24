@@ -12,7 +12,9 @@ use App\Post;
 use App\Tags;
 use App\Lang;
 use App\Video;
+use App\Author;
 use App\News;
+use App\About_us;
 use Illuminate\Http\Request;
 use App\Event;
 use App;
@@ -515,15 +517,21 @@ class PageController extends Controller
                 $rules = ['en','ru','hy'];                      
                 if(in_array($locale,$rules))
                 {
-                        Session::put('locale',$locale);
-                        App::setLocale($locale);
-                        $lang = App::getLocale(); 
-                        $lng=Post::getLangId();                
-                        $calendar= Event::event($lang);
-                        $menu = Post::menu();
-                        $categories = Post::categories(); 
-                
-                $all_data=array("lang"=> $lang,"event"=> $calendar,"menu"=>$menu, "categories"=>$categories);              
+                    Session::put('locale',$locale);
+                    App::setLocale($locale);
+                    $lang = App::getLocale();
+                    $lang_id = Lang::getLangId();;                 
+                    $calendar= Event::event($lang);
+                    $menu = Post::menu();
+                    $categories = Post::categories(); 
+                    $about_us = DB::select("SELECT * FROM about_uses WHERE lang_id='$lang_id'");
+
+                    $ns_1 = About_us::Sum();
+                    $ns_2 = About_us::post_Count();
+                    $ns_3 = About_us::auhor_Count();
+
+                $all_data=array("post_count" => $ns_2, "author_count" => $ns_3, "sum_views" => $ns_1, "about_us" => $about_us, "lang"=> $lang,"event"=> $calendar,"menu"=>$menu, "categories"=>$categories);              
+
                    return view('about_us')-> with('all_last_posts',$all_data);
                 }
                 else{              

@@ -32,11 +32,13 @@
                 </div>
                 <!-- end social media -->
             </div>
-            <div class="row">
+            <!--div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center">&COPY; 2018  {{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></div>
-            </div>
+            </div!-->
         </div>
     </div>
-    
-   
+
+   <div class="narek_all_rights_reserved">
+        &COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}}  <span style="position: absolute;right: 20px">{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
+   </div>
 </footer>

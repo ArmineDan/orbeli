@@ -17,9 +17,10 @@
                                 <a href="http://www.twitter.com" class="text-white" target="_blank"><i class="fa fa-twitter"></i></a>
                                 <a href="http://www.linkedin.com" class="text-white" target="_blank"><i class="fa fa-linkedin"></i></a>
                               <!--a href="mailto:info@orbeli.am" class="text-white" target="_blank" title="info@orbeli.am"><i class="fa fa-envelope"></i></a!-->
-                              <i class="fa fa-envelope autors_narek_mail_icon" style="background: #fff,cursor: pointer">
-                                <em style="display: none">{{$item->id}}</em>                                
-                              </i>
+                                <a class="text-white  autors_narek_mail_icon" style="cursor:pointer"><i class="fa fa-envelope">
+                                        <em style="display: none">{{$item->id}}</em>      
+                                </i></a>
+                                                              
                               <p></p>
                             </div>
                         </div>

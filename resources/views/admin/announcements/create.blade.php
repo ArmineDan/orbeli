@@ -102,7 +102,7 @@
         <input name="a_duration" id="duration" class="form-control" value="5">
         <hr>
 
-        <h5 style="display:block">Select tags for current video</h5>
+        <h5 style="display:block">Select tags for announcements</h5>
       <input name="new_tag" id="new_tag" value="">
       <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
       <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
