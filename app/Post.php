@@ -48,32 +48,7 @@ class Post extends Model
         ->limit(2)
         ->get();  
     }
-//    static function horintalPost(){
-//     return $horintalPost = DB::table('posts')
-//     ->where('status','<>','main')
-//     ->orderByRaw('date DESC')
-//     ->offset(2)
-//     ->limit(3)
-//     ->get();
-//     }
-  
-    static function main_right(){
-        $lang= App::getLocale();
-        $lng = DB::table('langs')
-        ->where('lng','=',$lang)
-        ->value('id');
-        
-        $main_right = DB::table('posts')
-        ->select('posts.*', 'authors.name', 'authors.lastname') 
-        ->where('posts.status','<>','main')
-        ->where('posts.lang_id','=', $lng)         
-        ->join('authors', 'authors.id', '=', 'posts.author_id')
-        ->orderByRaw('posts.id DESC')   
-        ->limit(4)
-        ->get();
-        return $main_right;
-       
-        }
+
       
   
 
@@ -156,19 +131,19 @@ class Post extends Model
             ->get();
         } 
         
-    static function main_post(){
-        $lang= App::getLocale();
-        $lng = DB::table('langs')
-        ->where('lng','=',$lang)
-        ->value('id');
+    // static function main_post(){
+    //     $lang= App::getLocale();
+    //     $lng = DB::table('langs')
+    //     ->where('lng','=',$lang)
+    //     ->value('id');
 
-            return $main_post = DB::table('posts') 
-            ->select('posts.*', 'authors.name', 'authors.lastname') 
-            ->join('authors', 'posts.author_id', '=', 'authors.id') 
-            ->where('status','main')
-            ->where('posts.lang_id','=', $lng) 
-            ->get();
-        } 
+    //         return $main_post = DB::table('posts') 
+    //         ->select('posts.*', 'authors.name', 'authors.lastname') 
+    //         ->join('authors', 'posts.author_id', '=', 'authors.id') 
+    //         ->where('status','main')
+    //         ->where('posts.lang_id','=', $lng) 
+    //         ->get();
+    //     } 
         static function main_video(){
         $lang= App::getLocale();
         $lng = DB::table('langs')
@@ -224,22 +199,22 @@ class Post extends Model
 
     }
 
-    static function open_current_post($date,$title){
-        $lang= App::getLocale();
-        $lng = DB::table('langs')
-            ->where('lng','=',$lang)
-            ->value('id');
+    // static function open_current_post($date,$title){
+    //     $lang= App::getLocale();
+    //     $lng = DB::table('langs')
+    //         ->where('lng','=',$lang)
+    //         ->value('id');
 
-            return $open_current_post = DB::table('posts as p')          
-            ->join('authors as a', 'p.author_id', '=', 'a.id')
-            ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
-            ->where('p.lang_id','=', $lng)
-            ->where('p.date','=', $date)
-            ->where('p.title','=', $title)        
-            ->get();
+    //         return $open_current_post = DB::table('posts as p')          
+    //         ->join('authors as a', 'p.author_id', '=', 'a.id')
+    //         ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
+    //         ->where('p.lang_id','=', $lng)
+    //         ->where('p.date','=', $date)
+    //         ->where('p.title','=', $title)        
+    //         ->get();
 
 
-    }
+    // }
     static  function getid($date,$title)
     {
         return $open_current_post = DB::table('posts') 

@@ -28,7 +28,7 @@ class LoadAll extends Controller
             $lang = App::getLocale();
 
                  $id=trans('text.opinion');
-                 $land_id =Post::getLangId(); 
+                 $lng =Post::getLangId();                 
                  $calendar= Event::event($lang);
                  $menu = Post::menu();
                  $categories = Post :: categories();
@@ -36,10 +36,12 @@ class LoadAll extends Controller
                  $post_with_given_id = DB::table('opinions as o')                
                  ->join('authors as a', 'a.id', '=', 'o.author_id') 
                  ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                 ->where('o.lang_id','=', $land_id )
+                 ->where('o.lang_id','=', $lng )
                  ->orderBy('date','DESC')  
-                 ->paginate(6);                
-                 $mostViewed = Post::mostViewed();                
+                 ->paginate(6); 
+                          
+                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                                
                  $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
                    return view('all_opinions')-> with('all_last_posts',$all_data);
         }
@@ -59,7 +61,7 @@ class LoadAll extends Controller
                  $lang = App::getLocale();     
                     
                       $id=trans('text.videos');
-                      $land_id =Post::getLangId(); 
+                      $lng =Post::getLangId(); 
                       $calendar= Event::event($lang);
                       $menu = Post::menu();
                       $categories = Post :: categories();
@@ -67,10 +69,12 @@ class LoadAll extends Controller
                       $post_with_given_id = DB::table('videos as o')                
                       ->join('authors as a', 'a.id', '=', 'o.author_id') 
                       ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                      ->where('o.lang_id','=', $land_id )
+                      ->where('o.lang_id','=', $lng )
                       ->orderBy('date','DESC')  
-                      ->paginate(6);                
-                      $mostViewed = Post::mostViewed();                
+                      ->paginate(6);    
+                               
+                      $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                              
                       $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
                         return view('all_videos')-> with('all_last_posts',$all_data);
              }
@@ -89,7 +93,7 @@ class LoadAll extends Controller
                             App::setLocale($locale);
                             $lang = App::getLocale(); 
                             $id=trans('text.announcements');
-                            $land_id =Post::getLangId(); 
+                            $lng =Post::getLangId(); 
                             $calendar= Event::event($lang);
                             $menu = Post::menu();
                             $categories = Post :: categories();
@@ -97,10 +101,12 @@ class LoadAll extends Controller
                             $all_announcements = DB::table('announcements as o')                
                             ->join('authors as a', 'a.id', '=', 'o.author_id') 
                             ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                            ->where('o.lang_id','=', $land_id )
+                            ->where('o.lang_id','=', $lng )
                             ->orderBy('date','DESC')  
                             ->paginate(6);                
-                            $mostViewed = Post::mostViewed();                
+                                    
+                            $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                         
                             $all_data=array("lang"=> $lang,
                              "event"=> $calendar,
                              "post"=>$all_announcements,
@@ -141,7 +147,9 @@ class LoadAll extends Controller
                       ->where('o.lang_id','=', $land_id )
                       ->orderBy('date','DESC')  
                       ->paginate(6);                
-                      $mostViewed = Post::mostViewed();                
+                      $lng=Post::getLangId();               
+                      $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                                
                       $all_data=array("lang"=> $lang,
                        "event"=> $calendar,
                        "post"=>$all_news,
@@ -169,14 +177,16 @@ class LoadAll extends Controller
                 Session::put('locale',$locale);
                 App::setLocale($locale);
                 $lang = App::getLocale();
-                $land_id =Post::getLangId(); 
+                $lng =Post::getLangId(); 
                 $calendar= Event::event($lang);
                 $menu = Post::menu();
                 $categories = Post :: categories();               
-                $mostViewed = Post::mostViewed();  
+                          
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+              
                 $authors =DB::table('partners')
                     ->select('*')
-                    ->where('lang_id','=',$land_id)
+                    ->where('lang_id','=',$lng)
                     ->paginate(8);
                 $all_data=array("lang"=> $lang,
                 'authors' => $authors,
@@ -202,8 +212,7 @@ class LoadAll extends Controller
                 {
                    Session::put('locale',$locale);
                     App::setLocale($locale);
-                    $lang = App::getLocale();            
-                    $land_id =Post::getLangId();                  
+                    $lang = App::getLocale();
                     $calendar= Event::event($lang);
                     $menu = Post::menu();
                     $categories = Post :: categories();
@@ -212,7 +221,9 @@ class LoadAll extends Controller
                     $videos_archieve= Archieve::get_archieves('videos',$date);              
                     $announs_archieve= Archieve::get_archieves('announcements',$date);              
                     $news_archieve= Archieve::get_archieves('news',$date); 
-                    $mostViewed = Post::mostViewed();
+                    $lng=Post::getLangId();               
+                    $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                  
             
             $all_data=array("lang"=> $lang,
              "event"=> $calendar,
@@ -254,7 +265,9 @@ class LoadAll extends Controller
                         $calendar= Event::event($lang);       
                         // $all_posts = Post::have_this_tag($tagName);
                         $popular_tags=Tags::load_all_popular_tags();                
-                        $mostViewed = Post::mostViewed();
+                                   
+                        $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                      
                         $all_Post = Post::whereHas('tags', function($query) use ($tagName) {
                             $query->whereName($tagName);
                         })->paginate(6);                          

@@ -7,7 +7,7 @@ $mail = mysqli_real_escape_string($con, $_POST['mail']);
 /*$checkmail = filter_var($mail, FILTER_VALIDATE_EMAIL);
 
 var_dump($checkmail);
-die;
+die; 
 
 if(!$checkmail)
 {
@@ -18,33 +18,35 @@ $name = mysqli_real_escape_string($con, $_POST['name']);
 $opinion = mysqli_real_escape_string($con, $_POST['opinion']);
 $id = mysqli_real_escape_string($con, $_POST['id']);
 $type = mysqli_real_escape_string($con, $_POST['type']);
+// $type = $_POST['type'];
 $lng = mysqli_real_escape_string($con, $_POST['lang']);
-   if($lng=='en'){
+
+if($lng=='en'){
 	$ln=1;
 }
 else{
-			if($type=='ru'){
-				$ln=2;
-			}
-			else{
-				$ln=3;
-					}
+	if($type=='ru'){
+		$ln=2;
 	}
-	
+	else{
+		$ln=3;
+	}
+}
+	 
 if($type=='post'){
-	$tp='App\\Post';
+	$tp=quotemeta("App\Post");
 }
 elseif($type=='video'){
-	$tp='App\\Video';
+	$tp=quotemeta('App\Video');
 }
 elseif($type=='news'){
-	$tp='App\\News';
+	$tp=quotemeta('App\News');
 }
 elseif($type=='opinion'){
-	$tp='App\\Opinion';
-	}
-	elseif($type=='announcement'){
-	$tp='App\\Announcement';
+	$tp=quotemeta('App\Opinion');
+}
+elseif($type=='announcement'){
+	$tp=quotemeta('App\Announcement');
 }
 
 
