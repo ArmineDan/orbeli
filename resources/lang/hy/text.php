@@ -41,11 +41,15 @@ return[
  "footer_second" => "Պատրաստված է՝ ",
  "footer_third" => "Սոցիալական ցանցերում",
  "footer_webex" => "Վեբէքս Թեքնոլոջիս ՍՊԸ",
+ "footer_reserved" => "Բոլոր իրավունքները պաշտպանված են",
  "robot" => "Նշել ռոբոտի դաշտը",
  "send_comment_ok" => "Ձեր մեկնաբանությունը ուղարկված է",
  "send_comment_error" => "Ձեր մեկնաբանությունը ուղարկված չէ, փորձեք կրկին",
  "error_page"=>"ԷՋԸ ՉԻ ԳՏՆՎԵԼ",
  "error_page_text"=>"Ձեր փնտրած էջը չի գտնվել:",
  "textarea"=>"Ձեր մեկնաբանությունը",
- "back"=>"Հետ գնալ"
+ "back"=>"Հետ գնալ",
+ "about_us_first_icon_text" => "Գրառումներ",
+ "about_us_second_icon_text" => "Հեղինակներ",
+ "about_us_third_icon_text" => "Դիտումներ"
 ];

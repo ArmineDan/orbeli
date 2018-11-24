@@ -119,7 +119,7 @@
         <input name="a_duration" id="duration" class="form-control" value="{{$announcement['a_duration']}}">
         <hr>
 
-        <label for="" style="display:block">Post tags</label>            
+        <label for="" style="display:block">Announcement tags</label>            
             <input type="text" name="new_tag" id="new_tag" value="">
             <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
             <select name="tags[]" id="ex-search" multiple="multiple">

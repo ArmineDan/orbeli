@@ -48,9 +48,12 @@
             <div class="col-md-3">
                 <a href="{{ route('admin.announcements.index', $locale) }}">
                     <div class="jumbotron text-center">
-                        <span class="text-indent btn btn-primary">Announcement:
+                        <span class="text-indent btn btn-default">Announcement:
                             <span class="label label-success">150</span>
-                        </span>                    
+                        </span>
+                        <a href="{{ route('admin.announcements.create', $locale) }}" class="label label-info">
+                            create new <i class="glyphicon glyphicon-plus"></i>                                
+                        </a>                    
                     </div>
                 </a>
             </div>            

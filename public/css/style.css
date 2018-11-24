@@ -250,7 +250,7 @@ a.text-very-light-gray-hover:hover {color:#ededed}
 .bg-transparent {background-color: transparent;}
 .bg-white {background-color:#fff;}
 .bg-black {background-color:#000;}
-.bg-extra-dark-gray {background-color:#1c1c1c;}
+.bg-extra-dark-gray {background-color:#333}
 .bg-extra-dark-gray1 {background-color: rgba(35, 35, 35, 0.0784313725490196);}
 .bg-dark-gray {background-color:#757575;}
 .bg-extra-medium-gray {background-color:#939393;}
@@ -3407,7 +3407,6 @@ header.sticky nav.navbar.brand-center ul.nav > li > a {padding: 20px; margin: 0 
 
 /* counter box style 1 */
 .counter-feature-box-1 {height:199px;}
-.counter-feature-box-1:hover {background:#ff214f; border-color: #ff214f;}
 
 /* counter box style 3 */
 .counter-box-3 .counter-box {display: inline-block; width: 140px; padding: 0; vertical-align: top; text-align: center; position: relative;}
@@ -3571,7 +3570,7 @@ header.sticky nav.navbar.brand-center ul.nav > li > a {padding: 20px; margin: 0 
 .blog-image a > img {width: 100%}
 
 /* blog post style 1 */
-.blog-post.blog-post-style1 .blog-post-images {background: #232323}
+/* .blog-post.blog-post-style1 .blog-post-images {background: #232323} */
 .blog-post.blog-post-style1 .blog-post-images img {width: 100%;}
 .blog-post.blog-post-style1:hover .blog-post-images img {opacity: 0.5; transform: scale(1.2, 1.2); transition: all 0.3s ease 0s;}
 
@@ -3910,27 +3909,24 @@ aside .latest-post li.aa figure {width: 179px;}
 #open_search_folder_ns{
     width: 100%;
     height: 100%;
-    background-color: rgba(79,79,79,0.6);
+    background-color: rgba(26,26,26,.9);
     position: fixed;
     top:0;
     left: 0;
     display: none;
-    z-index: 102
+    z-index: 102;
 }
 
 .search_inp_ns{
-    width: 100%;
-    height: 70px;
-    background: transparent;
-    color: rgb(245, 243, 243);
-    position: absolute;
-    top: 45%;
-    outline: none;
-    font-size: 25px;
-    padding: 5px;
-    text-align: center; 
-    background-color: rgba(0,0,0,0.4);
-    border: 0px solid transparent
+    color: #fff;
+    background-color: transparent;
+    font-size: 32px;
+    width: 55%;
+    border-bottom: 1px solid #fff;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    margin-top: 70px;
 }
 
 .search_inp_ns::placeholder{color: #ccc}
@@ -3938,10 +3934,14 @@ aside .latest-post li.aa figure {width: 179px;}
 .close_search_btn_ns{
     color: #fff;
     position: absolute;
-    right: 5%;
-    top: 5%;
+    right: 14%;
+    top: 0%;
     font-size: 30px;
-    cursor: pointer
+    cursor: pointer;
+    background-color: #b88b58;
+    color: #fff;
+    padding: 10px;
+    font-weight: 100
 }
 
 .fc-end{
@@ -3949,32 +3949,6 @@ aside .latest-post li.aa figure {width: 179px;}
     margin-top: -29px !important;
     height: 80px !important;
     border-color: transparent !important
-}
-
-@media(max-width: 650px){
-    aside .latest-post li.aa figure{
-        height: 300px;
-        width: 100%;
-        overflow: hidden;
-        height: auto;
-		margin-bottom: 10px;
-    }
-    .latest-post li div{
-        width: 100% !important
-    }
-    .blog-post-content{
-        padding: 30px !important
-    }
-    .pull-left{
-        padding: 15px !important
-    }
-    #index_main_div_nark a{
-        font-size: 12px;
-    }
-    #latest_post_main_right_ul_narek{
-        margin-top: -200px;
-    }
-    
 }
 
 .xoragir_d{height: auto !important}
@@ -4000,22 +3974,6 @@ aside .latest-post li.aa figure {width: 179px;}
     position: absolute; 
     right: 53px;
     top: -8px
-}
-
-@media(max-width: 600px){
-    nav.navbar.bootsnav .navbar-toggle{left: -35px}
-    header .logo .logo-dark.default, header .logo .logo-light.default{/*width: 100px*/}
-    #ns_search_icon{right: 150px}
-    .text-extra-dark-gray{font-size: 15px}
-    .text-extra-dark-gray h5{font-size: 30px}
-    #most_view_div_narek{padding-left: 130px}
-    aside .latest-post li figure{width: 110px;margin-left: 0%}
-    #contacts_h5_narek{font-size: 30px}
-	#ns_search_icon {
-    position: absolute;
-    right: 42px!important;
-    top: -8px;
-}
 }
 
 #autors_narek_mail_icon{
@@ -4044,16 +4002,75 @@ aside .latest-post li.aa figure {width: 179px;}
  
 #see_all_images_ns img{margin-top: 100px} 
 
-#contact_ns_iframe{
-    margin-left: 14px;
+#contact_ns_iframe{margin-left: 14px}
+
+#search_btn_for_blur_narek{
+    font-size: 20px;
+    position: fixed;
+    right: 23%;
+    top: 90px
 }
 
 @media(max-width: 934px){
-    #contact_ns_iframe{
-        margin-left: -14px;
-        width: 1000px;
-    }
+    #contact_ns_iframe{margin-left: -14px;width: 1000px}
+    .close_search_btn_ns{right: 0%}
+    .search_inp_ns{width: 100%}
+    #search_btn_for_blur_narek{right: 2%}
 }
 
 @media(max-width: 648px){#figure_narek a img{width: 400px}}
+
+@media(max-width: 767px){
+    #narek_xoragrer_div_for_img a img, #narek_opinion_div_for_img a img{width: 500px}
+}
+
+@media(max-width: 600px){
+    nav.navbar.bootsnav .navbar-toggle{left: -35px}
+    header .logo .logo-dark.default, header .logo .logo-light.default{/*width: 100px*/}
+    #ns_search_icon{right: 150px}
+    .text-extra-dark-gray{font-size: 15px}
+    .text-extra-dark-gray h5{font-size: 30px}
+    #most_view_div_narek{padding-left: 130px}
+    aside .latest-post li figure{width: 110px;margin-left: 0%}
+    #contacts_h5_narek{font-size: 30px}
+	#ns_search_icon {position: absolute;right: 42px!important;top: -8px}
+}
+
+@media(max-width: 650px){
+    aside .latest-post li.aa figure{
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+        height: auto;
+		margin-bottom: 10px;
+    }
+    .latest-post li div{
+        width: 100% !important
+    }
+    .blog-post-content{
+        padding: 30px !important
+    }
+    .pull-left{
+        padding: 15px !important
+    }
+    #index_main_div_nark a{
+        font-size: 12px;
+    }
+    #latest_post_main_right_ul_narek{
+        margin-top: -200px;
+    }
+    
+}
+
+.narek_all_rights_reserved{
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#about_us_section_narek{
+    padding: 5px 0;
+}
 

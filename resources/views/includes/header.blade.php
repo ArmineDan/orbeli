@@ -1,10 +1,12 @@
 <div id="open_search_folder_ns">
     <i class="fa fa-times close_search_btn_ns"></i>
+    <center>
     <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
         <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
-    {{-- <button type="submit">Search</button> --}}
     </form>
-    </div>
+    <i class="fa fa-search" id="search_btn_for_blur_narek"></i>
+    </center>
+</div>
 
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
@@ -118,6 +120,8 @@
 
             <div class="col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
                 <div data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
+                
+                <strong>
                 <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
                           <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
                          </span>
@@ -127,7 +131,8 @@
                          </span>
                          
                         <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
-                            <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng |</a> </span>                                   
+                            <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng</a> </span>  
+                        </strong>                                  
                         </div>
                  
              </div> 

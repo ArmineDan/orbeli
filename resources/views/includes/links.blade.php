@@ -47,6 +47,7 @@
         <!-- responsive css -->
         <link rel="stylesheet" href="/css/responsive.css" />
         <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Warnes" rel="stylesheet">
      
       <!--
         [if IE]>

@@ -113,7 +113,7 @@
             <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
                     <div class="blog-post blog-post-style1">
                        
-                        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
+                        <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom" id="narek_opinion_div_for_img">
                             <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}">
                                 <img src="{{$item->oimg}}" alt="" data-no-retina="">
                             </a>
@@ -144,7 +144,7 @@
        @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
                 <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
                         <div class="blog-post">
-                            <div class="blog-post-images overflow-hidden">
+                            <div class="blog-post-images overflow-hidden" id="narek_xoragrer_div_for_img">
                                 <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
                                     <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                                 </a>

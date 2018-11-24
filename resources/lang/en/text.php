@@ -41,11 +41,15 @@ return[
  "footer_second" => "Manufacturer`",
  "footer_third" => "Social networks",
  "footer_webex" => "Webex Technologies LLC",
+ "footer_reserved" => "All Rights Reserved",
  "robot" => "Mark the robot field",
  "send_comment_ok" => "Your comment was sent",
  "send_comment_error" => "Your comment was not sent, please try again",
  "error_page"=>"PAGE NOT FOUND",
  "error_page_text"=>"The page you were looking for could not be found.",
  "textarea"=>"Your comment",
- "back"=>"Back to"
+ "back"=>"Back to",
+ "about_us_first_icon_text" => "Posts",
+ "about_us_second_icon_text" => "Auhors",
+ "about_us_third_icon_text" => "View"
 ];
