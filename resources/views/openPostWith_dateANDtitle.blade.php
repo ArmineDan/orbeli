@@ -118,7 +118,7 @@
                                             break;
                                     }  
                                     ?>                             
-                            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
+                            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
                             </div>
                             </div>
                            
@@ -250,7 +250,7 @@
                                              <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$all_last_posts['same_posts'][$i][0]->date}} |  <a href="#" class="text-medium-gray">{{substr($all_last_posts['same_posts'][$i][0]->name, 0, 2) .'. '. $all_last_posts['same_posts'][$i][0]->lastname}}</a></span>
                                          <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight:bold;height:73px">{{$all_last_posts['same_posts'][$i][0]->title}}</a>
                                              <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb sm-margin-15px-tb"></div>
-                                             <p class="width-90 xs-width-100">{!!$all_last_posts['same_posts'][$i][0]->short_text!!}</p>
+                                             <p class="width-90 xs-width-100">{!!str_limit($all_last_posts['same_posts'][$i][0]->short_text , 80)!!}</p>
                                          </div>
                                      </div>
                                  </div> 
