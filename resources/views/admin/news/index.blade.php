@@ -11,6 +11,7 @@
               <tr>
                 <th> Row </th>
                 <th> Title </th>
+                <th> Viewed </th>
                 <th> Duration </th>
                 <th> Date </th>                
                 <th> Status </th>
@@ -20,12 +21,12 @@
             <tbody>
               @forelse ($news as $item)
               <tr>
-                <th>{{$item->id}}</th>
-                <th>{{$item->title}}</th>
-                <th>{{$item->n_duration}}</th>
-                <th>{{$item->date}}</th>                
-                <th>{{$item->status}}</th>
-
+                <td>{{$item->id}}</td>
+                <td>{{$item->title}}</td>
+                <td>{{$item->view}}</td>
+                <td>{{$item->n_duration}}</td>
+                <td>{{$item->date}}</td>
+                <td>{{$item->status}}</td>
                 
                 <td class="text-center">
                   <form action="{{ route('admin.news.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">

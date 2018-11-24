@@ -46,6 +46,7 @@
       {{ csrf_field() }}
       <input type="text" name="lang_id" value="{{$lang_id}}" hidden>
       <input type="text" name="post_id" value="{{$last_id}}" hidden>
+      <input type="text" name="author_id" value="1" hidden>
  
       <div class="panel panel-info">
           <div class="panel-heading"><h5 for="post_typ">Select Category</h5></div>
@@ -76,14 +77,13 @@
       </select>
       <hr>
 
-      <h5 for="authors_id">Author</h5>
-      <select name="author_id" class="form-control">
-        <option value="">Select Author</option>
+      <h5>Authors</h5>
+      <select name="authors[]" class="form-control" id="ex-search-2" multiple>        
         @forelse ($authors as $author)
-            <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
+          <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
-            <option value="">Please Insert One Author, then update the Post.</option>
-        @endforelse
+          <option value="">Please Insert One Author, then update the Video.</option>
+        @endforelse        
       </select>
       <hr>
 

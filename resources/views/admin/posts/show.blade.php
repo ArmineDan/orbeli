@@ -12,6 +12,7 @@
                       <th>Num</th>
                       <th>Title</th>
                       <th>Category</th>
+                      <th>Viewed</th>
                       <th>Status</th>
                       <th>Main Image</th>
                   </tr>
@@ -21,6 +22,7 @@
                   <td>{{$post->id}}</td>
                   <td>{{$post->title}}</td>
                   <td>{{$post['getCategory']->name}}</td>
+                  <td>{{$post->view}}</td>
                   @if ($post->status == 'main')
                     <td class="alert alert-success">{{$post->status}}</td>
                   @elseif($post->status == 'not_published')

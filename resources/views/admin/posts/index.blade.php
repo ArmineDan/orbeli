@@ -15,6 +15,7 @@
                     <th>Row</th>
                     <th>Title</th>
                     <th>Category</th>
+                    <th>Viewed</th>
                     <th>Published At</th>
                     <th>Status</th>
                     <th class="text-center">Actions</th>
@@ -26,6 +27,7 @@
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post['getCategory']->name}}</td>
+                    <td>{{$post->view}}</td>
                     <td>{{$post->date ??'no-date'}}</td>
                     @if ($post->status == 'main')
                       <td class="alert alert-success">{{$post->status}}</td>
@@ -34,7 +36,7 @@
                     @else
                     <td>{{$post->status}}</td>
                     @endif                  
-                    <td class="text-center" style="min-width:15%">
+                    <td class="text-center" style="min-width:25%">
                       {{--['id'=>$category->id]--}}
                       <form action="{{ route('admin.post.destroy', [$post, $locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
                         {{ csrf_field() }}

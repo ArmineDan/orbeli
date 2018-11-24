@@ -73,6 +73,7 @@
             {{ csrf_field() }}
             {{ method_field('put') }}
             <input type="text" hidden name="lang_id" id="" value="{{$post['lang_id']}}">
+            <input type="text" name="author_id" value="1" hidden>
 
 
             <div class="panel panel-info">
@@ -109,7 +110,7 @@
             </select>
             <hr>
 
-            <label for="authors_id">Author</label>
+            {{-- <label for="authors_id">Author</label>
             <select name="author_id" class="form-control">
                 <option value="">Select Author</option>
                 @forelse ($authors as $author)
@@ -123,6 +124,24 @@
                 @empty
                     <option value="">Please Insert One Author, then update the Post.</option>
                 @endforelse
+            </select>
+            <hr> --}}
+
+            <label>Authors</label><br>
+            <select name="authors[]" class="form-control" id="ex-search-2" multiple>        
+                @forelse ($authors as $author)
+                <option value="{{ $author->id }}"
+                    @foreach ($relAuthors as $rel)
+                        @if ($author->id == $rel->pivot->author_id)
+                            selected
+                        @endif                    
+                    @endforeach
+                    > 
+                    {{ $author->name }} {{ $author->lastname }} 
+                </option>
+                @empty
+                <option value="">Please Insert One Author, then update the Video.</option>
+                @endforelse        
             </select>
             <hr>
 
@@ -193,7 +212,7 @@
             <hr>
 
             <label for="">Viewed</label>
-            <input type="text" name="view" value="{{ $post->view }}" class="form-control">
+            <input type="text" name="view" value="{{ $post->view }}" class="form-control" readonly>
             <hr>
 
             <h4>Meta data</h4>

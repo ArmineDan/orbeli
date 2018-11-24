@@ -11,6 +11,7 @@
               <tr>
                   <th>Num</th>
                   <th>Title</th>
+                  <th> Viewed </th>
                   <th>Duration</th>
                   <th>Status</th>
                   <th>Main Image</th>
@@ -20,6 +21,7 @@
             <tr>
               <td>{{$news->id}}</td>
               <td>{{$news->title}}</td>
+              <td>{{$news->view}}</td>
               <td>{{$news->n_duration}}</td>
               @if($news->status == 'not_published')
                 <td class="alert alert-danger">{{$news->status}}</td>

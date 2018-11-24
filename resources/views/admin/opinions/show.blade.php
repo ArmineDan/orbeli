@@ -11,6 +11,7 @@
               <tr>
                   <th>Num</th>
                   <th>Title</th>
+                  <th>Viewed</th>
                   <th>Duration</th>
                   <th>Status</th>
                   <th>Main Image</th>
@@ -20,6 +21,7 @@
             <tr>
               <td>{{$opinion->id}}</td>
               <td>{{$opinion->title}}</td>
+              <td>{{$opinion->view}}</td>
               <td>{{$opinion->o_duration}}</td>
               @if($opinion->status == 'not_published')
                 <td class="alert alert-danger">{{$opinion->status}}</td>
