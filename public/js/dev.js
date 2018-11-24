@@ -54,11 +54,11 @@
     })
 
 
-$("#take_mail").click(function(){
-            var id=$(this).attr('class')
+$(".take_mail").click(function(){
+            var id=$(this).attr('id')
             $.post( "/php/get_e_l.php", {id:id},function( data ) {
-            $( "#em_status").html( data );
-            $( "#em_status").parent().attr('href','mailto:'+data)
+            $( "#em_status"+id).html( data );
+            $( "#em_status"+id).parent().attr('href','mailto:'+data)
             });
 
         })

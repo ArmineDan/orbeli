@@ -2,15 +2,22 @@
                         <ul class="latest-post position-relative">
                                 @foreach ($all_last_posts['mostViewed'] as $item)                             
                                 <li>
-                                  <figure>
+                                  <figure style="height: 0;">
                                  <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
                                     <img class="border-radius-200" src="{{$item->img}}" alt="" data-no-retina=""></a>
                                         </figure>
-                                        <div class="display-table-cell vertical-align-top text-small" id="most_view_div_narek">
+                                        <div class="display-table-cell vertical-align-top text-extra-small" id="most_view_div_narek">
                                             <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                                                 <span class="text-extra-dark-gray display-inline-block margin-5px-bottom" style="font-weight:bold" >{{$item->title}}</span></a> 
-                                                <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
-
+                                            <br/>
+                                                @for ($i = 0; $i < count($item->getAuthors); $i++)
+                                                <a href="{{url($all_last_posts['lang'].'/author/'.$item->getAuthors[$i]->id)}}" class="text-extra-dark-gray">
+                                                 <span class="text-medium-gray text-extra-small-10"> 
+                                            {{substr($item->getAuthors[$i]->name, 0, 2) .'. '. $item->getAuthors[$i]->lastname.' | '}}
+                                                </span>
+                                                    </a>
+                                                @endfor
+                                            
                                     </li>
                                 @endforeach                            
                             

@@ -6,7 +6,15 @@
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
     <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
         <div class="content padding-19px-all xs-padding-20px-all">
-            <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="blog-grid.html" class="text-medium-gray ">{{$all_last_posts['main_post'][0]->name .' '. $all_last_posts['main_post'][0]->lastname}}</a></span></div>
+            <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;
+         <span> 
+            @for ($i = 0; $i < count($all_last_posts['author']); $i++)
+            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" class="text-medium-gray ">{{ substr( $all_last_posts['author'][$i]->name , 0, 2) .' '. $all_last_posts['author'][$i]->lastname. ' | '}}</a>
+            @endfor
+        </span>
+            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa  fa-clock-o"> </i> {{$all_last_posts['main_post'][0]->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['main_post'][0]->date}}</span> 
+                 
+        </div>
             <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_post'][0]->title}}</a>
         </div>
     </div>
@@ -25,8 +33,19 @@
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
                     <span class="display-inline-block margin-5px-bottom"  style="font-weight:bold">{{$item->title}}</span></a> 
-                    <span class="clearfix text-medium-gray text-small">{{substr($item->name, 0, 2) .'. '. $item->lastname}}</span></div>
-            </li>
+                   <br/>
+                    @for ($i = 0; $i < count($item->getAuthors); $i++)
+                    <a href="{{url($all_last_posts['lang'].'/author/'.$item->getAuthors[$i]->id)}}" class="text-extra-dark-gray">
+                    <span class="text-medium-gray text-extra-small"> 
+                   {{substr($item->getAuthors[$i]->name, 0, 2) .'. '. $item->getAuthors[$i]->lastname.' | '}}
+                </span>
+                    </a>
+                   @endfor
+               
+                    <span class=" clearfix text-medium-gray  text-extra-small-10  pull-right padding-15px-left display-content"><i class="fa  fa-clock-o"> </i> {{$item->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span> 
+                          
+                        </div>
+                            </li>
         @endforeach                            
 </ul>
         
@@ -44,7 +63,7 @@
             <div class="black text-extra-small margin-5px-bottom text-uppercase alt-font">
                 <span>
                 <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
-                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> 
+                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> 
                 {{$all_last_posts['main_video'][0]->duration }}</span></div>
             <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
         </div>
@@ -71,7 +90,7 @@
                             </span> 
                             
                       <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
-                        <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i> {{$item->duration}}</span>
+                        <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> {{$item->duration}}</span>
                 </div> 
                 </div>
             </div>
@@ -114,18 +133,18 @@
                     <div class="blog-post blog-post-style1">
                        
                         <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}">
+                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.urlencode($item->title))}}">
                                 <img src="{{$item->oimg}}" alt="" data-no-retina="">
                             </a>
                         </div>
                         <div class="post-details">
-                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height: 82px">{{$item->title}} </a>
-                            <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{$item->o_duration." ".trans('text.minute') }}</span>
+                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height: 82px">{{$item->title}} </a>
+                            <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{$item->o_duration." ".trans('text.minute') }}</span>
                           <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                           <div class="author text_left_a">
                                    <img src="{{$item->aimg}}" alt="" class="border-radius-100" data-no-retina="">
                                  <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
-                                     <a href="home-#" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
+                                     <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray padding-left" >{{substr($item->name, 0, 2) .'. '. $item->lastname}}</a>
                                     </span>
                                     <div class="text_right_a">&nbsp;&nbsp;{{$item->date}}</div>
                               </div>
@@ -145,7 +164,7 @@
                 <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
                         <div class="blog-post">
                             <div class="blog-post-images overflow-hidden">
-                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
+                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
                                     <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                                 </a>
                             </div>
@@ -154,10 +173,10 @@
                                 <span class="alt-font post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 margin-5px-bottom">{{trans('text.xoragrer_items'.$i)}}</span>
                                 
                                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
+                                <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
                                <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
                                 </a>
-                               <a  href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.$all_last_posts['xoragrer'][$i][0]->title)}}">
+                               <a  href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
                                     <br/>
                                     <p>{!! $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text!!}</p></a>
                             </div>

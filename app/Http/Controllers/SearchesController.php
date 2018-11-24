@@ -21,12 +21,13 @@ class SearchesController extends Controller
 				Session::put('locale',$locale);
 				App::setLocale($locale);
 				$lang = App::getLocale();            
-				$land_id =Post::getLangId();                  
+				$lng =Post::getLangId();                  
 				$calendar= Event::event($lang);
 				$menu = Post::menu();
 				$categories = Post :: categories();
-				$popular_tags=Tags::load_all_popular_tags(); 				
-				$mostViewed = Post::mostViewed(); 
+				$popular_tags=Tags::load_all_popular_tags(); 	
+				$mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                
 				
 				// Query and paginate result
 				$posts = Post::where('title', 'like', "%$s%")
@@ -40,8 +41,7 @@ class SearchesController extends Controller
 				"categories"=>$categories,
 				"popular_tags"=> $popular_tags,
 				'post' => $posts,
-				's' => $s			
-					);  
+				's' => $s);  
 				//return  $posts;
 
 			return view('search')->with('all_last_posts',$all_data);

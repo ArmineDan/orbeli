@@ -16,26 +16,55 @@
                     <div class="container">
                    <div class="row">
                         <aside class="col-md-2 col-sm-12 col-xs-12 pull-left">  
-                                <div class="margin-45px-bottom xs-margin-25px-bottom">                         
+                           <div class="margin-45px-bottom xs-margin-25px-bottom">                         
                                 <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>{{trans('text.author')}}</span></div>
-                                   <div style="text-align:center; ">
-                                   <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
-                                    <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
-                                    <div style="margin-top:24px;">
-                                      <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
-                                      <div class="display-table height-100 width-100" style="color:black">
-                                         <div class="display-table-cell icon-social-small ">
-                                            <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
-                                             <a href="{{$all_last_posts['post'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
-                                             <a href="{{$all_last_posts['post'][0]->twitter}}"  target="_blank"><i class="fa fa-twitter"></i></a>
-                                           <a href="{{$all_last_posts['post'][0]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
-                                         <a  id="take_mail" class="{{$all_last_posts['post'][0]->author_id}}" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
-                                           <a href="#">
-                                           <div id="em_status"></div>
-                                           </a>
-                                         </div>
-                                     </div> </div>
-                                 </div>                           
+                               @if ($all_last_posts['folder']==='post')
+                                   @for ($i = 0; $i < count($all_last_posts['author']); $i++)
+                                   <div style="text-align:center;height:-webkit-fill-available;">
+                                           <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
+                                               <img src="{{$all_last_posts['author'][$i]->img}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                               <div style="margin-top:24px;">
+                                               <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" target="_blanck">{{$all_last_posts['author'][$i]->name .' '.$all_last_posts['author'][$i]->lastname}} </a>
+                                               <div class="display-table height-100 width-100" style="color:black">
+                                                   <div class="display-table-cell icon-social-small ">
+                                                       <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
+                                                       <a href="{{$all_last_posts['author'][$i]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                                       <a href="{{$all_last_posts['author'][$i]->twitter}}"  target="_blank"><i class="fa fa-twitter"></i></a>
+                                                   <a href="{{$all_last_posts['author'][$i]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                   <a id="{{$all_last_posts['author'][$i]->id}}" class="take_mail" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
+                                                   <a href="#">
+                                                   <div id="em_status{{$all_last_posts['author'][$i]->id}}"></div>
+                                                   </a>
+                                                   </div>
+                                               </div> 
+                                               </div>
+                                   </div>
+                                   @endfor                                  
+                                          
+                                   @else
+                                      <div style="text-align:center;">
+                                           <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
+                                            <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                            <div style="margin-top:24px;">
+                                              <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
+                                              <div class="display-table height-100 width-100" style="color:black">
+                                                 <div class="display-table-cell icon-social-small ">
+                                                    <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
+                                                     <a href="{{$all_last_posts['post'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                                     <a href="{{$all_last_posts['post'][0]->twitter}}"  target="_blank"><i class="fa fa-twitter"></i></a>
+                                                   <a href="{{$all_last_posts['post'][0]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                 <a  id="{{$all_last_posts['post'][0]->author_id}}" class="take_mail" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
+                                                   <a href="#">
+                                                   <div id="em_status{{$all_last_posts['post'][0]->author_id}} "></div>
+                                                   </a>
+                                                 </div>
+                                             </div> </div>
+                                         </div>                           
+                                                              
+                                       
+                                   @endif
+                                              
+                                                           
                                 </div>                         
                             </aside>
                      <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
@@ -258,8 +287,10 @@
    
     $("#send_comment").click(function(){
         var emailCheck=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;       
-		 email=$("#mail_comment_inp_ns").val();
-        if($("#name_comment_inp_ns").val() == ''){
+		var email=$("#mail_comment_inp_ns").val();
+        var letters = /^[A-Za-z]+$/;
+
+        if($("#name_comment_inp_ns").val() == '' || !$("#name_comment_inp_ns").val().match(letters)){
             $("#name_comment_inp_ns").css("border","1px inset red");
         }else if($("#mail_comment_inp_ns").val() == '' || !emailCheck.test(email)){
             $("#mail_comment_inp_ns").css("border","1px inset red");
