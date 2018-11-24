@@ -100,7 +100,9 @@
         <input type="hidden" value="{{$lang_id}}" name="lang_id">
         <br>
 
-        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
+        <div class="well">
+          <button type="submit" class="btn btn-success" style="width:130px"> Save </button>
+        </div>
     </form>
 </div>
 

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 @foreach ($announcements as $item)
   <url>
-    <loc>{{$siteURL}}{{ $item->lng }}/post/{{$item->date}}/{{$item->title}}</loc>
+    <loc>{{$siteURL}}{{ $item->lng }}/post/{{$item->date}}/{{urlencode($item->title)}}</loc>
     <lastmod>{{ $item->updated_at->tz('UTC')->toAtomString() }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

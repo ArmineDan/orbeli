@@ -110,7 +110,6 @@ class VideoController extends Controller
             'author_id' => 'required|integer',
             'lang_id'=>'required|integer',
             'tags'=> 'required|array',
-            // 'basic' => 'required|array',
         ]);
 
         // return $request->all();
@@ -204,7 +203,7 @@ class VideoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $locale)
-    {        
+    {
         $video = Video::findOrFail($id);        
         $lang_id = $video->lang_id;
         $authors = Author::where('lang_id', $lang_id)->get();
@@ -214,7 +213,7 @@ class VideoController extends Controller
         $videoTagsArray = $video->tagArray;
         $allTagsList = implode(',',$allTagsArray);
         $videoTagsList = $video->tagList;
-        
+
         // echo '<pre>';
         // var_dump($allTagsArray);
         // var_dump($videoTagsArray);
@@ -288,8 +287,8 @@ class VideoController extends Controller
         // return $request->all();
         $video = Video::findOrFail($video_id);
         $old_date = $video->date;
-
-        $video->update($request->all());
+        
+        $video->update($request->all());      
         Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
         Event::checkAndDeleteEventDate($old_date, $request->input('lang_id'));
 

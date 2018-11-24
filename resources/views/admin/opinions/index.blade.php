@@ -14,6 +14,7 @@
                 <tr>
                     <th>Row</th>
                     <th>Title</th>
+                    <th>Viewed</th>
                     <th>Duration</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{$opinion->id}}</td>
                     <td>{{$opinion->title}}</td>
+                    <td>{{$opinion->view}}</td>
                     <td>{{$opinion->o_duration}}</td>
                     <td>{{$opinion->date ??'no-date'}}</td>
                     

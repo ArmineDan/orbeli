@@ -14,6 +14,7 @@
                 <tr>
                     <th>Row</th>
                     <th>Title</th>
+                    <th>Viewed</th>
                     <th>Duration</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{$video->id}}</td>
                     <td>{{$video->title}}</td>
+                    <td>{{$video->view}}</td>
                     <td>{{$video->duration}}</td>
                     <td>{{$video->date ??'no-date'}}</td>
 
@@ -37,7 +39,7 @@
                     @endif  
                     
                                      
-                    <td class="text-center" style="min-width:15%">
+                    <td class="text-center" style="min-width:25%">
                       {{--['id'=>$category->id]--}}
                       <form action="{{ route('admin.video.destroy', [$video, $locale]) }}" onsubmit="if(confirm('Delete ?')) { return true } else {return false}" method="POST">
                         {{ csrf_field() }}
