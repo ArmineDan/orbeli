@@ -35,5 +35,19 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	config.extraPlugins = 'justify,iframe,embedbase';
+	config.extraPlugins = 'justify,iframe,embedbase,notification,wordcount';
+	config.wordcount = {
+
+    // Whether or not you want to show the Word Count
+    showWordCount: true,
+
+    // Whether or not you want to show the Char Count
+    showCharCount: true,
+    
+    // Maximum allowed Word Count
+    // maxWordCount: 15,
+
+    // Maximum allowed Char Count
+    // maxCharCount: 100
+	};
 };
