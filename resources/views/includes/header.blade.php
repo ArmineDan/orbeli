@@ -29,7 +29,7 @@
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
-                       <li class="dropdown simple-dropdown">
+                       <li class="dropdown simple-dropdown" style="position:absolute;right:3px ">
                             <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                              <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                 
@@ -100,8 +100,8 @@
                      
                                 <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
                                    
-                                <div class="calendar  col-md-4 col-sm-5 col-xs-12" style=" display:none;
-                                position: absolute; top: 65%; right:0">
+                                <div class="calendar  col-md-3 col-sm-5 col-xs-12" style=" display:none;
+                                position: absolute; top: 63%; right:0">
                                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                                 {!! $all_last_posts['event']->calendar() !!}

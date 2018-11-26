@@ -346,6 +346,7 @@
        
     })    
 </script>
+<script src="/js/calen.js"></script> 
 
 {!!  $all_last_posts['event']->script() !!}
 </body>

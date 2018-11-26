@@ -1,5 +1,10 @@
 @extends('layouts.pageCategories')
 @section('posts')
+@if (count($all_last_posts['post']["data"]) === 0)
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;">
+            <h6>{{trans('text.nodata')}} </h6>
+    </div>
+@else
 <div class="infinite-scroll wow fadeIn"> 
        
     @foreach ($all_last_posts['post'] as $item)               
@@ -12,7 +17,7 @@
                </div>
                <div class="post-details">
                    <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height:82px">{{$item->title}} </a>
-                 <div class="text_right_a">&nbsp;&nbsp;{{$item->date}}</div>  <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{$item->p_duratioan." ".trans('text.minute') }}</span>
+                 <div class="text_right_a">&nbsp;&nbsp;{{$item->date}}</div>  <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"> </i>&nbsp;&nbsp;{{$item->p_duratioan." ".trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
                    <div class="author text_left_a">                        
@@ -37,5 +42,8 @@
 {{$all_last_posts['post'] ->links()}}
 
 </div>
+
+@endif
+
 
 @endsection

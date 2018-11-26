@@ -78,11 +78,11 @@
 <script src="/js/jquery.jscroll.min.js"></script>      
 <script type="text/javascript" src="/js/main.js"></script>
 <script src="/js/autors_ns.js"></script>
- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
-<script src="/js/calen.js"></script>  
 
+<script src='/js/lib/moment.min.js'></script>
+<script src='/js/fullcalendar.min.js'></script>
+<script src='/js/locale-all.js'></script>
+<script src="/js/calen.js"></script>  
 {!!  $all_last_posts['event']->script() !!}
 
 </body>

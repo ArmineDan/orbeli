@@ -52,30 +52,6 @@
 <script type="text/javascript" src="/revolution/js/extensions/revolution.extension.parallax.min.js"></script>       
 <script type="text/javascript" src="/js/main_no_scroll.js"></script>
 <script src='/js/lib/moment.min.js'></script>
-{{-- <script src='/js/lib/jquery.min.js'></script> --}}
 <script src='/js/fullcalendar.min.js'></script>
 <script src='/js/locale-all.js'></script>
-
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.js"></script> --}}
-
- @if ( $all_last_posts['lang'] == 'ru')
- 
- <script> 
- console.log("ruuuuuuuuuuuuu")
- $(function() {
-
-$('#calendar-8OR4Tiyr').fullCalendar({
-  locale: 'ru'
-});
-
-});
-
-  // $('#calendar-8OR4Tiyr').fullCalendar('option', 'locale', 'ru' );
-
-</script> 
-
-@endif
 <script src="/js/calen.js"></script> 
-{{-- {!!  $all_last_posts['event']->script() !!} --}}

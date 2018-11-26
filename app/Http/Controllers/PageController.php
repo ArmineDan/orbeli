@@ -130,8 +130,8 @@ class PageController extends Controller
                     ->where('lang_id',$lng)
                     ->where('post_typ',$post_type)
                     ->paginate(6); 
-                   // return $post_with_given_id;
-                    $author = $post_with_given_id[0]->getAuthors;  
+                    //return count($post_with_given_id["data"]);
+                     
                     $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                     $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
                           
@@ -430,7 +430,7 @@ class PageController extends Controller
                     $news_archieve= Archieve::get_archieves('news',$date); 
                     $opinions_archieve= Archieve::get_archieves('opinions',$date); 
                     $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-           
+          //return  $opinions_archieve;
             $all_data=array(
              "lang"=> $lang,
              "event"=> $calendar,

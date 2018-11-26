@@ -1,6 +1,6 @@
 <?php
 return[
- "opinion"=>'Կարծիքներ',
+ "opinions"=>'Կարծիքներ',
  "videos"=>'Տեսանյութեր',
  "most_veiwed" =>"Ամենադիտվածները",
  "xoragrer"=>'Խորագրեր',
@@ -51,5 +51,6 @@ return[
  "back"=>"Հետ գնալ",
  "about_us_first_icon_text" => "Գրառումներ",
  "about_us_second_icon_text" => "Հեղինակներ",
- "about_us_third_icon_text" => "Դիտումներ"
+ "about_us_third_icon_text" => "Դիտումներ",
+ "nodata"=>"Ոչինչ չի գտնվել"
 ];
