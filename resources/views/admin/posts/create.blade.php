@@ -83,7 +83,7 @@
           <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
           <option value="">Please Insert One Author, then update the Video.</option>
-        @endforelse        
+        @endforelse
       </select>
       <hr>
 
@@ -135,10 +135,10 @@
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
       <hr> --}}
 
-      <h5 style="display:block">Select tags for current video</h5>
+      <h5 style="display:block">Select tags for current post</h5>
       <input type="text" name="new_tag" id="new_tag" value="">
-      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
-      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+      <span onclick="addPostNewTag(event)" id="add_tag_btn">Add</span><br>
+      <select name="tags[]" id="ex-search-1" class="form-control" multiple="multiple">
         @if ($tags)
          @for ($i = 0; $i < count($tags); $i++)
          <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>

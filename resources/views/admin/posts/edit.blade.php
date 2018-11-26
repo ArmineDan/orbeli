@@ -195,8 +195,8 @@
 
             <label for="" style="display:block">Post tags</label>            
             <input type="text" name="new_tag" id="new_tag" value="">
-            <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
-            <select name="tags[]" id="ex-search" multiple="multiple">
+            <span onclick="addPostNewTag(event)" id="add_tag_btn">Add</span><br>
+            <select name="tags[]" id="ex-search-1" multiple="multiple">
                 @if ($atags)
                     @for ($i = 0; $i < count($atags); $i++)
                         <option value="{{$atags[$i]}}"
