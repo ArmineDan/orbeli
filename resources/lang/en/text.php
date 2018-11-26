@@ -1,6 +1,6 @@
 <?php
 return[
- "opinion"=>'Reviews',
+ "opinions"=>'Reviews',
  "videos"=>'Videos',
  "most_veiwed" =>"Populars",
  "xoragrer"=>'Headlines',
@@ -51,5 +51,6 @@ return[
  "back"=>"Back to",
  "about_us_first_icon_text" => "Posts",
  "about_us_second_icon_text" => "Auhors",
- "about_us_third_icon_text" => "View"
+ "about_us_third_icon_text" => "View",
+ "nodata"=>"Nothing to found"
 ];

@@ -110,7 +110,8 @@ class AuthorController extends Controller
         $all_news = Author::all_authors_posts($auth_id,'news');
         $all_opinions = Author::all_authors_posts($auth_id,'opinions'); 
         $popular_tags=Tags::load_all_popular_tags();
-        $mostViewed = Post::mostViewed();
+        $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+              
         
        
         $all_data = array(       
@@ -130,7 +131,7 @@ class AuthorController extends Controller
           
        
      //  return $all_data;
-           return view('archieves')-> with('all_last_posts',$all_data);
+           return view('author_all_posts')-> with('all_last_posts',$all_data);
 
      
         // return $all_last_posts;    

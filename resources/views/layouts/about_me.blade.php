@@ -23,9 +23,9 @@
                                              <a href="{{$all_last_posts['authors'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
                                              <a href="{{$all_last_posts['authors'][0]->twitter}}"  target="_blank"><i class="fa fa-twitter"></i></a>
                                            <a href="{{$all_last_posts['authors'][0]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
-                                         <a  id="take_mail" class="{{$all_last_posts['authors'][0]->id}}" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
+                                         <a  id="{{$all_last_posts['authors'][0]->id}}" class="take_mail" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
                                            <a href="#">
-                                           <div id="em_status"></div>
+                                           <div id="em_status{{$all_last_posts['authors'][0]->id}}"></div>
                                            </a>
                                          </div>
                                      </div> </div>
@@ -62,6 +62,8 @@
         <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
         @include('../includes.scripts')  
         <script type="text/javascript" src="/js/dev.js"></script>   
+
+{!!  $all_last_posts['event']->script() !!}
         
        
     </body>

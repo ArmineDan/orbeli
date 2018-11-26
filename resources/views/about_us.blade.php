@@ -217,5 +217,8 @@
  @include('../includes.footer')        
     <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
       @include('../includes.scripts')
+
+{!!  $all_last_posts['event']->script() !!}
+        
 </body>
 </html>

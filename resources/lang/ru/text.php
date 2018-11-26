@@ -1,6 +1,6 @@
 <?php
 return[
- "opinion"=>'Отзывы',
+ "opinions"=>'Отзывы',
  "videos"=>'Видеофильмы',
  "most_veiwed" =>"Популярные",
  "xoragrer"=>'Заголовки',
@@ -51,5 +51,6 @@ return[
  "back"=>"Назад",
  "about_us_first_icon_text" => "Сообщений",
  "about_us_second_icon_text" => "Авторы",
- "about_us_third_icon_text" => "Просмотры"
+ "about_us_third_icon_text" => "Просмотры",
+ "nodata"=>"Ничего не найдена"
 ];

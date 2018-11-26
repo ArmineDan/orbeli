@@ -268,7 +268,7 @@ class LoadAll extends Controller
                                    
                         $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                       
-                        $all_Post = Post::whereHas('tags', function($query) use ($tagName) {
+                        $all_Post = Post::with('getAuthors')->whereHas('tags', function($query) use ($tagName) {
                             $query->whereName($tagName);
                         })->paginate(6);                          
                         $all_Video = Video::whereHas('tags', function($query) use ($tagName) {
@@ -294,7 +294,8 @@ class LoadAll extends Controller
             "categories"=>$categories,
             "popular_tags"=> $popular_tags,
             "announcements"=>$all_Announ,
-            "news"=> $all_News
+            "news"=> $all_News,
+            "opinions"=>$all_Opinion
            
            );              
 

@@ -9,22 +9,26 @@
            <div class="row">     
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom padding-left sm-padding-right">
                       
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])> 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])== 0 ?'none':''?>">
                                @yield('posts')
                                 
                             </div>
                           
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])> 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])== 0 ?'none':''?>">
                                @yield('videos')
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['announcements'])> 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['announcements'])== 0 ?'none':''?>">
                                 @yield('announce')
                             </div>
                             
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px ,  display: <?php count($all_last_posts['news'])> 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['news'])== 0 ?'none':''?>">
                                 @yield('news')
-                            </div>      
+                            </div> 
+
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['opinions'])== 0 ?'none':''?>">
+                                @yield('opinions')
+                            </div>     
                     </main>
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
                          <div class="margin-45px-bottom xs-margin-25px-bottom">
@@ -106,9 +110,9 @@
 
 <script src="/js/jquery.jscroll.min.js"></script>      
 <script type="text/javascript" src="/js/main.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<script src='/js/lib/moment.min.js'></script>
+<script src='/js/fullcalendar.min.js'></script>
+<script src='/js/locale-all.js'></script>
 <script src="/js/calen.js"></script>  
 {!!  $all_last_posts['event']->script() !!}
 
