@@ -140,19 +140,20 @@
                 </div>            
             </section>
 
+            @foreach ($all_last_posts['about_us'] as $item)
             <section class="wow fadeIn parallax" data-stellar-background-ratio="0.5" style="background-image: url(/images/about_us_image.jpg); background-position: 0px 78.9375px; visibility: visible; animation-name: fadeIn;">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 center-col margin-eight-bottom sm-margin-40px-bottom xs-margin-30px-bottom text-center last-paragraph-no-margin">
-                            <h5 class="alt-font font-weight-700 text-extra-dark-gray text-uppercase">About Agency</h5>
-                            <p>We are idea-driven, working with a strong focus on design and user experience. Our projects should engage your audience, we want to create wonderful digital things that people love to be part of and use.</p>
+                            <h5 class="alt-font font-weight-700 text-extra-dark-gray text-uppercase">Mer Masin</h5>
+                            <p>kardaceq mer masin</p>
                         </div>  
                     </div>
                     <div class="row equalize">                   
                         <!-- start features box -->
                         <div class="col-md-4 col-sm-4 col-xs-12 sm-margin-four-bottom last-paragraph-no-margin xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 436px;">
                             <div class="bg-white text-center">
-                                <a href="services-simple.html"><img src="/storage/parralax/1/homepage-3-slider-img-3.jpg" alt="" data-no-retina=""></a>
+                                <img src="/storage/parralax/1/homepage-3-slider-img-3.jpg" alt="" data-no-retina="">
                                 <div class="padding-45px-all sm-padding-15px-all inner-match-height">
                                     <span class="text-extra-dark-gray font-weight-600 display-block alt-font margin-10px-bottom">Understand the situation</span>
                                     <p>Lorem Ipsum is simply text of the printing and typesetting industry. Lorem Ipsum has been standard dummy.</p>
@@ -185,6 +186,7 @@
                     </div>
                 </div>
             </section>
+            @endforeach
 
             <section class="parallax wow fadeIn" data-stellar-background-ratio="0.3" style="background-image: url(/images/about_us_video_image.jpg); background-position: 0px 48.7406px; visibility: visible; animation-name: fadeIn;">
                 <div class="opacity-extra-medium bg-black"></div>

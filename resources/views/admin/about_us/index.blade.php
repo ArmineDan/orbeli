@@ -17,6 +17,10 @@
                   <th> Row </th>
                   <th> Title </th>
                   <th> Content </th>
+                  <th> Video </th>
+                  <th> Parallax Boxes </th>
+                  <th> Short Text </th>
+                  <th> About_ </th>
                   <th class="text-center"> Edit </th>
                 </tr>
               </thead>
