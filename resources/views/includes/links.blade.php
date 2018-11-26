@@ -48,7 +48,32 @@
         <link rel="stylesheet" href="/css/responsive.css" />
         <link rel="stylesheet" href="/css/fullcalendar.min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Warnes" rel="stylesheet">
-     
+
+    <!-- start share with FaceBook -->
+    <meta property="og:url" content="{{ url()->full() }}" />
+
+    @if(!empty($all_last_posts['post']) && isset($all_last_posts['post'][0]->title))
+
+        <meta property="og:type" content="{{'article'}}" />
+        <meta property="og:title" content="{{$all_last_posts['post'][0]->title ?? 'no-data'}}" />
+        <meta property="og:description" content="{{ strip_tags($all_last_posts['post'][0]->short_text)  ?? 'no-description' }}" />
+        <meta property="og:image" content="{{asset($all_last_posts['post'][0]->pimg) ?? asset('/images/logo-white@2x.png')}}" />
+
+    @elseif (!empty($all_last_posts['main_post'][0]) && isset($all_last_posts['main_post'][0]->title))
+
+        <meta property="og:type" content="{{'website'}}" />
+        <meta property="og:title" content="{{$all_last_posts['main_post'][0]->title}}" />
+        <meta property="og:description" content="{{ strip_tags($all_last_posts['main_post'][0]->short_text) }}" />
+        <meta property="og:image" content="{{ asset($all_last_posts['main_post'][0]->img) }}" />
+
+    @else
+        <meta property="og:type" content="{{'article'}}" />
+        <meta property="og:title" content="Orbeli Analitical Research - default" />
+        <meta property="og:description" content="Orbeli Analitical Center - default" />
+        <meta property="og:image" content="{{ asset('/images/logo-footer.png') }}" />
+    @endif
+    <!-- end sharewith FaceBook -->
+
       <!--
         [if IE]>
             <script src="js/html5shiv.js"></script>
