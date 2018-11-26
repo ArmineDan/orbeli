@@ -130,7 +130,7 @@ class PageController extends Controller
                     ->where('lang_id',$lng)
                     ->where('post_typ',$post_type)
                     ->paginate(6); 
-                    //return count($post_with_given_id["data"]);
+                    //return $post_with_given_id->current_page;
                      
                     $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                     $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              

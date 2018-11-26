@@ -29,7 +29,7 @@
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
-                       <li class="dropdown simple-dropdown" style="position:absolute;right:3px ">
+                       <li class="dropdown simple-dropdown" style="position:absolute;right:6px;z-index:1000 ">
                             <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                              <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                 
