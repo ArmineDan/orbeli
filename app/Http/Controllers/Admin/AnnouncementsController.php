@@ -83,27 +83,7 @@ class AnnouncementsController extends Controller
      */
     public function store(Request $request, $locale)
     {
-        // $paraParams = [
-        //     'title' => $request->input('title'),
-        //     'short_text' => $request->input('short_text'),
-        //     'html_code' => $request->input('html_code'),
-
-        //     'img' => $request->input('img'),
-        //     'date' => $request->input('date'),
-        //     'status' => $request->input('status'),
-
-        //     'meta_k' => $request->input('meta_k'),
-        //     'meta_d' => $request->input('meta_d'),
-        //     'view' => $request->input('view'), 
-
-        //     'a_duration' => $request->input('a_duration'),
-        //     'post_typ' => $request->input('post_typ'),
-        //     'author_id' => $request->input('author_id'),
-
-        //     'lang_id'=> $request->input('lang_id'),
-
-        // ];
-
+        
         $validator = $this->validate( $request, [
             'title' => 'required',
             'short_text' => 'required',
@@ -128,8 +108,6 @@ class AnnouncementsController extends Controller
         $announcement_id = $announcement->id;
         
         if($request->input('tags')) {
-            // $tagsString = $request->tags;
-            // $tagsArray = explode(',',$request->tags);
             $tagsArray = $request->tags;
             $announcement->tag($tagsArray); // store-to-db
 
@@ -252,42 +230,6 @@ class AnnouncementsController extends Controller
             return view('404error');
         }        
     }
-
-    /*public function edit($id, $locale)
-
-    {
-        $last_id_array = DB::select("SELECT  AUTO_INCREMENT
-                                FROM    information_schema.TABLES
-                                WHERE   (TABLE_NAME = 'announcements')");
-
-        $last_id = $last_id_array[0]->AUTO_INCREMENT;
-
-        $folder_name = 'announcements';
-        $images = Storage::files('public/'.$folder_name.'/'.$last_id);
-
-        $imageurls = [];
-        for ($i=0; $i < count($images); $i++) {
-            $imageurls[$i]['url'] = Storage::url($images[$i]);
-            $imageurls[$i]['size'] = $size = Storage::size($images[$i]);
-        }
-
-        $announcement = Announcement::find($id);
-
-        App::setLocale($locale);
-
-        $lang_id = $announcement->lang_id;
-        $authors = Author::where('lang_id', $lang_id)->get();
-
-        return view('admin.announcements.edit',[
-            'announcement' => $announcement,
-            'locale'=> $locale,
-            'last_id' =>$last_id,
-            'folder_name' =>$folder_name,
-            'imageurls' => $imageurls,
-            'authors' => $authors,
-            'lang_id' => $lang_id
-        ]);
-    }*/
 
     /**
      * Update the specified resource in storage.

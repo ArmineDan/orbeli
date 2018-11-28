@@ -13,11 +13,9 @@
                 <tr>
                   <th> Row </th>
                   <th> Title </th>
-                  <th> Short Text </th>
-
-                  <th> HTML code </th>
-                  <th> Meta Keyword </th>
-                  <th> Meta Description </th>
+                  <th> View </th>
+                  <th> Date </th>
+                  <th> Duration </th>
                   <th> Status </th>
 
                   <th> Img</th>
@@ -31,11 +29,16 @@
 
                           <th>{{$item->id}}</th>
                           <td>{{$item->title}}</td>
-                          <td>{{$item->short_text}}</td>
-                          <td> {{$item->html_code}} </td>
-                          <td> {{$item->meta_k}} </td>
-                          <td> {{$item->meta_d}} </td>
-                          <td> {{$item->status}} </td>
+                          <td> {{$item->view}} </td>
+                          <td>{{$item->date}}</td>
+                          <td> {{$item->a_duration}} </td>
+                          @if ($item->status == 'main')
+                          <td class="alert alert-success">{{$item->status}}</td>
+                          @elseif($item->status == 'not_published')
+                          <td class="alert alert-danger">{{$item->status}}</td>
+                          @else
+                          <td>{{$item->status}}</td>
+                          @endif             
                           <td> <img src="{{$item->img}}" width="120"> </td>
 
                           <td class="text-center">

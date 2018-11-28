@@ -1,5 +1,5 @@
 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{trans('text.most_veiwed')}}</span></div>
-                        <ul class="latest-post position-relative">
+                        <ul class="latest-post position-relative" id="most_viewd_ul_narek">
                                 @foreach ($all_last_posts['mostViewed'] as $item)                             
                                 <li>
                                   <figure> 
