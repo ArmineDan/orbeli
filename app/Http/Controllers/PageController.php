@@ -62,8 +62,9 @@ class PageController extends Controller
                         $popular_tags=Tags::load_all_popular_tags();  
                         $parralax = Post::parralax();  
                         $get = PageController::take_id($main_right);
+						
                         $last_posts_xoragrer = Post::xoragreri_poster($get); 
-
+//return $last_posts_xoragrer; 
                         $all_last_posts = array(
                             "vert"=>$last_posts_vertical,                            
                             "menu"=>$menu,
@@ -153,8 +154,8 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $menu = Post::menu(); 
-                        $id=Post::getid($date,$title);
-                if($id === NULL ){
+                        $id=Video::get_video_id($date,$title);					
+                if($id === NULL ){ 
                         $all_data=array(
                         "lang"=> $lang,
                         "event"=> $calendar,                       
@@ -165,7 +166,7 @@ class PageController extends Controller
                 $popular_tags=Tags::load_popular_tags('Video');   
                 $post_with_given_dateANDtitle = Video::open_current_video_post($date,$title);
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                $id=Video::get_video_id($date,$title);
+               
                 $comments = Video::find($id)->comments()->where('approved','>',0)->get();
                 $docs = Video::find($id)->getDocuments()->get();
                 $tags = Video::find($id)->tagArray;
@@ -204,7 +205,7 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $menu = Post::menu(); 
-                        $id=Post::getid($date,$title);
+                        $id=Opinion::get_opinion_id($date,$title);
         
                     if($id === NULL ){
                         $all_data=array(
@@ -218,7 +219,7 @@ class PageController extends Controller
                         $post_with_given_dateANDtitle = Opinion::open_current_opinion($date,$title);
                        
                         $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                        $id=Opinion::get_opinion_id($date,$title);
+                       
                         $comments = Opinion::find($id)->comments()->where('approved','>',0)->get();
                         $docs = Opinion::find($id)->getDocuments()->get();
                         $tags = Opinion::find($id)->tagArray;
@@ -260,7 +261,7 @@ class PageController extends Controller
                         $lng=Post::getLangId(); 
                         $calendar= Event::event($lang);
                         $menu = Post::menu();
-                        $id=Post::getid($date,$title);
+                       $id=Announcement::get_announce_id($date,$title);
                          
                 if($id === NULL ){
                     $all_data=array(
@@ -273,7 +274,7 @@ class PageController extends Controller
                 $popular_tags=Tags::load_popular_tags('Announcement');  
                 $post_with_given_dateANDtitle = Announcement::open_current_announce($date,$title);
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                $id=Announcement::get_announce_id($date,$title);
+                
                 $comments = Announcement::find($id)->comments()->where('approved','>',0)->get();
                 $docs = Announcement::find($id)->getDocuments()->get();
                 $tags = Announcement::find($id)->tagArray;
@@ -314,7 +315,7 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $menu = Post::menu(); 
-                        $id=Post::getid($date,$title);
+                        $id=News::get_news_id($date,$title);
                 if($id === NULL ){
                     $all_data=array(
                     "lang"=> $lang,
@@ -326,7 +327,7 @@ class PageController extends Controller
                 $popular_tags=Tags::load_popular_tags('News');  
                 $post_with_given_dateANDtitle = News::open_current_announce($date,$title);
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                $id=News::get_news_id($date,$title);
+                
                 $comments = Post::find($id)->comments()->where('approved','>',0)->get();
                 $docs = News::find($id)->getDocuments()->get();
                 $tags = News::find($id)->tagArray;

@@ -192,7 +192,8 @@ class Post extends Model
            $post_typ = $post_types[$i]->id;
             $post = DB::select( "SELECT * FROM `posts` WHERE `posts`.id not in ($get)  and  `posts`.post_typ =  $post_typ  and  `posts`.status != 'main' order by `posts`.date desc limit 1   ");
           if( count($post)>0){
-               $arr_posts[$i] = $post;
+              array_push($arr_posts, $post); 
+			  //$arr_posts[$i] = $post;
           }
         }
         return $arr_posts;

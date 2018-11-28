@@ -13,14 +13,15 @@
             <section class="visible1">
                 <div class="container">
                    <div class="row">
-                    <div class="container">
-                   <div class="row">
-                        <aside class="col-md-2 col-sm-12 col-xs-12 pull-left">  
+                  
+                  
+                        <aside class="col-md-2 col-sm-12 col-xs-12 xs-margin-30px-bottom sm-margin-60px-bottom">   
+						
                            <div class="margin-45px-bottom xs-margin-25px-bottom">                         
                                 <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>{{trans('text.author')}}</span></div>
                                @if ($all_last_posts['folder']==='post')
                                    @for ($i = 0; $i < count($all_last_posts['author']); $i++)
-                                   <div style="text-align:center;height:-webkit-fill-available;">
+                                   <div class="col-md-12 col-sm-6 col-xs-6 auth" >
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
                                                <img src="{{$all_last_posts['author'][$i]->img}}" alt="" class="border-radius-100 " data-no-retina=""></a>
                                                <div style="margin-top:24px;">
@@ -35,14 +36,14 @@
                                                    <a href="#">
                                                    <div id="em_status{{$all_last_posts['author'][$i]->id}}"></div>
                                                    </a>
-                                                   </div>
+                                                   </div> 
                                                </div> 
                                                </div>
                                    </div>
                                    @endfor                                  
                                           
                                    @else
-                                      <div style="text-align:center;">
+                                      <div  class=" col-md-12 col-sm-6 col-xs-6" style="text-align:center;">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
                                             <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
                                             <div style="margin-top:24px;">
@@ -65,28 +66,11 @@
                                    @endif
                                               
                                                            
-                                </div>                         
+                                </div> 
+														
                             </aside>
-                     <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">
-
-                        <div class="margin-45px-bottom xs-margin-25px-bottom">
-                            @include('includes.mostVeiwed')
-                        </div>
-                        
-                        <div class="margin-45px-bottom xs-margin-25px-bottom">
-                                @include('includes.tags') 
-                        </div>
-
-                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
-                         </div>      
-                         <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
-                          </div>
-                         
-                       </aside>
-                          
-                     <main class="col-md-7 col-sm-12 col-xs-12 left-sidebar1 pull-right sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                    
+                     <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
                             <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
 						   
@@ -228,6 +212,25 @@
                         </div>
                     </main>
                    
+				     <aside class="col-md-3 col-sm-12 col-xs-12 "> 
+
+                        <div class="margin-45px-bottom xs-margin-25px-bottom">
+                            @include('includes.mostVeiwed')
+                        </div>
+                        
+                        <div class="margin-45px-bottom xs-margin-25px-bottom">
+                                @include('includes.tags') 
+                        </div>
+
+                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
+                                <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
+                         </div>      
+                         <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
+                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                          </div>
+                         
+                       </aside>
+                          
              
                         @isset($all_last_posts['same_posts'])
                 <div class="col-md-12 col-sm-12 col-xs-12 no-padding" style="display:{{count($all_last_posts['same_posts'])>0?'block':'none'}}">
@@ -242,15 +245,15 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12 last-paragraph-no-margin sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn" style="visibility: hidden; animation-name: none;">
                                      <div class="blog-post blog-post-style1 xs-text-center">
                                          <div class="blog-post-images overflow-hidden margin-25px-bottom sm-margin-20px-bottom">
-                                             <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}">
+                                             <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.urlencode($all_last_posts['same_posts'][$i][0]->title))}}">
                                                  <img src="{{$all_last_posts['same_posts'][$i][0]->img}}" alt="" data-no-retina="">
                                              </a>
                                          </div>
                                          <div class="post-details">
                                              <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$all_last_posts['same_posts'][$i][0]->date}} |  <a href="#" class="text-medium-gray">{{substr($all_last_posts['same_posts'][$i][0]->name, 0, 2) .'. '. $all_last_posts['same_posts'][$i][0]->lastname}}</a></span>
-                                         <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.$all_last_posts['same_posts'][$i][0]->title)}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight:bold;height:73px">{{$all_last_posts['same_posts'][$i][0]->title}}</a>
+                                         <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.urlencode($all_last_posts['same_posts'][$i][0]->title))}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight:bold;height:73px">{!!str_limit($all_last_posts['same_posts'][$i][0]->title, 30)!!}</a>
                                              <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb sm-margin-15px-tb"></div>
-                                             <p class="width-90 xs-width-100">{!!str_limit($all_last_posts['same_posts'][$i][0]->short_text , 80)!!}</p>
+                                             <p class="width-90 xs-width-100">{!!str_limit($all_last_posts['same_posts'][$i][0]->short_text, 30)!!}</p> 
                                          </div>
                                      </div>
                                  </div> 
@@ -259,8 +262,8 @@
                          </div>          
                         @endisset
                                       
-                        </div>
-                        </div> 
+                      
+                        
                    </div>
                </div>
            </section>

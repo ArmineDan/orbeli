@@ -6,16 +6,16 @@
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
     <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
         <div class="content padding-19px-all xs-padding-20px-all">
-            <div class="text-medium-gray text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;
+            <div class="black text-extra-small margin-5px-bottom text-uppercase alt-font"><span>{{$all_last_posts['main_post'][0]->date }}</span>&nbsp;&nbsp;&nbsp;|&nbsp;
          <span> 
             @for ($i = 0; $i < count($all_last_posts['author']); $i++)
-            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" class="text-medium-gray ">{{ substr( $all_last_posts['author'][$i]->name , 0, 2) .' '. $all_last_posts['author'][$i]->lastname. ' | '}}</a>
+            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" class="black">{{ substr( $all_last_posts['author'][$i]->name , 0, 2) .' '. $all_last_posts['author'][$i]->lastname. ' | '}}</a>
             @endfor
         </span>
-            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa  fa-clock-o"> </i> {{$all_last_posts['main_post'][0]->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['main_post'][0]->date}}</span> 
+            <span class="black  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa  fa-clock-o"> </i> {{$all_last_posts['main_post'][0]->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['main_post'][0]->date}}</span> 
                  
         </div>
-            <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_post'][0]->title}}</a>
+            <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="black text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_post'][0]->title}}</a>
         </div>
     </div>
 </div>
@@ -26,13 +26,13 @@
 <ul class="latest-post position-relative" id="latest_post_main_right_ul_narek">
         @foreach ($all_last_posts['main_right'] as $item)                             
         <li class="aa">
-          <figure id="figure_narek">
+          <figure id="figure_narek" class="over">
          <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
             <img src="{{$item->img}}" alt="" data-no-retina=""></a>
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
                     <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
-                    <span class="display-inline-block margin-5px-bottom"  style="font-weight:bold">{{$item->title}}</span></a> 
+                    <span class="display-inline-block margin-5px-bottom"  style="font-weight:bold">{!!str_limit($item->title , 40)!!} </span></a> 
                    <br/>
                     @for ($i = 0; $i < count($item->getAuthors); $i++)
                     <a href="{{url($all_last_posts['lang'].'/author/'.$item->getAuthors[$i]->id)}}" class="text-extra-dark-gray">
@@ -56,7 +56,7 @@
 @isset($all_last_posts['main_video'][0])
 
     <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
-    <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="blog-image">
+    <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="blog-image">
         <img src="{{$all_last_posts['main_video'][0]->img}}" alt="" data-no-retina="" ></a>
     <div class="blog-text tite2_new display-inline-block ">
         <div class="content padding-19px-all xs-padding-20px-all">
@@ -65,7 +65,7 @@
                 <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> 
                 {{$all_last_posts['main_video'][0]->duration }}</span></div>
-            <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.$all_last_posts['main_video'][0]->title)}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
+            <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
         </div>
     </div>
 </div>
@@ -75,10 +75,10 @@
 
 @section('vertical_video')
             @foreach ($all_last_posts['vert'] as $item)
-            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding" style="visibility: visible;animation-name: fadeIn;  height:302px;">
-                <div class="blog-post blog-post-style1">
-                    <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                        <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}">
+            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding video_a"  style="visibility: visible;animation-name: fadeIn;  height:282px;">
+                <div class="blog-post blog-post-style1">    
+                    <div class="blog-post-images overflow-hidden margin-5px-bottom xs-margin-15px-bottom">
+                        <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->date.'/'.urlencode($item->title))}}">
                             <img src="{{$item->img}}" class="davo-blur" alt="" data-no-retina="">
                             <div class="play-davo">
                                 <i class="fa fa-play-circle"></i>
@@ -125,21 +125,21 @@
 @endsection
 
 @section('comments')
+ 
 
-<div class="infinite-scroll wow fadeIn"> 
  
 @foreach ($all_last_posts['opinions'] as $item)
-            <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
+            <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp video_a" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
                     <div class="blog-post blog-post-style1">
 
                         <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                             <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.urlencode($item->title))}}">
-
+ 
                                 <img src="{{$item->oimg}}" alt="" data-no-retina="">
                             </a>
                         </div>
                         <div class="post-details">
-                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height: 82px">{{$item->title}} </a>
+                            <a href="{{url($all_last_posts['lang'].'/opinion/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100"  style="font-weight:bold;height:6vh">{{$item->title}} </a>
                             <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{$item->o_duration." ".trans('text.minute') }}</span>
                           <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                           <div class="author text_left_a">
@@ -154,12 +154,12 @@
                 </div>
 @endforeach 
 
-</div>
+
  
-@endsection
+@endsection  
 
 @section('xoragrer')
-        <ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
+<ul class="blog-grid blog-3col gutter-large" style="position: relative; height: 1353.58px;">
             <li class="grid-sizer"></li>
        @for ($i = 0; $i < count($all_last_posts['xoragrer']); $i++)
                 <li class="grid-item wow fadeInUp last-paragraph-no-margin" style="visibility: hidden; animation-name: fadeInUp; position: absolute; left: 0%; top: 0px;">
@@ -167,7 +167,6 @@
 
                             <div class="blog-post-images overflow-hidden">
                                 <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
-
                                     <img src="{{ $i===1 ? $all_last_posts['xoragrer'][$i][0]->thumb_img:$all_last_posts['xoragrer'][$i][0]->img}}" alt="" data-no-retina="">
                                 </a>
                             </div>
@@ -177,14 +176,14 @@
                                 
                                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
                                 <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
-                               <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{$all_last_posts['xoragrer'][$i][0]->title}} </span>
+                               <span class="alt-font-title post-title text-medium text-extra-dark-gray">{{str_limit($all_last_posts['xoragrer'][$i][0]->title,40)}} </span>
                                 </a>
                                <a  href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
                                     <br/>
-                                    <p>{!! $i===1 ? $all_last_posts['xoragrer'][$i][0]->long_text:$all_last_posts['xoragrer'][$i][0]->short_text!!}</p></a>
+                                    <p>{!! $i===1 ? str_limit($all_last_posts['xoragrer'][$i][0]->long_text, 300):str_limit($all_last_posts['xoragrer'][$i][0]->short_text, 100)!!}</p></a>
                             </div>
                         </div>
                 </li>            
                 @endfor   
-        </ul>    
+</ul> 
 @endsection

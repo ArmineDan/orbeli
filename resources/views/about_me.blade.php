@@ -20,9 +20,9 @@
         <div class="post-details">
             <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$item->date}}  </span>
             <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight: bold;
-                height: 54px;">{{$item->title}}</a>
+                height: 54px;">{!!str_limit($item->title, 60)!!}</a>
             <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb sm-margin-15px-tb"></div>
-            <p class="width-90 xs-width-100">{!!$item->short_text!!}</p>
+            <p class="width-90 xs-width-100">{!!str_limit($item->short_text, 90)!!}</p>
         </div>
     </div>
 </div>

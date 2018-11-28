@@ -39,9 +39,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 
-    <section id="contact" class="wow fadeIn no-padding bg-extra-dark-gray" style="visibility: visible; animation-name: fadeIn;">
+    <section id="contact" class="wow fadeIn no-padding bg-extra-dark-gray" style="visibility: visible; animation-name: fadeIn;color:white">
         <div class="container-fluid">
             <div class="row equalize sm-equalize-auto">
                     <div class="col-md-6 wow fadeIn animated" style="visibility: visible; animation-name: fadeIn; height: 644px;">
@@ -61,6 +61,6 @@
 
     @include('../includes.footer')        
     @include('../includes.scripts')
-    
-
+      
+{!!  $all_last_posts['event']->script() !!}
 </body>
