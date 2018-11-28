@@ -55,3 +55,17 @@
 <script src='/js/fullcalendar.min.js'></script>
 <script src='/js/locale-all.js'></script>
 <script src="/js/calen.js"></script> 
+<script>
+$(window).resize(function(){
+	
+	var w = $(this).width(); 
+if(w <= 1147){
+	
+	 $("#mor").removeAttr('style')
+	console.log(w)
+}
+	
+	
+})
+ 
+ </script>

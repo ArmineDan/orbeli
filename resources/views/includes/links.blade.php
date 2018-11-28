@@ -57,7 +57,7 @@
         <meta property="og:type" content="{{'article'}}" />
         <meta property="og:title" content="{{$all_last_posts['post'][0]->title ?? 'no-data'}}" />
         <meta property="og:description" content="{{ strip_tags($all_last_posts['post'][0]->short_text)  ?? 'no-description' }}" />
-        <meta property="og:image" content="{{asset($all_last_posts['post'][0]->pimg) ?? asset('/images/logo-white@2x.png')}}" />
+        <meta property="og:image" content="{{asset($all_last_posts['post'][0]->img) ?? asset('/images/logo-white@2x.png')}}" />
 
     @elseif (!empty($all_last_posts['main_post'][0]) && isset($all_last_posts['main_post'][0]->title))
 

@@ -27,7 +27,7 @@ class LoadAll extends Controller
             App::setLocale($locale);
             $lang = App::getLocale();
 
-                 $id=trans('text.opinion');
+                 $id=trans('text.opinions');
                  $lng =Post::getLangId();                 
                  $calendar= Event::event($lang);
                  $menu = Post::menu();

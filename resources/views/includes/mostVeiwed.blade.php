@@ -2,13 +2,13 @@
                         <ul class="latest-post position-relative">
                                 @foreach ($all_last_posts['mostViewed'] as $item)                             
                                 <li>
-                                  <figure style="height: 0;">
+                                  <figure> 
                                  <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}">
                                     <img class="border-radius-200" src="{{$item->img}}" alt="" data-no-retina=""></a>
                                         </figure>
                                         <div class="display-table-cell vertical-align-top text-extra-small" id="most_view_div_narek">
                                             <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}" class="text-extra-dark-gray">
-                                                <span class="text-extra-dark-gray display-inline-block margin-5px-bottom" style="font-weight:bold" >{{$item->title}}</span></a> 
+                                                <span class="text-extra-dark-gray display-inline-block margin-5px-bottom" style="font-weight:bold" >{!!str_limit($item->title, 30)!!}</span></a> 
                                             <br/>
                                                 @for ($i = 0; $i < count($item->getAuthors); $i++)
                                                 <a href="{{url($all_last_posts['lang'].'/author/'.$item->getAuthors[$i]->id)}}" class="text-extra-dark-gray">
