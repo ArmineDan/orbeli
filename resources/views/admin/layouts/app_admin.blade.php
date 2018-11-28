@@ -48,12 +48,15 @@
             display: inline-block;
             cursor: pointer;
         }
+        h5 {
+            font-weight: 700;
+        }
         
     </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default ">
             <div class="container">
                 <div class="navbar-header">
 
@@ -80,15 +83,19 @@
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">                                
                                 <li><a href="{{ url('/', $locale) }}">Index</a></li>
-                                <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
+                                <li><a href="{{ route('admin.index', $locale) }}"><u>Dashboard</u></a></li>
                                 <li><a href="{{ route('admin.category.index', $locale) }}">Categories</a></li>
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
                                 <li><a href="{{ route('admin.video.index', $locale)}}">Videos</a></li>
                                 <li><a href="{{ route('admin.opinion.index', $locale)}}">Opinions</a></li>
                                 <li><a href="{{ route('admin.news.index', $locale)}}">News</a></li>
+                                <li><a href="{{ route('admin.announcements.index', $locale)}}">Announcements</a></li>
+                                <li><a href="{{ route('admin.authors.index', $locale)}}">Authors</a></li>
                             </ul>
-                        </li>                 
+                        </li>                       
                     </ul>
+
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -170,13 +177,13 @@
         var long_text_wrap = document.getElementById('long_text_wrap');
         var thumb_img_wrap = document.getElementById('thumb_img_wrap');
 
-        window.onload = function() {
-            var category = document.getElementsByName('post_typ')[0];
-            if(category && category.tagName != 'INPUT') {
-                console.log('====>',category.tagName)
-                checkCategory();
-            }            
-        }
+        // window.onload = function() {
+        //     var category = document.getElementsByName('post_typ')[0];
+        //     if(category && category.tagName != 'INPUT') {
+        //         console.log('====>',category.tagName)
+        //         checkCategory();
+        //     }            
+        // }
         
         function checkCategory() {
             var catIndexes = [2,7,12];
@@ -224,12 +231,44 @@
         }
 
         // https://picker.adam-uhlir.me/#coloring
+/*  ----------- video, news, opinion, announcements picker ( single-user ) ------------ */
         $('#ex-search').picker({search : true, limit : 5}); // tags
-        
+      
+        window.onload = function() {
+            let pickers = document.getElementsByClassName('picker');
+            let picker1 = pickers[0];
+            let picker2 = pickers[1];
+           
+            if(typeof (picker1) !== 'undefined') {
+                console.log('yeye')
+                let pc_elements = picker1.getElementsByClassName('pc-element');
+                if(pc_elements.length > 5) {
+                    picker1.getElementsByClassName('pc-trigger')[0].style.display = 'none';
+                }
+                console.log(pc_elements.length)
+            }
 
-        if(document.getElementsByClassName('pc-element').length > 5) {
-            document.getElementsByClassName('pc-trigger')[0].style.display = 'none';   
+            if(typeof (picker2) !== 'undefined') {
+                let pc_elements = picker2.getElementsByClassName('pc-element');
+                if(pc_elements.length > 5) {
+                    picker2.getElementsByClassName('pc-trigger')[0].style.display = 'none';
+                }
+                console.log(pc_elements.length)
+            }
+
+            // check and show long-description and thumb_img if category=economy
+            var category = document.getElementsByName('post_typ')[0];
+            if(category && category.tagName != 'INPUT') {
+                console.log('====>',category.tagName)
+                checkCategory();
+            }
         }
+
+
+        
+        // if(document.getElementsByClassName('pc-element').length > 5) {
+        //     document.getElementsByClassName('pc-trigger')[0].style.display = 'none';   
+        // }
 
         // pushed button
         function addNewTag(event) {
@@ -271,14 +310,14 @@
             $('#ex-search').picker('set', new_tag);
         }
 
-        // API events
+        // API events for all krome posts
         $('#ex-search').on('sp-change', function() {
             console.log('hey')
             let pc_trigger = document.getElementsByClassName('pc-trigger')[0];
             console.log(pc_trigger.style.display);
             // let ex_search = document.getElementById('ex-search');
             let options = document.getElementById("ex-search").options;
-            // console.log(options)
+            console.log(options)
             let selectedOpt = 0;
             for (let index = 0; index < options.length; index++) {
                 if(options.item(index).hasAttribute('selected')) {
@@ -286,7 +325,7 @@
                 }                
             }
             console.log(selectedOpt);
-            if(selectedOpt < 5) {
+            if(selectedOpt < 6) {
                 document.getElementById('add_tag_btn').setAttribute('onclick', 'addNewTag(event)')
                 console.log('hey-hey')
             }else {
@@ -295,9 +334,85 @@
         })
         
         function alertLimitmessage() {
-            alert('you already have 5 tags');
+            alert('You already have 5 tags');
         }
 
+/* ------------------------------------ Post Tags ------------------------------------ */
+        // Post picker ( multi-user )
+        $('#ex-search-1').picker({search : true, limit : 5}); // tags
+
+        // pushed button into Posts-tag
+        function addPostNewTag(event) {
+            
+            let picker1 = document.getElementsByClassName('picker')[1];
+            let pc_element = picker1.getElementsByClassName('pc-element');
+            
+            if(pc_element.length > 5) {
+                console.log(pc_element.length, '------ addNewTag: out of limit 1------');
+                alert('The limit of tags are only 5 picker-1');
+                return false;
+            }
+
+            let new_tag = document.getElementById('new_tag').value;
+
+            if(new_tag.length <= 2) {
+                alert('The tag must have at least 3 simbols!');
+                return false;
+            }
+            console.log(new_tag);
+            let ex_search = document.getElementById('ex-search-1');
+            console.log('ex_search-1-> ',ex_search)
+            
+            let tmpOption = document.createElement('option');            
+            tmpOption.value = new_tag;
+            tmpOption.textContent = new_tag;
+            // console.log(tmpOption);
+            ex_search.insertAdjacentElement('beforeend',tmpOption);
+
+            let pc_list_ul = document.querySelectorAll('.pc-list ul')[1];
+            console.log(pc_list_ul)
+            // let ul_last_child = pc_list_ul.lastElementChild;
+            // let data_order = Number(ul_last_child.getAttribute('data-order')) + 1;
+
+            let new_data_order = ex_search.options.length-1;
+            // console.log(new_data_order, '-----lolo');
+
+            let tmpLi = document.createElement('li');
+            tmpLi.setAttribute('data-order', new_data_order);
+            tmpLi.setAttribute('data-id',new_tag);
+            tmpLi.textContent = new_tag;
+            pc_list_ul.insertAdjacentElement('beforeend',tmpLi);
+            $('#ex-search-1').picker('set', new_tag);
+        }
+
+        // API events
+        $('#ex-search-1').on('sp-change', function() {
+            console.log('hey-1')
+            let pc_trigger = document.getElementsByClassName('pc-trigger')[1];
+            console.log(pc_trigger.style.display);
+            // let ex_search = document.getElementById('ex-search');
+            let options = document.getElementById("ex-search-1").options;
+            console.log(options)
+            let selectedOpt = 0;
+            for (let index = 0; index < options.length; index++) {
+                if(options.item(index).hasAttribute('selected')) {
+                    selectedOpt +=1;
+                }                
+            }
+            console.log(selectedOpt);
+            if(selectedOpt < 6) {
+                document.getElementById('add_tag_btn').setAttribute('onclick', 'addPostNewTag(event)')
+                console.log('hey-hey-1')
+            }else {
+                document.getElementById('add_tag_btn').setAttribute('onclick', 'alertPostLimitmessage()') 
+            }
+        })
+
+        function alertPostLimitmessage() {
+            alert('Your Post already have 5 tags');
+        }
+
+/*----------------------------Multi Authors For Posts ----------------------------------*/
         // multi-authors        
         $('#ex-search-2').picker({search : true, limit : 5}); // authors
 

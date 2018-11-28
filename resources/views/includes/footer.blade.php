@@ -1,7 +1,7 @@
 <footer class="footer-classic-dark bg-extra-dark-gray  xs-padding-30px-bottom">
     <div class="bg-dark-footer padding-50px-tb xs-padding-30px-tb">
         <div class="container">
-            <div class="row equalize xs-equalize-auto">
+            <div class="row equalize xs-equalize-auto" style="color: white;">
                 <!-- start slogan -->
                 <div class="col-md-4 col-sm-5 col-xs-12 text-center alt-font display-table xs-text-center xs-margin-15px-bottom">
                     <div class="display-table-cell vertical-align-middle">
@@ -24,7 +24,6 @@
                             <ul class="small-icon no-margin-bottom">
                                 <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li><a class="twitter text-white" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                               <li><a class="instagram text-white" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram no-margin-right" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                        

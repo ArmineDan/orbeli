@@ -31,11 +31,11 @@
                     <td>{{$video->date ??'no-date'}}</td>
 
                     @if ($video->status == 'main')
-                    <td class="alert alert-success">{{$video->status}}</td>
+                      <td class="alert alert-success">{{$video->status}}</td>
                     @elseif($video->status == 'not_published')
-                    <td class="alert alert-danger">{{$video->status}}</td>
+                      <td class="alert alert-danger">{{$video->status}}</td>
                     @else
-                    <td>{{$video->status}}</td>
+                      <td>{{$video->status}}</td>
                     @endif  
                     
                                      

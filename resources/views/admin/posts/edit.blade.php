@@ -97,8 +97,10 @@
             </div>
             <hr>        
         
-            <label for="title">Title</label>
-            <input type="text" name="title" class="form-control" value="{{ $post['title'] }}">
+            <label for="title">Title
+                <span class="label label-default">max number of chars = 80</span>
+            </label>
+            <input type="text" name="title" class="form-control" value="{{ $post['title'] }}" maxlength="80">
             <hr>
 
             <label for="status">Status</label>
@@ -149,13 +151,17 @@
             <input type="date" name="date" class="form-control" value="{{ $post['date'] }}">
             <hr>
           
-            <label for="post_short_text">Short Description</label>
+            <label for="post_short_text">Short Description
+                <span class="label label-default">max number of chars = 100</span>
+            </label>
             <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
                 {{ $post['short_text'] }}
             </textarea>
             <hr>
 
-            <label for="post_long_text">Long Description</label><br>
+            <label for="post_long_text">Long Description
+                <span class="label label-default">max number of chars = 300</span>
+            </label><br>
             <span class="text text-info">only for "Economy"-category</span>
             <div id="long_text_wrap" style="display:none">
                 <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
@@ -195,8 +201,8 @@
 
             <label for="" style="display:block">Post tags</label>            
             <input type="text" name="new_tag" id="new_tag" value="">
-            <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
-            <select name="tags[]" id="ex-search" multiple="multiple">
+            <span onclick="addPostNewTag(event)" id="add_tag_btn">Add</span><br>
+            <select name="tags[]" id="ex-search-1" multiple="multiple">
                 @if ($atags)
                     @for ($i = 0; $i < count($atags); $i++)
                         <option value="{{$atags[$i]}}"

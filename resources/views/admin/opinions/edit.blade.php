@@ -48,8 +48,10 @@
         <input type="text" name="opinion_id" value="{{$opinion->id}}" hidden>
         <input type="text" hidden name="post_typ" value="{{$post_typ}}">
 
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" value="{{ $opinion->title }}">
+        <label for="title">Title
+            <span class="label label-default"> max number of chars = 80</span>
+        </label>
+        <input type="text" name="title" class="form-control" value="{{ $opinion->title }}" maxlength="80">
         <hr>
 
         <label for="status">Status</label>
@@ -81,7 +83,10 @@
         <input type="date" name="date" class="form-control" value="{{ $opinion->date }}">
         <hr>
 
-        <label for="post_short_text">Short Description <code>without any media.</code></label>
+        <label for="post_short_text">Short Description 
+            <span class="label label-default"> max number of chars = 100</span>
+            <code>without any media.</code>
+        </label>
         <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
             {{ $opinion->short_text }}
         </textarea>

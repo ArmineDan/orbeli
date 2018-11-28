@@ -40,7 +40,7 @@
                       <form action="{{ route('admin.authors.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
-                          <button type="submit" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></td>
+                          <button type="submit" class="cat-edit btn btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></td>
                         </form>
                     </td>
                   </tr>
