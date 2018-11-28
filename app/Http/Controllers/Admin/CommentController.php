@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App;
+use App\Lang;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +17,14 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $locale =  App::getLocale();
+        $lang_id = Lang::getLangId();
+        $comments = Comment::with('commentable')->where('lang_id', '=', $lang_id)->where('approved', '=', 0)->paginate(10);
+        // return $comments; //->commentable->title;
+        return view('admin.comments.index',[
+            'comments' => $comments,
+            'locale' => $locale,
+        ]);
     }
 
     public function savecommentstatus(Request $request, $locale) {

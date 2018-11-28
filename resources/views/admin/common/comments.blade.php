@@ -8,7 +8,7 @@
     @isset($comments)
     <hr>        
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
-      <h4>Comments</h4>
+      <h3 id="comments">Comments</h3>
       <thead>
         <th>DB_id</th>
         <th>name</th>
@@ -53,5 +53,6 @@
         </td>                
       </tr>            
     </tfoot>
-    </table>                  
+    </table>
+    <hr style="margin-bottom:40px">          
     @endisset

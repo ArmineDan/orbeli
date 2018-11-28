@@ -48,12 +48,15 @@
             display: inline-block;
             cursor: pointer;
         }
+        h5 {
+            font-weight: 700;
+        }
         
     </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default ">
             <div class="container">
                 <div class="navbar-header">
 
@@ -80,15 +83,19 @@
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">                                
                                 <li><a href="{{ url('/', $locale) }}">Index</a></li>
-                                <li><a href="{{ route('admin.index', $locale) }}">Dashboard</a></li>
+                                <li><a href="{{ route('admin.index', $locale) }}"><u>Dashboard</u></a></li>
                                 <li><a href="{{ route('admin.category.index', $locale) }}">Categories</a></li>
                                 <li><a href="{{ route('admin.post.index', $locale)}}">Posts</a></li>
                                 <li><a href="{{ route('admin.video.index', $locale)}}">Videos</a></li>
                                 <li><a href="{{ route('admin.opinion.index', $locale)}}">Opinions</a></li>
                                 <li><a href="{{ route('admin.news.index', $locale)}}">News</a></li>
+                                <li><a href="{{ route('admin.announcements.index', $locale)}}">Announcements</a></li>
+                                <li><a href="{{ route('admin.authors.index', $locale)}}">Authors</a></li>
                             </ul>
-                        </li>                 
+                        </li>                       
                     </ul>
+
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -170,13 +177,13 @@
         var long_text_wrap = document.getElementById('long_text_wrap');
         var thumb_img_wrap = document.getElementById('thumb_img_wrap');
 
-        window.onload = function() {
-            var category = document.getElementsByName('post_typ')[0];
-            if(category && category.tagName != 'INPUT') {
-                console.log('====>',category.tagName)
-                checkCategory();
-            }            
-        }
+        // window.onload = function() {
+        //     var category = document.getElementsByName('post_typ')[0];
+        //     if(category && category.tagName != 'INPUT') {
+        //         console.log('====>',category.tagName)
+        //         checkCategory();
+        //     }            
+        // }
         
         function checkCategory() {
             var catIndexes = [2,7,12];
@@ -247,6 +254,13 @@
                     picker2.getElementsByClassName('pc-trigger')[0].style.display = 'none';
                 }
                 console.log(pc_elements.length)
+            }
+
+            // check and show long-description and thumb_img if category=economy
+            var category = document.getElementsByName('post_typ')[0];
+            if(category && category.tagName != 'INPUT') {
+                console.log('====>',category.tagName)
+                checkCategory();
             }
         }
 

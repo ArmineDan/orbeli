@@ -50,8 +50,10 @@
       <input type="text" name="opinion_id" value="{{$last_id}}" hidden>
       <input type="text" name="post_typ" value="{{$post_typ}}" hidden>
 
-      <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Opinion name">
+      <h5 for="title">Title
+        <span class="label label-default"> max number of chars = 80</span>
+      </h5>
+      <input type="text" name="title" class="form-control" placeholder="Opinion name" maxlength="80">
       <hr>
 
       <h5 for="status">Status</h5>
@@ -77,7 +79,10 @@
         <input type="date" name="date" class="form-control" placeholder="select date">
       <hr>
 
-      <h5 for="post_short_text">Short Description <code>without any media.</code></h5>
+      <h5 for="post_short_text">Short Description
+          <span class="label label-default"> max number of chars = 100</span>
+        <code>without any media.</code>
+      </h5>
       <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
       </textarea>
       <hr>

@@ -71,11 +71,15 @@
             {{ csrf_field() }}
             {{ method_field('put') }}
 
-        <label for="title">Title</label>
-        <input name="title" class="form-control" value="{{$announcement['title']}}">
+        <label for="title">Title
+            <span class="label label-default"> max number of chars = 80</span>
+        </label>
+        <input name="title" class="form-control" value="{{$announcement['title']}}" maxlength="80">
         <hr>
 
-        <label for="short_text">Short Text</label>
+        <label for="short_text">Short Text
+            <span class="label label-default"> max number of chars = 100</span>
+        </label>
         <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
             {{$announcement['short_text']}}
         </textarea>

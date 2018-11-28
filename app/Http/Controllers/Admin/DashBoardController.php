@@ -16,6 +16,8 @@ use App\Partner;
 use App\Parralax;
 use App\Contact;
 use App\About_us;
+use App\Announcement;
+use App\Comment;
 
 class DashBoardController extends Controller
 {
@@ -34,6 +36,11 @@ class DashBoardController extends Controller
         $parallax = Parralax::where('lang_id', '=', $lang_id)->get()->count();
         $contacts = Contact::where('lang_id', '=', $lang_id)->get()->count();
         $aboutus = About_us::where('lang_id', '=', $lang_id)->get()->count();
+        $announcements = Announcement::where('lang_id', '=', $lang_id)->get()->count();
+
+        $comments = Comment::where('lang_id', '=', $lang_id)->where('approved', '=', 0)->get()->count();
+        $locale = App::getLocale();
+        // return $comments;
 
         return view('admin.dashboard', [
             'locale' => $locale,
@@ -47,9 +54,9 @@ class DashBoardController extends Controller
             'parallax' => $parallax,
             'contacts' => $contacts,
             'aboutus' => $aboutus,
-
-
-
+            'announcements' => $announcements,
+            'comments' => $comments,
+            'locale' => $locale,
         ]);
     }
 }

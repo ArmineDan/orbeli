@@ -32,10 +32,11 @@
                 <input type="text" hidden name="folder_name" id="" value="{{$folder_name}}">
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-success" style="width:130px">Upload Images</button>
+                <button type="submit" class="btn btn-success" style="margin-top:5px;width:130px">Upload Images</button>
             </div>     
         </form>
     </div>
+    <hr>
 
     @isset($imageurls)
     <table  class="table table-bordered table-striped table-hover table-condensed" style="font-size:14px">
@@ -59,11 +60,15 @@
     <form action="{{ route('admin.announcements.store', $locale) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-        <label for="title">Title</label>
-        <input name="title" class="form-control" placeholder="Create Title">
+        <label for="title">Title
+          <span class="label label-default"> max number of chars = 80</span>
+        </label>
+        <input name="title" class="form-control" placeholder="Create Title" maxlength="80">
         <hr>
 
-        <label for="short_text">Short Text</label>
+        <label for="short_text">Short Description
+          <span class="label label-default"> max number of chars = 100</span>
+        </label>
         <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
         </textarea>
         <hr>
@@ -81,11 +86,13 @@
         <input type="date" name="date" class="form-control" placeholder="select date">
         <hr>
 
+        <h5 for="status">Status</h5>
         <select name="status" class="form-control">
             <option>Select Status</option>
             <option>Published</option>
             <option>no published</option>
-        </select><hr>
+        </select>
+        <hr>
 
         <label for="meta_k">Meta keywords <kbd>without spaces</kbd> </label>
         <input name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
@@ -103,18 +110,18 @@
         <hr>
 
         <h5 style="display:block">Select tags for announcements</h5>
-      <input name="new_tag" id="new_tag" value="">
-      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
-      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
-        @if ($tags)
-         @for ($i = 0; $i < count($tags); $i++)
-         <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
-         @endfor
-        @else
-        <option value="">No tags in list. Please add new tags manually.</option>        
-        @endif
-      </select>
-      <hr>
+        <input name="new_tag" id="new_tag" value="">
+        <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
+        <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+          @if ($tags)
+          @for ($i = 0; $i < count($tags); $i++)
+          <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
+          @endfor
+          @else
+          <option value="">No tags in list. Please add new tags manually.</option>        
+          @endif
+        </select>
+        <hr>
 
         <label for="authors_id"> Select Author Id </label>
         <select name="author_id" class="form-control">
@@ -129,7 +136,9 @@
 
         <input name="view" value="0" type="hidden"><br>
 
-        <div class="well"><button type="submit" class="btn btn-success"> Save </button></div>
+        <div class="well">
+          <button type="submit" class="btn btn-success"> Save </button>
+        </div>
     </form>
 </div>
 

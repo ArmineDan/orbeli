@@ -63,8 +63,10 @@
       </div>
       <hr>
 
-      <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name">
+      <h5 for="title">Title 
+        <span class="label label-default">max number of chars = 80</span>
+      </h5>
+      <input type="text" name="title" class="form-control" placeholder="Post name" maxlength="80">
       <hr>
 
       <h5 for="status">Status</h5>
@@ -91,12 +93,16 @@
       <input type="date" name="date" class="form-control" placeholder="select date">
       <hr>
 
-      <h5 for="post_short_text">Short Description</h5>
+      <h5 for="post_short_text">Short Description
+          <span class="label label-default">max number of chars = 100</span>
+      </h5>
       <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
       </textarea>
       <hr>
 
-      <h5 for="post_long_text">Long Description</h5>
+      <h5 for="post_long_text">Long Description
+          <span class="label label-default">max number of chars = 300</span>
+      </h5>
       <span class="text text-info">only for "Economy"-category</span>
       <div id="long_text_wrap" style="display:none">
         <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
