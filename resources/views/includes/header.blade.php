@@ -123,12 +123,15 @@
                 
                 <strong>
                 <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
-                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
+                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm </a>                                   
                          </span>
+
                          
                          <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
-                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
+                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus </a>                              
                          </span>
+
+                         <a class="lang">|</a>
                          
                         <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
                             <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng</a> </span>  

@@ -4010,7 +4010,8 @@ aside .latest-post li.aa figure {width: 179px;}
     font-size: 20px;
     position: fixed;
     right: 23%;
-    top: 90px
+    top: 90px;
+    color: #fff
 }
 
 @media(max-width: 934px){
@@ -4064,15 +4065,6 @@ aside .latest-post li.aa figure {width: 179px;}
     
 }
 
-.narek_all_rights_reserved{
-    width: 100%;
-    background-color: #333;
-    text-align: center;
-    font-size: 15px;
-    padding: 10px;
-}
-
 #about_us_section_narek{
     padding: 5px 0;
 }
-

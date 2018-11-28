@@ -23,7 +23,7 @@ return[
  "first_icon_text"=>"Посетите наш офис",
  "second_icon_text"=>"Tелефон",
  "third_icon_text"=>"Адрес электронной почты",
- "minute"=>"с.", 
+ "minute"=>"м.", 
  "announcements" =>"Объявления",
  "news"=>"Новости",
  "partners"=>"Партнеры",
