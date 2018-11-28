@@ -26,7 +26,12 @@
                 <td>{{$item->view}}</td>
                 <td>{{$item->n_duration}}</td>
                 <td>{{$item->date}}</td>
-                <td>{{$item->status}}</td>
+                @if ($item->status === 'not_published')
+                  <td class="alert alert-danger">{{$item->status}}</td>
+                @else
+                  <td>{{$item->status}}</td>
+                @endif
+                
                 
                 <td class="text-center">
                   <form action="{{ route('admin.news.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">

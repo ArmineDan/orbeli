@@ -51,8 +51,10 @@
         <input type="text" name="news_id" value="{{$last_id}}" hidden>
         <input type="text" name="post_typ" value="{{$post_typ}}" hidden>
 
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" placeholder="Create title">
+        <label for="title">Title
+            <span class="label label-default"> max number of chars = 80</span>
+        </label>
+        <input type="text" name="title" class="form-control" placeholder="Create title" maxlength="80">
         <hr>
 
         <label for="status">Status</label>
@@ -78,7 +80,9 @@
         <input type="date" name="date" class="form-control" placeholder="select date">
         <hr>
 
-        <label for="short_text">Short Description</label>
+        <label for="short_text">Short Description
+            <span class="label label-default"> max number of chars = 100</span>
+        </label>
         <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
         </textarea>
         <hr>

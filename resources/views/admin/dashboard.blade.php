@@ -2,7 +2,27 @@
 
 @section('content')
     <div class="container">
+        <div class="panel">
+            <h4>Language
+                <small>                    
+                    <mark>{{$locale}}</mark>                    
+                </small>
+                |
+                
+                @if ($comments > 0)
+                <a href="{{ route('admin.comment.index', $locale) }}" class="btn btn-default">
+                    Unapproved comments
+                    <span class="label label-danger" style="vertical-align: middle;">{{$comments}}</span>                    
+                </a>                    
+                @else
+                Comments to check
+                    <span class="label label-primary" style="vertical-align: middle;">{{$comments}}</span>
+                @endif
+            </h4>
+        </div>
+        
         <div class="row">
+            
             <div class="col-md-3">
                 <a href="{{ route('admin.post.index', $locale) }}">
                     <div class="jumbotron text-center">
@@ -49,7 +69,7 @@
                 <a href="{{ route('admin.announcements.index', $locale) }}">
                     <div class="jumbotron text-center">
                         <span class="text-indent btn btn-default">Announcement:
-                            <span class="label label-success">150</span>
+                            <span class="label label-success">{{ $announcements }}</span>
                         </span>
                         <a href="{{ route('admin.announcements.create', $locale) }}" class="label label-info">
                             create new <i class="glyphicon glyphicon-plus"></i>                                

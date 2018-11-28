@@ -63,8 +63,10 @@
       </div>
       <hr>
 
-      <h5 for="title">Title</h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name">
+      <h5 for="title">Title 
+        <span class="label label-default">max number of chars = 80</span>
+      </h5>
+      <input type="text" name="title" class="form-control" placeholder="Post name" maxlength="80">
       <hr>
 
       <h5 for="status">Status</h5>
@@ -83,7 +85,7 @@
           <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
           <option value="">Please Insert One Author, then update the Video.</option>
-        @endforelse        
+        @endforelse
       </select>
       <hr>
 
@@ -91,12 +93,16 @@
       <input type="date" name="date" class="form-control" placeholder="select date">
       <hr>
 
-      <h5 for="post_short_text">Short Description</h5>
+      <h5 for="post_short_text">Short Description
+          <span class="label label-default">max number of chars = 100</span>
+      </h5>
       <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
       </textarea>
       <hr>
 
-      <h5 for="post_long_text">Long Description</h5>
+      <h5 for="post_long_text">Long Description
+          <span class="label label-default">max number of chars = 300</span>
+      </h5>
       <span class="text text-info">only for "Economy"-category</span>
       <div id="long_text_wrap" style="display:none">
         <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
@@ -135,10 +141,10 @@
       <input type="text" name="tags" class="form-control" placeholder="Insert tags separated by commas">
       <hr> --}}
 
-      <h5 style="display:block">Select tags for current video</h5>
+      <h5 style="display:block">Select tags for current post</h5>
       <input type="text" name="new_tag" id="new_tag" value="">
-      <span onclick="addNewTag(event)" id="add_tag_btn">Add</span><br>
-      <select name="tags[]" id="ex-search" class="form-control" multiple="multiple">
+      <span onclick="addPostNewTag(event)" id="add_tag_btn">Add</span><br>
+      <select name="tags[]" id="ex-search-1" class="form-control" multiple="multiple">
         @if ($tags)
          @for ($i = 0; $i < count($tags); $i++)
          <option value="{{$tags[$i]}}">{{$tags[$i]}}</option>
