@@ -4013,8 +4013,7 @@ aside .latest-post li.aa figure {width: 179px;}
     font-size: 20px;
     position: fixed;
     right: 23%;
-    top: 90px;
-    color: #fff
+    top: 90px
 }
 
 @media(max-width: 934px){
@@ -4042,7 +4041,7 @@ aside .latest-post li.aa figure {width: 179px;}
 	}
 
 @media(max-width: 600px){
-    nav.navbar.bootsnav .navbar-toggle{left: -35px}
+    nav.navbar.bootsnav .navbar-toggle{left: 44px}
     header .logo .logo-dark.default, header .logo .logo-light.default{/*width: 100px*/}
     #ns_search_icon{right: 150px}
     .text-extra-dark-gray{font-size: 15px}
@@ -4079,22 +4078,18 @@ aside .latest-post li.aa figure {width: 179px;}
     }
 	main#p{
 		
-		padding-top: 75px!important;
+		/*padding-top: 75px!important;*/
 	}
       
 }
 
-
-#about_us_section_narek{
-    padding: 5px 0;
-}
-
-.narek_all_rights_reserved{
+.narek_all_rights_reserved{  
     width: 100%;
     background-color: #f2f2f2;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     padding: 10px;
+	height:50px;
 }
 .auth{
 	text-align:center;height:-webkit-fill-available;max-height: 308px;
@@ -4116,5 +4111,4 @@ aside .latest-post li.aa figure {width: 179px;}
 		padding-top: 220px;
 	}
 }
-
 

@@ -1,8 +1,8 @@
 @extends('layouts.index')
 
 @section('main_post')
-
-<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
+ 
+<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-5px-bottom xs-text-center">
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
     <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
         <div class="content padding-19px-all xs-padding-20px-all">
@@ -20,13 +20,13 @@
     </div>
 </div>
         
-@endsection
+@endsection 
 @section('main_right')
 
 <ul class="latest-post position-relative" id="latest_post_main_right_ul_narek">
         @foreach ($all_last_posts['main_right'] as $item)                             
         <li class="aa">
-          <figure id="figure_narek" class="over">
+          <figure id="figure_narek" class="gg over">
          <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
             <img src="{{$item->img}}" alt="" data-no-retina=""></a>
                 </figure>
@@ -75,7 +75,7 @@
 
 @section('vertical_video')
             @foreach ($all_last_posts['vert'] as $item)
-            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding video_a"  style="visibility: visible;animation-name: fadeIn;  height:282px;">
+            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  sm-margin-50px-bottom xs-margin-30px-bottom wow no-padding video_a"  style="visibility: visible;animation-name: fadeIn;">
                 <div class="blog-post blog-post-style1">    
                     <div class="blog-post-images overflow-hidden margin-5px-bottom xs-margin-15px-bottom">
                         <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->date.'/'.urlencode($item->title))}}">

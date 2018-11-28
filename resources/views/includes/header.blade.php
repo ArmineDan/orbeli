@@ -11,25 +11,25 @@
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
         <div class="row">  
-       <div class="col-md-1 col-sm-1 col-xs-1">
+      				 <div >
                 <a style="position: fixed; top:0" href="{{url( '/'.$all_last_posts['lang'])}}" title="Orbeli" class="logo">
                     <img src="/images/logo-white.png" data-rjs="/images/logo.png" class="logo-dark" alt="Orbeli">
                     <img src="/images/logo-white.png" data-rjs="/images/logo-white.png" alt="Orbeli" class="logo-light default"></a>
-            </div>					
-            <div class="col-md-10 col-sm-8  col-xs-8 pull-right accordion-menu xs-no-padding-right margin-20px-left" style="margin-right: 67px;">
+            </div>	 
+            <div class="col-md-10 col-sm-8  col-xs-6  pull-right accordion-menu xs-no-padding-right margin-20px-left" style="margin-right: 111px;">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
                     <span class="sr-only">toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-collapse collapse " id="navbar-collapse-toggle-1">
-                    <ul id="accordion" class="nav navbar-nav navbar-left margin-20px-left alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
+                </button> 
+                <div class="navbar-collapse collapse " id="navbar-collapse-toggle-1"> 
+                    <ul id="accordion" class="nav navbar-nav navbar-left margin-60px-left alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
                        @foreach ($all_last_posts['menu'] as $item)                      
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
-                       <li id="mor" class="dropdown simple-dropdown" style="position:absolute;right:6px;z-index:1000 ">
+                       <li id="mor" class="dropdown simple-dropdown" style="position:absolute;right:3px;z-index:1000 ">
                             <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                              <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                 
@@ -123,15 +123,12 @@
                 
                 <strong>
                 <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
-                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm </a>                                   
+                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
                          </span>
-
                          
                          <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
-                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus </a>                              
+                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus |</a>                              
                          </span>
-
-                         <a class="lang">|</a>
                          
                         <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
                             <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng</a> </span>  

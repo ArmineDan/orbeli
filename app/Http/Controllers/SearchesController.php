@@ -32,7 +32,8 @@ class SearchesController extends Controller
 				// Query and paginate result
 				$posts = Post::where('title', 'like', "%$s%")
 						->orWhere('html_code', 'like', "%$s%")
-						->paginate(3);
+						->join('langs','posts.lang_id','=','langs.id')
+						->paginate(3); 
 
 				$all_data=array("lang"=> $lang,
 				"event"=> $calendar,               
@@ -42,7 +43,7 @@ class SearchesController extends Controller
 				"popular_tags"=> $popular_tags,
 				'post' => $posts,
 				's' => $s);  
-				//return  $posts;
+			//return  $posts;
 
 			return view('search')->with('all_last_posts',$all_data);
 		//return view('searches.index', ['posts' => $posts, 's' => $s ]);

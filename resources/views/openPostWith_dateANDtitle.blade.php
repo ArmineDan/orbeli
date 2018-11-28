@@ -12,8 +12,7 @@
           
             <section class="visible1">
                 <div class="container">
-                   <div class="row">
-                  
+                   <div class="row">                 
                   
                         <aside class="col-md-2 col-sm-12 col-xs-12 xs-margin-30px-bottom sm-margin-60px-bottom">   
 						
@@ -23,10 +22,10 @@
                                    @for ($i = 0; $i < count($all_last_posts['author']); $i++)
                                    <div class="col-md-12 col-sm-6 col-xs-6 auth" >
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
-                                               <img src="{{$all_last_posts['author'][$i]->img}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                               <img src="{{$all_last_posts['author'][$i]->img}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                                <div style="margin-top:24px;">
                                                <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" target="_blanck">{{$all_last_posts['author'][$i]->name .' '.$all_last_posts['author'][$i]->lastname}} </a>
-                                               <div class="display-table height-100 width-100" style="color:black">
+                                               <div class="display-table width-100" style="color:black">
                                                    <div class="display-table-cell icon-social-small ">
                                                        <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                                        <a href="{{$all_last_posts['author'][$i]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
@@ -41,14 +40,14 @@
                                                </div>
                                    </div>
                                    @endfor                                  
-                                          
+                                           
                                    @else
                                       <div  class=" col-md-12 col-sm-6 col-xs-6" style="text-align:center;">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
-                                            <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                            <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                             <div style="margin-top:24px;">
                                               <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
-                                              <div class="display-table height-100 width-100" style="color:black">
+                                              <div class="display-table  width-100" style="color:black">
                                                  <div class="display-table-cell icon-social-small ">
                                                     <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                                      <a href="{{$all_last_posts['post'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
@@ -69,6 +68,7 @@
                                 </div> 
 														
                             </aside>
+							<br/> 
                     
                      <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>

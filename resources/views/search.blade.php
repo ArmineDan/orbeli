@@ -7,14 +7,14 @@
     <div class="equalize sm-equalize-auto blog-post-content margin-10px-bottom padding-10px-bottom display-inline-block border-bottom border-color-extra-light-gray sm-margin-30px-bottom sm-padding-30px-bottom xs-text-center sm-no-border">
             <div class="blog-image col-md-3 no-padding sm-margin-30px-bottom xs-margin-20px-bottom margin-20px-right sm-no-margin-right display-table" style="height: 238px;">
                 <div class="display-table-cell vertical-align-middle">
-                    <a href="{{url($post->lang_id.'/post/'.$post->date.'/'.urlencode($post->title))}}" >
-                        <img src="{{$post->img}}" alt="" data-no-retina=""></a>
-                </div>
+                    <a href="{{url($post->lng.'/post/'.$post->date.'/'.urlencode($post->title))}}" >
+                        <img src="{{$post->img}}" alt="" data-no-retina=""></a> 
+                </div> 
             </div>
             <div class="blog-text col-md-8 display-table no-padding" style="height: 238px;">
                 <div class="display-table-cell vertical-align-middle">
                     <div class="content margin-20px-bottom sm-no-padding-left">
-                         <a href="{{url($all_last_posts['lang'].'/post/'.$post->date.'/'.urlencode($post->title))}}"  class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small search_link">{{$post->title}}</a>
+                         <a href="{{url($post->lng.'/post/'.$post->date.'/'.urlencode($post->title))}}"  class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small search_link">{{$post->title}}</a>
                          <p class="no-margin width-95">
 
                                 @php
