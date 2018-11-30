@@ -77,8 +77,12 @@
 						   <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin post_href_color_narek">
                                 <?php echo html_entity_decode($all_last_posts['post'][0]->html_code, ENT_QUOTES | ENT_XML1, 'UTF-8'); ?>
                                 <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                                <div class="author">    
-                                 <?php 
+                                
+                                
+                                <div class="author">
+                                <!-- Your share button code -->
+                                <iframe src="https://www.facebook.com/plugins/share_button.php?href={{url()->full()}}&layout=button&size=small&mobile_iframe=true&appId=292500478052220&width=94&height=20" width="94" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                                <?php 
                                 
                                     switch ( $all_last_posts['folder']) {
                                             case 'post':
@@ -223,10 +227,10 @@
                         </div>
 
                           <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
+                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div> 
                          </div>      
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
                          
                        </aside>

@@ -53,7 +53,19 @@ Route::group( $admin_rules , function() {
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
+// Auth Routes
 Auth::routes();
+
+// Prevent reseting mail-pass and registration
+Route::match(['get', 'post'], 'password/reset', function(){
+  return redirect()->route('login');
+});
+Route::match(['get', 'post'], 'password/email', function(){
+  return redirect()->route('login');
+});
+Route::match(['get', 'post'], 'register', function(){
+  return redirect()->route('login');
+});
 
 $sitemap_rules = [
   'prefix' => 'sitemap',
