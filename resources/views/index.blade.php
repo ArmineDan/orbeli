@@ -2,7 +2,7 @@
 
 @section('main_post')
  
-<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-5px-bottom xs-text-center">
+<div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-5px-bottom xs-text-center main_post_blur_narek">
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
     <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
         <div class="content padding-19px-all xs-padding-20px-all">
@@ -25,7 +25,7 @@
 
 <ul class="latest-post position-relative" id="latest_post_main_right_ul_narek">
         @foreach ($all_last_posts['main_right'] as $item)                             
-        <li class="aa">
+        <li class="aa" id="fadsfasdfasd">
           <figure id="figure_narek" class="gg over">
          <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
             <img src="{{$item->img}}" alt="" data-no-retina=""></a>
@@ -57,14 +57,18 @@
 
     <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center">
     <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="blog-image">
-        <img src="{{$all_last_posts['main_video'][0]->img}}" alt="" data-no-retina="" ></a>
-    <div class="blog-text tite2_new display-inline-block ">
+        <img src="{{$all_last_posts['main_video'][0]->img}}" alt="" data-no-retina="">
+        <div class="main_video_button_ns">
+            <i class="fa fa-play-circle"></i>
+        </div>   
+    </a> 
+        <div class="blog-text tite2_new display-inline-block ">
         <div class="content padding-19px-all xs-padding-20px-all">
             <div class="black text-extra-small margin-5px-bottom text-uppercase alt-font">
                 <span>
                 <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> 
-                {{$all_last_posts['main_video'][0]->duration }}</span></div>
+                {{$all_last_posts['main_video'][0]->duration." ".trans('text.minute')}}</span></div>
             <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
         </div>
     </div>
@@ -79,7 +83,7 @@
                 <div class="blog-post blog-post-style1">    
                     <div class="blog-post-images overflow-hidden margin-5px-bottom xs-margin-15px-bottom">
                         <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->date.'/'.urlencode($item->title))}}">
-                            <img src="{{$item->img}}" class="davo-blur" alt="" data-no-retina="">
+                            <img src="{{$item->img}}" alt="" data-no-retina="">
                             <div class="play-davo">
                                 <i class="fa fa-play-circle"></i>
                             </div>   
@@ -90,7 +94,7 @@
                             </span> 
                             
                       <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
-                        <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> {{$item->duration}}</span>
+                        <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> {{$item->duration." ".trans('text.minute')}}</span>
                 </div> 
                 </div>
             </div>
@@ -125,8 +129,6 @@
 @endsection
 
 @section('comments')
- 
-
  
 @foreach ($all_last_posts['opinions'] as $item)
             <div class="xoragir_d col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeInUp video_a" style="visibility: visible; animation-name: fadeInUp; height: 317px;">
@@ -181,7 +183,8 @@
                                <a  href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['xoragrer'][$i][0]->date.'/'.urlencode($all_last_posts['xoragrer'][$i][0]->title))}}">
                                     <br/>
                                     <p>{!! $i===1 ? str_limit($all_last_posts['xoragrer'][$i][0]->long_text, 300):str_limit($all_last_posts['xoragrer'][$i][0]->short_text, 100)!!}</p></a>
-                            </div>
+                                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{$all_last_posts['xoragrer'][$i][0]->p_duratioan." ".trans('text.minute') }}</span>
+                                </div>
                         </div>
                 </li>            
                 @endfor   

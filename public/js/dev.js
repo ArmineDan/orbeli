@@ -5,10 +5,8 @@
         y+=5;
         x++;      
         let count_comm = $(this).parent().attr('class')%5;
-       console.log(  count_comm)
         if(count_comm == 0){            
           let count = $(this).parent().attr('class')/5;
-          console.log( count)
             if(x <= count){
                 $.post(
                     "/php/comment.php", 

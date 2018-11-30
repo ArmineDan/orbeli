@@ -8,7 +8,7 @@
     </center>
 </div>
 
-<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
+<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link text-center"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
         <div class="row">  
       				 <div >

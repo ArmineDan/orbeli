@@ -279,13 +279,16 @@
 @include('../includes.scripts')
 <script type="text/javascript" src="/js/dev.js"></script>
 <script>
+
     $("#html_div img").click(function(){
-        $("#see_all_images_ns").fadeIn(500);
         $("#see_all_images_ns img").attr("src",$(this).attr("src"))
+        $("#see_all_images_ns img").fadeIn(80)
+        $("#see_all_images_ns").show(10)
     })
 
     $("#see_all_images_ns").click(function(){
-        $("#see_all_images_ns").fadeOut(500);
+        $("#see_all_images_ns").hide(50);
+        $("#see_all_images_ns img").fadeOut(20)
     })
    
     $("#send_comment").click(function(){
