@@ -110,7 +110,8 @@ class PageController extends Controller
                     //return  $land_id;
                     $calendar= Event::event($lang);
                     $menu = Post::menu();
-                    $categories = Post::categories();
+                    //$categories = Post::categories()->where("id","2");
+                    $categories = DB::table("categories");
                     $popular_tags=Tags::load_popular_tags('Post');
                     
                     $post_type =  DB::table('categories as c') 
@@ -130,6 +131,7 @@ class PageController extends Controller
                     ->where('status','<>','not_published')
                     ->where('lang_id',$lng)
                     ->where('post_typ',$post_type)
+                    ->OrderBy('id','desc')
                     ->paginate(6); 
                     //return $post_with_given_id->current_page;
                      
