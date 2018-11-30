@@ -27,11 +27,11 @@
         @foreach ($all_last_posts['main_right'] as $item)                             
         <li class="aa" id="fadsfasdfasd">
           <figure id="figure_narek" class="gg over">
-         <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}">
+         <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}"> 
             <img src="{{$item->img}}" alt="" data-no-retina=""></a>
                 </figure>
                 <div class="display-table-cell vertical-align-top text-small">
-                    <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.$item->title)}}" class="text-extra-dark-gray">
+                    <a href="{{url($all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}" class="text-extra-dark-gray">
                     <span class="display-inline-block margin-5px-bottom"  style="font-weight:bold">{!!str_limit($item->title , 40)!!} </span></a> 
                    <br/>
                     @for ($i = 0; $i < count($item->getAuthors); $i++)
