@@ -20,11 +20,13 @@
                              </div>
                                  
                              <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                    <a class="twitter-timeline" data-width="100%" data-height="400px" href="https://twitter.com/myarmenia2?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
-                              </div>
-                              <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                    <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/"   data-height="400px" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" ><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
-                             </div> 
+                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div>                         
+                         </div>
+
+                         <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
+                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                          </div>
+                      
              
                        <!--      <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
                                  <div class="fb-page" data-href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Isabelle-Dupont-In-Yerevan-453404071373709/">Isabelle Dupont In Yerevan</a></blockquote></div>	</span>
@@ -103,6 +105,7 @@
 <script src='/js/locale-all.js'></script>
 
 <script src="/js/calen.js"></script>  
+<script src="/js/more_menu.js"></script>
 
 {!!  $all_last_posts['event']->script() !!}
 

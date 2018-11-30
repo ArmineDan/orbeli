@@ -61,6 +61,7 @@
 
     @include('../includes.footer')        
     @include('../includes.scripts')
+ <script src="/js/more_menu.js"></script>
       
 {!!  $all_last_posts['event']->script() !!}
 </body>

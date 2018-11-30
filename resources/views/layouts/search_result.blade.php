@@ -107,12 +107,13 @@
            var response = a1.replace(regex, function(str) {
                   return "<span style='background-color: yellow;'>" + str + "</span>"
              })
-             $(this).html(response)
+             $(this).html(response) 
                     })
                     }
                     setTimeout(displayMatches, 300); 
       </script>
-      <script src="/js/calen.js"></script>  
+      <script src="/js/calen.js"></script> 
+<script src="/js/more_menu.js"></script>
 {!!  $all_last_posts['event']->script() !!}
 
 </body>
