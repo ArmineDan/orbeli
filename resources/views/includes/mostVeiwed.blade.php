@@ -17,7 +17,8 @@
                                                 </span>
                                                     </a>
                                                 @endfor
-                                            
+                                                <span class=" clearfix text-medium-gray  text-extra-small-10  pull-right padding-15px-left display-content"><i class="fa  fa-clock-o"> </i> {{$item->p_duratioan.' '.trans('text.minute') }} </span> 
+                                           
                                     </li>
                                 @endforeach                            
                             
