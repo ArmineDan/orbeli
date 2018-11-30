@@ -8,7 +8,7 @@
     </center>
 </div>
 
-<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link text-center"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
+<nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
         <div class="row">  
       				 <div >
@@ -29,7 +29,7 @@
                        <li><a class="dropdown-toggle" data-toggle="dropdown" href={{url( $all_last_posts['lang'].'/category/'.$item->name)}}>{{$item->name}}</a>                                              
                        </li>                           
                        @endforeach   
-                       <li id="mor" class="dropdown simple-dropdown" style="position:absolute;right:3px;z-index:1000 ">
+                       <li id="mor" class="dropdown simple-dropdown moree">
                             <a href="javascript:void(0);"><i class="fa fa-bars" aria-hidden="true" style="font-size: 23px;"></i></a><i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                              <ul class="dropdown-menu" role="menu"  style="top: 33px; display: none; opacity: 1;min-width: 160px">
                                 
@@ -96,7 +96,7 @@
                                   </ul>
                             </div>  --}}
                             
-                <div id="arch">
+                <div id="arch" style="z-index:1000">
                      
                                 <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
                                    

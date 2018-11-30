@@ -84,7 +84,6 @@
                                 <div class="author">
                                 <!-- Your share button code -->
                                   <iframe src="https://www.facebook.com/plugins/share_button.php?href={{url()->full()}}&layout=button&size=small&mobile_iframe=true&appId=292500478052220&width=94&height=20" width="94" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-
                                  <?php 
                                 
                                     switch ( $all_last_posts['folder']) {
@@ -286,16 +285,13 @@
 @include('../includes.scripts')
 <script type="text/javascript" src="/js/dev.js"></script>
 <script>
-
     $("#html_div img").click(function(){
+        $("#see_all_images_ns").fadeIn(500);
         $("#see_all_images_ns img").attr("src",$(this).attr("src"))
-        $("#see_all_images_ns img").fadeIn(80)
-        $("#see_all_images_ns").show(10)
     })
 
     $("#see_all_images_ns").click(function(){
-        $("#see_all_images_ns").hide(50);
-        $("#see_all_images_ns img").fadeOut(20)
+        $("#see_all_images_ns").fadeOut(500);
     })
    
     $("#send_comment").click(function(){
