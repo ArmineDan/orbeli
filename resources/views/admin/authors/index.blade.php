@@ -30,13 +30,13 @@
                   <td>{{$item->email}}</td>
                   <td> <img src="{{$item->img}}" width="120"> </td>
               
-                  <td>
+                  <td class="text-center">
                     <a href="{{route('admin.authors.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
                       <i class="glyphicon glyphicon-edit"></i> 
                     </a>
                   </td>
 
-                  <td>
+                  <td class="text-center">
                       <form action="{{ route('admin.authors.destroy', [$item->id, $locale]) }}" method="POST" onsubmit="if(confirm('Delete ?')) { return true } else {return false}">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}

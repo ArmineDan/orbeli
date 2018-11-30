@@ -3,7 +3,7 @@
 <div class="infinite-scroll wow fadeIn" > 
        
     @foreach ($all_last_posts['post'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 317px;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; ">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.urlencode($item->title))}}">

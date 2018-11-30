@@ -2349,9 +2349,9 @@ header.sticky nav.header-light-transparent .logo .logo-light, header.sticky nav.
 .nav-top-scroll {position: absolute; top: 0; z-index: 5;}
 header.sticky nav.nav-top-scroll {background-color: inherit;}
 header a.logo {display: inline-block; vertical-align: middle;}
-header a.logo img {max-height:105px;}
+header a.logo img {max-height:102px;}
 header a img.logo-dark{
-    max-height: 89px;
+    max-height: 85px;
 }
 header .left-nav .sidebar-part1 a.logo img {max-height:inherit;}
 .logo-holder img {max-height: 52px;}
@@ -4013,8 +4013,7 @@ aside .latest-post li.aa figure {width: 179px;}
     font-size: 20px;
     position: fixed;
     right: 23%;
-    top: 90px;
-    color: #fff
+    top: 90px
 }
 
 @media(max-width: 934px){
@@ -4042,7 +4041,7 @@ aside .latest-post li.aa figure {width: 179px;}
 	}
 
 @media(max-width: 600px){
-    nav.navbar.bootsnav .navbar-toggle{left: -35px}
+    nav.navbar.bootsnav .navbar-toggle{left: 44px}
     header .logo .logo-dark.default, header .logo .logo-light.default{/*width: 100px*/}
     #ns_search_icon{right: 150px}
     .text-extra-dark-gray{font-size: 15px}
@@ -4079,22 +4078,20 @@ aside .latest-post li.aa figure {width: 179px;}
     }
 	main#p{
 		
-		padding-top: 75px!important;
+		/*padding-top: 75px!important;*/
 	}
       
 }
-
-
-#about_us_section_narek{
-    padding: 5px 0;
+.moree{ 
+	position: absolute!important; right: 3px;z-index: 1000;
 }
-
-.narek_all_rights_reserved{
+.narek_all_rights_reserved{  
     width: 100%;
     background-color: #f2f2f2;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     padding: 10px;
+	height:50px;
 }
 .auth{
 	text-align:center;height:-webkit-fill-available;max-height: 308px;
@@ -4116,5 +4113,4 @@ aside .latest-post li.aa figure {width: 179px;}
 		padding-top: 220px;
 	}
 }
-
 

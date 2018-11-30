@@ -1,19 +1,19 @@
-<div id="see_all_images_ns"> 
-    <center>
-        <img src="">
-    </center> 
-</div>
+
 @include('../includes.links')
     <body>
             @include('../includes.facebook_script' )
         <header>
             @include('includes.header')
             </header>
+            <div id="see_all_images_ns"> 
+                <center>
+                    <img src="">
+                </center> 
+            </div>
           
             <section class="visible1">
                 <div class="container">
-                   <div class="row">
-                  
+                   <div class="row">                 
                   
                         <aside class="col-md-2 col-sm-12 col-xs-12 xs-margin-30px-bottom sm-margin-60px-bottom">   
 						
@@ -23,10 +23,10 @@
                                    @for ($i = 0; $i < count($all_last_posts['author']); $i++)
                                    <div class="col-md-12 col-sm-6 col-xs-6 auth" >
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
-                                               <img src="{{$all_last_posts['author'][$i]->img}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                               <img src="{{$all_last_posts['author'][$i]->img}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                                <div style="margin-top:24px;">
                                                <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" target="_blanck">{{$all_last_posts['author'][$i]->name .' '.$all_last_posts['author'][$i]->lastname}} </a>
-                                               <div class="display-table height-100 width-100" style="color:black">
+                                               <div class="display-table width-100" style="color:black">
                                                    <div class="display-table-cell icon-social-small ">
                                                        <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                                        <a href="{{$all_last_posts['author'][$i]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
@@ -41,14 +41,14 @@
                                                </div>
                                    </div>
                                    @endfor                                  
-                                          
+                                           
                                    @else
                                       <div  class=" col-md-12 col-sm-6 col-xs-6" style="text-align:center;">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
-                                            <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" class="border-radius-100 " data-no-retina=""></a>
+                                            <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                             <div style="margin-top:24px;">
                                               <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
-                                              <div class="display-table height-100 width-100" style="color:black">
+                                              <div class="display-table  width-100" style="color:black">
                                                  <div class="display-table-cell icon-social-small ">
                                                     <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                                      <a href="{{$all_last_posts['post'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>
@@ -69,21 +69,21 @@
                                 </div> 
 														
                             </aside>
+							<br/> 
                     
                      <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
                             <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+
 						   
 						   <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin post_href_color_narek">
                                 <?php echo html_entity_decode($all_last_posts['post'][0]->html_code, ENT_QUOTES | ENT_XML1, 'UTF-8'); ?>
-                                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
-                                
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div> 
                                 
                                 <div class="author">
                                 <!-- Your share button code -->
                                 <iframe src="https://www.facebook.com/plugins/share_button.php?href={{url()->full()}}&layout=button&size=small&mobile_iframe=true&appId=292500478052220&width=94&height=20" width="94" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                                <?php 
-                                
+                                <?php                                 
                                     switch ( $all_last_posts['folder']) {
                                             case 'post':
                                             $dur = $all_last_posts['post'][0]->p_duratioan;
@@ -104,11 +104,12 @@
                                         default:
                                         $dur = 1;
                                             break;
-                                    }  
+                                    }
+                                    
                                     ?>                             
                             <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
                             </div>
-                            </div>
+
                            
                             @isset($all_last_posts['docs'])
                             <p style="color:crimson"> {{count($all_last_posts['docs'])>0?trans('text.hodvac'):''}}</p>
@@ -229,6 +230,7 @@
                           <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
                                 <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div> 
                          </div>      
+
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
                                 <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
@@ -354,6 +356,7 @@
     })    
 </script>
 <script src="/js/calen.js"></script> 
+<script src="/js/more_menu.js"></script>
 
 {!!  $all_last_posts['event']->script() !!}
 </body>

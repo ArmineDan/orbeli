@@ -46,7 +46,6 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $opinions = Opinion::load_all();
-                        //$opinions = DB::select("SELECT * FROM opinions");
                         $last_posts_vertical = Post::verticalVideo();
                         $menu = Post::menu();
                         $LeftComments=  Post::LeftComments();                       
@@ -206,9 +205,7 @@ class PageController extends Controller
                         $lng=Post::getLangId();
                         $calendar= Event::event($lang);
                         $menu = Post::menu(); 
-
                         $id=Opinion::get_opinion_id($date,$title);
-
         
                     if($id === NULL ){
                         $all_data=array(
