@@ -115,6 +115,70 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
         <link href="https://fonts.googleapis.com/css?family=Warnes" rel="stylesheet">
 
 
+    <!-- start share with FaceBook -->
+    <?php
+    if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
+    
+        switch ( $all_last_posts['folder']) {
+            case 'post':
+            $share_dur = $all_last_posts['post'][0]->p_duratioan;
+            break;
+            case 'opinion':
+            $share_dur = $all_last_posts['post'][0]->o_duration;
+            break;
+            case 'announcement':
+            $share_dur = $all_last_posts['post'][0]->a_duration;
+            break;
+            case 'news':
+            $share_dur = $all_last_posts['post'][0]->n_duration;
+            break;
+            case 'video':
+            $share_dur = $all_last_posts['post'][0]->duration;
+            break;
+    
+            default:
+            $share_dur = 1;
+            break;
+        }    
+    }
+    ?>
+    
+    
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale։alternate" content="ru_RU" />
+    <meta property="og:locale։alternate" content="hy_AM" />
+    
+    @isset($all_last_posts['post'])
+    
+    @isset($all_last_posts['folder'])
+    <meta property="og:url"         content="{{ url()->full() }}" />
+    <meta property="og:type"        content="article" />
+    <meta property="og:title"       content="{{ isset($all_last_posts['post'][0])? ($all_last_posts['post'][0]->title . ' - '. $share_dur .' '.trans('text.minute')):'default title'}}" />
+    <meta property="og:description" content="{{ isset($all_last_posts['post'][0])? strip_tags($all_last_posts['post'][0]->short_text): 'Your description for current page'}}" />
+    <meta property="og:image"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
+    @endisset
+    
+    
+    @if (str_contains(url()->full(), url( $all_last_posts['lang'].'/category/')) )
+    {{-- <link rel="stylesheet" href="{{url( $all_last_posts['lang'].'/category/')}}" /> --}}
+    <meta property="og:url"         content="{{ url()->full() }}" />
+    <meta property="og:type"        content="article" />
+    <meta property="og:title"       content="{{ $all_last_posts['post'][0]->title . ' - ' .$all_last_posts['post'][0]->p_duratioan.trans('text.minute') }}" />
+    <meta property="og:description" content="{{ strip_tags( $all_last_posts['post'][0]->short_text )}}" />
+    <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img) }}" />
+    @endif
+    
+    @endisset
+    
+    @isset($all_last_posts['main_post'])
+    <meta property="og:url"         content="{{ url()->full() }}" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="{{ $all_last_posts['main_post'][0]->title . ' - ' .$all_last_posts['main_post'][0]->p_duratioan.trans('text.minute') }}" />
+    <meta property="og:description" content="{{ strip_tags( $all_last_posts['main_post'][0]->short_text )}}" />
+    <meta property="og:image"       content="{{ asset($all_last_posts['main_post'][0]->img) }}" />
+    @endisset
+    <!-- end sharewith FaceBook -->
+
 
       <!--
         [if IE]>
