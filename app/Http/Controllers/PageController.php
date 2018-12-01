@@ -20,6 +20,8 @@ use App;
 use DB;
 use Session;
 
+use Illuminate\Support\Facades\Auth;
+
 
 class PageController extends Controller
 { 
@@ -36,7 +38,16 @@ class PageController extends Controller
     }
         public function index($locale='en') 
             {
-                $rules = ['en','ru','hy'];                      
+                $rules = ['en','ru','hy'];
+
+                // вход в админку если юзер залогинен //
+                if($locale === 'admin') {
+                    if (Auth::check()) {
+                        // Пользователь вошёл в систему...
+                        return redirect()->route('admin.index',App::getLocale());
+                    }   
+                }
+                
                     if(in_array($locale,$rules))
                     {
                                                
