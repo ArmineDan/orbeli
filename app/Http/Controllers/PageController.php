@@ -38,7 +38,7 @@ class PageController extends Controller
     }
         public function index($locale='en') 
             {
-                $rules = ['en','ru','hy'];
+                $rules = ['en','ru','hy'];                
 
                 // вход в админку если юзер залогинен //
                 if($locale === 'admin') {

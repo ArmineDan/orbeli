@@ -174,35 +174,18 @@
         </div>
         <hr>
 
-        {{-- <div class="row">
+        <div class="row">
             <div class="col-md-6">
-                <div class="list-group">
-                    <a href="{{ route('admin.category.create', $locale) }}" class="list-group-item active text-center">
-                        <span class="h4">Create Category</span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>        
-                    <a class="list-group-item" href="#">
-                        <h4 class="list-group-item-heading">First Category</h4>
-                        <p class="list-group-item-text">
-                            posts-count
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="list-group">
-                    <a href="{{ route('admin.post.create', $locale) }}" class="list-group-item active text-center">
-                        <span class="h4">Create Post</span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>        
-                    <a class="list-group-item" href="#">
-                        <h4 class="list-group-item-heading">First Post</h4>
-                        <p class="list-group-item-text">
-                            category
-                        </p>
-                    </a>
-                </div>
-            </div>
-        </div> --}}
+                <a href="{{ route('admin.notfound.edit', [$not_found[0], $locale]) }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-default">404 Page: 
+                            <span class="label label-success">{{ $not_found->count() }}</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>            
+        </div>
+        <hr>
+
     </div>
 @endsection
