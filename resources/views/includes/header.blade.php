@@ -111,11 +111,16 @@
                             
                                 
                 </div> 
-
-                <div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
+                {{--<div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
                         <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
                         <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
-                    </div> 
+                    </div> --}}
+
+                
+                <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right">
+                    <button id="srch" class="bg-transparent">
+                    <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
+                </div> 
                     
 
             <div class="col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
