@@ -97,7 +97,7 @@
                         <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> {{$item->duration." ".trans('text.minute')}}</span>
                 </div> 
                 </div>
-            </div>
+            </div><br>
             @endforeach  
         
 @endsection

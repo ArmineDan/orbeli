@@ -72,7 +72,7 @@
 							<br/> 
                     
                      <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
-                           <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
+                           <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
                             <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
 
 						   
