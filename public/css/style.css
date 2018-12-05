@@ -4054,10 +4054,10 @@ aside .latest-post li.aa figure {width: 179px;}
     #search_btn_for_blur_narek{right: 2%}
 	.video_a{
 		height:auto!important
-	}
-	
-	
+    }
 }
+
+
 
 @media(max-width: 648px){#figure_narek a img{width: 400px}}
 
@@ -4148,6 +4148,7 @@ aside .latest-post li.aa figure {width: 179px;}
 }
 
 
+
 .narek_all_rights_reserved{  
     background-color: #f2f2f2;
     font-size: 13px;
@@ -4208,7 +4209,7 @@ aside .latest-post li.aa figure {width: 179px;}
     /* border: 1px solid grey; */
     /*padding: 5px 10px 5px 15px;*/
     padding: 5px;
-    vertical-align: bottom;
+    vertical-alirgn: bottom;
     background: transparent;
     color: white;
     border:none;

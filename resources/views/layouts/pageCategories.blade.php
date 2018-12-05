@@ -8,7 +8,7 @@
         <div class="container">
            <div class="row">               
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom padding-left sm-padding-right">
-                            <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{$all_last_posts['id'] }}</span></div>
+                            <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span>{{ $all_last_posts['not_found']?"": $all_last_posts['id'] }}</span></div>
                         @yield('posts')
                         </main>
                         <aside class="col-md-3 col-sm-12 col-xs-12 pull-right">

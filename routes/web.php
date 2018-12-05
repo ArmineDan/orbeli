@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,10 +26,12 @@ if ((Request::segment(1) === 'admin' ) && in_array(Request::segment(2), ['en', '
   App::setLocale('hy');
 }
 
+$white_list = 'whitelist:my_group';
+
 $admin_rules = [
     'prefix'=>'admin/{locale}',
     'namespace'=>'Admin',
-    'middleware'=>['auth'], // ,'whitelist:my_group'
+    'middleware'=>['auth', $white_list], // ,'whitelist:my_group'
 ];
 
 Route::group( $admin_rules , function() {
@@ -50,11 +55,18 @@ Route::group( $admin_rules , function() {
   Route::resource('/about_us', 'About_usController', ['as'=>'admin']);
   Route::resource('/news', 'NewsController', ['as'=>'admin']);
   Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
+  Route::resource('/notfound', 'NotFoundController', ['as'=>'admin']);
+
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
 
+
+
 // Auth Routes
 Auth::routes();
+Route::group( ['middleware'=> $white_list], function() {
+  Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+});
 
 // Prevent reseting mail-pass and registration
 Route::match(['get', 'post'], 'password/reset', function(){
@@ -121,5 +133,10 @@ Route::get('/{locale}/tags/{tag_id}', 'LoadAll@posts_whith_current_tag');
 
 Route::get('{locale}/search/{s?}', 'SearchesController@getIndex')->where('s', '[\w\d]+');
 
-Route::get('/pagenotfound', ['as'=>'notfound', 'uses'=>'PageController@pagenotfound']);  
+Route::get('/pagenotfound', ['as'=>'notfound', 'uses'=>'PageController@pagenotfound']);
+
+/* for testing white-list */
+// Route::group( ['middleware'=>'whitelist:group2'], function() {
+//   Route::get('/{locale}/about_us', ['uses' =>'PageController@about_us']);
+// });
 

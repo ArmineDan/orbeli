@@ -87,6 +87,7 @@
       <p class="h5">For sharing video add "embed"-link
         <code>https://www.youtube.com/<mark>embed</mark>/SHo3fAZfXMk</code>
       </p>
+      <p class="h5">Video sizes - width: <kbd>100%</kbd>; height: <kbd>400px</kbd></p>
       <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input content">       
         Content comes here ...
       </textarea>

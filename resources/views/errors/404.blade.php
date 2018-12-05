@@ -23,7 +23,7 @@
 			</div>
 			<h2>404 - Page not found</h2>
 			<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
-			<a href="{{ url('/') . '/hy' }}">Go To Homepage</a>
+			<a href="{{ route('admin.index', App::getLocale()) }}">Go To Dashboard</a>
 		</div>
 	</div>
 </body>
