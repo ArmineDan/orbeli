@@ -66,27 +66,132 @@
     </tbody>
     </table>        
     @endisset
-
-    <form action="{{ route('admin.about_us.update', [$locale, $about_us]) }}" method="POST" class="form-horizontal">
+    <br>
+    <form action="{{ route('admin.about_us.update', [$locale, $about_uses]) }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
         {{ method_field('put') }}
         <input type="text" name="lang_id" value="{{$lang_id}}" hidden>
 
-        <label for="title">Title</label>
-        <input name="title" class="form-control" value="{{ $about_us['title'] }}">
+        <label for="first_section_img">First Section Img <code> 1920x450 </code> </label>
+            <input name="first_section_img" class="form-control" value="{{ $about_uses['first_section_img'] }}">
         <hr>
 
+        <label for="parallax_title"> Second Section Title </label>
+            <input name="parallax_title" class="form-control" value="{{ $about_uses['parallax_title'] }}">
+        <hr>
 
-        <label for="post_short_text">HTML Code</label>
-        <textarea name="html_code" id="post_short_text" cols="30" rows="10" class="form-control">       
-            {{ $about_us['html_code'] }}
-        </textarea>
+        <label for="parallax_text"> Second Section Text </label>
+            <textarea name="parallax_text" class="form-control">
+                {{ $about_uses['parallax_text'] }}
+            </textarea>
+        <hr>
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <label for="parallax_first_box_img"> First Box Img <code> 700x500 </code> </label>
+                <input name="parallax_first_box_img" class="form-control" value="{{ $about_uses['parallax_first_box_img'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="parallax_second_box_img"> Second Box Img <code> 700x500 </code> </label>
+                <input name="parallax_second_box_img" class="form-control" value="{{ $about_uses['parallax_second_box_img'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="parallax_third_box_img"> Third Box Img <code> 700x500 </code> </label>
+                <input name="parallax_third_box_img" class="form-control" value="{{ $about_uses['parallax_third_box_img'] }}">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="parallax_first_box_title"> Firts Box Title </label>
+                <input name="parallax_first_box_title" class="form-control" value="{{ $about_uses['parallax_first_box_title'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="parallax_second_box_title"> Second Box Title </label>
+                <input name="parallax_second_box_title" class="form-control" value="{{ $about_uses['parallax_second_box_title'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="parallax_third_box_title"> Third Box Title </label>
+                <input name="parallax_third_box_title" class="form-control" value="{{ $about_uses['parallax_third_box_title'] }}">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+                <div class="col-md-4">
+                    <label for="parallax_first_box_text"> Firts Box Text </label>
+                    <textarea name="parallax_first_box_text" class="form-control" rows="5">
+                        {{ $about_uses['parallax_first_box_text'] }}
+                    </textarea>
+
+                </div>
+    
+                <div class="col-md-4">
+                    <label for="parallax_second_box_text"> Second Box Text </label>
+                    <textarea name="parallax_second_box_text" class="form-control" rows="5">
+                        {{ $about_uses['parallax_second_box_text'] }}
+                    </textarea>
+                </div>
+    
+                <div class="col-md-4">
+                    <label for="parallax_third_box_text"> Third Box Text </label>
+                    <textarea name="parallax_third_box_text" class="form-control" rows="5">
+                        {{ $about_uses['parallax_third_box_text'] }}
+                    </textarea>
+                </div>
+                
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="video_text"> Video Text </label>
+                <input name="video_text" class="form-control" value="{{ $about_uses['video_text'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="video_img"> Video Img <code> 1920x1100 </code> </label>
+                <input name="video_img" class="form-control" value="{{ $about_uses['video_img'] }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="video_url"> Video Url </label>
+                <input name="video_url" class="form-control" value="{{ $about_uses['video_url'] }}">
+            </div>
+
+        </div>
+
+        <hr>
+
+        <label for="end_title"> Third Section Title </label>
+        <input name="end_title" class="form-control" value="{{ $about_uses['end_title']}}">
+
+        <hr>
+
+        <label for="end_text"> Third Section Text </label>
+            <textarea name="end_text" id="post_short_text" cols="30" rows="10" class="form-control">       
+                {{ $about_uses['end_text'] }}
+            </textarea>
         <br>
 
         <div class="well">
-            <button class="btn btn-success" style="width:130px">Update</button>
+            <button type="submit" class="btn btn-info" style="width:150px">Update</button>
         </div>
-        <hr>
+
     </form>
 
 </div>

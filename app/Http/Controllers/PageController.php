@@ -19,7 +19,6 @@ use App\Event;
 use App;
 use DB;
 use Session;
-
 use Illuminate\Support\Facades\Auth;
 
 use App\NotFound;
@@ -37,22 +36,25 @@ class PageController extends Controller
         public function index($locale='en') 
         {
             $rules = ['en','ru','hy'];
-
-            // вход в админку если юзер залогинен //
-            if($locale === 'admin') {
+            // вход в админку если юзер залогинен //                 
+             if($locale === 'admin') {
                 if (Auth::check()) {
-                    // Пользователь вошёл в систему...
-                    return redirect()->route('admin.index',App::getLocale());
-                }   
-            }
-            
+                 // Пользователь вошёл в систему...
+                 return redirect()->route('admin.index',App::getLocale());
+                }
+              }
+
             if(in_array($locale,$rules))
             {
                 Session::put('locale',$locale);
                 App::setLocale($locale);                        
                 $lang= App::getLocale();
                 $lng=Post::getLangId();
-
+                $calendar= Event::event($lang);
+                $opinions = Opinion::load_all();
+                $last_posts_vertical = Post::verticalVideo();
+                $menu = Post::menu();
+                $LeftComments=  Post::LeftComments(); 
                 $calendar= Event::event($lang);
                 $opinions = Opinion::load_all();
                 $last_posts_vertical = Post::verticalVideo();
@@ -489,6 +491,7 @@ class PageController extends Controller
                         "author"=>$author,
                     );  
                     // return $the_same_posts;
+
                     return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
                 }
             }

@@ -2,6 +2,7 @@
 @include('../includes.links')
     <body>
             @include('../includes.facebook_script' )
+			
         <header>
             @include('includes.header')
             </header>
@@ -21,7 +22,7 @@
                                 <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>{{trans('text.author')}}</span></div>
                                @if ($all_last_posts['folder']==='post')
                                    @for ($i = 0; $i < count($all_last_posts['author']); $i++)
-                                   <div class="col-md-12 col-sm-6 col-xs-6 auth" >
+                                   <div class="col-md-12 col-sm-6 col-xs-6 {{count($all_last_posts['author'])>1?'more_auth':'auth'}}">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
                                                <img src="{{$all_last_posts['author'][$i]->img}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                                <div style="margin-top:24px;">
@@ -43,7 +44,7 @@
                                    @endfor                                  
                                            
                                    @else
-                                      <div  class=" col-md-12 col-sm-6 col-xs-6" style="text-align:center;">
+                                      <div  class=" col-md-12 col-sm-6 col-xs-6 auth" style="text-align:center;">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
                                             <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                             <div style="margin-top:24px;">
@@ -56,7 +57,7 @@
                                                    <a href="{{$all_last_posts['post'][0]->linkedin}}"  target="_blank"><i class="fa fa-linkedin"></i></a>
                                                  <a  id="{{$all_last_posts['post'][0]->author_id}}" class="take_mail" href="javascript:void(0);"><i class="fa fa-envelope"></i></a>
                                                    <a href="#">
-                                                   <div id="em_status{{$all_last_posts['post'][0]->author_id}} "></div>
+                                                   <div id="em_status{{$all_last_posts['post'][0]->author_id}}"></div>
                                                    </a>
                                                  </div>
                                              </div> </div>
@@ -72,7 +73,7 @@
 							<br/> 
                     
                      <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
-                           <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="text-indent:22px; padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
+                           <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
                             <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
 
 						   
@@ -83,7 +84,8 @@
                                 <div class="author">
                                 <!-- Your share button code -->
                                 <iframe src="https://www.facebook.com/plugins/share_button.php?href={{url()->full()}}&layout=button&size=small&mobile_iframe=true&appId=292500478052220&width=94&height=20" width="94" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                                <?php                                 
+                              <a class="twitter-share-button"  href="https://twitter.com/intent/tweet">Tweet</a>
+							   <?php                                 
                                     switch ( $all_last_posts['folder']) {
                                             case 'post':
                                             $dur = $all_last_posts['post'][0]->p_duratioan;
@@ -163,7 +165,7 @@
                                  <br/>
                                 
                                  <div id="narek_db_comments"></div>                                
-                                 <center id="more_n" class="{{count($all_last_posts['comments'])-5}}" 
+                                 <center id="more_n" class="{{count($all_last_posts['comments'])>5?count($all_last_posts['comments'])-5:''}}" name="{{$all_last_posts['id']}}"
                                  style="display:{{count($all_last_posts['comments'])-5<0 ? 'none':''}}" ><i class="fa fa-plus" style="font-size: 25px;padding-top: 30px;cursor: pointer" id="ns_click_plus_com_btn"></i></center>
                                   </div>
                            @endisset                     
@@ -247,7 +249,7 @@
                                     </div>
                                 </div> 
                                 @for ($i = 0; $i < count($all_last_posts['same_posts']); $i++)
-                                @isset($all_last_posts['same_posts'][$i])
+                               
                                 <div class="col-md-3 col-sm-6 col-xs-12 last-paragraph-no-margin sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn" style="visibility: hidden; animation-name: none;">
                                      <div class="blog-post blog-post-style1 xs-text-center">
                                          <div class="blog-post-images overflow-hidden margin-25px-bottom sm-margin-20px-bottom">
@@ -256,14 +258,14 @@
                                              </a>
                                          </div>
                                          <div class="post-details">
-                                             <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$all_last_posts['same_posts'][$i][0]->date}} |  <a href="#" class="text-medium-gray">{{substr($all_last_posts['same_posts'][$i][0]->name, 0, 2) .'. '. $all_last_posts['same_posts'][$i][0]->lastname}}</a></span>
+                                             <span class="post-author text-extra-small text-medium-gray text-uppercase display-block margin-10px-bottom xs-margin-5px-bottom">{{$all_last_posts['same_posts'][$i][0]->date}}</span>
                                          <a href="{{url( $all_last_posts['lang'].'/'.$all_last_posts['folder'].'/'.$all_last_posts['same_posts'][$i][0]->date.'/'.urlencode($all_last_posts['same_posts'][$i][0]->title))}}"  class="post-title text-medium text-extra-dark-gray width-100 display-block sm-width-100" style="font-weight:bold;height:73px">{!!str_limit($all_last_posts['same_posts'][$i][0]->title, 30)!!}</a>
                                              <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb sm-margin-15px-tb"></div>
                                              <p class="width-90 xs-width-100">{!!str_limit($all_last_posts['same_posts'][$i][0]->short_text, 30)!!}</p> 
                                          </div>
                                      </div>
                                  </div> 
-                                 @endisset                               
+                                                      
                                 @endfor 
                          </div>          
                         @endisset
@@ -287,14 +289,18 @@
 <script>
     
     $("#html_div img").click(function(){
-        $("#see_all_images_ns img").attr("src",$(this).attr("src"))
-        $("#see_all_images_ns img").fadeIn(80)
-        $("#see_all_images_ns").show(10)
-    })
+		$("#see_all_images_ns").removeClass('fadeOut').addClass('animated fadeIn').css('display', 'block')
+        $("#see_all_images_ns img").attr("src",$(this).attr("src")).addClass('animated zoomIn').css('display', 'block')
+        
+    })		
 
     $("#see_all_images_ns").click(function(){
-        $("#see_all_images_ns").hide(50);
-        $("#see_all_images_ns img").fadeOut(20)
+		$("#see_all_images_ns img").removeClass('zoomIn').addClass('bounceOutUp')
+		
+      setTimeout(function(){
+		$("#see_all_images_ns").removeClass('fadeIn').addClass('animated fadeOut').css('display', 'none')
+          
+	  },800)
     })
    
    

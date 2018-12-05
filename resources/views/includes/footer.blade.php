@@ -1,4 +1,4 @@
-<footer class="footer-classic-dark bg-extra-dark-gray  xs-padding-30px-bottom">
+<footer class="footer-classic-dark bg-extra-dark-gray1 xs-padding-30px-bottom">
     <div class="bg-dark-footer padding-50px-tb xs-padding-30px-tb">
         <div class="container">
             <div class="row equalize xs-equalize-auto" style="color: white;">
@@ -22,8 +22,8 @@
                         <span class="alt-font margin-20px-right">{{trans('text.footer_third')}}</span>
                         <div class="social-icon-style-8 display-inline-block vertical-align-middle">
                             <ul class="small-icon no-margin-bottom">
-                                <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a class="twitter text-white" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="facebook text-white" href="https://www.facebook.com/Orbeli-Center-779924719032716/" target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a class="twitter text-white" href="https://twitter.com/OrbeliCenter" target="_blank"><i class="fa fa-twitter"></i></a></li>
                             </ul>
                         </div>
                        
@@ -36,9 +36,8 @@
             </div!-->
         </div>
     </div>
-
    <div class="narek_all_rights_reserved">
-        <span class="col-md-9">&COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}} </span>
-		<span class="col-md-3">{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
+        <span id="footer_ns_hamar_1">&COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}} </span><br id="ns_br_1">
+		<span id="footer_ns_hamar_2">{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
    </div>
 </footer>

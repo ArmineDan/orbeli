@@ -71,16 +71,16 @@ class AuthorController extends Controller
         ->where ('lang_id','=', $lng)
         ->get();
         $a_last_posts = Author::authors_posts($id);
-       
+       //return $a_last_posts[0]->posts;
         $all_last_posts = array(
         'authors' => $about_authors,
         'menu'=>$menu, 
         "event"=> $calendar,
         "lang"=> $lang,
-        "a_posts" => $a_last_posts
+        "a_posts" =>  $a_last_posts[0]->posts
          );
 
-//return count($a_last_posts);
+       //return  $all_last_posts['a_posts'];
        return  view('about_me',compact('all_last_posts'));
     
         }
@@ -104,7 +104,9 @@ class AuthorController extends Controller
         $menu = Post::menu();
         $calendar= Event::event($lang);     
         $categories = Post :: categories();  
-        $all_posts = Author::all_authors_posts($auth_id,'posts');
+		//$all_posts =  Author::with('posts')->where('id','=',$auth_id)->orderByRaw('id DESC')->paginate(3);  
+	//return $all_posts->posts;
+       $all_posts = Author::all_authors_posts($auth_id,'posts');
         $all_videos = Author::all_authors_posts($auth_id,'videos');
         $all_announs = Author::all_authors_posts($auth_id,'announcements');
         $all_news = Author::all_authors_posts($auth_id,'news');

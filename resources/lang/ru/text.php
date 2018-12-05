@@ -38,7 +38,7 @@ return[
  "search"=>"Поиск",
  "search_result"=>"Результат поиска",
  "footer_first" => "ORBELI - Центр аналитических исследований",
- "footer_second" => "Изготовитель` ",
+ "footer_second" => "Создано` ",
  "footer_third" => "Социальные сети",
  "footer_webex" => "Webex Technologies LLC",
  "footer_reserved" => "Все права защищены",

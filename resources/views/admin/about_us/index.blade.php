@@ -15,21 +15,26 @@
             <thead class="thead-dark">
                 <tr>
                   <th> Row </th>
-                  <th> Title </th>
-                  <th> Content </th>
-                  <th> Video </th>
-                  <th> Parallax Boxes </th>
-                  <th> Short Text </th>
-                  <th> About_ </th>
+                  <th> First Section Img </th>
+                  <th> Parallax Title </th>
+                  <th> Video Img </th>
+                  <th> End Title </th>
                   <th class="text-center"> Edit </th>
                 </tr>
               </thead>
-            @foreach ($about_us as $item)
+            @foreach ($about_uses as $item)
               <tbody>
                 <tr>
                   <th>{{$item->id}}</th>
-                  <td>{{$item->title}}</td>
-                  <td>{{ mb_substr($item->html_code, 0, 94,"UTF-8") . ' ... ' }}</td>
+
+                  <td><img src="{{$item->first_section_img}}" width="120"></td>
+
+                  <td> {{$item->parallax_title}} </td>
+
+                  <td> <img src="{{$item->video_img}}" width="120"> </td>
+
+                  <td> {{$item->end_title}} </td>
+
                   <td class="text-center">
                     <a href="{{route('admin.about_us.edit', [$item->id,$locale])}}" class="cat-edit btn btn-default">
                       <i class="glyphicon glyphicon-edit"></i> 

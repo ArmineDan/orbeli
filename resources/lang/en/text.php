@@ -38,7 +38,7 @@ return[
  "search"=>"Enter your keyword",
  "search_result"=>"Search results",
  "footer_first" => "ORBELI - Analytical Research Center",
- "footer_second" => "Manufacturer`",
+ "footer_second" => "Created by`",
  "footer_third" => "Social networks",
  "footer_webex" => "Webex Technologies LLC",
  "footer_reserved" => "All Rights Reserved",

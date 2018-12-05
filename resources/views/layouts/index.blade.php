@@ -39,7 +39,7 @@
                     <main class="col-md-9 col-sm-12 col-xs-12 left-sidebar pull-left sm-margin-60px-bottom xs-margin-40px-bottom padding-right sm-padding-left">
                        <!-- start post item --> 
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
-                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><a href="{{url($all_last_posts['lang'].'/opinions')}}" ><span>{{trans('text.opinions')}} <i class="fa fa-arrow-right"></i></span></a></div>
+                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title xs-text-left"><a href="{{url($all_last_posts['lang'].'/opinions')}}" ><span>{{trans('text.opinions')}} <i class="fa fa-arrow-right"></i></span></a></div>
                                 @yield('comments')                                              
                         </div>
                         <!-- end post item -->                      
