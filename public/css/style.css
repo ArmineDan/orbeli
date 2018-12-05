@@ -4116,14 +4116,7 @@ aside .latest-post li.aa figure {width: 179px;}
 .moree{ 
 	position: absolute!important; right: 3px;z-index: 1000;
 }
-.narek_all_rights_reserved{  
-    width: 100%;
-    background-color: #f2f2f2;
-    text-align: center;
-    font-size: 13px;
-    padding: 10px;
-	height:50px;
-}
+
 .auth{
 	text-align:center;
 	height:-webkit-fill-available;
@@ -4154,6 +4147,62 @@ aside .latest-post li.aa figure {width: 179px;}
 	}
 }
 
+
+.narek_all_rights_reserved{  
+    background-color: #f2f2f2;
+    font-size: 13px;
+    padding: 10px;
+	height:50px;
+}
+
+#footer_ns_hamar_1{
+    position: absolute;
+    right: 40%
+}
+
+#footer_ns_hamar_2{
+    position: absolute;
+    right: 1%
+}
+
+#ns_br_1{
+    display: none
+}
+
+@media(max-width: 965px){
+    #footer_ns_hamar_1{
+        right: 60%
+    }
+}
+
+@media(max-width: 715px){
+    #ns_br_1{
+        display: block
+    }
+
+    #footer_ns_hamar_1{
+        right: 150px
+    }
+    
+    #footer_ns_hamar_2{
+        right: 170px
+    }
+}
+
+@media(max-width: 466px){
+
+    #footer_ns_hamar_1{
+        right: 50px
+    }
+    
+    #footer_ns_hamar_2{
+        right: 60px
+    }
+}
+
+
+
+
 #srch {
     display: inline-block;
     /* border: 1px solid grey; */
@@ -4174,4 +4223,5 @@ aside .latest-post li.aa figure {width: 179px;}
         margin: 0 10px;
     }
 }
+
 
