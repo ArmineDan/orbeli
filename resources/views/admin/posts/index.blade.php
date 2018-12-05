@@ -25,8 +25,16 @@
               @forelse ($posts as $post)           
                 <tr>
                     <td>{{$post->id}}</td>
-                    <td>{{$post->title}}</td>
-                    <td>{{$post['getCategory']->name}}</td>
+                    <td>{{ $post->title }}</td>
+                    <td
+                      @if($post['getCategory'] == null)
+                        class="text-center alert alert-danger"
+                      @else
+                        class="text-center"
+                      @endif>
+                    	{{$post['getCategory']->name ?? 'no-category'}}
+                    </td>
+                    {{-- <td>{{$post['getCategory']->name}}</td> --}}
                     <td>{{$post->view}}</td>
                     <td>{{$post->date ??'no-date'}}</td>
                     @if ($post->status == 'main')
