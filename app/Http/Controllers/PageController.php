@@ -92,7 +92,7 @@ class PageController extends Controller
                     "parralax" => $parralax,
                     "contact" => $contact,
                     "author"=> $author,
-                    "notFound" => $notFound,
+                   // "notFound" => $notFound,
                 );
                 // return  $all_last_posts;
                 return  view('index',compact('all_last_posts'));
