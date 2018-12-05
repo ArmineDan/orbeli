@@ -1,4 +1,4 @@
-<footer class="footer-classic-dark bg-extra-dark-gray  xs-padding-30px-bottom">
+<footer class="footer-classic-dark bg-extra-dark-gray1 xs-padding-30px-bottom">
     <div class="bg-dark-footer padding-50px-tb xs-padding-30px-tb">
         <div class="container">
             <div class="row equalize xs-equalize-auto" style="color: white;">
@@ -37,8 +37,10 @@
         </div>
     </div>
 
-   <div class="narek_all_rights_reserved">
-        <span class="col-md-9">&COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}} </span>
-		<span class="col-md-3">{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
-   </div>
+	
+   <div class="narek_all_rights_reserved bg-gray_footer">    
+        <span>&COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}} </span>
+		<span>{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
+  </div></div>
+  </div>
 </footer>

@@ -1,58 +1,51 @@
-    var y = 0;
+    var y = 5;
     var x = 0;
 
     $("#ns_click_plus_com_btn").click(function(){
-        y+=5;
-        x++;      
+		var post_id=$(this).parent().attr('name')
+           
         let count_comm = $(this).parent().attr('class')%5;
         if(count_comm == 0){            
           let count = $(this).parent().attr('class')/5;
             if(x <= count){
-                $.post(
+				  $.post(
                     "/php/comment.php", 
-
-                    {offset: y}, 
-
+                    {offset: y, id:post_id}, 
                     function(result){
                         $("#narek_db_comments").append(result);
-                        count_comm-5;
+                        y+=5;
+					   x++;
+					   if(x == count){
+						 $("#more_n").hide(1000);
+						}
                     }
                 )
-            }
-            else{
-                $("#more_n").hide(1000);
-            }
+			}
+           
+		   
         }
         else {
-			console.log("aaaaaaaaaaaa")
-                
-          let count = $(this).parent().attr('class')/5;
-          let flot=Math.floor(count)+1;
-          console.log(flot ,"flot");
-		  console.log(x,"xxx");
-		  console.log(y,"yyy");
-		  
+		  let count = $(this).parent().attr('class')/5;
+          let flot=Math.floor(count)+1;           
             if(x <= flot){
                 $.post(
                     "/php/comment.php", 
-
-                    {offset: y}, 
-
+                    {offset: y, id:post_id}, 
                     function(result){
                         $("#narek_db_comments").append(result);
-                        count_comm-5;
+					   y+=5;
+					   x++;
+					   if(x == flot){
+						 $("#more_n").hide(1000);
+						}
                     }
                 )
-            }
-            else{
-                $("#more_n").hide(1000);
-             }
-
-            }
+            }           
+        }
     })
 
 
-$(".take_mail").click(function(){
+$(".take_mail").click(function(){	
             var id=$(this).attr('id')
             $.post( "/php/get_e_l.php", {id:id},function( data ) {
             $( "#em_status"+id).html( data );
