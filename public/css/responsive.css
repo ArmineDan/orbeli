@@ -3095,6 +3095,14 @@ aside .latest-post li.aa {
     h5 {font-size:30px; line-height:28px; padding: 50px}
     h6 {font-size:18px; line-height:23px}
 
+	.height-82px {
+    height: 47px;
+    font-weight: bold;
+     }
+	 .height-317px {
+    height: auto;
+   
+     }
     /* opacity */
     .xs-opacity1 {opacity:.1}
     .xs-opacity2 {opacity:.2}

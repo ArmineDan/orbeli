@@ -3,8 +3,9 @@
     <center>
     <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
         <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
-    </form>
-    <i class="fa fa-search" id="search_btn_for_blur_narek"></i>
+   
+   <button type="submit" style="display: contents;"><i class="fa fa-search" id="search_btn_for_blur_narek" ></i></button>
+	 </form>
     </center>
 </div>
 
@@ -112,10 +113,18 @@
                                 
                 </div> 
 
-                <div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
+                {{--<div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
                         <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
                         <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
-                    </div> 
+                    </div>--}}
+
+                <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right">
+                    <button id="srch" class="bg-transparent">
+                    <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
+                </div> 
+
+
+
                     
 
             <div class="col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">

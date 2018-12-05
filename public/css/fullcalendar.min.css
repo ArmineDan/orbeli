@@ -506,7 +506,7 @@ a.fc-more:hover {
 }
 
 .fc-basic-view tbody .fc-row {
-    min-height: 4em
+    min-height: 2em
 }
 
 .fc-row.fc-rigid {

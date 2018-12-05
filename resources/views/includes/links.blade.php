@@ -46,12 +46,13 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 <meta property="og:locale։alternate" content="hy_AM" />
 @isset($all_last_posts['post'])
 
-@isset($all_last_posts['folder'])
+@isset($all_last_posts['folder']) 
 <meta property="og:url"         content="{{ url()->full() }}" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="{{ isset($all_last_posts['post'][0])? ($all_last_posts['post'][0]->title . ' - '. $share_dur .' '.trans('text.minute')):'default title'}}" />
 <meta property="og:description" content="{{ isset($all_last_posts['post'][0])? strip_tags($all_last_posts['post'][0]->short_text): 'Your description for current page'}}" />
-<meta property="og:image"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
+<meta name="twitter:image:src"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
+
 @endisset
 
 
@@ -62,6 +63,7 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 <meta property="og:title"       content="{{ $all_last_posts['post'][0]->title . ' - ' .$all_last_posts['post'][0]->p_duratioan.trans('text.minute') }}" />
 <meta property="og:description" content="{{ strip_tags( $all_last_posts['post'][0]->short_text )}}" />
 <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img) }}" />
+
 @endif
 
 @endisset
@@ -72,7 +74,9 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 <meta property="og:title"       content="{{ $all_last_posts['main_post'][0]->title . ' - ' .$all_last_posts['main_post'][0]->p_duratioan.trans('text.minute') }}" />
 <meta property="og:description" content="{{ strip_tags( $all_last_posts['main_post'][0]->short_text )}}" />
 <meta property="og:image"       content="{{ asset($all_last_posts['main_post'][0]->img) }}" />
+ 
 @endisset
+
 
 
        
@@ -142,42 +146,6 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
         }    
     }
     ?>
-    
-    
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale։alternate" content="ru_RU" />
-    <meta property="og:locale։alternate" content="hy_AM" />
-    
-    @isset($all_last_posts['post'])
-    
-    @isset($all_last_posts['folder'])
-    <meta property="og:url"         content="{{ url()->full() }}" />
-    <meta property="og:type"        content="article" />
-    <meta property="og:title"       content="{{ isset($all_last_posts['post'][0])? ($all_last_posts['post'][0]->title . ' - '. $share_dur .' '.trans('text.minute')):'default title'}}" />
-    <meta property="og:description" content="{{ isset($all_last_posts['post'][0])? strip_tags($all_last_posts['post'][0]->short_text): 'Your description for current page'}}" />
-    <meta property="og:image"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
-    @endisset
-    
-    
-    @if (str_contains(url()->full(), url( $all_last_posts['lang'].'/category/')) )
-    {{-- <link rel="stylesheet" href="{{url( $all_last_posts['lang'].'/category/')}}" /> --}}
-    <meta property="og:url"         content="{{ url()->full() }}" />
-    <meta property="og:type"        content="article" />
-    <meta property="og:title"       content="{{ $all_last_posts['post'][0]->title . ' - ' .$all_last_posts['post'][0]->p_duratioan.trans('text.minute') }}" />
-    <meta property="og:description" content="{{ strip_tags( $all_last_posts['post'][0]->short_text )}}" />
-    <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img) }}" />
-    @endif
-    
-    @endisset
-    
-    @isset($all_last_posts['main_post'])
-    <meta property="og:url"         content="{{ url()->full() }}" />
-    <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="{{ $all_last_posts['main_post'][0]->title . ' - ' .$all_last_posts['main_post'][0]->p_duratioan.trans('text.minute') }}" />
-    <meta property="og:description" content="{{ strip_tags( $all_last_posts['main_post'][0]->short_text )}}" />
-    <meta property="og:image"       content="{{ asset($all_last_posts['main_post'][0]->img) }}" />
-    @endisset
-    <!-- end sharewith FaceBook -->
 
 
       <!--
@@ -185,4 +153,16 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
             <script src="js/html5shiv.js"></script>
         <![endif]-->
         <script src='https://www.google.com/recaptcha/api.js'></script>
+		<script>
+		twttr.widgets.createShareButton(
+  "https:\/\/dev.twitter.com\/web\/tweet-button",
+  document.getElementById("tweet-container"),
+  {
+    size: "large",
+    text: "custom share text",
+    hashtags: "example,demo",
+    via: "twitterdev",
+    related: "twitterapi,twitter"
+  }
+)</script>
     </head>

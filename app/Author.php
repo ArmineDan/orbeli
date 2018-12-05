@@ -3,6 +3,7 @@
 namespace App;
 use App;
 use DB;
+use App\Post;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,14 +17,9 @@ class Author extends Model
         $lang= App::getLocale();
         $lng = DB::table('langs')
         ->where('lng','=',$lang)
-        ->value('id');      
-      $authors_posts = DB::table('posts')
-        ->select('*')
-        ->where ('author_id','=', $id)
-        ->where ('lang_id','=', $lng)
-        ->orderBy('date','desc')
-        ->limit(3)
-        ->get();   
+        ->value('id'); 
+      $authors_posts =  Author::with('posts')->where('id','=',$id)->limit(3)->get();   
+		
         return $authors_posts;
     } 
     
@@ -43,7 +39,7 @@ class Author extends Model
 
     // Обратные поли-отношения Авторов многие-ко-многим
     public function posts() {
-        return $this->morphedByMany('App\Post', 'authorable');
+        return $this->morphedByMany('App\Post', 'authorable')->orderBy('posts.id','DESC');
     }
 
     public function videos() {
