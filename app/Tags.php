@@ -44,15 +44,17 @@ class Tags extends Model
               $tags = Post::find($post_id)->tagArray;       
               $post_idies=[];
               for ($i=0; $i < count($load_popular_tag) ; $i++) {                    
-                    $id=$load_popular_tag[$i]->id;
+                    $id=$load_popular_tag[$i]->id;					
                     $current_tags = Post::find($id)->tagArray;
                     $hatym = array_intersect($tags,$current_tags);
                     if(count($hatym)>=3){              
                       array_push($post_idies,$id);
                     }           
                 }    
+				
+				
                 $posts=array("posts"=>$post_idies, "tags"=>$tags);
-              return $posts;
+             return $posts;
                }  
               elseif ($type == 'Video')
                 {
@@ -118,14 +120,16 @@ class Tags extends Model
           {  
              $post=[];                   
              $load_popular_tag = DB::select("SELECT id FROM $db WHERE id !='$post_id' ");
+			
              $posts = Tags:: get_intersect_status($post_id,$type,$load_popular_tag);  
-
-
+               
+          //return $posts;
               if(count($posts['posts'])>0)
               { 
                 $not_in = implode(",", $posts['posts']);
-              
-                
+             //return  $not_in;
+			
+                 
                 
                  for ($i=0; $i < count($posts['posts']) ; $i++) { }
 
@@ -143,22 +147,28 @@ class Tags extends Model
                           break;
                         }
                       }
+					  
+					  
 
                       if(4-count($posts['posts'])>0){
                                   $pull_tags='';
                                   for ($i=0; $i < 4-count($posts['posts']); $i++){ 
                                     
-                                    $r=$posts['tags'][$i];                                    
-                                    $row = DB::select("SELECT `taggable_tags`.tag_id from `taggable_tags` WHERE `taggable_tags`.`name`= '$r' ");
+                                    $r=$posts['tags'][$i];   
+                              $row = DB::select("SELECT `taggable_tags`.tag_id from `taggable_tags` WHERE `taggable_tags`.`name`= '$r' ");
                                     
                                     if(count($row)>0){
                                           $pull_tags.=$row[0]->tag_id.',';    
                                         }                                         
                                       } 
+									 
                                                 
-                                    $pull_tag = substr($pull_tags, 0, -1); //having COUNT(`taggable_taggables`.tag_id) = 2                              
-                                    $roww =DB::select("SELECT $db.`id` from $db inner join `taggable_taggables` on $db.`id` = `taggable_taggables`.`taggable_id`  where  `taggable_taggables`.`taggable_id` not in ($not_in)  AND  `taggable_taggables`.`taggable_type` LIKE '%$type' AND  `taggable_taggables`.`tag_id` in ($pull_tag) group by $db.`id` ");
-                                    
+                                    $pull_tag = substr($pull_tags, 0, -1); //having COUNT(`taggable_taggables`.tag_id) = 2 
+									
+                                    $roww =DB::select("SELECT $db.`id` from $db inner join `taggable_taggables` on $db.`id` = `taggable_taggables`.`taggable_id`  where  `taggable_taggables`.`taggable_id` not in ($not_in)  AND  `taggable_taggables`.`taggable_type` LIKE '%$type' AND  `taggable_taggables`.`tag_id` in ($pull_tag)  And `taggable_taggables`.`taggable_id`!= $post_id group by $db.`id` ");
+                                     //return $roww;
+					                 //die();									
+                           
                                     for ($i=0; $i < count($roww); $i++) { 
                                       $postss = DB::table($db)
                                       ->select($db.'.*', 'authors.name', 'authors.lastname')                       

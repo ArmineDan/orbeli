@@ -5768,7 +5768,7 @@ tp-caption.Team-Thumb,
         width: 115px!important;
     }
     iframe.twitter-share-button {
-        display: none;
+        //display: none;
     }
     .fb-share-button.fb_iframe_widget iframe {
         display: none;

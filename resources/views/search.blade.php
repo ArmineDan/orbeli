@@ -13,10 +13,10 @@
             </div>
             <div class="blog-text col-md-8 display-table no-padding" style="height: 238px;">
                 <div class="display-table-cell vertical-align-middle">
-                    <div class="content margin-20px-bottom sm-no-padding-left">
+                    <div class="content margin-20px-bottom padding-left">
                          <a href="{{url($post->lng.'/post/'.$post->date.'/'.urlencode($post->title))}}"  class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small search_link">{{$post->title}}</a>
-                         <p class="no-margin width-95">
-
+                         <p class="no-margin width-95"> 
+ 
                                 @php
                                 $show_symbols_size=600;
                                 $longt=strip_tags($post->html_code);
@@ -32,13 +32,13 @@
                                         $show_text = $long_desc;
                                     }
                                    // print_r($devide_text
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>............".mb_substr($show_text, 1, -1)."...</div>";
                                 @endphp
                                 
                                 @else
                                 @php
                                     $show_text = substr($long_desc, $skizb, $show_symbols_size);
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>..............".mb_substr($show_text, 1, -1)."...</div>";
                                 @endphp
                             @endif
                           

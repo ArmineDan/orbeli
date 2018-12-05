@@ -3,8 +3,9 @@ require "con1.php";
 mysqli_set_charset($con,"utf8");
 
 $y = mysqli_real_escape_string($con, $_POST['offset']);
+$id = mysqli_real_escape_string($con, $_POST['id']);
 
-$sql = "SELECT * FROM comments  WHERE approved=1 LIMIT 5 OFFSET $y";
+$sql = "SELECT * FROM comments  WHERE approved=1  and commentable_id='$id' LIMIT 5 OFFSET $y";
 
 $ardyunq = mysqli_query($con, $sql);
 

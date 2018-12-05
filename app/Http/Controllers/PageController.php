@@ -19,7 +19,7 @@ use App\Event;
 use App;
 use DB;
 use Session;
-
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 { 
@@ -36,7 +36,15 @@ class PageController extends Controller
     }
         public function index($locale='en') 
             {
-                $rules = ['en','ru','hy'];                      
+                $rules = ['en','ru','hy'];
+
+		if($locale === 'admin') {
+		  if (Auth::check()) {
+			 // Пользователь вошёл в систему...
+			 return redirect()->route('admin.index',App::getLocale());
+		  }
+		}
+
                     if(in_array($locale,$rules))
                     {
                                                
@@ -383,7 +391,8 @@ class PageController extends Controller
                     $docs = Post::find($id)->getDocuments()->get();
                     $tags = Post::find($id)->tagArray;
                     DB::table('posts')->where('id','=',$id)->increment('view');                                          
-                    $the_same_posts = Tags::the_same_posts($id,'Post','posts'); 
+                    $the_same_posts = Tags::the_same_posts($id,'Post','posts');
+  			
             $all_data=array("lang"=> $lang,
             "event"=> $calendar,
             "post"=>$post_with_given_dateANDtitle,
@@ -399,7 +408,8 @@ class PageController extends Controller
                 "author"=>$author
 
                          );  
-          // return $the_same_posts;
+         //return $the_same_posts; 
+		 //die();
                     return view('openPostWith_dateANDtitle')-> with('all_last_posts',$all_data);
 
 
