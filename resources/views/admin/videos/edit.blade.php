@@ -95,6 +95,7 @@
 
         <label for="post_full_text">Full Content</label>
         <p>For sharing video add "embed"-link<code>https://www.youtube.com/<mark>embed</mark>/SHo3fAZfXMk</code></p>
+        <p class="h5">Video sizes - width: <kbd>100%</kbd>; height: <kbd>400px</kbd></p>
         <textarea name="html_code" id="post_long_text" cols="30" rows="10" class="form-control">       
             {{ $video->html_code }}
         </textarea>

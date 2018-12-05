@@ -23,6 +23,7 @@ class LoadAll extends Controller
         $rules = ['en','ru','hy'];                      
         if(in_array($locale,$rules))
         {
+            
             Session::put('locale',$locale);
             App::setLocale($locale);
             $lang = App::getLocale();
@@ -38,12 +39,14 @@ class LoadAll extends Controller
                  ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
                  ->where('o.lang_id','=', $lng )
                  ->orderBy('date','DESC')  
-                 ->paginate(6); 
-                          
+                 ->paginate(6);
+                 
+                   
                  $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                                 
-                 $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
-                   return view('all_opinions')-> with('all_last_posts',$all_data);
+                $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
+                $all_data["not_found"] = false;
+                return view('all_opinions')-> with('all_last_posts',$all_data);
         }
         else{               
             return  redirect('/'.App::getLocale());
@@ -53,122 +56,122 @@ class LoadAll extends Controller
 
          public function videos($locale) 
          {
-             $rules = ['en','ru','hy'];                      
-             if(in_array($locale,$rules))
-             {
-                 Session::put('locale',$locale);
-                 App::setLocale($locale);
-                 $lang = App::getLocale();     
+            $rules = ['en','ru','hy'];                      
+            if(in_array($locale,$rules))
+            {
+                Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale();     
                     
-                      $id=trans('text.videos');
-                      $lng =Post::getLangId(); 
-                      $calendar= Event::event($lang);
-                      $menu = Post::menu();
-                      $categories = Post :: categories();
-                      $popular_tags=Tags::load_popular_tags('Video');  
-                      $post_with_given_id = DB::table('videos as o')                
-                      ->join('authors as a', 'a.id', '=', 'o.author_id') 
-                      ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                      ->where('o.lang_id','=', $lng )
-                      ->orderBy('date','DESC')  
-                      ->paginate(6);    
-                               
-                      $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                              
-                      $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
-                        return view('all_videos')-> with('all_last_posts',$all_data);
-             }
-             else{               
-                 return  redirect('/'.App::getLocale());
-                 }
-     
-              }
-
-              public function announcements($locale) 
-                    {
-                        $rules = ['en','ru','hy'];                      
-                        if(in_array($locale,$rules))
-                        {
-                            Session::put('locale',$locale);
-                            App::setLocale($locale);
-                            $lang = App::getLocale(); 
-                            $id=trans('text.announcements');
-                            $lng =Post::getLangId(); 
-                            $calendar= Event::event($lang);
-                            $menu = Post::menu();
-                            $categories = Post :: categories();
-                            $popular_tags=Tags::load_popular_tags('Announcement');  
-                            $all_announcements = DB::table('announcements as o')                
-                            ->join('authors as a', 'a.id', '=', 'o.author_id') 
-                            ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                            ->where('o.lang_id','=', $lng )
-                            ->orderBy('date','DESC')  
-                            ->paginate(6);                
-                                    
-                            $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                         
-                            $all_data=array("lang"=> $lang,
-                             "event"=> $calendar,
-                             "post"=>$all_announcements,
-                             "menu"=>$menu,
-                             "id"=>$id,
-                             "mostViewed"=> $mostViewed, 
-                             "categories"=>$categories,
-                             "popular_tags"=> $popular_tags,
-                             "folder"=>'announcement',
+                $id=trans('text.videos');
+                $lng =Post::getLangId(); 
+                $calendar= Event::event($lang);
+                $menu = Post::menu();
+                $categories = Post :: categories();
+                $popular_tags=Tags::load_popular_tags('Video');  
+                $post_with_given_id = DB::table('videos as o')                
+                ->join('authors as a', 'a.id', '=', 'o.author_id') 
+                ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
+                ->where('o.lang_id','=', $lng )
+                ->orderBy('date','DESC')  
+                ->paginate(6);    
                         
-                        ); 
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                        
+                $all_data=array("lang"=> $lang, "event"=> $calendar,"post"=>$post_with_given_id,"menu"=>$menu,"id"=>$id,"mostViewed"=> $mostViewed, "categories"=>$categories,"popular_tags"=> $popular_tags);              
+                $all_data["not_found"]=false;
+                return view('all_videos')-> with('all_last_posts',$all_data);
+            }
+            else{              
+                return  redirect('/'.App::getLocale());
+            }    
+        }
 
-                                return view('all_announcements')-> with('all_last_posts',$all_data);
-                        }
-                        else{               
-                            return  redirect('/'.App::getLocale());
-                            }
+        public function announcements($locale) 
+        {
+            $rules = ['en','ru','hy'];                      
+            if(in_array($locale,$rules))
+            {
+                Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale(); 
+                $id=trans('text.announcements');
+                $lng =Post::getLangId(); 
+                $calendar= Event::event($lang);
+                $menu = Post::menu();
+                $categories = Post :: categories();
+                $popular_tags=Tags::load_popular_tags('Announcement');  
+                $all_announcements = DB::table('announcements as o')                
+                ->join('authors as a', 'a.id', '=', 'o.author_id') 
+                ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
+                ->where('o.lang_id','=', $lng )
+                ->orderBy('date','DESC')  
+                ->paginate(6);                
+                        
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                 
-              }
+                $all_data=array("lang"=> $lang,
+                    "event"=> $calendar,
+                    "post"=>$all_announcements,
+                    "menu"=>$menu,
+                    "id"=>$id,
+                    "mostViewed"=> $mostViewed, 
+                    "categories"=>$categories,
+                    "popular_tags"=> $popular_tags,
+                    "folder"=>'announcement',                        
+                );
+                $all_data["not_found"]=false;
+                return view('all_announcements')-> with('all_last_posts',$all_data);
+            }
+            else{               
+                return  redirect('/'.App::getLocale());
+            }
+        
+        }
 
-              public function news($locale) 
-              {
-                  $rules = ['en','ru','hy'];                      
-                  if(in_array($locale,$rules))
-                  {
-                      Session::put('locale',$locale);
-                      App::setLocale($locale);
-                      $lang = App::getLocale(); 
-                      $id=trans('text.news');
-                      $land_id =Post::getLangId(); 
-                      $calendar= Event::event($lang);
-                      $menu = Post::menu();
-                      $categories = Post :: categories();
-                      $popular_tags=Tags::load_popular_tags('News');  
-                      $all_news = DB::table('news as o')                
-                      ->join('authors as a', 'a.id', '=', 'o.author_id') 
-                      ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
-                      ->where('o.lang_id','=', $land_id )
-                      ->orderBy('date','DESC')  
-                      ->paginate(6);                
-                      $lng=Post::getLangId();               
-                      $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                                
-                      $all_data=array("lang"=> $lang,
-                       "event"=> $calendar,
-                       "post"=>$all_news,
-                       "menu"=>$menu,
-                       "id"=>$id,
-                       "mostViewed"=> $mostViewed, 
-                       "categories"=>$categories,
-                       "popular_tags"=> $popular_tags,
-                       "folder"=>'news',
-                  
-                  ); 
-
-                          return view('all_news')-> with('all_last_posts',$all_data);
-                  }
-                  else{               
-                      return  redirect('/'.App::getLocale());
-                      }
+        public function news($locale) 
+        {
+            $rules = ['en','ru','hy'];                      
+            if(in_array($locale,$rules))
+            {
+                Session::put('locale',$locale);
+                App::setLocale($locale);
+                $lang = App::getLocale(); 
+                $id=trans('text.news');
+                $land_id =Post::getLangId(); 
+                $calendar= Event::event($lang);
+                $menu = Post::menu();
+                $categories = Post :: categories();
+                $popular_tags=Tags::load_popular_tags('News');  
+                $all_news = DB::table('news as o')                
+                ->join('authors as a', 'a.id', '=', 'o.author_id') 
+                ->select('o.*','a.name','a.lastname','a.img as aimg', 'o.img as oimg' )
+                ->where('o.lang_id','=', $land_id )
+                ->orderBy('date','DESC')  
+                ->paginate(6);                
+                $lng=Post::getLangId();               
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
+                        
+                $all_data=array(
+                    "lang"=> $lang,
+                    "event"=> $calendar,
+                    "post"=>$all_news,
+                    "menu"=>$menu,
+                    "id"=>$id,
+                    "mostViewed"=> $mostViewed, 
+                    "categories"=>$categories,
+                    "popular_tags"=> $popular_tags,
+                    "folder"=>'news',            
+                ); 
+                $all_data["not_found"]= false;
+                return view('all_news')-> with('all_last_posts',$all_data);
+            }
+            else{               
+                return  redirect('/'.App::getLocale());
+            }
           
         }
+
         public function partners($locale) 
         {
             $rules = ['en','ru','hy'];                      
@@ -188,22 +191,23 @@ class LoadAll extends Controller
                     ->select('*')
                     ->where('lang_id','=',$lng)
                     ->paginate(8);
-                $all_data=array("lang"=> $lang,
-                'authors' => $authors,
-                'menu'=>$menu,
-                "mostViewed"=> $mostViewed,               
-                "event"=> $calendar,
-                "lang"=> $lang,
-                 "text"=> trans('text.partners')
-            ); 
+                    $all_data=array(
+                        "lang"=> $lang,
+                        'authors' => $authors,
+                        'menu'=>$menu,
+                        "mostViewed"=> $mostViewed,               
+                        "event"=> $calendar,
+                        "lang"=> $lang,
+                        "text"=> trans('text.partners'),
+                    ); 
 
-                    return view('partners')-> with('all_last_posts',$all_data);
+                return view('partners')-> with('all_last_posts',$all_data);
             }
-            else{               
+            else{
                 return  redirect('/'.App::getLocale());
-                }
+            }
     
-  }
+        }
 
 
         public function openArchieve($locale,$date) 

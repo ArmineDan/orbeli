@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
-@section('main_post') 
- 
+@section('main_post')
+
 <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-5px-bottom xs-text-center main_post_blur_narek">
     <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="blog-image"><img src="{{$all_last_posts['main_post'][0]->img}}" alt="" data-no-retina=""></a>
     <div class="blog-text titel_new display-inline-block" id="index_main_div_nark">
@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-        
+
 @endsection 
 @section('main_right')
 

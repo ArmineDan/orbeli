@@ -1,8 +1,8 @@
 <?php 
 
 $servarname = 'localhost';
-$user = 'root';
-$password = '';
+$user = 'user';
+$password = '#1orbeli2018';
 $db_name = 'orbeli_db';
 
 $con = mysqli_connect($servarname,$user,$password,$db_name);
