@@ -77,7 +77,7 @@ class DocumentController extends Controller
         $updateDocs = [];        
         foreach ($docs as $key => $value) {
             $updateDocs[] =['id' => $key, 'inused' => $value];
-            Document::find($key)->update(['inused' => $value]);
+            Document::on('mysql2')->find($key)->update(['inused' => $value]);
         }     
         // return $updateDocs;
         return redirect()->back()->with(['docStatusMessage' => 'All changes successfully saved.']);        

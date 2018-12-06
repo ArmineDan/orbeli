@@ -13,7 +13,7 @@ class CreateParralaxesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parralaxes', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('parralaxes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->mediumText('text');
@@ -33,6 +33,6 @@ class CreateParralaxesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parralaxes');
+        Schema::connection('mysql2')->dropIfExists('parralaxes');
     }
 }

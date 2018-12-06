@@ -123,7 +123,7 @@ class NewsController extends Controller
         // ];
         // DB::table('news')->insert($paraParams);
 
-        $news = News::create($request->all());
+        $news = News::on('mysql2')->create($request->all());
         $news_id = $news->id;
 
         if($request->input('tags')) {
@@ -134,7 +134,7 @@ class NewsController extends Controller
 
             // update lang_id into taggable_tags
             for ($i=0; $i < count($tagsArray); $i++) {
-                DB::table('taggable_tags')
+                DB::connection('mysql2')->table('taggable_tags')
                 ->where('name', $tagsArray[$i])
                 ->update(['lang_id' => $request->input('lang_id') ]);
             }
@@ -144,7 +144,7 @@ class NewsController extends Controller
         Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
 
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\News')
         ->where('taggable_id', $news_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -172,7 +172,7 @@ class NewsController extends Controller
             if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
                 if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\News')->exists()) {
                     // return 'into if';
-                    News::findOrFail($news->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                    News::on('mysql2')->findOrFail($news->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
                 }
             }            
         }
@@ -257,7 +257,7 @@ class NewsController extends Controller
             'tags'=> 'required|array',
         ]);
         
-        $news = News::findOrFail($news_id);
+        $news = News::on('mysql2')->findOrFail($news_id);
         $old_date = $news->date;
 
         $news->update($request->all());
@@ -272,7 +272,7 @@ class NewsController extends Controller
                 // $tagsArray = explode(',',$request->tags);
                 $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
-                    DB::table('taggable_tags')
+                    DB::connection('mysql2')->table('taggable_tags')
                     ->where('name', $tagsArray[$i])
                     ->update(['lang_id' => $request->input('lang_id') ]);
                 }
@@ -280,7 +280,7 @@ class NewsController extends Controller
         }
 
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\News')
         ->where('taggable_id', $news_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -296,7 +296,7 @@ class NewsController extends Controller
      */
     public function destroy($id, $locale)
     {
-        $news = News::find($id);
+        $news = News::on('mysql2')->find($id);
         $date = $news->date;
         $lang_id = $news->lang_id;
 

@@ -35,7 +35,7 @@ class CommentController extends Controller
         $updateComm = [];
         foreach($comment as $key => $value) {
             $updateComm[] = ['id' => $key, 'approved' => $value, 'body' => $reqAll['body']];            
-            Comment::find($key)->update(['body' => $reqAll['body'],'approved' => $value]);
+            Comment::on('mysql2')->find($key)->update(['body' => $reqAll['body'],'approved' => $value]);
         }
 
         // return $updateComm;

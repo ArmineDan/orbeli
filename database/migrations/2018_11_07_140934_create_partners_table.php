@@ -13,7 +13,7 @@ class CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('partners', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('partners', function (Blueprint $table) {
             $table->increments('id');           
             $table->string('p_name')->nullable();
             $table->text('url')->nullable();
@@ -32,6 +32,6 @@ class CreatePartnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::connection('mysql2')->dropIfExists('partners');
     }
 }

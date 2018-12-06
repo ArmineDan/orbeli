@@ -83,6 +83,7 @@ class AuthorController extends Controller
             'email' => 'required',
         ]);
         $author = new Author;
+        // $author->setConnection('mysql2');
 
         $paraParams = [
             'name' => $request->input('name'),
@@ -96,7 +97,7 @@ class AuthorController extends Controller
             'linkedin' => $request->input('linkedin'),
             'email' => $request->input('email'),
         ];
-        DB::table('authors')->insert( $paraParams );
+        DB::connection('mysql2')->table('authors')->insert( $paraParams );
 
         return redirect()->route('admin.authors.index', App::getLocale());
 
@@ -172,7 +173,7 @@ class AuthorController extends Controller
             'email' =>  'required'
         ]);
         
-        $author = Author::find($id);
+        $author = Author::on('mysql2')->find($id);
             $author->name = $request->input('name');
             $author->lastname = $request->input('lastname');
             $author->sub_name = $request->input('sub_name');
@@ -195,7 +196,7 @@ class AuthorController extends Controller
      */
     public function destroy($id, $locale)
     {
-        $author = Author::find($id);
+        $author = Author::on('mysql2')->find($id);
         $author->delete();
         return redirect()->route('admin.authors.index', $locale);
     }

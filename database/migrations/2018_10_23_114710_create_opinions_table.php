@@ -13,7 +13,7 @@ class CreateOpinionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('opinions', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('opinions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('short_text')->nullable();
@@ -46,6 +46,6 @@ class CreateOpinionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opinions');
+        Schema::connection('mysql2')->dropIfExists('opinions');
     }
 }

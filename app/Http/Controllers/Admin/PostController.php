@@ -25,6 +25,12 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // public function __construct()
+    // {
+    //     $post = new Post;
+    //     $post->toggleConnection();
+    // }
+
     protected $folder_name = 'posts';
     protected $validImageExp = ['jpg','png','jpeg','pjpeg','bmp', 'gif', 'svg'];
 
@@ -32,7 +38,9 @@ class PostController extends Controller
     {
 
         // $post2 = Post::with('getAuthors')->find(1);
-        // return $post2;
+        // return $post2->fillable();
+        // $kk = DB::connection('mysql2');
+        // dd($kk);
         $lang_id = Lang::getLangId();
         return view('admin.posts.index', [
             // 'posts' => Post::paginate(3)
@@ -118,7 +126,7 @@ class PostController extends Controller
 
         // return $request->all();
 
-        $post = Post::create($request->all());
+        $post = Post::on('mysql2')->create($request->all());
         if($request->input('authors')) {
             $post->getAuthors()->attach($request->authors);
         } 
@@ -131,7 +139,7 @@ class PostController extends Controller
 
             // update lang_id into taggable_tags
             for ($i=0; $i < count($tagsArray); $i++) {
-                DB::table('taggable_tags')
+                DB::connection('mysql2')->table('taggable_tags')
                 ->where('name', $tagsArray[$i])
                 ->update(['lang_id' => $request->input('lang_id') ]);
             }
@@ -144,7 +152,7 @@ class PostController extends Controller
             // $post = Post::findOrFail($post_id);
         
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Post')
         ->where('taggable_id', $post_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -156,7 +164,7 @@ class PostController extends Controller
             if(count($mainPosts) > 1) {
                 foreach ($mainPosts as $key => $mainPost) {
                    if($mainPost->id != $post->id) {
-                       Post::find($mainPost->id)->update(['status' => 'published']);
+                       Post::on('mysql2')->find($mainPost->id)->update(['status' => 'published']);
                    } 
                 }
             }
@@ -191,7 +199,7 @@ class PostController extends Controller
             if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
                 if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Post')->exists()) {
                     // return 'into if';
-                    Post::findOrFail($post_id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                    Post::on('mysql2')->findOrFail($post_id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
                 }
             }
             
@@ -296,7 +304,8 @@ class PostController extends Controller
 
         // return $request->all();
 
-        $post = Post::findOrFail($post_id);
+        $post = Post::on('mysql2')->findOrFail($post_id);
+        // $post->setConnection('mysql2');
         $old_date = $post->date;
 
         $post->update($request->all());
@@ -315,7 +324,7 @@ class PostController extends Controller
                 // $tagsArray = explode(',',$request->tags);
                 $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
-                    DB::table('taggable_tags')
+                    DB::connection('mysql2')->table('taggable_tags')
                     ->where('name', $tagsArray[$i])
                     ->update(['lang_id' => $request->input('lang_id') ]);
                 }
@@ -323,7 +332,7 @@ class PostController extends Controller
         }
 
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Post')
         ->where('taggable_id', $post_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -335,7 +344,7 @@ class PostController extends Controller
             if(count($mainPosts) > 1) {
                 foreach ($mainPosts as $key => $mainPost) {
                    if($mainPost->id != $post->id) {
-                       Post::find($mainPost->id)->update(['status' => 'published']);
+                       Post::on('mysql2')->find($mainPost->id)->update(['status' => 'published']);
                    } 
                 }
             }
@@ -380,7 +389,7 @@ class PostController extends Controller
     public function destroy($post_id, $locale)
     {
         
-        $post = Post::findOrFail($post_id);
+        $post = Post::on('mysql2')->findOrFail($post_id);
         $date = $post->date;
         $lang_id = $post->lang_id;
 

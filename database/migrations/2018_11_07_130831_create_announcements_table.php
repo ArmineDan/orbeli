@@ -13,7 +13,7 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('announcements', function (Blueprint $table) {
             $table->increments('id');            
             $table->string('title');
             $table->text('short_text')->nullable();
@@ -47,6 +47,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::connection('mysql2')->dropIfExists('announcements');
     }
 }

@@ -13,7 +13,7 @@ class CreateNotFoundTable extends Migration
      */
     public function up()
     {
-        Schema::create('not_found', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('not_found', function (Blueprint $table) {
             $table->increments('id');
             $table->text('error_text');
             $table->unsignedInteger('lang_id');
@@ -28,6 +28,6 @@ class CreateNotFoundTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('not_found');
+        Schema::connection('mysql2')->dropIfExists('not_found');
     }
 }

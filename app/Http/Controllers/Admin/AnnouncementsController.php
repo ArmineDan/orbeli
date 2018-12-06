@@ -104,7 +104,7 @@ class AnnouncementsController extends Controller
             'tags'=> 'required',
         ]);
 
-        $announcement = Announcement::create($request->all());
+        $announcement = Announcement::on('mysql2')->create($request->all());
         $announcement_id = $announcement->id;
         
         if($request->input('tags')) {
@@ -113,13 +113,13 @@ class AnnouncementsController extends Controller
 
             // update lang_id into taggable_tags
             for ($i=0; $i < count($tagsArray); $i++) {
-                DB::table('taggable_tags')
+                DB::connection('mysql2')->table('taggable_tags')
                 ->where('name', $tagsArray[$i])
                 ->update(['lang_id' => $request->input('lang_id') ]);
             }
         }
 
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Announcement')
         ->where('taggable_id', $announcement_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -154,7 +154,7 @@ class AnnouncementsController extends Controller
             if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
                 if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Announcement')->exists()) {
                     // return 'into if';
-                    Announcement::findOrFail($announcement->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                    Announcement::on('mysql2')->findOrFail($announcement->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
                 }
             }            
         }
@@ -257,7 +257,7 @@ class AnnouncementsController extends Controller
             'tags'=> 'required|array',
         ]);
 
-        $announcement = Announcement::findOrFail($id);
+        $announcement = Announcement::on('mysql2')->findOrFail($id);
         $old_date = $announcement->date;
         $announcement->update($request->all());
 
@@ -269,14 +269,14 @@ class AnnouncementsController extends Controller
                 // $tagsArray = explode(',',$request->tags);
                 $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
-                    DB::table('taggable_tags')
+                    DB::connection('mysql2')->table('taggable_tags')
                     ->where('name', $tagsArray[$i])
                     ->update(['lang_id' => $request->input('lang_id') ]);
                 }
             }            
         }
 
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Announcement')
         ->where('taggable_id', $id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -292,7 +292,7 @@ class AnnouncementsController extends Controller
      */
     public function destroy($id, $locale)
     {
-        $announcement = Announcement::find($id);
+        $announcement = Announcement::on('mysql2')->find($id);
         $announcement->delete();
         return redirect()->route('admin.announcements.index', $locale);
     }

@@ -98,27 +98,27 @@ class PageController extends Controller
                 return  view('index',compact('all_last_posts'));
             }
             else{
-                $lang = App::getLocale();  
-                $lang_id = Lang::getLangId();              
-                $calendar= Event::event($lang);
-                $menu = Post::menu();
-                $categories = Post :: categories();
-                $popular_tags = Tags::load_all_popular_tags();
-                $mostViewed =  Post::with('getAuthors')
-                                ->where('status','published')
-                                ->where('lang_id',$lang_id)
-                                ->orderByRaw('view DESC')->limit(5)->get();
-                $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
-                $all_data=array(
-                    "lang"=> $lang,
-                    "event"=> $calendar,
-                    "menu"=> $menu, 
-                    "mostViewed"=> $mostViewed,  
-                    "popular_tags"=> $popular_tags,
-                    "not_found_text" => $notFound[0]->error_text,
-                    "not_found" => true,
-                );
-                return view('errors.pageNotFound1')-> with('all_last_posts',$all_data);
+                // $lang = App::getLocale();  
+                // $lang_id = Lang::getLangId();              
+                // $calendar= Event::event($lang);
+                // $menu = Post::menu();
+                // $categories = Post :: categories();
+                // $popular_tags = Tags::load_all_popular_tags();
+                // $mostViewed =  Post::with('getAuthors')
+                //                 ->where('status','published')
+                //                 ->where('lang_id',$lang_id)
+                //                 ->orderByRaw('view DESC')->limit(5)->get();
+                // $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
+                // $all_data=array(
+                //     "lang"=> $lang,
+                //     "event"=> $calendar,
+                //     "menu"=> $menu, 
+                //     "mostViewed"=> $mostViewed,  
+                //     "popular_tags"=> $popular_tags,
+                //     "not_found_text" => $notFound[0]->error_text,
+                //     "not_found" => true,
+                // );
+                // return view('errors.pageNotFound1')-> with('all_last_posts',$all_data);
                 return   redirect('/'.App::getLocale());
             }
         }
