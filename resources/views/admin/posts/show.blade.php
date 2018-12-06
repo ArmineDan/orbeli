@@ -21,7 +21,9 @@
                 <tr>
                   <td>{{$post->id}}</td>
                   <td>{{$post->title}}</td>
-                  <td>{{$post['getCategory']->name}}</td>
+                  <td @if ($post['getCategory'] == null) class="alert alert-danger" @endif>
+                    {{$post['getCategory']->name ?? 'no-category'}}
+                  </td>
                   <td>{{$post->view}}</td>
                   @if ($post->status == 'main')
                     <td class="alert alert-success">{{$post->status}}</td>
