@@ -26,7 +26,7 @@ if ((Request::segment(1) === 'admin' ) && in_array(Request::segment(2), ['en', '
   App::setLocale('hy');
 }
 
-$white_list = 'whitelist:my_group';
+$white_list = 'whitelist:my_group'; //'whitelist:my_group'
 
 $admin_rules = [
     'prefix'=>'admin/{locale}',

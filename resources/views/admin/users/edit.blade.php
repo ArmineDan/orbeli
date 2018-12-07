@@ -40,7 +40,7 @@
         <div class="col-md-6">
         <div class="panel panel-default">
         <div class="panel-heading">Change Password 
-            <kbd> min-length: 8 simbols</kbd>
+            <span class="label label-default"> min-length: 8 simbols</span>
         </div>
         <div class="panel-body">
             <form action="{{ route('admin.user.update', [$locale, $user]) }}" method="POST" class="form-horizontal" id="ch_pass">
