@@ -56,6 +56,7 @@ Route::group( $admin_rules , function() {
   Route::resource('/news', 'NewsController', ['as'=>'admin']);
   Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
   Route::resource('/notfound', 'NotFoundController', ['as'=>'admin']);
+  Route::resource('/user', 'UserController', ['as'=>'admin']);
 
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });
