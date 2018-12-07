@@ -124,12 +124,12 @@ class UserController extends Controller
 
             $user = User::findOrFail($request->user_id);
             $old_hash = $request->old_hash;
-            $old_pass =preg_replace('/\s+/','',$request->old_password);
-            $confirm = preg_replace('/\s+/','', $request->confirm);
+            $old_pass =str_replace(' ', '',$request->old_password);
+            $confirm = str_replace(' ', '',$request->confirm);
             $email = filter_var($request->email, FILTER_SANITIZE_EMAIL);
             $name = filter_var($request->name, FILTER_SANITIZE_STRING);
-            $email = preg_replace('/\s+/','', $email);
-            $name = preg_replace('/\s+/','', $name);
+            $email = str_replace(' ', '',$email);
+            $name = str_replace(' ', '',$name);
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL) || $email == '') {
                 $nmErrors['email'] = 'Must to be valid email-address and can not be empty.';
