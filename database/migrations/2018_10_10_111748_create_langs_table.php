@@ -13,7 +13,7 @@ class CreateLangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('langs', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('langs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('lng');           
         });
@@ -26,6 +26,6 @@ class CreateLangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('langs');
+        Schema::connection('mysql2')->dropIfExists('langs');
     }
 }

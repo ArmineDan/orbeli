@@ -88,7 +88,7 @@ class PartnerController extends Controller
             'lang_id' => $request->input('lang_id'),
         ];
 
-        DB::table('partners')->insert( $paraParams );
+        DB::connection('mysql2')->table('partners')->insert( $paraParams );
 
         return redirect()->route('admin.partners.index', App::getLocale());
     }
@@ -150,7 +150,7 @@ class PartnerController extends Controller
             'logo' => 'required',
         ]);
         
-        $partner = Partner::find($id);
+        $partner = Partner::on('mysql2')->find($id);
             $partner->p_name = $request->input('name');
             $partner->url = $request->input('url');
             $partner->text = $request->input('text');
@@ -168,7 +168,7 @@ class PartnerController extends Controller
      */
     public function destroy($id, $locale)
     {
-        $partner = Partner::find($id);
+        $partner = Partner::on('mysql2')->find($id);
         $partner->delete();
         return redirect()->route('admin.partners.index', $locale);
     }

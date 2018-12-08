@@ -13,7 +13,7 @@ class CreateAboutUsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_uses', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('about_uses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_section_img');
             $table->string('parallax_title');
@@ -44,6 +44,6 @@ class CreateAboutUsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_uses');
+        Schema::connection('mysql2')->dropIfExists('about_uses');
     }
 }

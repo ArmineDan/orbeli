@@ -56,7 +56,7 @@ class Event extends Model
         // $event = Event::having('start_date','=', $date)->get();
         $event = Event::where('lang_id','=', $lang_id)->having('start_date','=', $date)->get();
       if(count($event) == 0) {
-            Event::create(['start_date' => $date, 'end_date' => $date, 'lang_id' => $lang_id]);
+            Event::on('mysql2')->create(['start_date' => $date, 'end_date' => $date, 'lang_id' => $lang_id]);
         }
     }
 
@@ -83,7 +83,7 @@ class Event extends Model
         if(count($events) > 0) {
             // return $event;
             if(!self::dateHasOtherEvents($date, $lang_id)) {
-                Event::find($event->id)->delete();
+                Event::on('mysql2')->find($event->id)->delete();
             }            
         }
     }

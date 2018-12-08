@@ -105,7 +105,7 @@ class OpinionController extends Controller
             'tags'=> 'required|array',
         ]);
 
-        $opinion = Opinion::create($request->all());
+        $opinion = Opinion::on('mysql2')->create($request->all());
         $opinion_id = $opinion->id;
         // return $opinion_id;
 
@@ -118,7 +118,7 @@ class OpinionController extends Controller
 
             // update lang_id into taggable_tags
             for ($i=0; $i < count($tagsArray); $i++) {
-                DB::table('taggable_tags')
+                DB::connection('mysql2')->table('taggable_tags')
                 ->where('name', $tagsArray[$i])
                 ->update(['lang_id' => $request->input('lang_id') ]);
             }
@@ -128,7 +128,7 @@ class OpinionController extends Controller
         Event::checkAndSaveIfNotExists($request->input('date'), $request->input('lang_id'));
 
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Opinion')
         ->where('taggable_id', $opinion_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -158,7 +158,7 @@ class OpinionController extends Controller
             if(!in_array(Document::getTypeFromLink($files[$i]), $this->validImageExp)) {
                 if(!DB::table('documents')->where('link',  Storage::url($files[$i]) )->where('documentable_type','App\Opinion')->exists()) {
                     // return 'into if';
-                    Opinion::findOrFail($opinion->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
+                    Opinion::on('mysql2')->findOrFail($opinion->id)->getDocuments()->create(Document::prepareDocParams(Storage::url($files[$i])));
                 }
             }            
         }
@@ -244,7 +244,7 @@ class OpinionController extends Controller
         ]);
 
         // return $request->all();
-        $opinion = Opinion::findOrFail($opinion_id);
+        $opinion = Opinion::on('mysql2')->findOrFail($opinion_id);
         $old_date = $opinion->date;
 
         $opinion->update($request->all());
@@ -259,14 +259,14 @@ class OpinionController extends Controller
                 // $tagsArray = explode(',',$request->tags);
                 $tagsArray = $request->tags;
                 for ($i=0; $i < count($tagsArray); $i++) {
-                    DB::table('taggable_tags')
+                    DB::connection('mysql2')->table('taggable_tags')
                     ->where('name', $tagsArray[$i])
                     ->update(['lang_id' => $request->input('lang_id') ]);
                 }
             }            
         }
         // update lang_id into taggable_taggables
-        DB::table('taggable_taggables')
+        DB::connection('mysql2')->table('taggable_taggables')
         ->where('taggable_type', 'App\\Opinion')
         ->where('taggable_id', $opinion_id)
         ->update(['lang_id' => $request->input('lang_id') ]);
@@ -283,7 +283,7 @@ class OpinionController extends Controller
      */
     public function destroy($opinion_id, $locale)
     {
-        $opinion = Opinion::findOrFail($opinion_id);
+        $opinion = Opinion::on('mysql2')->findOrFail($opinion_id);
         $date = $opinion->date;
         $lang_id = $opinion->lang_id;
 

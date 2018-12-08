@@ -26,7 +26,7 @@ if ((Request::segment(1) === 'admin' ) && in_array(Request::segment(2), ['en', '
   App::setLocale('hy');
 }
 
-$white_list = 'whitelist:my_group';
+$white_list = 'whitelist:my_group'; //'whitelist:my_group'
 
 $admin_rules = [
     'prefix'=>'admin/{locale}',
@@ -56,6 +56,7 @@ Route::group( $admin_rules , function() {
   Route::resource('/news', 'NewsController', ['as'=>'admin']);
   Route::resource('/announcements', 'AnnouncementsController', ['as'=>'admin']);
   Route::resource('/notfound', 'NotFoundController', ['as'=>'admin']);
+  Route::resource('/user', 'UserController', ['as'=>'admin']);
 
   Route::get('test', function($locale){ echo $locale; echo App::getLocale(); });
 });

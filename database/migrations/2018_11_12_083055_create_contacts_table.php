@@ -13,7 +13,7 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('contacts', function (Blueprint $table) {
             $table->increments('id');
                 $table->string('address_icon_text');
                 $table->string('phone_icon_text');
@@ -32,6 +32,6 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::connection('mysql2')->dropIfExists('contacts');
     }
 }

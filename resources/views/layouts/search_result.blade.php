@@ -28,7 +28,7 @@
                          </div>      
  
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw" data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
                         </aside>
                 </div>

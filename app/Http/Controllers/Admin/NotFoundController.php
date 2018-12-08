@@ -46,7 +46,7 @@ class NotFoundController extends Controller
     // NotFound $notFound
     public function update(Request $request,$id, $locale )
     {
-        $notFound = NotFound::findOrFail($id);
+        $notFound = NotFound::on('mysql2')->findOrFail($id);
         $notFound->update($request->all());
         return redirect()->back();
     }

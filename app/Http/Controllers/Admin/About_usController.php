@@ -136,7 +136,7 @@ class About_usController extends Controller
             'end_text' => 'required'
         ]);
         
-        $about_us = About_us::find($id);
+        $about_us = About_us::on('mysql2')->find($id);
             $about_us->first_section_img = $request->input('first_section_img');
             $about_us->parallax_title = $request->input('parallax_title');
             $about_us->parallax_text = $request->input('parallax_text');

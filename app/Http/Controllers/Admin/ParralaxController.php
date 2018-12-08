@@ -123,7 +123,7 @@ class ParralaxController extends Controller
             'img' => 'required'
         ]);
         
-        $parralax = Parralax::find($id);
+        $parralax = Parralax::on('mysql2')->find($id);
             $parralax->title = $request->input('title');
             $parralax->text = $request->input('text');
             $parralax->link = $request->input('link');

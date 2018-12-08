@@ -13,7 +13,7 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->text('link')->nullable();
@@ -32,6 +32,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::connection('mysql2')->dropIfExists('documents');
     }
 }

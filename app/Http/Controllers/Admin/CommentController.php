@@ -35,7 +35,7 @@ class CommentController extends Controller
         $updateComm = [];
         foreach($comment as $key => $value) {
             $updateComm[] = ['id' => $key, 'approved' => $value, 'body' => $reqAll['body']];            
-            Comment::find($key)->update(['body' => $reqAll['body'],'approved' => $value]);
+            Comment::on('mysql2')->find($key)->update(['body' => $reqAll['body'],'approved' => $value]);
         }
 
         // return $updateComm;
@@ -104,8 +104,12 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    // Comment $comment
+    public function destroy($comment_id, $locale)
     {
-        //
+        // echo 'destroy comment - ' .$comment_id;
+        $comment = Comment::on('mysql2')->findOrFail($comment_id);
+        $comment->delete();
+        return redirect()->back()->with(['CommStatusMessage' => "Comment №$comment_id was successfully deleted."]);
     }
 }

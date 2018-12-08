@@ -183,9 +183,23 @@
                         </span>                    
                     </div>
                 </a>
-            </div>            
+            </div>
+            
+            {{-- <div class="col-md-6">
+                <a href="{{ route('admin.comment.index', $locale) }}">
+                    <div class="jumbotron text-center">
+                        <span class="text-indent btn btn-default">All comments: 
+                            <span class="label label-success">{{ $comments_all }}</span>
+                        </span>                    
+                    </div>
+                </a>
+            </div>    --}}
         </div>
         <hr>
+
+
+                     
+        
 
     </div>
 @endsection

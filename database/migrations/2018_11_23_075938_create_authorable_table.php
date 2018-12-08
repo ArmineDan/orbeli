@@ -13,7 +13,7 @@ class CreateAuthorableTable extends Migration
      */
     public function up()
     {
-        Schema::create('authorables', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('authorables', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('authorable_id');
@@ -29,6 +29,6 @@ class CreateAuthorableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('authorables');
+        Schema::connection('mysql2')->drop('authorables');
     }
 }

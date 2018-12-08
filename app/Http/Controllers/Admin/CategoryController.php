@@ -63,6 +63,7 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
         ]);
         $category = new Category();
+        $category->setConnection('mysql2');
         $category->name = $request->name;
         $category->lang_id = $request->lang_id;
         $category->save();
@@ -106,7 +107,7 @@ class CategoryController extends Controller
     {
         // return $request->all();
         $keys = ['created_at', 'updated_at', 'id'];
-        $category = Category::findOrFail($request->id);
+        $category = Category::on('mysql2')->findOrFail($request->id);
         // return $category;
         $category->update($request->except($keys));
         return redirect()->route('admin.category.index', $locale);
@@ -120,7 +121,7 @@ class CategoryController extends Controller
      */
     public function destroy($cat_id, $locale)
     {
-        $category = Category::findOrFail($cat_id);
+        $category = Category::on('mysql2')->findOrFail($cat_id);
         // return $category;
         $category->delete();
         return redirect()->route('admin.category.index', $locale);

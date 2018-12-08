@@ -13,7 +13,7 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('short_text')->nullable();
@@ -49,6 +49,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::connection('mysql2')->dropIfExists('videos');
     }
 }

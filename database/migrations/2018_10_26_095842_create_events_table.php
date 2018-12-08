@@ -13,7 +13,7 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->default('');
             $table->date('start_date');
@@ -30,6 +30,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::connection('mysql2')->dropIfExists('events');
     }
 }

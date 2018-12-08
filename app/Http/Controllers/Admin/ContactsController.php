@@ -99,7 +99,7 @@ class ContactsController extends Controller
 
         ]);
         
-        $contact = Contact::find($id);
+        $contact = Contact::on('mysql2')->find($id);
             $contact->address_icon_text = $request->input('address');
             $contact->phone_icon_text = $request->input('phone');
             $contact->mail_icon_text = $request->input('mail');

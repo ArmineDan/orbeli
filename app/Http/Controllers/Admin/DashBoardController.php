@@ -37,7 +37,7 @@ class DashBoardController extends Controller
         $parallax = Parralax::where('lang_id', '=', $lang_id)->get()->count();
         $contacts = Contact::where('lang_id', '=', $lang_id)->get()->count();
         $aboutus = About_us::where('lang_id', '=', $lang_id)->get()->count();
-        $announcements = Announcement::where('lang_id', '=', $lang_id)->get()->count();       
+        $announcements = Announcement::where('lang_id', '=', $lang_id)->get()->count();
 
         $comments = Comment::where('lang_id', '=', $lang_id)->where('approved', '=', 0)->get()->count();
         $not_found = NotFound::where('lang_id', '=', $lang_id)->get();
