@@ -40,10 +40,12 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 }
 ?>
 
-
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@nytimesbits" />
+<meta name="twitter:creator" content="@nickbilton" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:localeÖ‰alternate" content="ru_RU" />
-<meta property="og:localeÖ‰alternate" content="hy_AM" />
+<meta property="og:locale։alternate" content="ru_RU" />
+<meta property="og:locale։alternate" content="hy_AM" />
 @isset($all_last_posts['post'])
 
 @isset($all_last_posts['folder']) 
@@ -63,7 +65,7 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
     <meta property="og:type"        content="article" />
     <meta property="og:title"       content="{{ $all_last_posts['post'][0]->title . ' - ' .$all_last_posts['post'][0]->p_duratioan.trans('text.minute') }}" />
     <meta property="og:description" content="{{ strip_tags( $all_last_posts['post'][0]->short_text )}}" />
-    <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img) }}" />
+    <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img)}}" />
     @endif 
 
 @endif 
@@ -88,10 +90,10 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
         
         <!-- favicon -->
         <link rel="shortcut icon" href="images/favicon.png">
-        <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
+      <!--  <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-        <!-- animation -->
+         animation -->
         <link rel="stylesheet" href="/css/animate.css" />
         <!-- bootstrap -->
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -127,4 +129,3 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
         <![endif]-->
         <script src='https://www.google.com/recaptcha/api.js'></script>
 		
-    </head>

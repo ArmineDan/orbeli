@@ -5,7 +5,7 @@
  <div class="infinite-scroll wow fadeIn" style="display:{{count($all_last_posts['post'])==0?'none':'block'}}">   
        
     @foreach ($all_last_posts['post'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-15px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/post/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
@@ -44,7 +44,7 @@
 
  <div class="infinite-scroll wow fadeIn" style="display:{{count($all_last_posts['videos'])==0?'none':'block'}}" > 
          @foreach ($all_last_posts['videos'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-15px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/video/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
@@ -81,7 +81,7 @@
 <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title" style="display:{{count($all_last_posts['announcements'])==0?'none':'block'}}"><span> {{trans('text.announcements')}}</span></div>
 <div class="infinite-scroll wow fadeIn" style="display:{{count($all_last_posts['announcements'])==0?'none':'block'}}" > 
          @foreach ($all_last_posts['announcements'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-15px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/announcement/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
@@ -119,7 +119,7 @@
 
  <div class="infinite-scroll wow fadeIn" style="display:{{count($all_last_posts['news'])==0?'none':'block'}}"> 
          @foreach ($all_last_posts['news'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-15px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/news/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
@@ -155,7 +155,7 @@
 
  <div class="infinite-scroll wow fadeIn" style="display:{{count($all_last_posts['opinions'])==0?'none':'block'}}"> 
          @foreach ($all_last_posts['opinions'] as $item)               
-       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-80px-bottom sm-margin-50px-bottom xs-margin-15px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
                    <a href="{{url( $all_last_posts['lang'].'/opinion/'.$item->id.'/'.$item->date.'/'.$item->title)}}">

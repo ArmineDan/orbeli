@@ -5,28 +5,28 @@
             @include('includes.header')
         </header>
         <section class="visibl">
-        <div class="container">
+        <div class="container"> 
            <div class="row">     
                       <main class="col-md-9 col-sm-12 col-xs-12 right-sidebar sm-margin-60px-bottom xs-margin-40px-bottom padding-left sm-padding-right">
                       
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])== 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp; height: 350px, display: <?php count($all_last_posts['post'])== 0 ?'none':''?>">
                                @yield('posts')
                                 
                             </div>
                           
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])== 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['videos'])== 0 ?'none':''?>">
                                @yield('videos')
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['announcements'])== 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['announcements'])== 0 ?'none':''?>">
                                 @yield('announce')
                             </div>
                             
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['news'])== 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['news'])== 0 ?'none':''?>">
                                 @yield('news')
                             </div> 
 
-                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['opinions'])== 0 ?'none':''?>">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-10px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn " style="visibility: hidden; animation-name: fadeInUp;  height:350px,  display: <?php count($all_last_posts['opinions'])== 0 ?'none':''?>">
                                 @yield('opinions')
                             </div>     
                     </main>
@@ -43,7 +43,7 @@
                          </div>
 
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw" data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw"  data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
                      
                       

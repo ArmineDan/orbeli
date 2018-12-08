@@ -25,7 +25,8 @@ return [
      * By default, we use the default database connection, but this can be defined
      * so that all the tag-related tables are stored in a different connection.
      */
-    'connection'           => null,
+    'connection'           => 'mysql2',
+	'db_connection'           => 'mysql2',
 
     /**
      * How to handle passing empty values to the scope queries.  When set to false,
