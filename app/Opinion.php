@@ -54,7 +54,7 @@ class Opinion extends Model
             ->value('id');
     }
 
-    static function open_current_opinion($date,$title){
+    static function open_current_opinion($date,$title,$idd){
         $lang= App::getLocale();
         $lng = DB::table('langs')
             ->where('lng','=',$lang)
@@ -64,8 +64,7 @@ class Opinion extends Model
             ->join('authors as a', 'p.author_id', '=', 'a.id')
             ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
             ->where('p.lang_id','=', $lng)
-            ->where('p.date','=', $date)
-            ->where('p.title','=', $title)        
+            ->where('p.id','=', $idd)               
             ->get();
     }
 

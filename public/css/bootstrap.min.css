@@ -2319,6 +2319,9 @@ pre code {
     .col-md-5 {
         width: 41.66666667%
     }
+	.col-md-5.mini {
+        width: 37.666667%
+    }
 
     .col-md-4 {
         width: 33.33333333%
@@ -2702,6 +2705,8 @@ pre code {
         margin-left: 0
     }
 }
+
+
 
 table {
     background-color: transparent
@@ -7138,10 +7143,24 @@ button.close {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     .hidden-md {
         display: none !important
     }
+	
+    /* slider image */
+    .text-small {
+    font-size: 11px!important;
+    line-height: 15px!important;
+}
+.height-106px {
+    height: 87px!important
+}
+.md-wid-100 {
+    width: 148%!important;
+}
+	
+
 }
 
 @media (min-width: 1200px) {

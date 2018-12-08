@@ -14,16 +14,16 @@
         <section class="section1">               
             <div class="container">
                 <div class="row">  
-                 <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                 <main class="col-md-7 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-40px-bottom xs-margin-5px-bottom no-padding-right sm-no-padding-left ">
                    
                        @yield('main_post')
                                       
                     </main>
                     <!-- Vertical posts-->
-                    <aside class="col-md-4 col-sm-12 col-xs-12 pull-left no-padding-left" > 				   
-                        <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
+                    <aside class="col-md-5 top-minus70-new mini col-sm-12 col-xs-12 pull-left no-padding-left" > 				   
+                         
                             @yield('main_right')  
-                             </div>                     
+                                           
                      </aside>
                      <!--end Vertical posts-->
                   </div>
@@ -44,7 +44,7 @@
                         </div>
                         <!-- end post item -->                      
                         <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center">
-                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"><span> {{trans('text.xoragrer')}}</span></div>
+                        <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title xs-text-left"><span> {{trans('text.xoragrer')}}</span></div>
                             @yield('xoragrer')  
                         </div>  
                     </main>    
@@ -63,7 +63,7 @@
                          </div>      
 
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                                <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw" data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
                      
                     </aside>
@@ -75,11 +75,11 @@
           <div class="container">
             <div class="row">
                  <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"><a href="{{url($all_last_posts['lang'].'/videos')}}" ><span>{{trans('text.videos')}} <i class="fa fa-arrow-right"></i></span></a></div>   
-                     <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
+                     <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom no-padding-right sm-no-padding-left">
                             @yield('main_video')
                              </main>
                         <!-- Vertical videos-->  
-                        <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"> 				   
+                        <aside class="col-md-3 col-sm-12 col-xs-12 pull-left no-padding-right top-minus70-new"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"> 				   
                          <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content xs-text-center no-padding-right">   
                             @yield('vertical_video')    
                              </div>                     

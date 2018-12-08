@@ -17,7 +17,7 @@
                                       <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['authors'][0]->id)}}" target="_blanck">{{$all_last_posts['authors'][0]->name .' '.$all_last_posts['authors'][0]->lastname}} </a>
                                       <br/>
                                      <span> {{$all_last_posts['authors'][0]->sub_name}}</span>
-                                      <div class="display-table height-100 width-100" style="color:black">
+                                      <div class="display-table width-100" style="color:black">
                                          <div class="display-table-cell icon-social-small ">
                                             <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
                                              <a href="{{$all_last_posts['authors'][0]->faceebook}}" target="_blank"><i class="fa fa-facebook-f"></i></a>

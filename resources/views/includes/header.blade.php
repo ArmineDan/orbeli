@@ -1,15 +1,4 @@
-<div id="open_search_folder_ns">
-    <i class="fa fa-times close_search_btn_ns"></i>
-    <center>
 
-    <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
-        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
-   
-   <button type="submit" style="display: contents;"><i class="fa fa-search" id="search_btn_for_blur_narek" ></i></button>
-	 </form>
-
-    </center>
-</div>
 
 <nav class="navbar navbar-default bootsnav navbar-top header-light bg-transparent nav-box-width white-link"  style="border-bottom: 1px solid white;background-color: #2C3A4A">
     <div class="container-fluid nav-header-container">      
@@ -19,7 +8,7 @@
                     <img src="/images/logo-white.png" data-rjs="/images/logo.png" class="logo-dark" alt="Orbeli">
                     <img src="/images/logo-white.png" data-rjs="/images/logo-white.png" alt="Orbeli" class="logo-light default"></a>
             </div>	 
-            <div class="col-md-10 col-sm-8  col-xs-6  pull-right accordion-menu xs-no-padding-right margin-20px-left" style="margin-right: 111px;">
+            <div class="col-md-9 col-sm-8  col-xs-6  pull-right accordion-menu xs-no-padding-right margin-20px-left">
                 <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
                     <span class="sr-only">toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -99,42 +88,56 @@
                                   </ul>
                             </div>  --}}
                             
-                <div id="arch" style="z-index:1000">
-                     
-                                <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
-                                   
-                                <div class="calendar  col-md-3 col-sm-5 col-xs-12" style=" display:none;
-                                position: absolute; top: 63%; right:0">
-                                                        <div class="panel panel-default">
-                                            <div class="panel-body">
-                                                                {!! $all_last_posts['event']->calendar() !!}
-                                                            </div>
-                                                        </div>
-                                    </div>  
-                            
-                                
-                </div> 
+            <div id="arch" style="z-index:1000;margin-left: 60px;">                 
+                <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
+                               
+                <div class="calendar  col-md-3 col-sm-5 col-xs-12" style=" display:none;
+                position: absolute; top: 63%; right:0">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {!! $all_last_posts['event']->calendar() !!}
+                        </div>
+                    </div>
+                </div>                            
+            </div> 
 
-                <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right">
-                    <button id="srch" class="bg-transparent">
-                    <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
-                </div> 
-                 
+                {{--<div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
+                        <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
+                        <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
+                    </div>--}}
+
+<div id="open_search_folder_ns">
+    {{-- <i class="fa fa-times close_search_btn_ns"></i>--}}
+    <center>
+    <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
+        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
+   
+   <button type="submit" style="display: contents;"><i class="fa fa-search" id="search_btn_for_blur_narek" ></i></button>
+	 </form>
+    </center>
+</div>
+            <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right text-center">
+                <button id="srch" class="bg-transparent">
+                <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
+            </div> 
+
 
             <div class="col-md-1 col-sm-2 col-xs-3  xs-padding-right" style="margin-left:auto">
                 <div data-in="fadeIn" data-out="fadeOut" style="font-size:11px!important">
                 
                 <strong>
                 <span style="display:<?php echo  $all_last_posts['lang'] =='hy'? 'none':'inline-block'?>">
-                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm | </a>                                   
+                          <a class="lang" href="{{url('/hy')}}"  title="Հայերեն">Arm </a>                                   
                          </span>
-                         
-                         <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
-                         <a  class="lang" href="{{url('/ru')}}"  title="Русский">Rus |</a>                              
+						<span style="display:<?php echo $all_last_posts['lang'] =='en'?'inline-block':'none'?>;color:white">|</span>
+                          <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
+                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus </a>                              
                          </span>
+						  <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>;color:white">|</span>
                          
                         <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
-                            <a class="lang" href="{{url('/en')}}" title="English">Eng</a> </span>  
+                            <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng </a> </span> 
+                         							
                         </strong>                                  
                         </div>
                  

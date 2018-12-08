@@ -65,7 +65,7 @@ class Announcement extends Model
         return $allTags;
     }
 
-    static function open_current_announce($date,$title){
+    static function open_current_announce($date,$title,$idd){
         $lang= App::getLocale();
         $lng = DB::table('langs')
             ->where('lng','=',$lang)
@@ -75,8 +75,7 @@ class Announcement extends Model
             ->join('authors as a', 'p.author_id', '=', 'a.id')
             ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
             ->where('p.lang_id','=', $lng)
-            ->where('p.date','=', $date)
-            ->where('p.title','=', $title)        
+            ->where('p.id','=', $idd)                  
             ->get();
 
 

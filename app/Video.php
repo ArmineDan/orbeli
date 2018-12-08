@@ -35,7 +35,7 @@ class Video extends Model
             ->where('videos.title','=', $title)        
             ->value('id');
     }
-    static function open_current_video_post($date,$title){
+    static function open_current_video_post($date,$title,$idd){
         $lang= App::getLocale();
         $lng = DB::table('langs')
             ->where('lng','=',$lang)
@@ -45,8 +45,7 @@ class Video extends Model
             ->join('authors as a', 'p.author_id', '=', 'a.id')
             ->select('p.*','a.name','a.lastname','a.faceebook','a.twitter','a.linkedin','a.img as aimg','p.img as pimg')       
             ->where('p.lang_id','=', $lng)
-            ->where('p.date','=', $date)
-            ->where('p.title','=', $title)        
+            ->where('p.id','=', $idd)            
             ->get();
 
 

@@ -31,7 +31,7 @@ $white_list = 'whitelist:my_group';
 $admin_rules = [
     'prefix'=>'admin/{locale}',
     'namespace'=>'Admin',
-    'middleware'=>['auth', $white_list], // ,'whitelist:my_group'
+    'middleware'=>['auth'], // , $white_list
 ];
 
 Route::group( $admin_rules , function() {
@@ -64,9 +64,9 @@ Route::group( $admin_rules , function() {
 
 // Auth Routes
 Auth::routes();
-Route::group( ['middleware'=> $white_list], function() {
-  Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-});
+// Route::group( ['middleware'=> $white_list], function() {
+//   Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+// });
 
 // Prevent reseting mail-pass and registration
 Route::match(['get', 'post'], 'password/reset', function(){
@@ -101,7 +101,7 @@ Route::group($sitemap_rules, function () {
 //   // list all lfm routes here...
 // });
 
-Route::get('/{locale}/author', 'AuthorController@index');
+Route::get('/{locale}/author', 'AuthorController@index'); 
 Route::get('/{locale}/about_us', 'PageController@about_us');
 Route::get('/{locale}/announcements', 'LoadAll@announcements');
 Route::get('/{locale}/news', 'LoadAll@news');
@@ -113,14 +113,14 @@ Route::get('/{locale}/opinions', 'LoadAll@opinions');
 Route::get('/{locale}/videos', 'LoadAll@videos');
 Route::get('/{locale}/category/{id}', 'PageController@load_allFromMenu');
 
-Route::get('/{locale}/post/{date}/{title}', 'PageController@openCurrentPost');
-Route::get('/{locale}/opinion/{date}/{title}', 'PageController@openCurrentPost_opinion');
-Route::get('/{locale}/announcement/{date}/{title}', 'PageController@openCurrentPost_announce');
-Route::get('/{locale}/news/{date}/{title}', 'PageController@openCurrentPost_news');
+Route::get('/{locale}/post/{id}/{date}/{title}', 'PageController@openCurrentPost');
+Route::get('/{locale}/opinion/{id}/{date}/{title}', 'PageController@openCurrentPost_opinion'); 
+Route::get('/{locale}/announcement/{id}/{date}/{title}', 'PageController@openCurrentPost_announce');
+Route::get('/{locale}/news/{id}/{date}/{title}', 'PageController@openCurrentPost_news');
 
 Route::get('/{locale}/contacts','PageController@contact');
 
-Route::get('/{locale}/video/{date}/{title}', 'PageController@openCurrentPost_video');
+Route::get('/{locale}/video/{id}/{date}/{title}', 'PageController@openCurrentPost_video');
 Route::get('/{locale}/archieves/{date}', 'PageController@openArchieve');
 Route::get('/{locale}/all/tags/', 'PageController@allTags');
 

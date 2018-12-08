@@ -346,13 +346,20 @@ $(document).ready(function () {
     "use strict";
     // Bootsnav menu work with eualize height
     
-    $("#srch").click(function(){
-        $("#open_search_folder_ns").css("display", "block")
-    })
-
-    $(".close_search_btn_ns").click(function(){
+    $("#srch").click(function(){  
+         console.log($(this).children())	
+		$(this).children().removeClass('fa-search no-margin-left').addClass('fa-times close_search_btn_ns').attr({"style":"z-index:103;position:fixed"}); 
+        $(this).removeAttr("id").attr('id','new');
+		$("#open_search_folder_ns").css("display", "block")
+		$("#new").on("click",function(){
+			console.log("new")
+	     $(this).removeAttr("id").attr('id','srch');
+		 $(this).children().removeClass('fa-times close_search_btn_ns').addClass(' fa-search no-margin-left').removeAttr("style").attr('style','font-size:16px');		
         $("#open_search_folder_ns").css("display", "none")
     })
+    })
+
+    
 
     $(document).keydown(function(e) {
         if (e.keyCode == 27) {
@@ -398,7 +405,7 @@ $(document).ready(function () {
 		
         if ($(this).scrollTop() > 150){
 		$('.scroll-top-arrow').fadeIn('slow');
-		$("#srch").fadeIn('slow');		
+		//$("#srch").fadeIn('slow');		
 		$("#for_m").fadeOut('slow');	
 		}
         else

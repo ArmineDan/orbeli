@@ -272,20 +272,20 @@ class LoadAll extends Controller
                                    
                         $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                       
-                        $all_Post = Post::with('getAuthors')->whereHas('tags', function($query) use ($tagName) {
+                        $all_Post = Post::with('getAuthors')->where('status','<>','not_published')->whereHas('tags', function($query) use ($tagName) {
                             $query->whereName($tagName);
                         })->paginate(6);                          
                         $all_Video = Video::whereHas('tags', function($query) use ($tagName) {
-                            $query->whereName($tagName);
+                            $query->where('status','<>','not_published')->whereName($tagName);
                         })->paginate(6); 
                         $all_Opinion = Opinion::whereHas('tags', function($query) use ($tagName) {
-                            $query->whereName($tagName);
+                            $query->where('status','<>','not_published')->whereName($tagName);
                         })->paginate(6);
                         $all_Announ = Announcement::whereHas('tags', function($query) use ($tagName) {
-                            $query->whereName($tagName);
+                            $query->where('status','<>','not_published')->whereName($tagName);
                         })->paginate(6);
                         $all_News = News::whereHas('tags', function($query) use ($tagName) {
-                            $query->whereName($tagName);
+                            $query->where('status','<>','not_published')->whereName($tagName);
                         })->paginate(6);
  
                

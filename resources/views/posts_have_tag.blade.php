@@ -8,13 +8,13 @@
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px " style="visibility: hidden; animation-name: fadeInUp; ">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                   <a href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}">
+                   <a href="{{url( $all_last_posts['lang'].'/post/'.$item->id.'/'.$item->date.'/'.urlencode($item->title))}}">
                        <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
                    
-                   <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/post/'.$item->id.'/'.$item->date.'/'.urlencode($item->title))}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"> </i>&nbsp;{{$item->p_duratioan.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -49,12 +49,12 @@
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                   <a href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}">
+                   <a href="{{url( $all_last_posts['lang'].'/video/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
                        <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/video/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/video/'.$item->id.'/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"> </i>&nbsp;{{$item->duration.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -86,12 +86,12 @@
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px" style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                   <a href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}">
+                   <a href="{{url( $all_last_posts['lang'].'/announcement/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
                        <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/announcements/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/announcement/'.$item->id.'/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;">{!!str_limit($item->title, 50)!!} </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"> </i>&nbsp;{{$item->a_duration.' '.trans('text.minute') }}</span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                    
@@ -124,12 +124,12 @@
        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-100px-bottom sm-margin-50px-bottom xs-margin-30px-bottom wow fadeIn height-317px " style="visibility: hidden; animation-name: fadeInUp;">
            <div class="blog-post blog-post-style1 xs-text-center">
                <div class="blog-post-images overflow-hidden margin-25px-bottom xs-margin-15px-bottom">
-                   <a href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}">
+                   <a href="{{url( $all_last_posts['lang'].'/news/'.$item->id.'/'.$item->date.'/'.$item->title)}}">
                        <img src="{{$item->img}}" alt="" data-no-retina="">
                    </a>
                </div>
                <div class="post-details">
-                   <a  href="{{url( $all_last_posts['lang'].'/news/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;height:82px">{!!str_limit($item->title, 50)!!}  </a>
+                   <a  href="{{url( $all_last_posts['lang'].'/news/'.$item->id.'/'.$item->date.'/'.$item->title)}}" class="post-title text-medium text-extra-dark-gray width-90 display-block md-width-100 height-82px" style="font-weight:bold;height:82px">{!!str_limit($item->title, 50)!!}  </a>
                    <span class="text-medium-gray text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"> </i>&nbsp;{{$item->n_duration.' '.trans('text.minute') }} </span>
                   <div class="separator-line-horrizontal-full bg-medium-light-gray margin-20px-tb xs-margin-15px-tb"></div>
                                       

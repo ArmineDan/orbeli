@@ -1690,7 +1690,7 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 ================================*/
 
 .display-block {display:block !important}
-.display-inline-block {display:inline-block !important}
+.display-inline-block {display:inline-block !important;padding-right: 3px;}
 .display-content{   display: contents;}
 .display-inline {display:inline !important}
 .display-none {display:none !important}
@@ -1921,11 +1921,12 @@ textarea.input-bg {background-color: #f7f7f7; border-radius: 4px; border: 1px so
 .height-90px {height: 90px}
 .height-100px {height: 100px}
 .height-130px {height: 130px}
+.height-106px {height: 106px}
 .height-150px {height: 150px}
 .height-200px {height: 200px}
 .height-250px {height: 250px}
 .height-300px {height: 300px} 
-.height-317px {height: 352px}
+.height-317px {height: 385px}
 .height-350px {height: 350px}
 .height-400px {height: 400px}
 .height-450px {height: 450px}
@@ -3572,14 +3573,17 @@ header.sticky nav.navbar.brand-center ul.nav > li > a {padding: 20px; margin: 0 
 /* ===================================
    Blog
 ====================================== */
-
+ 
 .blog-image a > img {width: 100%}
 
 /* blog post style 1 */
 /* .blog-post.blog-post-style1 .blog-post-images {background: #232323} */
 .blog-post.blog-post-style1 .blog-post-images img {width: 100%;}
 .blog-post.blog-post-style1:hover .blog-post-images img {opacity: 0.5; transform: scale(1.2, 1.2); transition: all 0.3s ease 0s;}
+ul.latest-post li.blog-post:hover   img {opacity: 0.5; transform: scale(1.2, 1.2); transition: all 0.3s ease 0s;}
 
+.blog-post.blog-post-style1:hover .text-extra-dark-gray {color: #7188a7}
+.blog-post.blog-post-style1:hover .post-details a {color: #7188a7}
 /* blog post style 2 */
 .blog-post.blog-post-style2 .author img{width: 30px; display: inline-block; vertical-align: middle;}
 .blog-post.blog-post-style1 .author img{width: 22px; display: inline-block; vertical-align: middle;}
@@ -3764,8 +3768,7 @@ aside .latest-post li.aa figure {width: 179px;}
 .titel_new{
 	position: relative;
     top: -99px;  
-	//left:12px;	
-    background-color: #ffffffa8;
+	background-color: #ffffffa8;
     padding: 0 12px 0;
 	
 }
@@ -4054,10 +4057,10 @@ aside .latest-post li.aa figure {width: 179px;}
     #search_btn_for_blur_narek{right: 2%}
 	.video_a{
 		height:auto!important
-    }
+	}
+	
+	
 }
-
-
 
 @media(max-width: 648px){#figure_narek a img{width: 400px}}
 
@@ -4093,7 +4096,8 @@ aside .latest-post li.aa figure {width: 179px;}
 		margin-bottom: 10px;
     }
     .latest-post li div{
-        width: 100% !important
+        width: 100% !important;
+		top: -35px; 
     }
     .blog-post-content{
         padding: 30px !important
@@ -4111,19 +4115,44 @@ aside .latest-post li.aa figure {width: 179px;}
 		
 		/*padding-top: 75px!important;*/
 	}
+	.titel_new {
+    position: relative;
+    top: 0px;    
+    background: none!important;
+    padding: 0 12px 0;
+	text-align:left
+}
+.tite2_new{
+	position: relative;
+    top: 0px;    
+   background: none!important;
+    padding: 0 12px 0;
+	text-align:left
+} 
+.top-minus70-new{
+	top:-70px
+	
+}
       
 }
 .moree{ 
 	position: absolute!important; right: 3px;z-index: 1000;
 }
-
+.narek_all_rights_reserved{  
+    width: 100%;
+    background-color: #f2f2f2;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px;
+	height:50px; 
+}
 .auth{
 	text-align:center;
 	height:-webkit-fill-available;
 	max-height: 308px; 
 	margin: 0 auto;
     float: none;
-}  
+} 
 .more_auth{
 	text-align:center;
 	height:-webkit-fill-available;
@@ -4148,14 +4177,26 @@ aside .latest-post li.aa figure {width: 179px;}
 }
 
 
-
-.narek_all_rights_reserved{  
-    background-color: #f2f2f2;
-    font-size: 13px;
-    padding: 10px;
-	height:50px;
+#srch {
+    display: inline-block;
+    /* border: 1px solid grey; */
+    /*padding: 5px 10px 5px 15px;*/
+    padding: 5px;
+    vertical-align: bottom;
+    background: transparent;
+    color: white;
+    border:none;
 }
 
+#srch:hover {
+    cursor: pointer;
+}
+
+@media(max-width: 1287px){
+    header nav .navbar-nav > li > a {
+        margin: 0 10px;
+    }
+}
 #footer_ns_hamar_1{
     position: absolute;
     right: 40%
@@ -4199,30 +4240,9 @@ aside .latest-post li.aa figure {width: 179px;}
     #footer_ns_hamar_2{
         right: 60px
     }
+	
 }
-
-
-
-
-#srch {
-    display: inline-block;
-    /* border: 1px solid grey; */
-    /*padding: 5px 10px 5px 15px;*/
-    padding: 5px;
-    vertical-alirgn: bottom;
-    background: transparent;
-    color: white;
-    border:none;
+.text-lowcase{
+	text-transform:none!important;
 }
-
-#srch:hover {
-    cursor: pointer;
-}
-
-@media(max-width: 1287px){
-    header nav .navbar-nav > li > a {
-        margin: 0 10px;
-    }
-}
-
 

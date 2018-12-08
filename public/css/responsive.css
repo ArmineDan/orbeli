@@ -3085,6 +3085,8 @@ aside .latest-post li.aa {
 
 @media (max-width: 767px) {
 
+
+
     body { font-size: 12px; line-height: 20px}
 
     h1, h2, h3, h4, h5, h6 {margin:0 0 17px; padding:0; letter-spacing: 0; font-weight: 400;}
@@ -4765,6 +4767,8 @@ aside .latest-post li.aa {
 @media(max-width: 600px){
     .xs-margin-30px-bottom {margin-bottom: 50px !important}
 }
+
+ 
 @media(max-width: 991px){
 	.gg{
 		width:138px!important
@@ -4772,6 +4776,8 @@ aside .latest-post li.aa {
 	.over{
 		overflow:visible
 	}
+	.height-106px{
+		height:auto
+	}
+	
 }
-
-/* @media(980) */

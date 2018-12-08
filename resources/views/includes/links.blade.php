@@ -42,8 +42,8 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 
 
 <meta property="og:locale" content="en_US" />
-<meta property="og:locale։alternate" content="ru_RU" />
-<meta property="og:locale։alternate" content="hy_AM" />
+<meta property="og:localeÖ‰alternate" content="ru_RU" />
+<meta property="og:localeÖ‰alternate" content="hy_AM" />
 @isset($all_last_posts['post'])
 
 @isset($all_last_posts['folder']) 
@@ -51,8 +51,7 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="{{ isset($all_last_posts['post'][0])? ($all_last_posts['post'][0]->title . ' - '. $share_dur .' '.trans('text.minute')):'default title'}}" />
 <meta property="og:description" content="{{ isset($all_last_posts['post'][0])? strip_tags($all_last_posts['post'][0]->short_text): 'Your description for current page'}}" />
-<meta name="twitter:image:src"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
-
+<meta property="og:image"       content="{{ isset($all_last_posts['post'][0]) ? asset($all_last_posts['post'][0]->img) :'/images/logo-white.png'}}" />
 @endisset
 
 
@@ -67,7 +66,7 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
     <meta property="og:image"       content="{{ asset($all_last_posts['post'][0]->img) }}" />
     @endif 
 
-@endif
+@endif 
 
 @endisset
 
@@ -127,16 +126,5 @@ if(!empty($all_last_posts['post'][0]) && !empty($all_last_posts['folder'])) {
             <script src="js/html5shiv.js"></script>
         <![endif]-->
         <script src='https://www.google.com/recaptcha/api.js'></script>
-		<script>
-		twttr.widgets.createShareButton(
-  "https:\/\/dev.twitter.com\/web\/tweet-button",
-  document.getElementById("tweet-container"),
-  {
-    size: "large",
-    text: "custom share text",
-    hashtags: "example,demo",
-    via: "twitterdev",
-    related: "twitterapi,twitter"
-  }
-)</script>
+		
     </head>
