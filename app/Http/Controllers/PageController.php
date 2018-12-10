@@ -203,7 +203,7 @@ class PageController extends Controller
                 $post_with_given_dateANDtitle = Video::open_current_video_post($date,$title,$idd);
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                
-                if($id === NULL ) {
+                if( settype($id, "integer") === NULL || Video::where('lang_id',$lng)->find($id) === null || Video::where('status','=','not_published')->find($id) == true ) {
                     $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
                     $all_data=array(
                         "lang"=> $lang,
@@ -268,8 +268,9 @@ class PageController extends Controller
                 $popular_tags=Tags::load_popular_tags('Opinion');  
                 $post_with_given_dateANDtitle = Opinion::open_current_opinion($date,$title,$idd);
                 
-                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                if($id === NULL ) {
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();
+
+                if( settype($id, "integer")  === NULL || Opinion::where('lang_id',$lng)->find($id) === NULL || Opinion::where('status','=','not_published')->find($id) == true ) {
 
                     $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
                     $all_data=array(
@@ -332,7 +333,7 @@ class PageController extends Controller
                     $post_with_given_dateANDtitle = Announcement::open_current_announce($date,$title,$idd);
                     $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                     
-                    if($id === NULL ) {
+                    if(settype($id, "integer")  === NULL || Announcement::where('lang_id',$lng)->find($id) === NULL || Announcement::where('status','=','not_published')->find($id) == true ) {
 
                         $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
                         $all_data=array(
@@ -377,10 +378,10 @@ class PageController extends Controller
         } 
             
         public function openCurrentPost_news($locale,$idd,$date,$title) 
-        {   
+        {
             $title=urldecode($title);
             $rules = ['en','ru','hy'];                      
-            if(in_array($locale,$rules)) 
+            if(in_array($locale,$rules))
             {
                 Session::put('locale',$locale);
                 App::setLocale($locale);
@@ -395,7 +396,8 @@ class PageController extends Controller
                 $post_with_given_dateANDtitle = News::open_current_announce($date,$title,$idd);
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
                 
-                if($id === NULL )
+                
+                if(settype($id, "integer") === NULL || News::where('lang_id',$lng)->find($id) === NULL || News::where('status','=','not_published')->find($id) == true)
                 {
                     $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
                     $all_data=array(
@@ -411,7 +413,7 @@ class PageController extends Controller
                     // return redirect()->action('PageController@index', $all_data);
                 }
                 else {
-                $comments = Post::find($id)->comments()->where('approved','>',0)->get();
+                $comments = News::find($id)->comments()->where('approved','>',0)->get();
                 $docs = News::find($id)->getDocuments()->get();
                 $tags = News::find($id)->tagArray;
                 DB::table('news')->where('id','=',$id)->increment('view');
@@ -459,8 +461,8 @@ class PageController extends Controller
                   
                  
                 $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
-                    
-                if($id === NULL ) {
+
+                if(settype($id, "integer") === NULL || Post::where('lang_id',$lng)->find($id) === NULL || Post::where('status','=','not_published')->find($id) == true ) {
                     $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
                     $all_data=array(
                         "lang"=> $lang,
@@ -606,8 +608,8 @@ class PageController extends Controller
                 return view('search')->with('all_last_posts',$all_data);
             }
          else {
-                    return  redirect('/'.App::getLocale());
-                    }                
+            return  redirect('/'.App::getLocale());
+            }                
         }  
             
             public function about_us($locale) 
