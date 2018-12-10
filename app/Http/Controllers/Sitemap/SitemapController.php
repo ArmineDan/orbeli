@@ -40,7 +40,7 @@ class SitemapController extends Controller
 
     public function posts() {
         $posts = Post::leftJoin('langs', 'posts.lang_id', '=', 'langs.id')
-                        ->select('posts.*', 'langs.lng')->get();
+                        ->select('posts.*', 'langs.lng')->where('status','<>','not_published')->get();
 
         return response()->view('sitemap.posts',[
             'posts' => $posts,
@@ -50,7 +50,7 @@ class SitemapController extends Controller
 
     public function news() {
         $news = News::leftJoin('langs', 'news.lang_id', '=', 'langs.id')
-                        ->select('news.*', 'langs.lng')->get();         
+                        ->select('news.*', 'langs.lng')->where('status','<>','not_published')->get();         
         return response()->view('sitemap.news',[
             'news' => $news,
             'siteURL' => $this->siteURL(),
@@ -59,7 +59,7 @@ class SitemapController extends Controller
 
     public function opinions() {
         $opinions = Opinion::leftJoin('langs', 'opinions.lang_id', '=', 'langs.id')
-                            ->select('opinions.*', 'langs.lng')->get();
+                            ->select('opinions.*', 'langs.lng')->where('status','<>','not_published')->get();
         // return $opinions;
         return response()->view('sitemap.opinions',[
             'opinions' => $opinions,
@@ -69,7 +69,7 @@ class SitemapController extends Controller
 
     public function announcements() {
         $announcements = Announcement::leftJoin('langs', 'announcements.lang_id', '=', 'langs.id')
-                                    ->select('announcements.*', 'langs.lng')->get();
+                                    ->select('announcements.*', 'langs.lng')->where('status','<>','not_published')->get();
         // return $announcements;
         return response()->view('sitemap.announcements',[
             'announcements' => $announcements,
@@ -79,7 +79,7 @@ class SitemapController extends Controller
 
     public function videos() {
         $videos = Video::leftJoin('langs', 'videos.lang_id', '=', 'langs.id')
-                        ->select('videos.*', 'langs.lng')->get();
+                        ->select('videos.*', 'langs.lng')->where('status','<>','not_published')->get();
         // return $videos;
         return response()->view('sitemap.videos',[
             'videos' => $videos,

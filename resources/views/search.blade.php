@@ -32,13 +32,13 @@
                                         $show_text = $long_desc;
                                     }
                                    // print_r($devide_text
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>...".mb_substr($show_text, 1, -1)."...</div>";
                                 @endphp
                                 
                                 @else
                                 @php
                                     $show_text = substr($long_desc, $skizb, $show_symbols_size);
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>...".mb_substr($show_text, 1, -1)."...</div>";
                                 @endphp
                             @endif
                           

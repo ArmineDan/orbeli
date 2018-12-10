@@ -116,7 +116,7 @@
 	 </form>
     </center>
 </div>
-            <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right text-center">
+            <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right text-center" style="z-index:9000">
                 <button id="srch" class="bg-transparent">
                 <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
             </div> 

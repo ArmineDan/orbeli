@@ -4762,6 +4762,11 @@ aside .latest-post li.aa {
 
 @media(max-width: 767px){
     .xs-margin-30px-bottom {margin-bottom: 100px !important}
+    /* arm_shtk_start */
+    #index_main_div_nark div.black.text-extra-small {
+        text-align:left;
+    }
+    /* arm_shtk_end */
 }
 
 @media(max-width: 600px){
