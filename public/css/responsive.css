@@ -4786,3 +4786,9 @@ aside .latest-post li.aa {
 	}
 	
 }
+
+@media(max-width: 650px){
+    .latest-post li div{
+        /*float: none*/
+    }
+}

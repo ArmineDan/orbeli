@@ -31,6 +31,7 @@
                                     }else{
                                         $show_text = $long_desc;
                                     }
+                                    //$utf8string = "cakeæøå";
                                    // print_r($devide_text
                                     echo "<div class='show_text'>...".mb_substr($show_text, 1, -1)."...</div>";
                                 @endphp
@@ -39,6 +40,7 @@
                                 @php
                                     $show_text = substr($long_desc, $skizb, $show_symbols_size);
                                     echo "<div class='show_text'>...".mb_substr($show_text, 1, -1)."...</div>";
+
                                 @endphp
                             @endif
                           
