@@ -1,4 +1,7 @@
 @extends('admin.layouts.app_admin')
+<?php
+//dump(session()->all());
+?>
 
 @section('content')
 
@@ -51,7 +54,7 @@
       <div class="panel panel-info">
           <div class="panel-heading"><h5 for="post_typ">Select Category</h5></div>
           <div class="panel-body">
-              <select name="post_typ" class="form-control" onchange="checkCategory()">
+              <select name="post_typ" class="form-control" onchange="checkCategory()" aria-valuenow="{{ old('post_typ') }}">
                 <option value="">Select Category</option>
                 @forelse ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -66,11 +69,11 @@
       <h5 for="title">Title 
         <span class="label label-default">max number of chars = 80</span>
       </h5>
-      <input type="text" name="title" class="form-control" placeholder="Post name" maxlength="80">
+      <input type="text" name="title" class="form-control" placeholder="Post name" maxlength="80" value="{{ old('title') }}">
       <hr>
 
       <h5 for="status">Status</h5>
-      <select name="status" class="form-control" >
+      <select name="status" class="form-control" aria-valuenow="{{ old('status') }}">
           <option value="" style="display:none">Select Post status</option>
           <option value="published">Published</option>
           <option value="not_published">Not published</option>
@@ -80,7 +83,7 @@
       <hr>
 
       <h5>Authors</h5>
-      <select name="authors[]" class="form-control" id="ex-search-2" multiple>        
+      <select name="authors[]" class="form-control" id="ex-search-2" multiple >        
         @forelse ($authors as $author)
           <option value="{{ $author->id }}"> {{ $author->name }} {{ $author->lastname }} </option>
         @empty
@@ -90,13 +93,14 @@
       <hr>
 
       <h5 for="date">Date</h5>
-      <input type="date" name="date" class="form-control" placeholder="select date">
+      <input type="date" name="date" class="form-control" placeholder="select date" value="{{ old('date') }}">
       <hr>
 
       <h5 for="post_short_text">Short Description
-          <span class="label label-default">max number of chars = 100</span>
+          <span class="label label-default">cat from 100 simbols (min: 100)</span>
       </h5>
       <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control" placeholder="Input short description">       
+      {{ old('short_text') }}
       </textarea>
       <hr>
 
@@ -106,24 +110,25 @@
       <span class="text text-info">only for "Economy"-category</span>
       <div id="long_text_wrap" style="display:none">
         <textarea name="long_text" id="post_long_text" cols="30" rows="10" class="form-control" placeholder="Input long description">       
+        {{ old('long_text') }}
         </textarea>
       </div>
       <hr>
 
       <h5 for="post_full_text">Full Content</h5>
       <textarea name="html_code" id="post_full_text" cols="30" rows="10" class="form-control" placeholder="Input content">       
-        Content com1es here ...
+        {{ old('html_code') }}
       </textarea>
       <hr>
 
       <h5 for="img">Main image 900x600: upload and past url here <code>/storage/post/14/clouds-picture.jpg</code></h5>
-      <input type="text" name="img" id="img" class="form-control" placeholder="Main image url..." >
+      <input type="text" name="img" id="img" class="form-control" placeholder="Main image url..." value="{{ old('img') }}">
       <hr>
 
       <h5 for="thumb_img">Cropped Image 450x600: <code>/storage/post/14/cropped-clouds-picture.jpg</code></h5>
       <span class="text text-info">only for "Economy"-category</span>
       <div id="thumb_img_wrap" style="display:none">
-        <input type="text" name="thumb_img" id="thumb_img" class="form-control" placeholder="Second image url...">
+        <input type="text" name="thumb_img" id="thumb_img" class="form-control" placeholder="Second image url..." value="{{ old('thumb_img') }}">
       </div>
       <hr>
 
@@ -132,7 +137,7 @@
         <span class="btn btn-danger" onclick="CountDuration()">count</span>
         <span style="margin-left:20px"> <span id="time_text"></span> <span id="time_words"></span> </span>
       </h5>
-      <input type="text" name="p_duratioan" id="duration" class="form-control" value="1">
+      <input type="text" name="p_duratioan" id="duration" class="form-control" value="{{ old('p_duratioan') }}">
       <hr>
       
       
@@ -157,9 +162,9 @@
 
       <h5>Meta data</h5>
       <h5 for="meta_k">Meta keywords <kbd>without spaces</kbd></h5>
-      <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas">
+      <input type="text" name="meta_k" class="form-control" placeholder="Insert meta-keywords separated by commas" value="{{ old('meta_k') }}">
       <h5 for="meta_d">Meta description</h5>
-      <input type="text" name="meta_d" class="form-control" placeholder="Insert meta-description">
+      <input type="text" name="meta_d" class="form-control" placeholder="Insert meta-description" value="{{ old('meta_d') }}">
       <hr>
       <button type="submit" class="btn btn-success" style="width:130px">Next</button>
     </form><hr>

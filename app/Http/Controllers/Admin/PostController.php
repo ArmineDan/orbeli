@@ -103,7 +103,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
-        $validator = $this->validate( $request, [
+        $validator = Validator::make($request->all(), [
+        // $validator = $this->validate( $request, [
             'title'=>'bail|required|max:400',
             'short_text'=>'required|string',
             'long_text' => 'nullable|string',
@@ -122,6 +123,9 @@ class PostController extends Controller
             'tags'=> 'required|array',
             'authors' => 'required|array',
         ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
       
 
         // return $request->all();

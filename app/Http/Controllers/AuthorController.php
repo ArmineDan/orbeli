@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App;
 use DB;
 use Session;
+use App\NotFound;
 
 class AuthorController extends Controller
 {
@@ -23,30 +24,29 @@ class AuthorController extends Controller
         $rules = ['en','ru','hy'];                      
         if(in_array($locale,$rules))
         {
-                Session::put('locale',$locale);
-                App::setLocale($locale);
-                $lang = App::getLocale(); 
-                $lng = Post:: getLangId(); 
-        $menu = Post::menu();
-        $authors =DB::table('authors')
-        ->select('*')
-        ->where('lang_id','=', $lng) 
-        ->paginate(8);
-        $mostViewed = Post::mostViewed();
-        $popular_tags = Tags::load_all_popular_tags(); 
-        $calendar= Event::event($lang);
-        $all_last_posts = array(
-        'authors' => $authors,
-        'menu'=>$menu,
-        "mostViewed"=> $mostViewed,
-        "popular_tags"=> $popular_tags,
-        "event"=> $calendar,
-        "lang"=> $lang,
-         "text"=> trans('text.auth')
-
-        );
+            Session::put('locale',$locale);
+            App::setLocale($locale);
+            $lang = App::getLocale(); 
+            $lng = Post:: getLangId(); 
+            $menu = Post::menu();
+            $authors =DB::table('authors')
+            ->select('*')
+            ->where('lang_id','=', $lng) 
+            ->paginate(8);
+            $mostViewed = Post::mostViewed();
+            $popular_tags = Tags::load_all_popular_tags(); 
+            $calendar= Event::event($lang);
+            $all_last_posts = array(
+                'authors' => $authors,
+                'menu'=>$menu,
+                "mostViewed"=> $mostViewed,
+                "popular_tags"=> $popular_tags,
+                "event"=> $calendar,
+                "lang"=> $lang,
+                "text"=> trans('text.auth'),
+            );
         return  view('authors',compact('all_last_posts'));
-    }
+        }
     else{              
         return  redirect('/en');
         }      
@@ -58,36 +58,51 @@ class AuthorController extends Controller
         $rules = ['en','ru','hy'];                      
         if(in_array($locale,$rules))
         {
-                Session::put('locale',$locale);
-                App::setLocale($locale);
-                $lang = App::getLocale();
-               $lng = Post:: getLangId(); 
+            Session::put('locale',$locale);
+            App::setLocale($locale);
+            $lang = App::getLocale();
+            $lng = Post:: getLangId(); 
         
-        $menu = Post::menu();
-        $calendar= Event::event($lang);
-        $about_authors = DB::table('authors')
-        ->select('*')
-        ->where ('id','=', $id)
-        ->where ('lang_id','=', $lng)
-        ->get();
-        $a_last_posts = Author::authors_posts($id);
-       //return $a_last_posts[0]->posts;
-        $all_last_posts = array(
-        'authors' => $about_authors,
-        'menu'=>$menu, 
-        "event"=> $calendar,
-        "lang"=> $lang,
-        "a_posts" =>  $a_last_posts[0]->posts
-         );
+            $menu = Post::menu();
+            $calendar= Event::event($lang);
+            $about_authors = DB::table('authors')
+            ->select('*')
+            ->where ('id','=', $id )
+            ->where ('lang_id','=', $lng)
+            ->get();
 
-       //return  $all_last_posts['a_posts'];
-       return  view('about_me',compact('all_last_posts'));
+            if(count($about_authors) < 1) {
+                // dd('nu-nu');
+                $popular_tags = Tags::load_all_popular_tags();
+                $notFound = NotFound::where('lang_id', '=',Post::getLangId())->get();
+                $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();
+                $all_data=array(
+                    "lang"=> $lang,
+                    "event"=> $calendar,
+                    "menu"=>$menu, 
+                    "mostViewed"=> $mostViewed,  
+                    "popular_tags"=> $popular_tags,
+                    "not_found" => true,
+                    "not_found_text" => $notFound[0]->error_text,
+                );
+                return view('errors.pageNotFound1')-> with('all_last_posts',$all_data); 
+            }
+
+            $a_last_posts = Author::authors_posts($id);
+            //return $a_last_posts[0]->posts;
+            $all_last_posts = array(
+                'authors' => $about_authors,
+                'menu'=>$menu,
+                "event"=> $calendar,
+                "lang"=> $lang,
+                "a_posts" =>  $a_last_posts[0]->posts
+            );
+
+            //return  $all_last_posts['a_posts'];
+            return  view('about_me',compact('all_last_posts'));
     
-        }
-        else{              
+        }else{
             return  redirect('/en');
-
-
             } 
         }
         

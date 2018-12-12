@@ -152,7 +152,7 @@
             <hr>
           
             <label for="post_short_text">Short Description
-                <span class="label label-default">max number of chars = 100</span>
+                <span class="label label-default">cat from 100 simbols (min: 100)</span>
             </label>
             <textarea name="short_text" id="post_short_text" cols="30" rows="10" class="form-control">       
                 {{ $post['short_text'] }}

@@ -3,7 +3,7 @@
 
 <?php
 
-dump($all_last_posts["not_found"]);
+// dump($all_last_posts["not_found"]);
 
 ?>
 @if ($all_last_posts['not_found'] == '1')
