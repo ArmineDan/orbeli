@@ -88,7 +88,7 @@
                                   </ul>
                             </div>  --}}
                             
-            <div id="arch" style="z-index:1000;margin-left: 60px;">                 
+            <div id="arch" style="z-index:1000;margin-left:11%;">                 
                 <a class="lang" href="javascript:void(0);"><i class="fa fa-calendar" aria-hidden="true" style="font-size: 23px;"></i></a>
                                
                 <div class="calendar  col-md-3 col-sm-5 col-xs-12" style=" display:none;
@@ -101,7 +101,7 @@
                 </div>                            
             </div> 
 
-                {{--<div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right">
+                {{--<div class="col-md-1 col-sm-2 col-xs-3 single-search xs-padding-right" style="z-index:9000;width:3%">
                         <button id="srch" class="bg-transparent position-absolute"  style="border:none" >
                         <i class="fa fa-search no-margin-left" id="ns_search_icon"></i></button>                   
                     </div>--}}
@@ -110,13 +110,13 @@
     {{-- <i class="fa fa-times close_search_btn_ns"></i>--}}
     <center>
     <form action="{{url( '/'.$all_last_posts['lang']).'/search/'}}" method="GET">
-        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}...">
+        <input type="search" name="s" value="{{ Request::query('s') }}" class="search_inp_ns" placeholder="{{trans('text.search')}}..." autocomplete="off">
    
-   <button type="submit" style="display: contents;"><i class="fa fa-search" id="search_btn_for_blur_narek" ></i></button>
+   <button id ="n_submit" type="submit" style="display: contents;"><i class="fa fa-search" id="search_btn_for_blur_narek" ></i></button>
 	 </form>
     </center>
 </div>
-            <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right text-center">
+            <div class="col-md-1 col-sm-2 col-xs-3 xs-padding-right text-center" style="z-index:9000;width:3%">
                 <button id="srch" class="bg-transparent">
                 <i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i></button>                   
             </div> 
@@ -131,12 +131,12 @@
                          </span>
 						<span style="display:<?php echo $all_last_posts['lang'] =='en'?'inline-block':'none'?>;color:white">|</span>
                           <span style="display:<?php echo $all_last_posts['lang'] =='ru'?'none':'inline-block'?>">
-                         <a  class="lang" href="{{url('/ru')}}"  title="Ռուսերեն">Rus </a>                              
+                         <a  class="lang" href="{{url('/ru')}}"  title="Русский">Rus </a>                              
                          </span>
 						  <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>;color:white">|</span>
                          
                         <span style="display:<?php echo $all_last_posts['lang'] =='en'?'none':'inline-block'?>">
-                            <a class="lang" href="{{url('/en')}}" title="Անգլերեն">Eng </a> </span> 
+                            <a class="lang" href="{{url('/en')}}" title="English">Eng </a> </span> 
                          							
                         </strong>                                  
                         </div>

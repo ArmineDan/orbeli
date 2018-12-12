@@ -29,18 +29,29 @@ class Author extends Model
         ->where('lng','=',$lang)
         ->value('id');      
          
-        return  $authors_posts = DB::table( $db_name.' as p')
+		 if ($db_name == 'posts'){
+			 
+		$authors_posts =  Author::with('posts')->where('id','=',$auth_id)->get();   
+		
+        return $authors_posts;
+		 }
+		 else{
+			return  $authors_posts = DB::table( $db_name.' as p')
          ->select('p.*','a.name','a.lastname','a.img as aimg', 'p.img as oimg' )   
         ->join('authors as a', 'a.id', '=', 'p.author_id')                       
         ->where('p.author_id','=', $auth_id) 
 		->where('p.status','<>','not_published')
-        ->where('p.lang_id','=', $lng)            
-        ->paginate(3);
+        ->where('p.lang_id','=', $lng)  
+        ->orderBy('date','DESC')          
+        ->paginate(3);		 
+			 
+		 }
+        
     }
 
     // Обратные поли-отношения Авторов многие-ко-многим
     public function posts() {
-        return $this->morphedByMany('App\Post', 'authorable')->where('status','<>','not_published')->orderBy('posts.id','DESC');
+        return $this->morphedByMany('App\Post', 'authorable')->where('status','<>','not_published')->orderBy('date','DESC');
     }
 
     public function videos() {

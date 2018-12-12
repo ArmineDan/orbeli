@@ -344,18 +344,27 @@ $(window).resize(function (event) {
  ====================================== */
 $(document).ready(function () {
     "use strict";
-	
-	$("#srch").click(function(){
-        $("#open_search_folder_ns").css("display", "block")
-    })
+	 $(document).on('click','#srch',function(){
+    
 
-    $(".close_search_btn_ns").click(function(){
+		$("#open_search_folder_ns").css("display", "block");
+			
+		$(this).children().removeClass('fa-search no-margin-left').addClass('fa-times close_search_btn_ns').attr({"style":"z-index:1030;position:relative"}); 
+		$(this).removeAttr("id").attr('id','new');		
+		
+		$(document).on("click",'#new',function(){
+			
+	     $(this).removeAttr("id").attr('id','srch');
+		 $(this).children().removeClass('fa-times close_search_btn_ns').addClass(' fa-search no-margin-left').removeAttr("style").attr('style','font-size:16px');		
         $("#open_search_folder_ns").css("display", "none")
-    })
+		 			}) 
+})
 
     $(document).keydown(function(e) {
-        if (e.keyCode == 27) {
-            $("#open_search_folder_ns").css("display", "none");
+        if (e.keyCode == 27) { 
+		$('#new').removeAttr("id").attr('id','srch').html('').html('<i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i>');
+		   $("#open_search_folder_ns").css("display", "none")
+		 
         }
     });
 		
