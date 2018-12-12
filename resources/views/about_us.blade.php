@@ -82,7 +82,7 @@
                         
                         <div class="col-md-4 col-sm-4 col-xs-12 sm-margin-four-bottom last-paragraph-no-margin xs-margin-30px-bottom wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp; height: 436px;">
                             <div class="bg-white text-center">
-                                <a href="services-simple.html"><img src="{{$item->parallax_first_box_img}}" alt="" data-no-retina=""></a>
+                                <a href="services-simple.html"><img src="{{$item->parallax_second_box_img}}" alt="" data-no-retina=""></a>
                                 <div class="padding-45px-all sm-padding-15px-all inner-match-height">
                                     <span class="text-extra-dark-gray font-weight-600 display-block alt-font margin-10px-bottom">{{$item->parallax_second_box_title}}</span>
                                     <p> {{$item->parallax_second_box_text}} </p>
@@ -92,7 +92,7 @@
                         
                         <div class="col-md-4 col-sm-4 col-xs-12 sm-margin-four-bottom last-paragraph-no-margin xs-no-margin-bottom wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp; height: 436px;">
                             <div class="bg-white text-center">
-                                <a href="services-simple.html"><img src="{{$item->parallax_first_box_img}}" alt="" data-no-retina=""></a>
+                                <a href="services-simple.html"><img src="{{$item->parallax_third_box_img}}" alt="" data-no-retina=""></a>
                                 <div class="padding-45px-all sm-padding-15px-all inner-match-height">
                                     <span class="text-extra-dark-gray font-weight-600 display-block alt-font margin-10px-bottom">{{$item->parallax_third_box_title}}</span>
                                     <p> {{$item->parallax_third_box_text}} </p>
