@@ -16,7 +16,7 @@
                 <div class="container">
                    <div class="row">                 
                   
-                        <aside class="col-md-2 col-sm-12 col-xs-12 xs-margin-30px-bottom sm-margin-60px-bottom">   
+                        <aside class="col-md-2 col-sm-12 col-xs-12 xs-margin-30px-bottom sm-margin-60px-bottom height-300px">   
 						
                            <div class="margin-45px-bottom xs-margin-25px-bottom">                         
                                 <div class="text-extra-dark-gray margin-20px-bottom alt-font text-uppercase text-small font-weight-600 aside-title"><span>{{trans('text.author')}}</span></div>
@@ -26,7 +26,7 @@
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}">
                                                <img src="{{$all_last_posts['author'][$i]->img}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                                <div style="margin-top:24px;">
-                                               <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" target="_blanck">{{$all_last_posts['author'][$i]->name .' '.$all_last_posts['author'][$i]->lastname}} </a>
+                                               <a  style="font-size: 17px; min-height: 40px; display: block; " href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" target="_blanck">{{$all_last_posts['author'][$i]->name .' '.$all_last_posts['author'][$i]->lastname}} </a>
                                                <div class="display-table width-100" style="color:black">
                                                    <div class="display-table-cell icon-social-small ">
                                                        <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
@@ -44,11 +44,11 @@
                                    @endfor                                  
                                            
                                    @else
-                                      <div  class=" col-md-12 col-sm-6 col-xs-6 auth" style="text-align:center;">
+                                      <div  class=" col-md-12 col-sm-6 col-xs-6 auth" style="text-align:center; height-300px">
                                            <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}">
                                             <img src="{{$all_last_posts['post'][0]->aimg}}" alt="" width="150" class="border-radius-100 " data-no-retina=""></a>
                                             <div style="margin-top:24px;">
-                                              <a  style="font-size: 17px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
+                                              <a  style="font-size: 17px; min-height: 40px;" href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['post'][0]->author_id)}}" target="_blanck">{{$all_last_posts['post'][0]->name .' '.$all_last_posts['post'][0]->lastname}} </a>
                                               <div class="display-table  width-100" style="color:black">
                                                  <div class="display-table-cell icon-social-small ">
                                                     <div class="separator-line-horrizontal-full bg-deep-pink margin-eleven-tb"></div>
@@ -74,8 +74,34 @@
                     
                      <main id = "p" class="col-md-7 col-sm-12 col-xs-12 left-sidebar1  sm-margin-60px-bottom xs-margin-40px-bottom no-padding-right sm-no-padding-left">
                            <h4 class="alt-font font-weight-600 text-extra-dark-gray" style="padding:0 12px">{{$all_last_posts['post'][0]->title}} </h4>
-                            <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb"></div>
+                            <div class="separator-line-horrizontal-full bg-medium-gray margin-seven-tb md-margin-four-tb" style=" margin-bottom: 2%;"></div>
+                            <?php                                 
+                            switch ( $all_last_posts['folder']) {
+                                    case 'post':
+                                    $dur = $all_last_posts['post'][0]->p_duratioan;
+                                    break;
+                                    case 'opinion':
+                                    $dur = $all_last_posts['post'][0]->o_duration;
+                                    break;
+                                    case 'announcement':
+                                    $dur = $all_last_posts['post'][0]->a_duration;
+                                    break;
+                                    case 'news':
+                                    $dur = $all_last_posts['post'][0]->n_duration;
+                                    break;
+                                    case 'video':
+                                    $dur = $all_last_posts['post'][0]->duration;
+                                    break;
+                                
+                                default:
+                                $dur = 1;
+                                    break;
+                            }
+                            
+                            ?>  
 
+                    <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
+                  <br/>
 						   
 						   <div id="html_div" class="col-md-12 col-sm-12 col-xs-12 blog-details-text last-paragraph-no-margin post_href_color_narek">
                                 <?php echo html_entity_decode($all_last_posts['post'][0]->html_code, ENT_QUOTES | ENT_XML1, 'UTF-8'); ?>
@@ -85,32 +111,7 @@
                                 <!-- Your share button code -->
                                 <iframe src="https://www.facebook.com/plugins/share_button.php?href={{url()->full()}}&layout=button&size=small&mobile_iframe=true&appId=292500478052220&width=94&height=20" width="94" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                               <a class="twitter-share-button"  href="https://twitter.com/intent/tweet">Tweet</a>
-							   <?php                                 
-                                    switch ( $all_last_posts['folder']) {
-                                            case 'post':
-                                            $dur = $all_last_posts['post'][0]->p_duratioan;
-                                            break;
-                                            case 'opinion':
-                                            $dur = $all_last_posts['post'][0]->o_duration;
-                                            break;
-                                            case 'announcement':
-                                            $dur = $all_last_posts['post'][0]->a_duration;
-                                            break;
-                                            case 'news':
-                                            $dur = $all_last_posts['post'][0]->n_duration;
-                                            break;
-                                            case 'video':
-                                            $dur = $all_last_posts['post'][0]->duration;
-                                            break;
-                                        
-                                        default:
-                                        $dur = 1;
-                                            break;
-                                    }
-                                    
-                                    ?>                             
-                            <span class="text-medium-gray  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa fa-clock-o"></i> {{$dur.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['post'][0]->date}}</span> 
-                            </div>
+							     </div>
 
                            
                             @isset($all_last_posts['docs'])
@@ -229,18 +230,18 @@
                                 @include('includes.tags') 
                         </div>
 
-                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div> 
-                         </div>      
+                        <div class="text-center margin-45px-bottom xs-margin-25px-bottom">  
+                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-width="263px" data-small-header="false" data-adapt-container-width="true"  data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div>   
+                         </div>    
 
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
-                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+                                <a class="twitter-timeline" data-width="100% " data-height="400px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw" data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
                          
                        </aside>
                           
              
-                        @isset($all_last_posts['same_posts'])
+                        @isset($all_last_posts['same_posts']) 
                 <div class="col-md-12 col-sm-12 col-xs-12 no-padding" style="display:{{count($all_last_posts['same_posts'])>0?'block':'none'}}">
                                 <div class="col-md-12 col-sm-12 col-xs-12 margin-lr-auto text-center margin-80px-tb sm-margin-50px-tb xs-margin-30px-tb">
                                     <div class="position-relative overflow-hidden width-100">

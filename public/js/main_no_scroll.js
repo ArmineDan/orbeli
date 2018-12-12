@@ -345,25 +345,28 @@ $(window).resize(function (event) {
 $(document).ready(function () {
     "use strict";
     // Bootsnav menu work with eualize height
+    $(document).on('click','#srch',function(){
     
-    $("#srch").click(function(){  
-         console.log($(this).children())	
-		$(this).children().removeClass('fa-search no-margin-left').addClass('fa-times close_search_btn_ns').attr({"style":"z-index:103;position:fixed"}); 
-        $(this).removeAttr("id").attr('id','new');
-		$("#open_search_folder_ns").css("display", "block")
-		$("#new").on("click",function(){
-			console.log("new")
+
+		$("#open_search_folder_ns").css("display", "block");
+			
+		$(this).children().removeClass('fa-search no-margin-left').addClass('fa-times close_search_btn_ns').attr({"style":"z-index:1030;position:relative"}); 
+		$(this).removeAttr("id").attr('id','new');		
+		
+		$(document).on("click",'#new',function(){
+			
 	     $(this).removeAttr("id").attr('id','srch');
 		 $(this).children().removeClass('fa-times close_search_btn_ns').addClass(' fa-search no-margin-left').removeAttr("style").attr('style','font-size:16px');		
         $("#open_search_folder_ns").css("display", "none")
-    })
-    })
-
-    
+		 			}) 
+})
+  
 
     $(document).keydown(function(e) {
         if (e.keyCode == 27) {
-            $("#open_search_folder_ns").css("display", "none");
+           $('#new').removeAttr("id").attr('id','srch').html('').html('<i class="fa fa-search no-margin-left" id="" style="font-size:16px"></i>');
+		   $("#open_search_folder_ns").css("display", "none")
+		 
         }
     });
 		

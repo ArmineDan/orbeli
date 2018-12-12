@@ -14,7 +14,7 @@
         <section class="section1">               
             <div class="container">
                 <div class="row">  
-                 <main class="col-md-7 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-40px-bottom xs-margin-5px-bottom no-padding-right sm-no-padding-left ">
+                 <main class="col-md-7 col-sm-12 col-xs-12 left-sidebar1 pull-left xs-margin-5px-bottom no-padding-right sm-no-padding-left " id="narek_main_div_posts">
                    
                        @yield('main_post')
                                       
@@ -58,10 +58,9 @@
                                @include('includes.tags') 
                         </div>
                         
-                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">                            
-                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div> 
-                         </div>      
-
+                         <div class="text-center margin-45px-bottom xs-margin-25px-bottom">  
+                                <div class="fb-page" data-href="https://www.facebook.com/Orbeli-Center-779924719032716/" data-tabs="timeline" data-width="263px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Orbeli-Center-779924719032716/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Orbeli-Center-779924719032716/">Orbeli Center</a></blockquote></div>   
+                         </div>
                          <div class="text-center margin-45px-bottom xs-margin-25px-bottom">
                                 <a class="twitter-timeline" data-width="100% " data-height="500px" href="https://twitter.com/OrbeliCenter?ref_src=twsrc%5Etfw" data-chrome="nofooter">Tweets by myarmenia2</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
                           </div>
@@ -75,7 +74,7 @@
           <div class="container">
             <div class="row">
                  <div class="text-extra-dark-gray margin-25px-bottom alt-font text-uppercase font-weight-600 text-small aside-title"  style="display:{{count($all_last_posts['main_video'])>0?'block':'none'}}"><a href="{{url($all_last_posts['lang'].'/videos')}}" ><span>{{trans('text.videos')}} <i class="fa fa-arrow-right"></i></span></a></div>   
-                     <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left sm-margin-60px-bottom no-padding-right sm-no-padding-left">
+                     <main class="col-md-8 col-sm-12 col-xs-12 left-sidebar1 pull-left no-padding-right sm-no-padding-left" id="main_video_narek_finish">
                             @yield('main_video')
                              </main>
                         <!-- Vertical videos-->  

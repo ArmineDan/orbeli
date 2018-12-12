@@ -31,14 +31,15 @@
                                     }else{
                                         $show_text = $long_desc;
                                     }
+                                    //$utf8string = "cakeæøå";
                                    // print_r($devide_text
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1, "UTF-8")."...</div>";
                                 @endphp
                                 
                                 @else
                                 @php
                                     $show_text = substr($long_desc, $skizb, $show_symbols_size);
-                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1)."...</div>";
+                                    echo "<div class='show_text'>...".mb_substr($show_text, 0, -1, "UTF-8")."...</div>";
                                 @endphp
                             @endif
                           
