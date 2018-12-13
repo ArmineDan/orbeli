@@ -129,13 +129,13 @@ class AuthorController extends Controller
         $popular_tags=Tags::load_all_popular_tags();
         $mostViewed =  Post::with('getAuthors')->where('status','published')->where('lang_id',$lng)->orderByRaw('view DESC')->limit(5)->get();  
               
-        
+        //return $all_posts;
        
         $all_data = array(       
         'menu'=>$menu, 
         "event"=> $calendar,
         "lang"=> $lang,
-        "post" => $all_posts,
+        "post" => $all_posts[0]->posts,
         "videos"=>$all_videos,
         "announcements"=>$all_announs,
         "news"=> $all_news,

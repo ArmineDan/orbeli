@@ -10,7 +10,7 @@
             <a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['author'][$i]->id)}}" class="black">{{ substr( $all_last_posts['author'][$i]->name , 0, 2) .' '. $all_last_posts['author'][$i]->lastname. ' | '}}</a>
             @endfor
         </span>
-            <span class="black  text-extra-small pull-right padding-15px-left display-inline-block"><i class="fa  fa-clock-o"> </i><span class="text-lowcase"> {{$all_last_posts['main_post'][0]->p_duratioan.' '.trans('text.minute') }}</span> &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['main_post'][0]->date}}</span> 
+            <span class="black  text-extra-small pull-right padding-15px-left display-inline-block" id="narek_clock_post_ns"><i class="fa  fa-clock-o"> </i><span class="text-lowcase"> {{$all_last_posts['main_post'][0]->p_duratioan.' '.trans('text.minute') }}</span> &nbsp;&nbsp;|&nbsp;&nbsp;{{$all_last_posts['main_post'][0]->date}}</span> 
                  
         </div>
             <a href="{{url($all_last_posts['lang'].'/post/'.$all_last_posts['main_post'][0]->id.'/'.$all_last_posts['main_post'][0]->date.'/'.$all_last_posts['main_post'][0]->title)}}" class="black text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{!!str_limit($all_last_posts['main_post'][0]->title , 35)!!}</a>
@@ -45,7 +45,7 @@
 								 </a>
 					 
                    @endfor 
-               <span class="text-medium-gray  text-extra-small-10  padding-15px-left"><i class="fa  fa-clock-o"> </i> {{$item->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;|&nbsp;&nbsp;{{$item->date}}</span> 
+               <div class="text-medium-gray  text-extra-small-10"><i class="fa  fa-clock-o"> </i> {{$item->p_duratioan.' '.trans('text.minute') }} &nbsp;&nbsp;| {{$item->date}}</div> 
                  
 				   </div>
 				   </div> 
@@ -89,7 +89,7 @@
 @section('main_video')
 @isset($all_last_posts['main_video'][0])
 
-    <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center ">
+    <div class="col-md-12 col-sm-12 col-xs-12 blog-post-content  xs-margin-30px-bottom xs-text-center" id="px_narek_main_video">
     <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->id.'/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="blog-image">
         <img class="main_post_blur_narek" src="{{$all_last_posts['main_video'][0]->img}}" alt="" data-no-retina="">
         <div class="main_video_button_ns">
@@ -103,7 +103,7 @@
                 <span><a href="{{url($all_last_posts['lang'].'/author/'.$all_last_posts['main_video'][0]->author_id)}}"  class="black" >{{$all_last_posts['main_video'][0]->name .' '. $all_last_posts['main_video'][0]->lastname}}</a></span>
                 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> 
                 <span class="text-lowcase">{{$all_last_posts['main_video'][0]->duration." ".trans('text.minute')}}</span></span></div>
-            <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->id.'/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{{$all_last_posts['main_video'][0]->title}}</a>
+            <a href="{{url($all_last_posts['lang'].'/video/'.$all_last_posts['main_video'][0]->id.'/'.$all_last_posts['main_video'][0]->date.'/'.urlencode($all_last_posts['main_video'][0]->title))}}" class="text-extra-dark-gray text-uppercase  alt-font text-large font-weight-600 margin-15px-bottom display-block">{!!str_limit($all_last_posts['main_video'][0]->title, 40)!!}</a>
         </div>
     </div>
 </div>
@@ -113,21 +113,23 @@
 
 @section('vertical_video')
             @foreach ($all_last_posts['vert'] as $item)
-            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12 sm-margin-5px-bottom xs-margin-30px-bottom wow no-padding video_a"  style="visibility: visible;animation-name: fadeIn;">
+            <div class="col-md-12 col-sm-12col-xs-12 col-xs-12  margin-10px-bottom sm-margin-5px-bottom xs-margin-30px-bottom wow no-padding video_a"  style="visibility: visible;animation-name: fadeIn;">
                 <div class="blog-post blog-post-style1">    
                     <div class="blog-post-images overflow-hidden margin-5px-bottom xs-margin-15px-bottom">
                         <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->id.'/'.$item->date.'/'.urlencode($item->title))}}">
-                             <img src="{{$item->img}}" alt="" data-no-retina="">
+                             <img  class="nk" src="{{$item->img}}" alt="" data-no-retina="">
                             <div class="play-davo">
                                 <i class="fa fa-play-circle"></i>
                             </div>   
                         </a>
                     </div>
           <div class="author">
-                            <span  class="post-title text-medium text-extra-dark-gray width-100 display-block md-width-100"  style="font-weight:bold">{{$item->title}}
-                            </span> 
+                <a class="video-link-davo" href="{{url($all_last_posts['lang'].'/video/'.$item->id.'/'.$item->date.'/'.urlencode($item->title))}}">
+                                               <span  class="post-title text-medium text-extra-dark-gray width-100 display-block md-width-100 height-60px"  style="font-weight:bold;" >{!!str_limit($item->title , 40)!!} 
+                           
+                                               </a>                 </span> 
                             
-                      <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block">
+                      <span class="text-medium-gray text-uppercase text-extra-small  display-inline-block" >
                         <a href="{{url($all_last_posts['lang'].'/author/'.$item->author_id)}}" class="text-medium-gray">{{$item->name .' '. $item->lastname}}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-clock-o" aria-hidden="true"> </i> <span class="text-lowcase">{{$item->duration." ".trans('text.minute')}}</span></span>
                 </div> 
                 </div>

@@ -36,7 +36,7 @@
             </div!-->
         </div>
     </div>
-   <div class="narek_all_rights_reserved">
+   <div class="narek_all_rights_reserved text-center">
         <span id="footer_ns_hamar_1">&COPY;  <?php echo date("Y") ?> {{trans('text.footer_reserved')}} </span><br id="ns_br_1">
 		<span id="footer_ns_hamar_2">{{trans('text.footer_second')}}  <a href="http://webex.am" target="_blank" title="Վեբէքս Թեքնոլոջիս ՍՊԸ">{{trans('text.footer_webex')}}</a></span>
    </div>
